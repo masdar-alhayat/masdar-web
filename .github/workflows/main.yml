@@ -1,4 +1,4 @@
-name: Manual Deploy
+name: Production Deploy (Zero Downtime)
 
 on:
   workflow_dispatch:
@@ -16,9 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      # Setup SSH for connecting to VPS
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -26,33 +24,80 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
+      # Execute deployment on VPS
       - name: Deploy to VPS
         run: |
           if [ "${{ github.event.inputs.environment }}" = "staging" ]; then
-            TARGET_DIR="${{ secrets.VPS_BASE_PATH }}/staging"
+            BASE_PATH="/var/www/masdar/staging"
             APP_NAME="masdar-staging"
             PORT=3001
+            BRANCH="staging"
           else
-            TARGET_DIR="${{ secrets.VPS_BASE_PATH }}/production"
+            BASE_PATH="/var/www/masdar/production"
             APP_NAME="masdar-prod"
             PORT=3000
+            BRANCH="main"
           fi
 
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
-            cd \$TARGET_DIR || exit 1
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
 
-            if [ ! -d ".git" ]; then
-              git clone git@github-masdar:masdar-alhayat/masdar-web.git .
-            fi
+            set -e
 
-            git fetch origin
-            git reset --hard origin/${{ github.event.inputs.environment }}
+            BASE_PATH='"$BASE_PATH"'
+            APP_NAME='"$APP_NAME"'
+            PORT='"$PORT"'
+            BRANCH='"$BRANCH"'
 
-            npm install
-            npm run build
+            TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+            RELEASE_DIR="$BASE_PATH/releases/$TIMESTAMP"
+            LOG_DIR="$BASE_PATH/logs"
+            LOG_FILE="$LOG_DIR/deploy_$TIMESTAMP.log"
 
-            pm2 delete \$APP_NAME || true
-            PORT=\$PORT pm2 start npm --name \$APP_NAME -- start
+            mkdir -p "$BASE_PATH/releases"
+            mkdir -p "$LOG_DIR"
 
-            pm2 save
+            {
+              echo "Starting deployment at $TIMESTAMP"
+
+              # Clone repository using explicit SSH key
+              GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
+              git clone git@github.com:masdar-alhayat/masdar-web.git "$RELEASE_DIR"
+
+              cd "$RELEASE_DIR"
+
+              # Checkout correct branch
+              git checkout "$BRANCH"
+
+              # Install dependencies and build
+              npm install
+              npm run build
+
+              # Start new instance with temporary name
+              pm2 start npm --name "${APP_NAME}-new" -- start -- -p "$PORT"
+
+              # Atomically switch current symlink to new release
+              ln -sfn "$RELEASE_DIR" "$BASE_PATH/current"
+
+              # Replace old process with new one
+              pm2 delete "$APP_NAME" || true
+              pm2 rename "${APP_NAME}-new" "$APP_NAME"
+
+              pm2 save
+
+              echo "Deployment successful"
+
+            } >> "$LOG_FILE" 2>&1 || {
+
+              echo "Deployment failed. Check log at $LOG_FILE"
+
+              # Cleanup failed process if started
+              pm2 delete "${APP_NAME}-new" || true
+
+              exit 1
+            }
+
+            # Cleanup old releases, keep last 3
+            cd "$BASE_PATH/releases"
+            ls -dt */ | tail -n +4 | xargs rm -rf || true
+
           EOF
