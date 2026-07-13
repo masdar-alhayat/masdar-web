@@ -41,71 +41,68 @@ jobs:
             BRANCH="main"
           fi
 
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
 
-            set -e
+            set -euo pipefail
 
             BASE_PATH="$APP_PATH"
             APP_NAME="$APP_NAME"
             PORT="$PORT"
             BRANCH="$BRANCH"
 
-            # Fail if base path does not exist
-            if [ ! -d "\$BASE_PATH" ]; then
-              echo "Base path does not exist: \$BASE_PATH"
+            if [ ! -d "$BASE_PATH" ]; then
+              echo "Base path does not exist: $BASE_PATH"
               exit 1
             fi
 
-            TIMESTAMP=\$(date +"%Y-%m-%d_%H-%M-%S")
-            RELEASE_DIR="\$BASE_PATH/releases/\$TIMESTAMP"
-            LOG_DIR="\$BASE_PATH/logs"
-            LOG_FILE="\$LOG_DIR/deploy_\$TIMESTAMP.log"
+            TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+            RELEASE_DIR="$BASE_PATH/releases/$TIMESTAMP"
+            LOG_DIR="$BASE_PATH/logs"
+            LOG_FILE="$LOG_DIR/deploy_$TIMESTAMP.log"
 
-            mkdir -p "\$BASE_PATH/releases"
-            mkdir -p "\$LOG_DIR"
+            mkdir -p "$BASE_PATH/releases"
+            mkdir -p "$LOG_DIR"
 
             {
-              echo "Starting deployment at \$TIMESTAMP"
+              echo "===== DEPLOY START: $TIMESTAMP ====="
 
-              # Clone repo using explicit SSH key
+              # 🚨 FAIL FAST IF CLONE FAILS
               GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
-              git clone git@github.com:masdar-alhayat/masdar-web.git "\$RELEASE_DIR"
+              git clone --branch "$BRANCH" git@github.com:masdar-alhayat/masdar-web.git "$RELEASE_DIR"
 
-              cd "\$RELEASE_DIR"
+              cd "$RELEASE_DIR"
 
-              # Checkout correct branch
-              git checkout "\$BRANCH"
-
-              # Install dependencies and build
-              npm install
+              # Install & build
+              npm ci
               npm run build
 
               # Start new instance
-              pm2 start npm --name "\${APP_NAME}-new" -- start -- -p "\$PORT"
+              pm2 start npm --name "${APP_NAME}-new" -- start -- -p "$PORT"
 
-              # Switch symlink (zero downtime)
-              ln -sfn "\$RELEASE_DIR" "\$BASE_PATH/current"
+              # Switch symlink
+              ln -sfn "$RELEASE_DIR" "$BASE_PATH/current"
 
-              # Replace old process
-              pm2 delete "\$APP_NAME" || true
-              pm2 rename "\${APP_NAME}-new" "\$APP_NAME"
+              # Replace old process safely
+              pm2 delete "$APP_NAME" || true
+              pm2 rename "${APP_NAME}-new" "$APP_NAME"
 
               pm2 save
 
-              echo "Deployment successful"
+              echo "===== DEPLOY SUCCESS ====="
 
-            } >> "\$LOG_FILE" 2>&1 || {
+            } >> "$LOG_FILE" 2>&1 || {
 
-              echo "Deployment failed. Check log: \$LOG_FILE"
+              echo "===== DEPLOY FAILED ====="
+              echo "Check log: $LOG_FILE"
 
               # Cleanup failed process
-              pm2 delete "\${APP_NAME}-new" || true
+              pm2 delete "${APP_NAME}-new" || true
 
               exit 1
             }
 
             # Cleanup old releases (keep last 3)
-            cd "\$BASE_PATH/releases"
+            cd "$BASE_PATH/releases"
             ls -dt */ | tail -n +4 | xargs rm -rf || true
 
           EOF
