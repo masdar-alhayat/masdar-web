@@ -1,0 +1,475 @@
+.section {
+  position: relative;
+  padding-block: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(244, 241, 232, 0.34), rgba(255, 255, 255, 0) 28%),
+    #ffffff;
+}
+
+.section::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(27, 82, 48, 0.045) 1px, transparent 1px),
+    linear-gradient(rgba(27, 82, 48, 0.035) 1px, transparent 1px);
+  background-size: 82px 82px;
+  mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 82%, transparent);
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(460px, 1.22fr);
+  gap: clamp(3rem, 7vw, 8.5rem);
+  align-items: center;
+  min-height: clamp(720px, 82vh, 900px);
+  padding-block: clamp(5.5rem, 9vw, 9rem);
+}
+
+.copy {
+  position: relative;
+  z-index: 3;
+  max-width: 520px;
+}
+
+.copy h2 {
+  max-width: 9.4ch;
+  margin-block: 1.15rem 1.35rem;
+  font-size: clamp(3.25rem, 4.8vw, 5.8rem);
+  line-height: 0.97;
+  letter-spacing: -0.065em;
+}
+
+.copy p {
+  max-width: 48ch;
+  margin: 0 0 1.25rem;
+  color: rgba(18, 36, 27, 0.76);
+  font-size: clamp(1rem, 1.1vw, 1.12rem);
+  line-height: 1.72;
+}
+
+.grid[dir="rtl"] .copy h2 {
+  max-width: 11ch;
+  letter-spacing: -0.035em;
+}
+
+.visual {
+  min-width: 0;
+}
+
+.carousel {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 760px);
+  min-height: 650px;
+  margin-inline: auto;
+  padding: 22px 52px 26px;
+  outline: none;
+  touch-action: pan-y;
+}
+
+.carousel:focus-visible {
+  border-radius: 34px;
+  box-shadow: 0 0 0 3px rgba(29, 94, 54, 0.24);
+}
+
+.ambientGlow {
+  position: absolute;
+  z-index: -2;
+  inset: 11% 1% 12% 8%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 68% 28%, rgba(189, 119, 38, 0.27), transparent 34%),
+    radial-gradient(circle at 40% 65%, rgba(31, 104, 59, 0.24), transparent 54%);
+  filter: blur(42px);
+}
+
+.ambientGrid {
+  position: absolute;
+  z-index: -1;
+  inset: 9% 3% 18% 7%;
+  border: 1px solid rgba(27, 82, 48, 0.12);
+  border-radius: 34px;
+  transform: rotate(-2.2deg);
+}
+
+.ambientGrid::before,
+.ambientGrid::after {
+  position: absolute;
+  content: "";
+  background: rgba(27, 82, 48, 0.1);
+}
+
+.ambientGrid::before {
+  inset-block: 0;
+  inset-inline-start: 33%;
+  width: 1px;
+}
+
+.ambientGrid::after {
+  inset-inline: 0;
+  inset-block-start: 68%;
+  height: 1px;
+}
+
+.stage {
+  position: relative;
+  width: calc(100% - 72px);
+  min-height: 545px;
+  margin-inline: 0 auto;
+  perspective: 1400px;
+}
+
+.carousel[dir="rtl"] .stage {
+  margin-inline: auto 0;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 30px;
+  background: #153c25;
+  box-shadow:
+    0 40px 80px rgba(14, 42, 24, 0.22),
+    0 14px 34px rgba(14, 42, 24, 0.14);
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  will-change: transform;
+}
+
+.imageShade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7, 22, 13, 0.5) 0%, rgba(7, 22, 13, 0.03) 33%, rgba(7, 22, 13, 0.14) 55%, rgba(7, 22, 13, 0.92) 100%),
+    linear-gradient(90deg, rgba(7, 22, 13, 0.22), transparent 58%);
+}
+
+.imageTexture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.cardTop,
+.cardBottom {
+  position: absolute;
+  z-index: 2;
+  inset-inline: clamp(1.35rem, 3vw, 2.35rem);
+  display: flex;
+  color: #ffffff;
+}
+
+.cardTop {
+  inset-block-start: clamp(1.3rem, 3vw, 2.15rem);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.slideLabel {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0.44rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  background: rgba(10, 39, 22, 0.28);
+  backdrop-filter: blur(12px);
+  font-size: 0.71rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.slideNumber {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.cardBottom {
+  inset-block-end: clamp(1.55rem, 3.2vw, 2.55rem);
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.captionRule {
+  flex: 0 0 42px;
+  height: 1px;
+  margin-top: 0.76rem;
+  background: #d58a35;
+}
+
+.cardBottom p {
+  max-width: 34ch;
+  margin: 0;
+  font-size: clamp(1.35rem, 2.15vw, 2.18rem);
+  font-weight: 560;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+}
+
+.carousel[dir="rtl"] .cardBottom p {
+  letter-spacing: -0.02em;
+}
+
+.controls {
+  position: relative;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 40px 46px;
+  gap: 0.65rem;
+  align-items: center;
+  width: calc(100% - 18px);
+  margin: 34px auto 0;
+}
+
+.arrowButton,
+.pauseButton {
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgba(21, 76, 42, 0.18);
+  border-radius: 50%;
+  color: #164e2d;
+  background: rgba(255, 255, 255, 0.82);
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+  cursor: pointer;
+}
+
+.arrowButton {
+  width: 46px;
+  height: 46px;
+}
+
+.pauseButton {
+  width: 40px;
+  height: 40px;
+}
+
+.arrowButton:hover,
+.pauseButton:hover {
+  color: #ffffff;
+  border-color: #195a35;
+  background: #195a35;
+  transform: translateY(-2px);
+}
+
+.arrowButton:focus-visible,
+.pauseButton:focus-visible,
+.dot:focus-visible,
+.dotActive:focus-visible {
+  outline: 2px solid #b46f28;
+  outline-offset: 3px;
+}
+
+.arrowButton:disabled,
+.pauseButton:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.progressPanel {
+  display: grid;
+  grid-template-columns: auto minmax(90px, 1fr) auto;
+  gap: 0.82rem;
+  align-items: center;
+  min-width: 0;
+  padding: 0.72rem 0.9rem;
+  border: 1px solid rgba(21, 76, 42, 0.12);
+  border-radius: 999px;
+  background: rgba(247, 245, 238, 0.82);
+  backdrop-filter: blur(12px);
+}
+
+.counter {
+  display: flex;
+  align-items: baseline;
+  gap: 0.28rem;
+  color: #174d2d;
+  font-variant-numeric: tabular-nums;
+}
+
+.counter strong {
+  font-size: 0.86rem;
+}
+
+.counter span,
+.counter small {
+  color: rgba(23, 77, 45, 0.48);
+  font-size: 0.66rem;
+}
+
+.progressTrack {
+  position: relative;
+  overflow: hidden;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(23, 77, 45, 0.16);
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1c6a3b, #c17b30);
+  transform: scaleX(0);
+}
+
+.dots {
+  display: flex;
+  gap: 0.34rem;
+  align-items: center;
+}
+
+.dot,
+.dotActive {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(23, 77, 45, 0.24);
+  transition:
+    width 200ms ease,
+    background 200ms ease;
+  cursor: pointer;
+}
+
+.dotActive {
+  width: 18px;
+  background: #b8732d;
+}
+
+@media (max-width: 1199px) {
+  .grid {
+    grid-template-columns: minmax(0, 0.84fr) minmax(400px, 1.16fr);
+    gap: 3.5rem;
+  }
+
+  .copy h2 {
+    font-size: clamp(3.1rem, 5.4vw, 5.1rem);
+  }
+
+  .carousel {
+    min-height: 600px;
+    padding-inline: 34px;
+  }
+
+  .stage {
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 991px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    min-height: auto;
+    padding-block: 5.5rem;
+  }
+
+  .copy {
+    max-width: 720px;
+  }
+
+  .copy h2 {
+    max-width: 12ch;
+  }
+
+  .carousel {
+    width: min(100%, 720px);
+  }
+}
+
+@media (max-width: 575px) {
+  .grid {
+    padding-block: 4.25rem;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.75rem, 13vw, 4.2rem);
+    line-height: 0.98;
+  }
+
+  .carousel {
+    min-height: 510px;
+    padding: 10px 20px 18px;
+  }
+
+  .stage {
+    width: calc(100% - 28px);
+    min-height: 405px;
+  }
+
+  .card {
+    border-radius: 22px;
+  }
+
+  .cardBottom {
+    gap: 0.72rem;
+  }
+
+  .captionRule {
+    flex-basis: 25px;
+  }
+
+  .cardBottom p {
+    font-size: clamp(1.15rem, 5vw, 1.55rem);
+  }
+
+  .controls {
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    width: 100%;
+    margin-top: 26px;
+  }
+
+  .arrowButton {
+    width: 42px;
+    height: 42px;
+  }
+
+  .pauseButton {
+    display: none;
+  }
+
+  .progressPanel {
+    grid-template-columns: auto minmax(54px, 1fr);
+  }
+
+  .dots {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrowButton,
+  .pauseButton,
+  .dot,
+  .dotActive {
+    transition: none;
+  }
+}

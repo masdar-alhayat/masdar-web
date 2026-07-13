@@ -1,0 +1,3 @@
+import type {MetadataRoute} from "next";
+import {PAGE_DEFINITIONS} from "@/content/pages";
+export default function sitemap(): MetadataRoute.Sitemap { const base=process.env.NEXT_PUBLIC_SITE_URL || "https://www.masdaralhayat.com"; return PAGE_DEFINITIONS.flatMap(page => [{url:`${base}${page.path}`,lastModified:new Date(),changeFrequency:"monthly" as const,priority:page.path==="/"?1:0.75,alternates:{languages:{en:`${base}${page.path}`,ar:`${base}/ar${page.path==="/"?"":page.path}`}}},{url:`${base}/ar${page.path==="/"?"":page.path}`,lastModified:new Date(),changeFrequency:"monthly" as const,priority:page.path==="/"?0.9:0.7}]); }

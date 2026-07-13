@@ -1,0 +1,163 @@
+.fieldInvalid label {
+  color: #8f2f24;
+}
+
+.controlInvalid {
+  border-color: #a33124 !important;
+  box-shadow: 0 1px 0 #a33124 !important;
+}
+
+.fileInvalid {
+  border-color: #a33124 !important;
+  background: rgba(163, 49, 36, 0.035);
+}
+
+.errorText {
+  display: block;
+  color: #a33124;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.fileHint {
+  grid-column: 2;
+  font-size: 0.75rem;
+  color: #667;
+}
+
+.successCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 1.4rem;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid rgba(30, 78, 42, 0.18);
+  background:
+    radial-gradient(circle at 12% 20%, rgba(184, 125, 61, 0.16), transparent 34%),
+    linear-gradient(135deg, #edf6ed 0%, #f8fbf4 100%);
+  color: var(--mah-green-900);
+  animation: successEnter 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.successCard::after {
+  content: "";
+  position: absolute;
+  inset: auto -12% -65% auto;
+  width: 180px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(30, 78, 42, 0.12);
+  border-radius: 50%;
+  animation: orbitPulse 2.4s ease-in-out infinite;
+}
+
+.successIcon {
+  position: relative;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mah-green-900);
+  color: #fff;
+  box-shadow: 0 14px 34px rgba(30, 78, 42, 0.22);
+}
+
+.successIcon::before,
+.successIcon::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(30, 78, 42, 0.25);
+  border-radius: 50%;
+  animation: successRing 1.8s ease-out infinite;
+}
+
+.successIcon::after {
+  animation-delay: 0.6s;
+}
+
+.successCopy {
+  position: relative;
+  z-index: 1;
+}
+
+.successTitle {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.successMessage {
+  margin: 0;
+  max-width: 62ch;
+  color: #31513a;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.errorCard {
+  margin-top: 1.2rem;
+  padding: 1rem 1.1rem;
+  border-inline-start: 3px solid #a33124;
+  background: #f5e1dc;
+  color: #7d2b21;
+  font-size: 0.86rem;
+}
+
+@keyframes successEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes successRing {
+  0% {
+    opacity: 0.65;
+    transform: scale(0.72);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+@keyframes orbitPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .successCard {
+    grid-template-columns: 1fr;
+  }
+
+  .successIcon {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .successCard,
+  .successCard::after,
+  .successIcon::before,
+  .successIcon::after {
+    animation: none;
+  }
+}
