@@ -11,10 +11,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/globals.scss";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.masdaralhayat.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://masdarksa.cloud"),
   title: {default: "Masdar Al Hayat for Food Industries", template: "%s"},
   description: "A Saudi food manufacturing and distribution company operating as part of Tamimi Group.",
-  icons: {icon: "/brand/masdar-logo.png"}
+  icons: {icon: "/brand/masdar-logo.png"},
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true
+  }
 };
 
 export function generateStaticParams() { return routing.locales.map(locale => ({locale})); }
