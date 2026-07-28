@@ -1,0 +1,62 @@
+name: Build & Deploy (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environment"
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set Image Tag
+        id: vars
+        run: |
+          if [ "${{ github.event.inputs.environment }}" = "staging" ]; then
+            echo "TAG=staging" >> $GITHUB_OUTPUT
+          else
+            echo "TAG=latest" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build Docker Image
+        run: |
+          docker build -t parastoneglobal/masdar-web:${{ steps.vars.outputs.TAG }} .
+
+      - name: Push Docker Image
+        run: |
+          docker push parastoneglobal/masdar-web:${{ steps.vars.outputs.TAG }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            if [ "${{ github.event.inputs.environment }}" = "staging" ]; then
+              cd /srv/masdar-web-docker/staging
+              docker compose pull
+              docker compose up -d --remove-orphans
+            else
+              cd /srv/masdar-web-docker/production
+              docker compose pull
+              docker compose up -d --remove-orphans
+            fi

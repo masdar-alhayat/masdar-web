@@ -11,7 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/globals.scss";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://masdarksa.cloud"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://staging.masdarksa.cloud"),
   title: {default: "Masdar Al Hayat for Food Industries", template: "%s"},
   description: "A Saudi food manufacturing and distribution company operating as part of Tamimi Group.",
   icons: {icon: "/brand/masdar-logo.png"},
