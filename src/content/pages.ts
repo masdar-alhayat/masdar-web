@@ -4,21 +4,128 @@ import type {PageContent, PageTheme} from "@/types/content";
 export const PAGE_KEYS = {
   home: "HOME PAGE",
   about: "ABOUT MASDAR AL HAYAT",
-  groupStory: "GROUP STORY - TAMIMI GROUP",
+  groupStory: "GROUP STORY – TAMIMI GROUP",
   visionValues: "VISION, MISSION & VALUES",
-  leadership: "LEADERSHIP & GOVERNANCE",
-  manufacturing: "MANUFACTURING & OPERATIONS",
-  quality: "QUALITY, FOOD SAFETY & COMPLIAN",
-  sustainability: "SUSTAINABILITY & RESPONSIBILITY",
-  brands: "BRAND PORTFOLIO",
-  partnerships: "BUSINESS PARTNERSHIPS",
+  research: "RESEARCH & INNOVATION",
+  manufacturing: "MANUFACTURING",
+  operations: "OPERATIONS",
+  quality: "QUALITY & COMPLIANCE",
+  logistics: "LOGISTICS & DISTRIBUTION",
+  brands: "BRANDS",
+  partnerships: "PARTNERSHIPS",
   presence: "MARKET PRESENCE & EXHIBITIONS",
-  landscape: "MARKET & COMPETITOR LANDSCAPE",
+  landscape: "MARKET & INDUSTRY LANDSCAPE",
   careers: "CAREERS",
-  contact: "CONTACT & CORPORATE OFFICES"
+  contact: "CONTACT"
 } as const;
 
 export type PageKey = keyof typeof PAGE_KEYS;
+
+export const APPROVED_IMAGES = {
+  masdar1: "/assets/images/masdar-1.png",
+  masdar2: "/assets/images/masdar-2.png",
+  masdar3: "/assets/images/masdar-3.jpeg",
+  masdar4: "/assets/images/masdar-4.jpeg",
+  masdar5: "/assets/images/masdar-5.jpeg",
+  masdar6: "/assets/images/masdar-6.jpeg",
+  masdar7: "/assets/images/masdar-7.jpeg",
+  masdar8: "/assets/images/masdar-8.jpeg",
+  masdar9: "/assets/images/masdar-9.jpeg",
+  masdar10: "/assets/images/masdar-10.jpeg",
+  masdar11: "/assets/images/masdar-11.jpeg",
+  masdar12: "/assets/images/masdar-12.jpeg",
+  masdar13: "/assets/images/masdar-13.jpeg",
+  masdar14: "/assets/images/masdar-14.jpeg",
+  masdar15: "/assets/images/masdar-15.jpeg",
+  masdar16: "/assets/images/masdar-16.jpeg",
+  masdar17: "/assets/images/masdar-17.jpeg",
+} as const;
+
+/**
+ * Main page hero images.
+ * Change only this object when you want to assign a different approved image
+ * to a page hero.
+ */
+export const PAGE_IMAGES = {
+  home: APPROVED_IMAGES.masdar1,
+  about: APPROVED_IMAGES.masdar2,
+  groupStory: "/assets/images/masdar-enhanced/masdar_al_hayat_07.jpg",
+  visionValues: "/assets/images/masdar-enhanced/masdar_al_hayat_09.png",
+  research: "/assets/images/masdar-enhanced/masdar_al_hayat_13.png",
+  manufacturing: "/assets/images/masdar-enhanced/masdar_al_hayat_16.png",
+  operations: "/assets/images/masdar-enhanced/masdar_al_hayat_21.png",
+  quality: "/assets/images/masdar-enhanced/masdar_al_hayat_03.png",
+  logistics: "/assets/images/masdar-enhanced/masdar_al_hayat_24.png",
+  brands: APPROVED_IMAGES.masdar10,
+  partnerships: APPROVED_IMAGES.masdar11,
+  presence: APPROVED_IMAGES.masdar12,
+  landscape: APPROVED_IMAGES.masdar13,
+  careers: APPROVED_IMAGES.masdar14,
+  contact: APPROVED_IMAGES.masdar15,
+} as const;
+
+export const HOME_IMAGES = {
+  hero: APPROVED_IMAGES.masdar1,
+  whoWeAre: "/assets/images/masdar-enhanced/masdar_al_hayat_01.png",
+  manufacturingStrength: "/assets/images/masdar-enhanced/masdar_al_hayat_02.png",
+  qualitySystem: "/assets/images/masdar-enhanced/masdar_al_hayat_03.png",
+  marketConnection: "/assets/images/masdar-enhanced/masdar_al_hayat04.png",
+  careers: "/assets/images/masdar-enhanced/masdar_al_hayat_05.jpeg",
+} as const;
+
+export const HOME_VIDEOS = {
+  flagshipBrand: "/assets/videos/masdar-video-2.mp4",
+} as const;
+
+export const BRAND_LOGOS = {
+  tamimiGroup: "/brand/tamimi-group-logo.png",
+} as const;
+
+/**
+ * Internal section images.
+ *
+ * The key is the page imageKey from PAGE_DEFINITIONS.
+ * The number is the visible section index used by SectionRenderer.
+ *
+ * Example:
+ * about: {
+ *   2: APPROVED_IMAGES.masdar15,
+ * }
+ *
+ * Sections not listed here will not receive a fallback image.
+ * This prevents accidental repetition.
+ */
+export const SECTION_IMAGE_MAP: Partial<
+  Record<keyof typeof PAGE_IMAGES, Record<number, string>>
+> = {
+  about: {
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_06.png",
+  },
+  groupStory: {
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_08.jpeg",
+  },
+  visionValues: {
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_11.png",
+    3: "/assets/images/masdar-enhanced/masdar_al_hayat_10.png",
+    4: "/assets/images/masdar-enhanced/masdar_al_hayat_12.png",
+  },
+  research: {
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_14.png",
+    4: "/assets/images/masdar-enhanced/masdar_al_hayat_15.png",
+  },
+  manufacturing: {
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_17.png",
+  },
+  operations: {
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_22.png",
+  },
+  quality: {
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_23.png",
+  },
+  logistics: {
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_25.png",
+  },
+};
 
 export interface PageDefinition {
   key: PageKey;
@@ -27,50 +134,30 @@ export interface PageDefinition {
   imageKey: keyof typeof PAGE_IMAGES;
 }
 
-export const PAGE_IMAGES = {
-  home: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=2200&q=88",
-  about: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=2000&q=86",
-  heritage: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2000&q=86",
-  manifesto: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2000&q=86",
-  governance: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=2000&q=86",
-  industrial: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=2200&q=86",
-  quality: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=2000&q=86",
-  sustainability: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=2000&q=86",
-  portfolio: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2000&q=86",
-  partnership: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=2000&q=86",
-  market: "https://images.unsplash.com/photo-1651525670114-2b8117390b28?auto=format&fit=crop&w=2400&q=85",
-  careers: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=86",
-  contact: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2000&q=86"
-} as const;
-
-
-export const SECTION_IMAGES = [
-  "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1800&q=84",
-  "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1800&q=84",
-  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1800&q=84",
-  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=84",
-  "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1800&q=84",
-  "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=84",
-  "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1800&q=84",
-  "https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=1800&q=84"
-] as const;
-
 export const PAGE_DEFINITIONS: PageDefinition[] = [
   {key: "home", path: "/", theme: "home", imageKey: "home"},
   {key: "about", path: "/about/masdar-al-hayat", theme: "editorial", imageKey: "about"},
-  {key: "groupStory", path: "/about/group-story-tamimi-group", theme: "heritage", imageKey: "heritage"},
-  {key: "visionValues", path: "/about/vision-mission-values", theme: "manifesto", imageKey: "manifesto"},
-  {key: "leadership", path: "/leadership-governance", theme: "governance", imageKey: "governance"},
-  {key: "manufacturing", path: "/operations-quality/manufacturing-operations", theme: "industrial", imageKey: "industrial"},
-  {key: "quality", path: "/operations-quality/quality-food-safety-compliance", theme: "quality", imageKey: "quality"},
-  {key: "sustainability", path: "/sustainability-responsibility", theme: "sustainability", imageKey: "sustainability"},
-  {key: "brands", path: "/brands-partnerships/brands-portfolio", theme: "portfolio", imageKey: "portfolio"},
-  {key: "partnerships", path: "/brands-partnerships/business-partnerships", theme: "partnership", imageKey: "partnership"},
-  {key: "presence", path: "/market-presence/exhibitions", theme: "market", imageKey: "market"},
-  {key: "landscape", path: "/market-presence/market-landscape", theme: "market", imageKey: "market"},
+  {key: "groupStory", path: "/about/group-story-tamimi-group", theme: "heritage", imageKey: "groupStory"},
+  {key: "visionValues", path: "/about/vision-mission-values", theme: "manifesto", imageKey: "visionValues"},
+  {key: "research", path: "/research-innovation", theme: "innovation", imageKey: "research"},
+  {key: "manufacturing", path: "/capabilities/manufacturing", theme: "industrial", imageKey: "manufacturing"},
+  {key: "operations", path: "/capabilities/operations", theme: "operations", imageKey: "operations"},
+  {key: "quality", path: "/capabilities/quality-compliance", theme: "quality", imageKey: "quality"},
+  {key: "logistics", path: "/capabilities/logistics-distribution", theme: "logistics", imageKey: "logistics"},
+  {key: "brands", path: "/brands-partnerships/brands", theme: "portfolio", imageKey: "brands"},
+  {key: "partnerships", path: "/brands-partnerships/partnerships", theme: "partnership", imageKey: "partnerships"},
+  {key: "presence", path: "/market-presence/exhibitions", theme: "market", imageKey: "presence"},
+  {key: "landscape", path: "/market-presence/industry-landscape", theme: "market", imageKey: "landscape"},
   {key: "careers", path: "/careers", theme: "careers", imageKey: "careers"},
   {key: "contact", path: "/contact", theme: "contact", imageKey: "contact"}
 ];
+
+export function getSectionImage(
+  imageKey: keyof typeof PAGE_IMAGES,
+  sectionIndex: number,
+): string {
+  return SECTION_IMAGE_MAP[imageKey]?.[sectionIndex] ?? "";
+}
 
 export function getPageContent(key: PageKey): PageContent {
   return content[PAGE_KEYS[key] as keyof typeof content] as PageContent;

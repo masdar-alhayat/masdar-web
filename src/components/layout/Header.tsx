@@ -18,19 +18,20 @@ const menu: MenuItem[] = [
     {label: {en: "Group Story — Tamimi Group", ar: "قصة المجموعة — مجموعة التميمي"}, href: "/about/group-story-tamimi-group"},
     {label: {en: "Vision, Mission & Values", ar: "الرؤية والرسالة والقيم"}, href: "/about/vision-mission-values"}
   ]},
-  {label: {en: "Leadership", ar: "القيادة والحوكمة"}, href: "/leadership-governance"},
-  {label: {en: "Operations & Quality", ar: "العمليات والجودة"}, children: [
-    {label: {en: "Manufacturing & Operations", ar: "التصنيع والعمليات"}, href: "/operations-quality/manufacturing-operations"},
-    {label: {en: "Quality, Food Safety & Compliance", ar: "الجودة وسلامة الغذاء والامتثال"}, href: "/operations-quality/quality-food-safety-compliance"}
+  {label: {en: "Research & Innovation", ar: "البحث والابتكار"}, href: "/research-innovation"},
+  {label: {en: "Our Capabilities", ar: "قدراتنا"}, children: [
+    {label: {en: "Manufacturing", ar: "التصنيع"}, href: "/capabilities/manufacturing"},
+    {label: {en: "Operations", ar: "العمليات"}, href: "/capabilities/operations"},
+    {label: {en: "Quality & Compliance", ar: "الجودة والامتثال"}, href: "/capabilities/quality-compliance"},
+    {label: {en: "Logistics & Distribution", ar: "الخدمات اللوجستية والتوزيع"}, href: "/capabilities/logistics-distribution"}
   ]},
-  {label: {en: "Sustainability", ar: "الاستدامة"}, href: "/sustainability-responsibility"},
   {label: {en: "Brands & Partnerships", ar: "العلامات والشراكات"}, children: [
-    {label: {en: "Brands Portfolio", ar: "محفظة العلامات التجارية"}, href: "/brands-partnerships/brands-portfolio"},
-    {label: {en: "Business Partnerships", ar: "شراكات الأعمال"}, href: "/brands-partnerships/business-partnerships"}
+    {label: {en: "Brands", ar: "العلامات التجارية"}, href: "/brands-partnerships/brands"},
+    {label: {en: "Partnerships", ar: "الشراكات"}, href: "/brands-partnerships/partnerships"}
   ]},
   {label: {en: "Market Presence", ar: "حضورنا في السوق"}, children: [
     {label: {en: "Market Presence & Exhibitions", ar: "الحضور في السوق والمعارض"}, href: "/market-presence/exhibitions"},
-    {label: {en: "Market & Industry Landscape", ar: "مشهد السوق والقطاع"}, href: "/market-presence/market-landscape"}
+    {label: {en: "Market & Industry Landscape", ar: "السوق والقطاع الغذائي"}, href: "/market-presence/industry-landscape"}
   ]},
   {label: {en: "Careers", ar: "الوظائف"}, href: "/careers"}
 ];

@@ -22,7 +22,7 @@ export function meta(page: PageContent, label: string, locale: Locale): string {
 }
 
 export function sectionDisplayTitle(section: ContentSection): string {
-  return section.title.replace(/^Section\s+\d+\s+[—-]\s*/, "");
+  return section.title.replace(/^Section\s+\d+\s+[—–-]\s*/, "");
 }
 
 export interface NumberedGroup {
@@ -64,4 +64,21 @@ export function paragraphs(section: ContentSection, locale: Locale): string[] {
 export function pageTitle(page: PageContent, locale: Locale): string {
   const hero = page.sections[0];
   return value(byLabel(hero, "Main Heading"), locale) || value(byLabel(hero, "Page Heading"), locale) || page.title;
+}
+
+export function resolveCtaHref(label: string): string {
+  const text = label.trim().toLowerCase();
+
+  if (/career application|apply now|current opportunit|application|قدّم|التقديم الوظيفي/.test(text)) return "/careers#career-application";
+  if (/submit partnership|partnership enquiry|طلب شراكة|إرسال طلب الشراكة/.test(text)) return "#partnership-enquiry";
+  if (/logistics|distribution|اللوجستية|التوزيع/.test(text)) return "/capabilities/logistics-distribution";
+  if (/quality|compliance|الجودة|الامتثال/.test(text)) return "/capabilities/quality-compliance";
+  if (/manufactur|التصنيع/.test(text)) return "/capabilities/manufacturing";
+  if (/operation|العمليات/.test(text)) return "/capabilities/operations";
+  if (/partnership|partner|الشراكات|شريك/.test(text)) return "/brands-partnerships/partnerships";
+  if (/fonte website|موقع فونتي/.test(text)) return "https://www.masdar.sa";
+  if (/brand|fonte|علامات|العلامات|فونتي/.test(text)) return "/brands-partnerships/brands";
+  if (/career|وظائف/.test(text)) return "/careers";
+  if (/enquiry|contact|تواصل|استفسار/.test(text)) return "/contact#contact-form";
+  return "/contact";
 }
