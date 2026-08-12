@@ -1,0 +1,265 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(6.5rem, 9vw, 9rem) clamp(5.5rem, 9vw, 9rem);
+  background:
+    radial-gradient(circle at 92% 10%, rgba(184, 125, 61, .13), transparent 27rem),
+    var(--mah-cream);
+}
+
+.section::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: clamp(.25rem, .45vw, .4rem);
+  content: "";
+  background: linear-gradient(90deg, var(--mah-green-950), var(--mah-gold), var(--mah-copper));
+  opacity: .72;
+}
+
+.container {
+  position: relative;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.header > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+}
+
+.header :global(.section-kicker) {
+  margin: 0;
+}
+
+.header h2 {
+  max-width: 17ch;
+  margin: 0;
+  color: var(--mah-green-950);
+  font-size: clamp(2.35rem, 4.2vw, 4.4rem);
+}
+
+.controls {
+  display: flex;
+  gap: .7rem;
+}
+
+.controls button {
+  width: clamp(3.1rem, 4vw, 3.75rem);
+  height: clamp(3.1rem, 4vw, 3.75rem);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--mah-green-950);
+  background: transparent;
+  border: 1px solid rgba(18, 57, 31, .26);
+  border-radius: 50%;
+  transition:
+    color .35s ease,
+    background-color .35s ease,
+    border-color .35s ease,
+    transform .35s ease;
+}
+
+.controls button:hover,
+.controls button:focus-visible {
+  color: #fff;
+  background: var(--mah-copper);
+  border-color: var(--mah-copper);
+  transform: translateY(-2px);
+}
+
+.controls svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  stroke-width: 1.7;
+}
+
+.stage {
+  position: relative;
+  height: clamp(30rem, 52vw, 42rem);
+  overflow: hidden;
+  outline: none;
+}
+
+.stage:focus-visible {
+  box-shadow: 0 0 0 3px rgba(184, 125, 61, .42);
+}
+
+.card {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: min(76%, 980px);
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+  background: var(--mah-green-950);
+  box-shadow: 0 2rem 5rem rgba(18, 57, 31, .2);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 54px), calc(100% - 54px) 100%, 0 100%);
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.card:first-child {
+  opacity: 1;
+}
+
+.stage[dir="rtl"] .card {
+  inset: 0 0 0 auto;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 54px 100%, 0 calc(100% - 54px));
+}
+
+.card img {
+  object-fit: cover;
+  object-position: center;
+  will-change: transform;
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 55%, rgba(8, 31, 17, .45)),
+    linear-gradient(90deg, rgba(8, 31, 17, .12), transparent 40%);
+}
+
+.card figcaption {
+  position: absolute;
+  inset: auto auto clamp(1.25rem, 2.8vw, 2.4rem) clamp(1.25rem, 2.8vw, 2.4rem);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: min(14rem, 65%);
+  padding: .9rem 1.1rem;
+  color: #fff;
+  background: rgba(18, 57, 31, .88);
+  border-inline-start: 3px solid var(--mah-sand);
+  backdrop-filter: blur(10px);
+}
+
+.stage[dir="rtl"] .card figcaption {
+  inset: auto clamp(1.25rem, 2.8vw, 2.4rem) clamp(1.25rem, 2.8vw, 2.4rem) auto;
+}
+
+.card figcaption span {
+  font-size: .73rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.card figcaption strong {
+  margin-inline-start: auto;
+  color: var(--mah-sand);
+  font-size: .75rem;
+  letter-spacing: .12em;
+}
+
+.pagination {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  color: var(--mah-green-950);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.pagination > div {
+  height: 2px;
+  overflow: hidden;
+  background: rgba(18, 57, 31, .14);
+}
+
+.pagination > div > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--mah-sand), var(--mah-copper));
+  transform: scaleX(.2);
+}
+
+.stage[dir="rtl"] + .pagination > div > span {
+  background: linear-gradient(-90deg, var(--mah-sand), var(--mah-copper));
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: .65rem;
+  margin-top: 1.15rem;
+}
+
+.dots button {
+  width: .45rem;
+  height: .45rem;
+  padding: 0;
+  background: rgba(18, 57, 31, .22);
+  border: 0;
+  border-radius: 50%;
+  transition: width .35s ease, background-color .35s ease;
+}
+
+.dots button.activeDot {
+  width: 2.3rem;
+  background: var(--mah-copper);
+  border-radius: 999px;
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding-block: 5.25rem 4.5rem;
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .header h2 {
+    max-width: 14ch;
+    font-size: clamp(2.25rem, 10vw, 3.2rem);
+  }
+
+  .controls {
+    justify-content: flex-end;
+  }
+
+  .stage {
+    height: clamp(25rem, 116vw, 34rem);
+  }
+
+  .card {
+    width: 86%;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+  }
+
+  .stage[dir="rtl"] .card {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  }
+
+  .card figcaption {
+    min-width: 0;
+    max-width: calc(100% - 2.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card img,
+  .controls button,
+  .dots button {
+    transition: none;
+  }
+}

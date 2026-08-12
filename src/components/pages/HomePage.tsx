@@ -14,6 +14,8 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
   const ar = locale === "ar";
   const [hero, intro, glance, manufacturing, portfolio, fonte, quality, tamimi, partnerships, market, careers, finalCta] = page.sections;
   const heroHeading = value(byLabel(hero,"Main Heading"),locale);
+  const fonteHeading = value(byLabel(fonte,"Main Heading"),locale);
+  const fonteTitle = fonteHeading.replace(ar ? /^فونتي\s*[—–-]\s*/ : /^Fonte\s*[—–-]\s*/i, "").trim();
   const heroWords = heroHeading.split(/(?<=[.!؟])\s+/).filter(Boolean);
   return <main id="main-content">
     <HeroMotion className="home-hero">
@@ -99,7 +101,10 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       </div>
       <div className="container-xxl fonte-home__content" data-animate>
         <span className="section-kicker">{value(byLabel(fonte,"Section Label"),locale)}</span>
-        <h2>{value(byLabel(fonte,"Main Heading"),locale)}</h2>
+        <div className="fonte-home__logo" role="img" aria-label={ar ? "شعار فونتي" : "Fonte logo"}>
+          <Image src="/brand/fonte-logo-full.png" alt="" width={512} height={512} sizes="(max-width: 767px) 150px, 184px"/>
+        </div>
+        <h2>{fonteTitle}</h2>
         {paragraphs(fonte,locale).map((p,i)=><p key={i}>{p}</p>)}
         <div className="fonte-home__categories">{numberedGroups(fonte).map((g)=><span key={g.key}>{value(g.parts.Title || g.parts.Text,locale) || value(Object.values(g.parts)[0],locale)}</span>)}</div>
         <ArrowLink href="/brands-partnerships/brands" light>{value(byLabel(fonte,/CTA/),locale)}</ArrowLink>

@@ -27,6 +27,9 @@ const socialLinks = [
 
 export function Footer({locale}: {locale: Locale}) {
   const ar = locale === "ar";
+  const copyrightYear = ar
+    ? new Intl.NumberFormat("ar-SA", {useGrouping: false}).format(new Date().getFullYear())
+    : new Date().getFullYear();
 
   return <footer className="site-footer">
     <div className="site-footer__grain" aria-hidden="true"/>
@@ -79,7 +82,19 @@ export function Footer({locale}: {locale: Locale}) {
       </div>
 
       <div className="site-footer__bottom">
-        <span>© {new Date().getFullYear()} Masdar Al Hayat for Food Industries Ltd.</span>
+        <span>
+          © {copyrightYear} {ar ? "شركة مصدر الحياة للصناعات الغذائية المحدودة." : "Masdar Al Hayat for Food Industries Ltd."}
+        </span>
+        <span className="site-footer__credit" dir={ar ? "rtl" : "ltr"}>
+          {ar ? "تم التصميم والتطوير بواسطة" : "Designed and Developed by"}{" "}
+          <a
+            href="https://adtco-sa.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {ar ? "مؤسسة ألفا المطورة للاتصالات و تقنية المعلومات" : "Alpha Developers Tech Company (ADTCO)"}
+          </a>
+        </span>
         <span>{ar ? "جميع الحقوق محفوظة" : "All rights reserved"}</span>
       </div>
     </div>

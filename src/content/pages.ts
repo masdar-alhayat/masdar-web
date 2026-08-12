@@ -54,14 +54,14 @@ export const PAGE_IMAGES = {
   research: "/assets/images/masdar-enhanced/masdar_al_hayat_13.png",
   manufacturing: "/assets/images/masdar-enhanced/masdar_al_hayat_16.png",
   operations: "/assets/images/masdar-enhanced/masdar_al_hayat_21.png",
-  quality: "/assets/images/masdar-enhanced/masdar_al_hayat_03.png",
+  quality: "/assets/images/masdar-enhanced/masdar_al_hayat_33.png",
   logistics: "/assets/images/masdar-enhanced/masdar_al_hayat_24.png",
-  brands: APPROVED_IMAGES.masdar10,
-  partnerships: APPROVED_IMAGES.masdar11,
+  brands: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
+  partnerships: "/assets/images/masdar-enhanced/masdar_al_hayat-41.png",
   presence: APPROVED_IMAGES.masdar12,
   landscape: APPROVED_IMAGES.masdar13,
-  careers: APPROVED_IMAGES.masdar14,
-  contact: APPROVED_IMAGES.masdar15,
+  careers: "/assets/images/masdar-enhanced/masdar_al_hayat-43.png",
+  contact: "/assets/images/masdar-enhanced/masdar_al_hayat-48.png",
 } as const;
 
 export const HOME_IMAGES = {
@@ -124,6 +124,12 @@ export const SECTION_IMAGE_MAP: Partial<
   },
   logistics: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat_25.png",
+  },
+  partnerships: {
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat-42.png",
+  },
+  careers: {
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat-44.png",
   },
 };
 

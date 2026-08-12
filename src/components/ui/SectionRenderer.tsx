@@ -9,6 +9,8 @@ import {
   ManufacturingCapabilitiesFlow,
   type ManufacturingCapabilityItem,
 } from "./ManufacturingCapabilitiesFlow";
+import {ManufacturingVideoInterlude} from "./ManufacturingVideoInterlude";
+import {ManufacturingGallery} from "./ManufacturingGallery";
 import {
   HeritageTimeline,
   type HeritageTimelineMilestone,
@@ -765,51 +767,62 @@ export function SectionRenderer({
     ];
 
     return (
-      <AnimatedSection className={`content-section brand-portfolio-section content-section--${theme}`} variant="stagger">
-        <div className="container-xxl">
-          <header className="brand-portfolio__header" data-animate>
-            <div>
-              {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
-              <h2>{heading}</h2>
-            </div>
-            <div className="brand-portfolio__intro">
-              {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
-            </div>
-          </header>
+      <>
+        {theme === "portfolio" && (
+          <ManufacturingVideoInterlude
+            label={
+              isAr
+                ? "مشاهد متتابعة من عمليات تصنيع منتجات فونتي"
+                : "Fonte manufacturing operations video sequence"
+            }
+          />
+        )}
 
-          <div className="brand-portfolio__grid">
-            {portfolioBrands.map((brand, brandIndex) => {
-              const asset = brandAssets[brandIndex];
-              const brandTitle = groupText(brand, "Title");
+        <AnimatedSection className={`content-section brand-portfolio-section content-section--${theme}`} variant="stagger">
+          <div className="container-xxl">
+            <header className="brand-portfolio__header" data-animate>
+              <div>
+                {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+                <h2>{heading}</h2>
+              </div>
+              <div className="brand-portfolio__intro">
+                {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
+              </div>
+            </header>
 
-              return (
-                <article className={`brand-portfolio-card brand-portfolio-card--${asset.key}`} key={brand.key} data-animate>
-                  <div className="brand-portfolio-card__logo">
-                    <Image
-                      src={asset.src}
-                      alt={`${brandTitle} ${isAr ? "شعار" : "logo"}`}
-                      fill
-                      sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
-                    />
-                  </div>
-                  <div className="brand-portfolio-card__content">
-                    <span aria-hidden="true" />
-                    <h3>{brandTitle}</h3>
-                    <p>{value(brand.parts.Description, locale)}</p>
-                  </div>
-                </article>
-              );
-            })}
+            <div className="brand-portfolio__grid">
+              {portfolioBrands.map((brand, brandIndex) => {
+                const asset = brandAssets[brandIndex];
+                const brandTitle = groupText(brand, "Title");
+
+                return (
+                  <article className={`brand-portfolio-card brand-portfolio-card--${asset.key}`} key={brand.key} data-animate>
+                    <div className="brand-portfolio-card__logo">
+                      <Image
+                        src={asset.src}
+                        alt={`${brandTitle} ${isAr ? "شعار" : "logo"}`}
+                        fill
+                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                      />
+                    </div>
+                    <div className="brand-portfolio-card__content">
+                      <span aria-hidden="true" />
+                      <h3>{brandTitle}</h3>
+                      <p>{value(brand.parts.Description, locale)}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </AnimatedSection>
+        </AnimatedSection>
+      </>
     );
   }
 
   if (/Flagship Brand/i.test(section.title)) {
     const productCategories = groups.filter((group) => group.prefix === "Product Category");
     const categoryIcons = [Wheat, PackageOpen, ChefHat, Sparkles, Soup, Boxes];
-    const primary = localizedItemValue(section, "Primary CTA", locale);
     const secondary = localizedItemValue(section, "Secondary CTA", locale);
 
     return (
@@ -849,7 +862,6 @@ export function SectionRenderer({
               })}
             </div>
             <div className="flagship-brand__actions">
-              {primary && <ArrowLink href={resolveCtaHref(primary)}>{primary}</ArrowLink>}
               {secondary && <ArrowLink href={resolveCtaHref(secondary)}>{secondary}</ArrowLink>}
             </div>
           </div>
@@ -1328,11 +1340,11 @@ export function SectionRenderer({
   if (theme === "industrial" && index === 3 && groups.length >= 4) {
     const capabilityImages = [
       {
-        image: "/assets/images/masdar-enhanced/masdar_al_hayat_01.png",
+        image: "/assets/images/masdar-enhanced/masdar_al_hayat_26.png",
         objectPosition: "62% center",
       },
       {
-        image: "/assets/images/masdar-enhanced/masdar_al_hayat_03.png",
+        image: "/assets/images/masdar-enhanced/masdar_al_hayat_27.png",
         objectPosition: "64% center",
       },
       {
@@ -1373,50 +1385,62 @@ export function SectionRenderer({
     }));
 
     return (
-      <AnimatedSection
-        className="content-section product-categories-showcase content-section--industrial"
-        variant="stagger"
-      >
-        <div className="container-xxl">
-          <header className="product-categories-showcase__header" data-animate>
-            <div>
-              {visibleKicker && (
-                <span className="section-kicker">{visibleKicker}</span>
-              )}
-              <h2>{heading}</h2>
-            </div>
+      <>
+        <ManufacturingVideoInterlude
+          label={
+            isAr
+              ? "مشهد من عمليات التصنيع في مصدر الحياة"
+              : "Masdar Al Hayat manufacturing operations"
+          }
+        />
 
-            {copy.length > 0 && <p>{copy[0]}</p>}
-          </header>
+        <AnimatedSection
+          className="content-section product-categories-showcase content-section--industrial"
+          variant="stagger"
+        >
+          <div className="container-xxl">
+            <header className="product-categories-showcase__header" data-animate>
+              <div>
+                {visibleKicker && (
+                  <span className="section-kicker">{visibleKicker}</span>
+                )}
+                <h2>{heading}</h2>
+              </div>
 
-          <div className="product-categories-showcase__body">
-            <figure className="product-categories-showcase__visual" data-animate>
-              <BrandImage
-                src="/assets/images/masdar-enhanced/masdar_al_hayat_19.png"
-                alt={heading}
-                className="product-categories-showcase__image"
-              />
-              <span aria-hidden="true" />
-              <figcaption aria-hidden="true">
-                <strong>04</strong>
-                <span>{visibleKicker}</span>
-              </figcaption>
-            </figure>
+              {copy.length > 0 && <p>{copy[0]}</p>}
+            </header>
 
-            <div className="product-categories-showcase__list">
-              {categories.map(({title: categoryTitle, Icon}, categoryIndex) => (
-                <article key={categoryTitle} data-animate>
-                  <div className="product-categories-showcase__icon">
-                    <Icon aria-hidden="true" />
-                  </div>
-                  <span>{String(categoryIndex + 1).padStart(2, "0")}</span>
-                  <h3>{categoryTitle}</h3>
-                </article>
-              ))}
+            <div className="product-categories-showcase__body">
+              <figure className="product-categories-showcase__visual" data-animate>
+                <BrandImage
+                  src="/assets/images/masdar-enhanced/masdar_al_hayat_19.png"
+                  alt={heading}
+                  className="product-categories-showcase__image"
+                />
+                <span aria-hidden="true" />
+                <figcaption aria-hidden="true">
+                  <strong>04</strong>
+                  <span>{visibleKicker}</span>
+                </figcaption>
+              </figure>
+
+              <div className="product-categories-showcase__list">
+                {categories.map(({title: categoryTitle, Icon}, categoryIndex) => (
+                  <article key={categoryTitle} data-animate>
+                    <div className="product-categories-showcase__icon">
+                      <Icon aria-hidden="true" />
+                    </div>
+                    <span>{String(categoryIndex + 1).padStart(2, "0")}</span>
+                    <h3>{categoryTitle}</h3>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </AnimatedSection>
+        </AnimatedSection>
+
+        <ManufacturingGallery isRtl={isAr} />
+      </>
     );
   }
 

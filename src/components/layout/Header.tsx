@@ -29,10 +29,11 @@ const menu: MenuItem[] = [
     {label: {en: "Brands", ar: "العلامات التجارية"}, href: "/brands-partnerships/brands"},
     {label: {en: "Partnerships", ar: "الشراكات"}, href: "/brands-partnerships/partnerships"}
   ]},
-  {label: {en: "Market Presence", ar: "حضورنا في السوق"}, children: [
-    {label: {en: "Market Presence & Exhibitions", ar: "الحضور في السوق والمعارض"}, href: "/market-presence/exhibitions"},
-    {label: {en: "Market & Industry Landscape", ar: "السوق والقطاع الغذائي"}, href: "/market-presence/industry-landscape"}
-  ]},
+  // Temporarily hidden from desktop and mobile navigation.
+  // {label: {en: "Market Presence", ar: "حضورنا في السوق"}, children: [
+  //   {label: {en: "Market Presence & Exhibitions", ar: "الحضور في السوق والمعارض"}, href: "/market-presence/exhibitions"},
+  //   {label: {en: "Market & Industry Landscape", ar: "السوق والقطاع الغذائي"}, href: "/market-presence/industry-landscape"}
+  // ]},
   {label: {en: "Careers", ar: "الوظائف"}, href: "/careers"}
 ];
 

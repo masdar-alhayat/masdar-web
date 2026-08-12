@@ -89,9 +89,9 @@ export function ManufacturingCapabilitiesFlow({
 
           const movement = gsap.fromTo(
             trackElement,
-            {x: () => (isRtl ? -travelDistance() : 0)},
+            {x: 0},
             {
-              x: () => (isRtl ? 0 : -travelDistance()),
+              x: () => (isRtl ? travelDistance() : -travelDistance()),
               ease: "none",
               scrollTrigger: {
                 trigger: section,
