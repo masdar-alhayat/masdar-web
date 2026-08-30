@@ -17,15 +17,15 @@ jobs:
 
     steps:
       # =========================================================
-      # 1. Setup SSH (FIXED)
+      # 1. Setup SSH (VPS login key)
       # =========================================================
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
 
-          # PRIVATE KEY for GitHub clone (id_ed25519_masdar_actions)
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          # VPS LOGIN PRIVATE KEY (matches masdar-vps)
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
 
           # VPS host key
@@ -33,7 +33,7 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
 
       # =========================================================
-      # 2. Deploy
+      # 2. Deploy to VPS
       # =========================================================
       - name: Deploy
         run: |
@@ -51,59 +51,60 @@ jobs:
             BRANCH="main"
           fi
 
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
             set -euo pipefail
+            set -x
 
             BASE_PATH="$APP_PATH"
             APP_NAME="$APP_NAME"
             PORT="$PORT"
             BRANCH="$BRANCH"
 
-            if [ ! -d "\$BASE_PATH" ]; then
-              echo "Base path does not exist: \$BASE_PATH"
+            if [ ! -d "$BASE_PATH" ]; then
+              echo "Base path does not exist: $BASE_PATH"
               exit 1
             fi
 
-            TIMESTAMP=\$(date +"%Y-%m-%d_%H-%M-%S")
-            RELEASE_DIR="\$BASE_PATH/releases/\$TIMESTAMP"
-            LOG_DIR="\$BASE_PATH/logs"
-            LOG_FILE="\$LOG_DIR/deploy_\$TIMESTAMP.log"
+            TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+            RELEASE_DIR="$BASE_PATH/releases/$TIMESTAMP"
+            LOG_DIR="$BASE_PATH/logs"
+            LOG_FILE="$LOG_DIR/deploy_$TIMESTAMP.log"
 
-            mkdir -p "\$BASE_PATH/releases"
-            mkdir -p "\$LOG_DIR"
+            mkdir -p "$BASE_PATH/releases"
+            mkdir -p "$LOG_DIR"
 
             {
-              echo "===== DEPLOY START: \$TIMESTAMP ====="
+              echo "===== DEPLOY START: $TIMESTAMP ====="
 
-              # IMPORTANT: Use VPS key for GitHub clone
+              # GITHUB CLONE KEY (id_ed25519_masdar_actions)
               GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
-              git clone --branch "\$BRANCH" git@github.com:masdar-alhayat/masdar-web.git "\$RELEASE_DIR"
+              git clone --branch "$BRANCH" git@github.com:masdar-alhayat/masdar-web.git "$RELEASE_DIR"
 
-              cd "\$RELEASE_DIR"
+              cd "$RELEASE_DIR"
 
               npm ci
               npm run build
 
-              pm2 start npm --name "\${APP_NAME}-new" -- start -- -p "\$PORT"
+              pm2 start npm --name "${APP_NAME}-new" -- start -- -p "$PORT"
 
-              ln -sfn "\$RELEASE_DIR" "\$BASE_PATH/current"
+              ln -sfn "$RELEASE_DIR" "$BASE_PATH/current"
 
-              pm2 delete "\$APP_NAME" || true
-              pm2 rename "\${APP_NAME}-new" "\$APP_NAME"
+              pm2 delete "$APP_NAME" || true
+              pm2 rename "${APP_NAME}-new" "$APP_NAME"
 
               pm2 save
 
               echo "===== DEPLOY SUCCESS ====="
 
-            } >> "\$LOG_FILE" 2>&1 || {
+            } >> "$LOG_FILE" 2>&1 || {
 
               echo "===== DEPLOY FAILED ====="
-              echo "Check log: \$LOG_FILE"
+              echo "Check log: $LOG_FILE"
 
-              pm2 delete "\${APP_NAME}-new" || true
+              pm2 delete "${APP_NAME}-new" || true
               exit 1
             }
 
-            cd "\$BASE_PATH/releases"
+            cd "$BASE_PATH/releases"
             ls -dt */ | tail -n +4 | xargs rm -rf || true
           EOF
