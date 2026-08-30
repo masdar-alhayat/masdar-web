@@ -1,4 +1,4 @@
-name: Masdar Web Deployment
+name: Masdar Web Deployment - Workflow
 
 on:
   workflow_dispatch:
@@ -11,116 +11,99 @@ on:
           - staging
           - production
 
-concurrency:
-  group: masdar-${{ github.event.inputs.environment }}-deployment
-  cancel-in-progress: false
-
 jobs:
   deploy:
-    name: Deploy Masdar Web
     runs-on: ubuntu-latest
 
     steps:
-
       # =========================================================
-      # 1. Validate environment
+      # 1. Setup SSH (FIXED)
       # =========================================================
-
-      - name: Configure deployment
-        id: config
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          ENVIRONMENT="${{ github.event.inputs.environment }}"
-
-          case "$ENVIRONMENT" in
-            staging)
-              echo "app_path=${{ secrets.VPS_BASE_PATH }}/staging" >> "$GITHUB_OUTPUT"
-              echo "app_name=masdar-staging" >> "$GITHUB_OUTPUT"
-              echo "port=3001" >> "$GITHUB_OUTPUT"
-              echo "branch=staging" >> "$GITHUB_OUTPUT"
-              ;;
-
-            production)
-              echo "app_path=${{ secrets.VPS_BASE_PATH }}/production" >> "$GITHUB_OUTPUT"
-              echo "app_name=masdar-prod" >> "$GITHUB_OUTPUT"
-              echo "port=3000" >> "$GITHUB_OUTPUT"
-              echo "branch=main" >> "$GITHUB_OUTPUT"
-              ;;
-
-            *)
-              echo "Invalid environment: $ENVIRONMENT"
-              exit 1
-              ;;
-          esac
-
-          echo "Environment : $ENVIRONMENT"
-          echo "App path    : configured"
-          echo "App name    : $(grep '^app_name=' "$GITHUB_OUTPUT" | cut -d= -f2)"
-          echo "Port        : $(grep '^port=' "$GITHUB_OUTPUT" | cut -d= -f2)"
-          echo "Branch      : $(grep '^branch=' "$GITHUB_OUTPUT" | cut -d= -f2)"
-
-      # =========================================================
-      # 2. Setup SSH  (FIXED)
-      # =========================================================
-
       - name: Setup SSH
-        shell: bash
         run: |
-          set -euo pipefail
-
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
 
-          # Use the correct GitHub Deploy Key (private key)
-          printf '%s\n' "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          # PRIVATE KEY for GitHub clone (id_ed25519_masdar_actions)
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
 
-          ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+          # VPS host key
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
       # =========================================================
-      # 3. Deploy
+      # 2. Deploy
       # =========================================================
-
-      - name: Deploy to VPS
-        shell: bash
-        env:
-          VPS_HOST: ${{ secrets.VPS_HOST }}
-          VPS_USER: ${{ secrets.VPS_USER }}
-          VPS_BASE_PATH: ${{ secrets.VPS_BASE_PATH }}
-
-          APP_PATH: ${{ steps.config.outputs.app_path }}
-          APP_NAME: ${{ steps.config.outputs.app_name }}
-          PORT: ${{ steps.config.outputs.port }}
-          BRANCH: ${{ steps.config.outputs.branch }}
-
+      - name: Deploy
         run: |
-          set -euo pipefail
+          BASE_PATH="${{ secrets.VPS_BASE_PATH }}"
 
-          ssh \
-            -i ~/.ssh/id_ed25519 \
-            -o IdentitiesOnly=yes \
-            -o BatchMode=yes \
-            -o ConnectTimeout=15 \
-            "$VPS_USER@$VPS_HOST" \
-            bash -s -- \
-            "$APP_PATH" \
-            "$APP_NAME" \
-            "$PORT" \
-            "$BRANCH" \
-            "$VPS_BASE_PATH" <<'REMOTE_SCRIPT'
+          if [ "${{ github.event.inputs.environment }}" = "staging" ]; then
+            APP_PATH="$BASE_PATH/staging"
+            APP_NAME="masdar-staging"
+            PORT=3001
+            BRANCH="staging"
+          else
+            APP_PATH="$BASE_PATH/production"
+            APP_NAME="masdar-prod"
+            PORT=3000
+            BRANCH="main"
+          fi
 
-          # (REMOTE SCRIPT CONTENT UNCHANGED — your deployment logic stays intact)
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
+            set -euo pipefail
 
-          REMOTE_SCRIPT
+            BASE_PATH="$APP_PATH"
+            APP_NAME="$APP_NAME"
+            PORT="$PORT"
+            BRANCH="$BRANCH"
 
-      # =========================================================
-      # 4. Deployment complete
-      # =========================================================
+            if [ ! -d "\$BASE_PATH" ]; then
+              echo "Base path does not exist: \$BASE_PATH"
+              exit 1
+            fi
 
-      - name: Deployment completed
-        run: |
-          echo "Masdar deployment completed successfully."
-          echo "Environment: ${{ github.event.inputs.environment }}"
+            TIMESTAMP=\$(date +"%Y-%m-%d_%H-%M-%S")
+            RELEASE_DIR="\$BASE_PATH/releases/\$TIMESTAMP"
+            LOG_DIR="\$BASE_PATH/logs"
+            LOG_FILE="\$LOG_DIR/deploy_\$TIMESTAMP.log"
+
+            mkdir -p "\$BASE_PATH/releases"
+            mkdir -p "\$LOG_DIR"
+
+            {
+              echo "===== DEPLOY START: \$TIMESTAMP ====="
+
+              # IMPORTANT: Use VPS key for GitHub clone
+              GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
+              git clone --branch "\$BRANCH" git@github.com:masdar-alhayat/masdar-web.git "\$RELEASE_DIR"
+
+              cd "\$RELEASE_DIR"
+
+              npm ci
+              npm run build
+
+              pm2 start npm --name "\${APP_NAME}-new" -- start -- -p "\$PORT"
+
+              ln -sfn "\$RELEASE_DIR" "\$BASE_PATH/current"
+
+              pm2 delete "\$APP_NAME" || true
+              pm2 rename "\${APP_NAME}-new" "\$APP_NAME"
+
+              pm2 save
+
+              echo "===== DEPLOY SUCCESS ====="
+
+            } >> "\$LOG_FILE" 2>&1 || {
+
+              echo "===== DEPLOY FAILED ====="
+              echo "Check log: \$LOG_FILE"
+
+              pm2 delete "\${APP_NAME}-new" || true
+              exit 1
+            }
+
+            cd "\$BASE_PATH/releases"
+            ls -dt */ | tail -n +4 | xargs rm -rf || true
+          EOF
