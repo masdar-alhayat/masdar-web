@@ -779,7 +779,7 @@ export function CorporateForm({
 
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? (isArabic ? "جارٍ الإرسال..." : "Submitting...") : submitLabel}
-        <ArrowUpRight size={18} aria-hidden="true" />
+        <ArrowUpRight className="directional-icon" size={18} aria-hidden="true" />
       </button>
 
       {status === "success" && (

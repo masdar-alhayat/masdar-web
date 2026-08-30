@@ -1,10 +1,11 @@
+import Image from "next/image";
 import {BrandImage} from "./BrandImage";
 import {ArrowLink} from "./ArrowLink";
 import {HeroMotion} from "@/components/motion/HeroMotion";
 import {byLabel, resolveCtaHref, value} from "@/lib/content";
 import type {ContentSection, Locale, PageTheme} from "@/types/content";
 
-export function InnerHero({section, locale, theme, image}: {section: ContentSection; locale: Locale; theme: PageTheme; image: string}) {
+export function InnerHero({section, locale, theme, image, brandLogo, brandLogoAlt = ""}: {section: ContentSection; locale: Locale; theme: PageTheme; image: string; brandLogo?: string; brandLogoAlt?: string}) {
   const eyebrow = value(byLabel(section, /Section Label|Eyebrow/), locale);
   const heading = value(byLabel(section, "Main Heading"), locale);
   const supporting = value(byLabel(section, /Supporting Content|Supporting Paragraph 1/), locale);
@@ -24,7 +25,9 @@ export function InnerHero({section, locale, theme, image}: {section: ContentSect
         </div>}
       </div>
       <div className="inner-hero__media" data-hero-media><BrandImage src={image} alt={heading} priority/></div>
-      <div className="inner-hero__monogram" data-hero-mark aria-hidden="true"><span>M</span><small>2009</small></div>
+      {brandLogo && <div className="inner-hero__brand-logo" data-hero-mark>
+        <Image src={brandLogo} alt={brandLogoAlt} width={400} height={400} sizes="(max-width: 767px) 144px, 208px"/>
+      </div>}
     </div>
   </HeroMotion>;
 }

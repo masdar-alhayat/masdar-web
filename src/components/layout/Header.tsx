@@ -29,11 +29,6 @@ const menu: MenuItem[] = [
     {label: {en: "Brands", ar: "العلامات التجارية"}, href: "/brands-partnerships/brands"},
     {label: {en: "Partnerships", ar: "الشراكات"}, href: "/brands-partnerships/partnerships"}
   ]},
-  // Temporarily hidden from desktop and mobile navigation.
-  // {label: {en: "Market Presence", ar: "حضورنا في السوق"}, children: [
-  //   {label: {en: "Market Presence & Exhibitions", ar: "الحضور في السوق والمعارض"}, href: "/market-presence/exhibitions"},
-  //   {label: {en: "Market & Industry Landscape", ar: "السوق والقطاع الغذائي"}, href: "/market-presence/industry-landscape"}
-  // ]},
   {label: {en: "Careers", ar: "الوظائف"}, href: "/careers"}
 ];
 
@@ -88,7 +83,7 @@ export function Header({locale}: {locale: Locale}) {
                   <strong>{label}</strong>
                 </div>
                 <div className="mega-menu__links">
-                  {item.children.map((child, index) => <Link key={child.href} href={child.href!}><span>0{index + 1}</span><strong>{child.label[locale]}</strong><ArrowUpRight size={18}/></Link>)}
+                  {item.children.map((child, index) => <Link key={child.href} href={child.href!}><span>0{index + 1}</span><strong>{child.label[locale]}</strong><ArrowUpRight className="directional-icon" size={18}/></Link>)}
                 </div>
               </div>
             </div>;
@@ -96,7 +91,7 @@ export function Header({locale}: {locale: Locale}) {
         </nav>
         <div className="site-header__actions">
           <button className="language-switch" onClick={switchLanguage} type="button">{isAr ? "EN" : "العربية"}</button>
-          <Link href="/contact" className="header-cta">{isAr ? "تواصل معنا" : "Contact"}<ArrowUpRight size={16}/></Link>
+          <Link href="/contact" className="header-cta">{isAr ? "تواصل معنا" : "Contact"}<ArrowUpRight className="directional-icon" size={16}/></Link>
           <button className="mobile-trigger" type="button" onClick={() => setMobile(true)} aria-label={isAr ? "فتح القائمة" : "Open menu"}><Menu/></button>
           </div>
         </div>
@@ -115,8 +110,8 @@ export function Header({locale}: {locale: Locale}) {
           <button onClick={() => setMobile(false)} aria-label={isAr ? "إغلاق القائمة" : "Close menu"}><X/></button>
         </div>
         <div className="mobile-menu__body">
-          {menu.map((item, i) => <div className="mobile-menu__item" key={item.label.en}>
-            {item.href ? <Link href={item.href}><span>0{i+1}</span>{item.label[locale]}</Link> : <details><summary><span>0{i+1}</span>{item.label[locale]}<ChevronDown size={18}/></summary><div>{item.children?.map(child => <Link key={child.href} href={child.href!}>{child.label[locale]}<ArrowUpRight size={16}/></Link>)}</div></details>}
+          {menu.map((item) => <div className="mobile-menu__item" key={item.label.en}>
+            {item.href ? <Link href={item.href}>{item.label[locale]}</Link> : <details><summary>{item.label[locale]}<ChevronDown size={18}/></summary><div>{item.children?.map(child => <Link key={child.href} href={child.href!}>{child.label[locale]}<ArrowUpRight className="directional-icon" size={16}/></Link>)}</div></details>}
           </div>)}
         </div>
         <div className="mobile-menu__footer"><button onClick={switchLanguage}>{isAr ? "English" : "العربية"}</button><Link href="/contact">{isAr ? "تواصل معنا" : "Start a conversation"}</Link></div>

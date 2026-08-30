@@ -13,6 +13,7 @@ import {ManufacturingVideoInterlude} from "./ManufacturingVideoInterlude";
 import {ManufacturingGallery} from "./ManufacturingGallery";
 import {
   HeritageTimeline,
+  HeritageTimelineGrid,
   type HeritageTimelineMilestone,
 } from "./HeritageTimeline";
 import contactLocationStyles from "./ContactLocationMap.module.css";
@@ -74,6 +75,7 @@ import {
   Phone,
   Radar,
   RefreshCw,
+  Rocket,
   ScanLine,
   ScanSearch,
   ShieldCheck,
@@ -92,6 +94,7 @@ import {
 
 interface SectionRendererProps {
   section: ContentSection;
+  supplementalSection?: ContentSection;
   index: number;
   locale: Locale;
   theme: PageTheme;
@@ -175,6 +178,39 @@ function indexedLocalizedValues(
         item !== null && Number.isFinite(item.index),
     )
     .sort((a, b) => a.index - b.index);
+}
+
+function getTimelineMilestones(
+  section: ContentSection,
+  locale: Locale,
+): HeritageTimelineMilestone[] {
+  const years = indexedLocalizedValues(
+    section,
+    locale,
+    /^Timeline Year (\d+)$/,
+  );
+  const titles = new Map(
+    indexedLocalizedValues(
+      section,
+      locale,
+      /^Timeline Title (\d+)$/,
+    ).map((item) => [item.index, item.text]),
+  );
+  const descriptions = new Map(
+    indexedLocalizedValues(
+      section,
+      locale,
+      /^Timeline Description (\d+)$/,
+    ).map((item) => [item.index, item.text]),
+  );
+
+  return years
+    .map(({index: milestoneIndex, text: year}) => ({
+      year,
+      title: titles.get(milestoneIndex) ?? "",
+      description: descriptions.get(milestoneIndex) ?? "",
+    }))
+    .filter((milestone) => milestone.title && milestone.description);
 }
 
 function indexedLocalizedPairs(
@@ -365,6 +401,7 @@ function indexedCompetitiveFoundations(
 
 export function SectionRenderer({
   section,
+  supplementalSection,
   index,
   locale,
   theme,
@@ -411,7 +448,11 @@ export function SectionRenderer({
     locale,
   );
 
-  const copy = paragraphs(section, locale);
+  const sectionCopy = paragraphs(section, locale);
+  const copy =
+    theme === "operations" && section.title === "Operations Overview"
+      ? sectionCopy.slice(0, 2)
+      : sectionCopy;
   const groups = numberedGroups(section);
 
   const title = section.title.toLowerCase();
@@ -483,6 +524,118 @@ export function SectionRenderer({
             locale={locale}
             kind={formKind}
           />
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (renderVariant === "story-video-background") {
+    return (
+      <AnimatedSection
+        className={`content-section story-video-section content-section--${theme}`}
+        variant="slide"
+      >
+        <div className="story-video-section__background" aria-hidden="true">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            tabIndex={-1}
+            disablePictureInPicture
+          >
+            <source src="/assets/videos/masdar-video-3.mov" />
+          </video>
+          <span className="story-video-section__overlay" />
+        </div>
+
+        <div className="container-xxl story-video-section__content" data-animate>
+          {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+          <h2>{heading}</h2>
+          {copy.map((paragraph, paragraphIndex) => (
+            <p key={paragraphIndex}>{paragraph}</p>
+          ))}
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (/Partnership Channels/i.test(section.title)) {
+    const partnershipChannels = groups.filter((group) => group.prefix === "Channel").slice(0, 4);
+    const channelIcons = [ShoppingCart, Boxes, Hotel, Building2] as const;
+
+    return (
+      <AnimatedSection
+        className={`content-section partnership-channels-section content-section--${theme}`}
+        variant="stagger"
+      >
+        <div className="container-xxl">
+          <header className="partnership-channels__header" data-animate>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+          </header>
+
+          <div className="partnership-channels__grid">
+            {partnershipChannels.map((channel, channelIndex) => {
+              const ChannelIcon = channelIcons[channelIndex % channelIcons.length];
+
+              return (
+                <article key={channel.key} data-animate>
+                  <div className="partnership-channels__meta">
+                    <span>{String(channelIndex + 1).padStart(2, "0")}</span>
+                    <ChannelIcon aria-hidden="true" />
+                  </div>
+                  <h3>{groupText(channel, "Title")}</h3>
+                  <p>{value(channel.parts.Description, locale)}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (/How Partnership Works/i.test(section.title)) {
+    const partnershipSteps = groups.filter((group) => group.prefix === "Step").slice(0, 4);
+    const partnershipIcons = [Handshake, UsersRound, ClipboardCheck, Rocket] as const;
+    const partnershipCta = localizedItemValue(section, "Primary CTA", locale);
+
+    return (
+      <AnimatedSection
+        className={`content-section partnership-journey-section content-section--${theme}`}
+        variant="stagger"
+      >
+        <div className="container-xxl partnership-journey">
+          <header className="partnership-journey__header" data-animate>
+            <div>
+              {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+              <h2>{heading}</h2>
+            </div>
+            {partnershipCta && (
+              <ArrowLink href="#partnership-enquiry" light>{partnershipCta}</ArrowLink>
+            )}
+          </header>
+
+          <ol className="partnership-journey__rail" aria-label={heading}>
+            {partnershipSteps.map((step, stepIndex) => {
+              const StepIcon = partnershipIcons[stepIndex % partnershipIcons.length];
+
+              return (
+                <li key={step.key} className="partnership-journey__step" data-animate>
+                  <div className="partnership-journey__marker" aria-hidden="true">
+                    <span>{String(stepIndex + 1).padStart(2, "0")}</span>
+                    <StepIcon />
+                  </div>
+                  <div className="partnership-journey__card">
+                    <h3>{groupText(step, "Title")}</h3>
+                    <p>{value(step.parts.Description, locale)}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
         </div>
       </AnimatedSection>
     );
@@ -591,30 +744,9 @@ export function SectionRenderer({
       locale,
     );
 
-    const directionsHref =
-      localizedItemValue(section, "Map Directions URL", locale) || mapSrc;
-
-    const directionsLabel = localizedItemValue(
-      section,
-      "Map CTA",
-      locale,
-    );
-
     const mapRegionLabel = localizedItemValue(
       section,
       "Map Region Label",
-      locale,
-    );
-
-    const badgeLabel = localizedItemValue(
-      section,
-      "Map Badge Label",
-      locale,
-    );
-
-    const badgeValue = localizedItemValue(
-      section,
-      "Map Badge Value",
       locale,
     );
 
@@ -667,13 +799,7 @@ export function SectionRenderer({
                 regionLabel={mapRegionLabel}
                 title={heading}
                 locationName={locationName}
-                address={address}
-                description={locationDescription}
                 mapSrc={mapSrc}
-                directionsHref={directionsHref}
-                directionsLabel={directionsLabel}
-                badgeLabel={badgeLabel}
-                badgeValue={badgeValue}
               />
             </div>
           )}
@@ -874,6 +1000,9 @@ export function SectionRenderer({
     const beginningImageAlt = isAr
       ? "صورة أرشيفية لبدايات مجموعة التميمي"
       : "An archival photograph from the early history of Tamimi Group";
+    const timelineMilestones = supplementalSection
+      ? getTimelineMilestones(supplementalSection, locale)
+      : [];
 
     return (
       <AnimatedSection className={`content-section heritage-beginning-section content-section--${theme}`} variant="mask">
@@ -897,18 +1026,8 @@ export function SectionRenderer({
             </header>
           </div>
 
-          {copy.length > 1 && (
-            <div className="heritage-beginning__narrative">
-              {copy.slice(1).map((paragraph, paragraphIndex, paragraphs) => (
-                <p
-                  key={paragraphIndex}
-                  className={paragraphIndex === paragraphs.length - 1 ? "is-closing" : undefined}
-                  data-animate
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+          {timelineMilestones.length > 0 && (
+            <HeritageTimelineGrid milestones={timelineMilestones} />
           )}
         </div>
       </AnimatedSection>
@@ -950,32 +1069,7 @@ export function SectionRenderer({
   }
 
   if (/Group Development Timeline/i.test(section.title)) {
-    const years = indexedLocalizedValues(
-      section,
-      locale,
-      /^Timeline Year (\d+)$/,
-    );
-    const titles = new Map(
-      indexedLocalizedValues(
-        section,
-        locale,
-        /^Timeline Title (\d+)$/,
-      ).map((item) => [item.index, item.text]),
-    );
-    const descriptions = new Map(
-      indexedLocalizedValues(
-        section,
-        locale,
-        /^Timeline Description (\d+)$/,
-      ).map((item) => [item.index, item.text]),
-    );
-    const milestones: HeritageTimelineMilestone[] = years
-      .map(({index: milestoneIndex, text: year}) => ({
-        year,
-        title: titles.get(milestoneIndex) ?? "",
-        description: descriptions.get(milestoneIndex) ?? "",
-      }))
-      .filter((milestone) => milestone.title && milestone.description);
+    const milestones = getTimelineMilestones(section, locale);
 
     return (
       <HeritageTimeline
@@ -1879,14 +1973,7 @@ export function SectionRenderer({
     );
   }
 
-  /*
-   * ========================================================
-   * Vision Pillars — custom constellation layout
-   * ========================================================
-   *
-   * This condition must stay above the generic Vision and
-   * Mission statement renderer.
-   */
+  /* Vision statement feature with its approved supporting image. */
 
   const isVisionPillarSection =
     groups.length >= 6 &&
@@ -1900,19 +1987,10 @@ export function SectionRenderer({
     );
 
   if (isVisionPillarSection) {
-    const visionIcons = [
-      ShieldCheck,
-      Factory,
-      Radar,
-      Lightbulb,
-      Handshake,
-      Sprout,
-    ] as const;
-
     return (
       <AnimatedSection
-        className={`content-section vision-constellation-section content-section--${theme}`}
-        variant="stagger"
+        className={`content-section vision-statement-feature-section content-section--${theme}`}
+        variant="mask"
       >
         <div className="container-xxl">
           <header
@@ -1920,10 +1998,6 @@ export function SectionRenderer({
             data-animate
           >
             <div className="vision-constellation__header-copy">
-              <span className="section-index">
-                {String(index).padStart(2, "0")}
-              </span>
-
               {visibleKicker && (
                 <span className="section-kicker">
                   {visibleKicker}
@@ -1959,120 +2033,6 @@ export function SectionRenderer({
               <span className="vision-constellation__visual-mark" aria-hidden="true" />
             </figure>
           </header>
-
-          <div className="vision-constellation__stage">
-            <div
-              className="vision-constellation__core"
-              data-animate
-              aria-hidden="true"
-            >
-              <span>
-                {isAr
-                  ? "رؤيتنا"
-                  : "Our Vision"}
-              </span>
-
-              <strong>
-                {String(
-                  groups.slice(0, 6).length,
-                ).padStart(2, "0")}
-              </strong>
-
-              <small>
-                {isAr
-                  ? "مرتكزات"
-                  : "Pillars"}
-              </small>
-
-              <i className="vision-constellation__core-dot" />
-            </div>
-
-            {groups
-              .slice(0, 6)
-              .map(
-                (
-                  group,
-                  groupIndex,
-                ) => {
-                  const VisionIcon =
-                    visionIcons[
-                    groupIndex %
-                    visionIcons.length
-                    ];
-
-                  /*
-                   * The first three nodes appear on one side
-                   * and the remaining three on the opposite side.
-                   * Arabic reverses the horizontal flow.
-                   */
-
-                  const side =
-                    groupIndex < 3
-                      ? isAr
-                        ? "right"
-                        : "left"
-                      : isAr
-                        ? "left"
-                        : "right";
-
-                  const row =
-                    (groupIndex % 3) + 1;
-
-                  const pillarTitle =
-                    groupText(
-                      group,
-                      "Title",
-                    );
-
-                  const pillarDescription =
-                    value(
-                      group.parts
-                        .Description,
-                      locale,
-                    );
-
-                  return (
-                    <article
-                      key={group.key}
-                      className={[
-                        "vision-constellation__node",
-                        `vision-constellation__node--${side}`,
-                        `vision-constellation__node--row-${row}`,
-                      ].join(" ")}
-                      data-animate
-                    >
-                      <div className="vision-constellation__node-icon">
-                        <VisionIcon
-                          size={24}
-                          strokeWidth={1.6}
-                          aria-hidden="true"
-                        />
-                      </div>
-
-                      <div className="vision-constellation__node-copy">
-                        <span className="vision-constellation__node-number">
-                          {String(
-                            groupIndex + 1,
-                          ).padStart(2, "0")}
-                        </span>
-
-                        <h3>
-                          {pillarTitle}
-                        </h3>
-
-                        {pillarDescription && (
-                          <p>
-                            {
-                              pillarDescription
-                            }
-                          </p>
-                        )}
-                      </div>
-                    </article>
-                  );
-                },
-              )}
-          </div>
         </div>
       </AnimatedSection>
     );
@@ -2568,6 +2528,7 @@ export function SectionRenderer({
                 .map((group) => (
                   <div key={group.key}>
                     <ChevronRight
+                      className="directional-icon"
                       aria-hidden="true"
                     />
 
@@ -2591,6 +2552,7 @@ export function SectionRenderer({
                 ) => (
                   <div key={itemIndex}>
                     <ChevronRight
+                      className="directional-icon"
                       aria-hidden="true"
                     />
 

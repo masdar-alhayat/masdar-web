@@ -1,7 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import {useCallback, useRef, useState} from "react";
+import {
+  useCallback,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import {ArrowLeft, ArrowRight} from "lucide-react";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
@@ -32,7 +37,11 @@ export function ManufacturingGallery({isRtl}: {isRtl: boolean}) {
   const scope = useRef<HTMLElement>(null);
   const cards = useRef<Array<HTMLElement | null>>([]);
   const progress = useRef<HTMLSpanElement>(null);
+  const dragStartX = useRef<number | null>(null);
+  const dragDistance = useRef(0);
+  const dragPointerId = useRef<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   const goToPrevious = useCallback(() => {
     setActiveIndex((current) =>
@@ -43,6 +52,85 @@ export function ManufacturingGallery({isRtl}: {isRtl: boolean}) {
   const goToNext = useCallback(() => {
     setActiveIndex((current) => (current + 1) % galleryImages.length);
   }, []);
+
+  const resetDraggedCard = useCallback(() => {
+    const activeCard = cards.current[activeIndex];
+    if (!activeCard) return;
+
+    gsap.to(activeCard, {
+      x: 0,
+      duration: .35,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+  }, [activeIndex]);
+
+  const handlePointerDown = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (!event.isPrimary || event.button !== 0) return;
+
+      dragStartX.current = event.clientX;
+      dragDistance.current = 0;
+      dragPointerId.current = event.pointerId;
+      setIsDragging(true);
+      event.currentTarget.setPointerCapture(event.pointerId);
+    },
+    [],
+  );
+
+  const handlePointerMove = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (
+        dragStartX.current === null ||
+        dragPointerId.current !== event.pointerId
+      ) {
+        return;
+      }
+
+      const distance = event.clientX - dragStartX.current;
+      dragDistance.current = distance;
+
+      const activeCard = cards.current[activeIndex];
+      if (activeCard) {
+        gsap.set(activeCard, {x: distance * .55});
+      }
+    },
+    [activeIndex],
+  );
+
+  const finishPointerGesture = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>, cancelled = false) => {
+      if (dragPointerId.current !== event.pointerId) return;
+
+      if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      }
+
+      const distance = dragDistance.current;
+      const swipeThreshold = Math.min(
+        70,
+        Math.max(42, event.currentTarget.clientWidth * .08),
+      );
+
+      dragStartX.current = null;
+      dragDistance.current = 0;
+      dragPointerId.current = null;
+      setIsDragging(false);
+
+      if (cancelled || Math.abs(distance) < swipeThreshold) {
+        resetDraggedCard();
+        return;
+      }
+
+      const movesToNext = isRtl ? distance > 0 : distance < 0;
+      if (movesToNext) {
+        goToNext();
+      } else {
+        goToPrevious();
+      }
+    },
+    [goToNext, goToPrevious, isRtl, resetDraggedCard],
+  );
 
   useGSAP(
     () => {
@@ -138,6 +226,7 @@ export function ManufacturingGallery({isRtl}: {isRtl: boolean}) {
         card.dataset.active = String(isActive);
 
         gsap.to(card, {
+          x: 0,
           xPercent,
           opacity,
           scale,
@@ -208,12 +297,16 @@ export function ManufacturingGallery({isRtl}: {isRtl: boolean}) {
         </header>
 
         <div
-          className={styles.stage}
+          className={`${styles.stage} ${isDragging ? styles.dragging : ""}`}
           dir={isRtl ? "rtl" : "ltr"}
           role="region"
           aria-roledescription="carousel"
           aria-label={isRtl ? "معرض التصنيع" : "Manufacturing gallery"}
           tabIndex={0}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={(event) => finishPointerGesture(event)}
+          onPointerCancel={(event) => finishPointerGesture(event, true)}
           onKeyDown={(event) => {
             if (event.key === "ArrowLeft") {
               if (isRtl) {
@@ -243,6 +336,7 @@ export function ManufacturingGallery({isRtl}: {isRtl: boolean}) {
             >
               <Image
                 src={src}
+                draggable={false}
                 alt={
                   isRtl
                     ? `مشهد من عمليات التصنيع ${imageIndex + 1}`

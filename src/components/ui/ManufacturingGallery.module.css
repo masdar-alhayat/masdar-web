@@ -87,6 +87,15 @@
   height: clamp(30rem, 52vw, 42rem);
   overflow: hidden;
   outline: none;
+  cursor: grab;
+  touch-action: pan-y;
+  overscroll-behavior-inline: contain;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stage.dragging {
+  cursor: grabbing;
 }
 
 .stage:focus-visible {
@@ -120,6 +129,8 @@
 .card img {
   object-fit: cover;
   object-position: center;
+  pointer-events: none;
+  -webkit-user-drag: none;
   will-change: transform;
 }
 

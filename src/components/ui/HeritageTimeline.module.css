@@ -24,6 +24,24 @@
   z-index: 1;
 }
 
+.gridSection {
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.grid .tile {
+  min-height: 100%;
+}
+
+.grid .tile::after {
+  display: none;
+}
+
 .header {
   display: grid;
   grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
@@ -192,6 +210,10 @@
 }
 
 @media (max-width: 991px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .header {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -220,6 +242,10 @@
 }
 
 @media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
   .timeline {
     padding-block-start: .5rem;
   }

@@ -40,14 +40,14 @@ export function Footer({locale}: {locale: Locale}) {
           <h2>{ar ? "لنصنع قيمة تدوم." : "Let’s create lasting value."}</h2>
         </div>
         <Link href="/brands-partnerships/partnerships" className="footer-circle">
-          {ar ? "كن شريكاً لنا" : "Partner with us"}<ArrowUpRight/>
+          {ar ? "كن شريكاً لنا" : "Partner with us"}<ArrowUpRight className="directional-icon"/>
         </Link>
       </div>
 
       <div className="site-footer__grid">
         <div className="footer-brand">
           <Image src="/brand/masdar-logo.png" alt="Masdar Al Hayat" width={230} height={107}/>
-          <p>{ar ? "شركة سعودية للصناعات الغذائية، وإحدى شركات مجموعة التميمي." : "A Saudi food manufacturing company operating as part of Tamimi Group."}</p>
+          <p>{ar ? "شركة مصنّعة للأغذية والمشروبات، وإحدى شركات مجموعة التميمي." : "A food and beverages manufacturer operating as part of Tamimi Group."}</p>
         </div>
 
         <div>

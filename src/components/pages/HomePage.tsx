@@ -1,22 +1,28 @@
-import {ArrowDown, ArrowRight, ShieldCheck, Wheat, Factory, Globe2, Users, BriefcaseBusiness} from "lucide-react";
+import {ArrowDown, ArrowRight, ShieldCheck, Users, BriefcaseBusiness} from "lucide-react";
 import Image from "next/image";
 import {AnimatedSection} from "@/components/motion/AnimatedSection";
 import {HeroMotion} from "@/components/motion/HeroMotion";
 import {ArrowLink} from "@/components/ui/ArrowLink";
 import {BrandImage} from "@/components/ui/BrandImage";
+import {ManufacturingCounters} from "@/components/ui/ManufacturingCounters";
 import {BRAND_LOGOS, HOME_IMAGES, HOME_VIDEOS} from "@/content/pages";
 import {byLabel, numberedGroups, paragraphs, value} from "@/lib/content";
 import type {Locale, PageContent} from "@/types/content";
 
-const iconSet = [Factory, ShieldCheck, Wheat, Globe2, BriefcaseBusiness, Users];
-
 export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
   const ar = locale === "ar";
-  const [hero, intro, glance, manufacturing, portfolio, fonte, quality, tamimi, partnerships, market, careers, finalCta] = page.sections;
+  const [hero, intro, glance, manufacturing, portfolio, fonte, quality, tamimi, partnerships, careers, finalCta] = page.sections;
   const heroHeading = value(byLabel(hero,"Main Heading"),locale);
   const fonteHeading = value(byLabel(fonte,"Main Heading"),locale);
   const fonteTitle = fonteHeading.replace(ar ? /^فونتي\s*[—–-]\s*/ : /^Fonte\s*[—–-]\s*/i, "").trim();
   const heroWords = heroHeading.split(/(?<=[.!؟])\s+/).filter(Boolean);
+  const manufacturingCounters = numberedGroups(manufacturing)
+    .filter((group) => group.prefix === "Counter")
+    .map((group) => ({
+      value: Number(value(group.parts.Value, locale)),
+      label: value(group.parts.Label, locale),
+    }))
+    .filter((counter) => Number.isFinite(counter.value) && counter.label);
   return <main id="main-content">
     <HeroMotion className="home-hero">
       <div className="home-hero__media" data-hero-media><BrandImage src={HOME_IMAGES.hero} alt={heroHeading} priority/></div>
@@ -26,7 +32,6 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
         <h1 data-hero-title>{heroWords.map((word,i)=><span key={i}>{word}</span>)}</h1>
         <div className="home-hero__bottom"><div data-hero-copy>{paragraphs(hero,locale).map((p,i)=><p key={i}>{p}</p>)}</div><div className="home-hero__actions" data-hero-actions><ArrowLink href="/about/masdar-al-hayat" light>{value(byLabel(hero,"Primary CTA"),locale)}</ArrowLink><ArrowLink href="/brands-partnerships/partnerships" light>{value(byLabel(hero,"Secondary CTA"),locale)}</ArrowLink></div></div>
       </div>
-      <div className="home-hero__mark" data-hero-mark aria-hidden="true"><span>M</span><small>{ar ? "منذ ٢٠٠٩" : "SINCE 2009"}</small></div>
       <a className="home-hero__scroll" href="#who-we-are"><ArrowDown/>{ar ? "اكتشف" : "Discover"}</a>
     </HeroMotion>
 
@@ -48,40 +53,11 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
             className="home-intro__image"
             priority
           />
-          <figcaption className="home-intro__badge" data-animate>
-            <span aria-hidden="true">M</span>
-            <div>
-              <strong>2009</strong>
-              <small>{ar ? "صناعة غذائية سعودية" : "Saudi food manufacturing"}</small>
-            </div>
-          </figcaption>
         </figure>
       </div>
     </AnimatedSection>
 
     <AnimatedSection className="glance-section" variant="stagger"><div className="container-xxl"><header className="section-heading" data-animate><span className="section-kicker">{value(byLabel(glance,"Section Label"),locale)}</span><h2>{value(byLabel(glance,"Main Heading"),locale)}</h2><p>{value(byLabel(glance,"Introduction"),locale)}</p></header><div className="glance-grid">{numberedGroups(glance).map((group)=><article key={group.key} data-animate><span className="glance-grid__value">{value(group.parts.Value,locale)}</span><h3>{value(group.parts.Title,locale)}</h3><p>{value(group.parts.Description,locale)}</p><span className="glance-grid__line"/></article>)}</div></div></AnimatedSection>
-
-    <AnimatedSection className="manufacturing-home" variant="mask">
-      <div className="container-xxl manufacturing-home__grid">
-        <div className="manufacturing-home__content" data-animate>
-          <span className="section-kicker">{value(byLabel(manufacturing,"Section Label"),locale)}</span>
-          <h2>{value(byLabel(manufacturing,"Main Heading"),locale)}</h2>
-          {paragraphs(manufacturing,locale).map((p,i)=><p key={i}>{p}</p>)}
-          <ArrowLink href="/capabilities/manufacturing">{value(byLabel(manufacturing,"CTA"),locale)}</ArrowLink>
-        </div>
-        <figure className="manufacturing-home__visual" data-animate>
-          <BrandImage
-            src={HOME_IMAGES.manufacturingStrength}
-            alt={ar ? "أسطول شاحنات مصدر الحياة المبرّدة الجاهز للتوزيع" : "Masdar Al Hayat refrigerated delivery fleet ready for distribution"}
-            className="manufacturing-home__image"
-          />
-          <figcaption><Factory/><span>{ar ? "قوة التصنيع والتوزيع" : "Manufacturing and distribution strength"}</span></figcaption>
-        </figure>
-        <div className="manufacturing-home__rail">{numberedGroups(manufacturing).map((g,i)=>{const Icon=iconSet[i%iconSet.length];return <div key={g.key} data-animate><Icon/><span>0{i+1}</span><h3>{value((locale === "ar" ? g.parts["Arabic Title"] : undefined) || g.parts.Title,locale)}</h3></div>})}</div>
-      </div>
-    </AnimatedSection>
-
-    <AnimatedSection className="portfolio-home" variant="stagger"><div className="container-xxl"><header className="portfolio-home__header" data-animate><div><span className="section-kicker">{value(byLabel(portfolio,"Section Label"),locale)}</span><h2>{value(byLabel(portfolio,"Main Heading"),locale)}</h2></div><div>{paragraphs(portfolio,locale).map((p,i)=><p key={i}>{p}</p>)}<ArrowLink href="/brands-partnerships/brands">{value(byLabel(portfolio,"CTA"),locale)}</ArrowLink></div></header><div className="portfolio-orbit">{numberedGroups(portfolio).map((g,i)=><article key={g.key} data-animate><span>0{i+1}</span><h3>{value(g.parts.Title,locale)}</h3><p>{value(g.parts.Description,locale)}</p></article>)}</div></div></AnimatedSection>
 
     <AnimatedSection className="fonte-home" variant="slide">
       <div className="fonte-home__background" aria-hidden="true">
@@ -110,6 +86,35 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
         <ArrowLink href="/brands-partnerships/brands" light>{value(byLabel(fonte,/CTA/),locale)}</ArrowLink>
       </div>
     </AnimatedSection>
+
+    <AnimatedSection className="manufacturing-home" variant="mask">
+      <div className="container-xxl manufacturing-home__grid">
+        <div className="manufacturing-home__content" data-animate>
+          <span className="section-kicker">{value(byLabel(manufacturing,"Section Label"),locale)}</span>
+          <h2>{value(byLabel(manufacturing,"Main Heading"),locale)}</h2>
+          {paragraphs(manufacturing,locale).map((p,i)=><p key={i}>{p}</p>)}
+          <ArrowLink href="/capabilities/manufacturing">{value(byLabel(manufacturing,"CTA"),locale)}</ArrowLink>
+        </div>
+        <figure className="manufacturing-home__visual" data-animate>
+          <BrandImage
+            src={HOME_IMAGES.manufacturingStrength}
+            alt={ar ? "خط إنتاج المخبوزات في منشأة مصدر الحياة" : "Bakery production line at the Masdar Al Hayat facility"}
+            className="manufacturing-home__image"
+          />
+          <BrandImage
+            src={HOME_IMAGES.manufacturingStrengthSecondary}
+            alt={ar ? "أسطول شاحنات مصدر الحياة المبرّدة الجاهز للتوزيع" : "Masdar Al Hayat refrigerated delivery fleet ready for distribution"}
+            className="manufacturing-home__image--secondary"
+          />
+        </figure>
+            <ManufacturingCounters
+              items={manufacturingCounters}
+              locale={locale}
+            />
+      </div>
+    </AnimatedSection>
+
+    <AnimatedSection className="portfolio-home" variant="stagger"><div className="container-xxl"><header className="portfolio-home__header" data-animate><div><span className="section-kicker">{value(byLabel(portfolio,"Section Label"),locale)}</span><h2>{value(byLabel(portfolio,"Main Heading"),locale)}</h2></div><div>{paragraphs(portfolio,locale).map((p,i)=><p key={i}>{p}</p>)}<ArrowLink href="/brands-partnerships/brands">{value(byLabel(portfolio,"CTA"),locale)}</ArrowLink></div></header><div className="portfolio-orbit">{numberedGroups(portfolio).map((g,i)=><article key={g.key} data-animate><span>0{i+1}</span><h3>{value(g.parts.Title,locale)}</h3><p>{value(g.parts.Description,locale)}</p></article>)}</div></div></AnimatedSection>
 
     <AnimatedSection className="quality-home" variant="line">
       <div className="container-xxl quality-home__grid">
@@ -143,13 +148,8 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
               className="legacy-home__logo"
             />
           </div>
-          <figcaption>
-            <span>{ar ? "تأسست عام" : "Established"}</span>
-            <strong>1942</strong>
-          </figcaption>
         </figure>
         <div className="legacy-home__content" data-animate>
-          <span className="legacy-home__year">2009</span>
           <span className="section-kicker">{value(byLabel(tamimi,"Section Label"),locale)}</span>
           <h2>{value(byLabel(tamimi,"Main Heading"),locale)}</h2>
           {paragraphs(tamimi,locale).map((p,i)=><p key={i}>{p}</p>)}
@@ -158,25 +158,22 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       </div>
     </AnimatedSection>
 
-    <AnimatedSection className="partnership-home" variant="stagger"><div className="container-xxl"><header className="section-heading section-heading--wide" data-animate><div><BriefcaseBusiness/><span className="section-kicker">{value(byLabel(partnerships,"Section Label"),locale)}</span><h2>{value(byLabel(partnerships,"Main Heading"),locale)}</h2></div><div>{paragraphs(partnerships,locale).map((p,i)=><p key={i}>{p}</p>)}<ArrowLink href="/brands-partnerships/partnerships">{value(byLabel(partnerships,"CTA"),locale)}</ArrowLink></div></header><div className="partnership-home__channels">{numberedGroups(partnerships).map((g,i)=><article data-animate key={g.key}><span>0{i+1}</span><h3>{value(g.parts.Title,locale)}</h3><p>{value(g.parts.Description,locale)}</p><ArrowRight/></article>)}</div></div></AnimatedSection>
-
-    <AnimatedSection className="market-home" variant="slide">
-      <div className="container-xxl market-home__layout">
-        <div className="market-home__overlay" data-animate>
-          <Globe2/>
-          <span className="section-kicker">{value(byLabel(market,"Section Label"),locale)}</span>
-          <h2>{value(byLabel(market,"Main Heading"),locale)}</h2>
-          {paragraphs(market,locale).map((p,i)=><p key={i}>{p}</p>)}
-          <ArrowLink href="/market-presence/exhibitions" light>{value(byLabel(market,"CTA"),locale)}</ArrowLink>
+    <AnimatedSection className="partnership-home" variant="stagger">
+      <div className="container-xxl">
+        <header className="section-heading section-heading--wide" data-animate>
+          <div>
+            <BriefcaseBusiness/>
+            <span className="section-kicker">{value(byLabel(partnerships,"Section Label"),locale)}</span>
+            <h2>{value(byLabel(partnerships,"Main Heading"),locale)}</h2>
+          </div>
+          <div>{paragraphs(partnerships,locale).map((p,i)=><p key={i}>{p}</p>)}</div>
+        </header>
+        <div className="partnership-home__channels">
+          {numberedGroups(partnerships).map((g,i)=><article data-animate key={g.key}><span>0{i+1}</span><h3>{value(g.parts.Title,locale)}</h3><p>{value(g.parts.Description,locale)}</p><ArrowRight className="directional-icon"/></article>)}
         </div>
-        <figure className="market-home__figure" data-animate>
-          <BrandImage
-            src={HOME_IMAGES.marketConnection}
-            alt={ar ? "جناح مصدر الحياة وفونتي في معرض تجاري لقطاع الأغذية" : "Masdar Al Hayat and Fonte exhibition stand at a food-industry trade event"}
-            className="market-home__image"
-          />
-          <span className="market-home__mark" aria-hidden="true"><Globe2/></span>
-        </figure>
+        <div className="partnership-home__cta" data-animate>
+          <ArrowLink href="/brands-partnerships/partnerships" light>{value(byLabel(partnerships,"CTA"),locale)}</ArrowLink>
+        </div>
       </div>
     </AnimatedSection>
 

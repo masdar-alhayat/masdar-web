@@ -21,6 +21,37 @@ interface HeritageTimelineProps {
   milestones: HeritageTimelineMilestone[];
 }
 
+interface HeritageTimelineGridProps {
+  milestones: HeritageTimelineMilestone[];
+}
+
+export function HeritageTimelineGrid({milestones}: HeritageTimelineGridProps) {
+  return (
+    <div className={styles.gridSection} data-heritage-grid>
+      <div className={styles.grid}>
+        {milestones.map((milestone, index) => {
+          const isFeatured = milestone.year === "2009";
+
+          return (
+            <article
+              key={`${milestone.year}-${milestone.title}`}
+              className={`${styles.tile} ${isFeatured ? styles.featured : ""}`}
+              data-heritage-grid-card
+            >
+              <div className={styles.tileMeta}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <time dateTime={milestone.year}>{milestone.year}</time>
+              </div>
+              <h3>{milestone.title}</h3>
+              <p>{milestone.description}</p>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export function HeritageTimeline({
   kicker,
   heading,

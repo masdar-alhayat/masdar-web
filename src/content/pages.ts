@@ -13,8 +13,6 @@ export const PAGE_KEYS = {
   logistics: "LOGISTICS & DISTRIBUTION",
   brands: "BRANDS",
   partnerships: "PARTNERSHIPS",
-  presence: "MARKET PRESENCE & EXHIBITIONS",
-  landscape: "MARKET & INDUSTRY LANDSCAPE",
   careers: "CAREERS",
   contact: "CONTACT"
 } as const;
@@ -58,8 +56,6 @@ export const PAGE_IMAGES = {
   logistics: "/assets/images/masdar-enhanced/masdar_al_hayat_24.png",
   brands: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
   partnerships: "/assets/images/masdar-enhanced/masdar_al_hayat-41.png",
-  presence: APPROVED_IMAGES.masdar12,
-  landscape: APPROVED_IMAGES.masdar13,
   careers: "/assets/images/masdar-enhanced/masdar_al_hayat-43.png",
   contact: "/assets/images/masdar-enhanced/masdar_al_hayat-48.png",
 } as const;
@@ -67,9 +63,9 @@ export const PAGE_IMAGES = {
 export const HOME_IMAGES = {
   hero: APPROVED_IMAGES.masdar1,
   whoWeAre: "/assets/images/masdar-enhanced/masdar_al_hayat_01.png",
-  manufacturingStrength: "/assets/images/masdar-enhanced/masdar_al_hayat_02.png",
+  manufacturingStrength: "/assets/images/masdar-enhanced/masdar_al_hayat-49.png",
+  manufacturingStrengthSecondary: "/assets/images/masdar-enhanced/masdar_al_hayat_02.png",
   qualitySystem: "/assets/images/masdar-enhanced/masdar_al_hayat_03.png",
-  marketConnection: "/assets/images/masdar-enhanced/masdar_al_hayat04.png",
   careers: "/assets/images/masdar-enhanced/masdar_al_hayat_05.jpeg",
 } as const;
 
@@ -78,7 +74,7 @@ export const HOME_VIDEOS = {
 } as const;
 
 export const BRAND_LOGOS = {
-  tamimiGroup: "/brand/tamimi-group-logo.png",
+  tamimiGroup: "/brand/tamimi-group-logo-2026.png",
 } as const;
 
 /**
@@ -152,8 +148,6 @@ export const PAGE_DEFINITIONS: PageDefinition[] = [
   {key: "logistics", path: "/capabilities/logistics-distribution", theme: "logistics", imageKey: "logistics"},
   {key: "brands", path: "/brands-partnerships/brands", theme: "portfolio", imageKey: "brands"},
   {key: "partnerships", path: "/brands-partnerships/partnerships", theme: "partnership", imageKey: "partnerships"},
-  {key: "presence", path: "/market-presence/exhibitions", theme: "market", imageKey: "presence"},
-  {key: "landscape", path: "/market-presence/industry-landscape", theme: "market", imageKey: "landscape"},
   {key: "careers", path: "/careers", theme: "careers", imageKey: "careers"},
   {key: "contact", path: "/contact", theme: "contact", imageKey: "contact"}
 ];
