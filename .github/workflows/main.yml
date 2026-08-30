@@ -55,50 +55,49 @@ jobs:
             APP_NAME="$APP_NAME" \
             PORT="$PORT" \
             BRANCH="$BRANCH" \
-            BASE_PATH="$APP_PATH" \
-          << 'EOF'
+          << EOF
             set -euo pipefail
             set -x
 
             TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-            RELEASE_DIR="$APP_PATH/releases/$TIMESTAMP"
-            LOG_DIR="$APP_PATH/logs"
-            LOG_FILE="$LOG_DIR/deploy_$TIMESTAMP.log"
+            RELEASE_DIR="\$APP_PATH/releases/\$TIMESTAMP"
+            LOG_DIR="\$APP_PATH/logs"
+            LOG_FILE="\$LOG_DIR/deploy_\$TIMESTAMP.log"
 
-            mkdir -p "$APP_PATH/releases"
-            mkdir -p "$LOG_DIR"
+            mkdir -p "\$APP_PATH/releases"
+            mkdir -p "\$LOG_DIR"
 
             {
-              echo "===== DEPLOY START: $TIMESTAMP ====="
+              echo "===== DEPLOY START: \$TIMESTAMP ====="
 
               GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
-              git clone --branch "$BRANCH" git@github.com:masdar-alhayat/masdar-web.git "$RELEASE_DIR"
+              git clone --branch "\$BRANCH" git@github.com:masdar-alhayat/masdar-web.git "\$RELEASE_DIR"
 
-              cd "$RELEASE_DIR"
+              cd "\$RELEASE_DIR"
 
               npm ci
               npm run build
 
-              pm2 start npm --name "${APP_NAME}-new" -- start -- -p "$PORT"
+              pm2 start npm --name "\${APP_NAME}-new" -- start -- -p "\$PORT"
 
-              ln -sfn "$RELEASE_DIR" "$APP_PATH/current"
+              ln -sfn "\$RELEASE_DIR" "\$APP_PATH/current"
 
-              pm2 delete "$APP_NAME" || true
-              pm2 rename "${APP_NAME}-new" "$APP_NAME"
+              pm2 delete "\$APP_NAME" || true
+              pm2 rename "\${APP_NAME}-new" "\$APP_NAME"
 
               pm2 save
 
               echo "===== DEPLOY SUCCESS ====="
 
-            } >> "$LOG_FILE" 2>&1 || {
+            } >> "\$LOG_FILE" 2>&1 || {
 
               echo "===== DEPLOY FAILED ====="
-              echo "Check log: $LOG_FILE"
+              echo "Check log: \$LOG_FILE"
 
-              pm2 delete "${APP_NAME}-new" || true
+              pm2 delete "\${APP_NAME}-new" || true
               exit 1
             }
 
-            cd "$APP_PATH/releases"
+            cd "\$APP_PATH/releases"
             ls -dt */ | tail -n +4 | xargs rm -rf || true
           EOF
