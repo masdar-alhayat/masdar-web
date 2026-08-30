@@ -15,14 +15,6 @@ export function createPageMetadata(key: PageKey, locale: Locale): Metadata {
   return {
     title,
     description,
-    robots: {
-      index: false,
-      follow: false,
-      nocache: true,
-      noarchive: true,
-      nosnippet: true,
-      noimageindex: true
-    },
     alternates: {
       canonical,
       languages: {
