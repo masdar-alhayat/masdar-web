@@ -16,7 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Setup SSH for connecting to VPS
+      # ---------------------------------------------------------
+      # SSH Setup
+      # ---------------------------------------------------------
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -24,11 +26,14 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-      # Deploy to VPS
-      - name: Deploy
+      # ---------------------------------------------------------
+      # Deployment
+      # ---------------------------------------------------------
+      - name: Deploy to VPS
         run: |
           BASE_PATH="${{ secrets.VPS_BASE_PATH }}"
 
+          # Environment selection from dropdown
           if [ "${{ github.event.inputs.environment }}" = "staging" ]; then
             APP_PATH="$BASE_PATH/staging"
             APP_NAME="masdar-staging"
@@ -65,7 +70,8 @@ jobs:
             {
               echo "===== DEPLOY START: \$TIMESTAMP ====="
 
-              GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
+              # Correct SSH key usage
+              GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
               git clone --branch "\$BRANCH" git@github.com:masdar-alhayat/masdar-web.git "\$RELEASE_DIR"
 
               cd "\$RELEASE_DIR"
@@ -73,13 +79,17 @@ jobs:
               npm ci
               npm run build
 
-              cd "\$RELEASE_DIR"
-
+              # Stop old process (if exists)
               pm2 delete "\$APP_NAME" || true
-              PORT="\$PORT" NODE_ENV=production pm2 start "npx next start -p \$PORT -H 0.0.0.0" --name "\${APP_NAME}-new" --cwd "\$RELEASE_DIR"
 
+              # Correct PM2 start command
+              PORT="\$PORT" NODE_ENV=production \
+              pm2 start npx --name "\${APP_NAME}-new" --cwd "\$RELEASE_DIR" -- next start -p \$PORT -H 0.0.0.0
+
+              # Zero-downtime symlink switch
               ln -sfn "\$RELEASE_DIR" "\$BASE_PATH/current"
 
+              # Replace old process with new one
               pm2 delete "\$APP_NAME" || true
               pm2 rename "\${APP_NAME}-new" "\$APP_NAME"
 
@@ -92,10 +102,14 @@ jobs:
               echo "===== DEPLOY FAILED ====="
               echo "Check log: \$LOG_FILE"
 
+              echo "===== PM2 ERROR LOG ====="
+              pm2 logs "\${APP_NAME}-new" --lines 50 --err || true
+
               pm2 delete "\${APP_NAME}-new" || true
               exit 1
             }
 
+            # Keep only last 3 releases
             cd "\$BASE_PATH/releases"
             ls -dt */ | tail -n +4 | xargs rm -rf || true
           EOF
