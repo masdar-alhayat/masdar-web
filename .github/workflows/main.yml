@@ -73,7 +73,10 @@ jobs:
               npm ci
               npm run build
 
-              pm2 start npm --name "\${APP_NAME}-new" -- start -- -p "\$PORT"
+              cd "\$RELEASE_DIR"
+
+              pm2 delete "\$APP_NAME" || true
+              PORT="\$PORT" NODE_ENV=production pm2 start "npx next start -p \$PORT -H 0.0.0.0" --name "\${APP_NAME}-new" --cwd "\$RELEASE_DIR"
 
               ln -sfn "\$RELEASE_DIR" "\$BASE_PATH/current"
 
