@@ -1,108 +1,61 @@
-name: Masdar Web Deployment - Workflow
+- name: Deploy
+  run: |
+    BASE_PATH="${{ secrets.VPS_BASE_PATH }}"
 
-on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: "Select environment"
-        required: true
-        type: choice
-        options:
-          - staging
-          - production
+    if [ "${{ github.event.inputs.environment }}" = "staging" ]; then
+      APP_PATH="$BASE_PATH/staging"
+      APP_NAME="masdar-staging"
+      PORT=3001
+      BRANCH="staging"
+    else
+      APP_PATH="$BASE_PATH/production"
+      APP_NAME="masdar-prod"
+      PORT=3000
+      BRANCH="main"
+    fi
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+    ssh -o StrictHostKeyChecking=no \
+      ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+      "APP_PATH='$APP_PATH' APP_NAME='$APP_NAME' PORT='$PORT' BRANCH='$BRANCH' bash -s" << 'REMOTE'
+        set -euo pipefail
+        set -x
 
-    steps:
-      # Setup SSH for connecting to VPS
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+        TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+        RELEASE_DIR="$APP_PATH/releases/$TIMESTAMP"
+        LOG_DIR="$APP_PATH/logs"
+        LOG_FILE="$LOG_DIR/deploy_$TIMESTAMP.log"
 
-      # Deploy to VPS
-      - name: Deploy
-        run: |
-          BASE_PATH="${{ secrets.VPS_BASE_PATH }}"
+        mkdir -p "$APP_PATH/releases"
+        mkdir -p "$LOG_DIR"
 
-          if [ "${{ github.event.inputs.environment }}" = "staging" ]; then
-            APP_PATH="$BASE_PATH/staging"
-            APP_NAME="masdar-staging"
-            PORT=3001
-            BRANCH="staging"
-          else
-            APP_PATH="$BASE_PATH/production"
-            APP_NAME="masdar-prod"
-            PORT=3000
-            BRANCH="main"
-          fi
+        {
+          echo "===== DEPLOY START: $TIMESTAMP ====="
 
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
+          git clone --branch "$BRANCH" git@github.com:masdar-alhayat/masdar-web.git "$RELEASE_DIR"
 
-            set -euo pipefail
+          cd "$RELEASE_DIR"
 
-            BASE_PATH="$APP_PATH"
-            APP_NAME="$APP_NAME"
-            PORT="$PORT"
-            BRANCH="$BRANCH"
+          npm ci
+          npm run build
 
-            if [ ! -d "$BASE_PATH" ]; then
-              echo "Base path does not exist: $BASE_PATH"
-              exit 1
-            fi
+          pm2 start npm --name "${APP_NAME}-new" -- start -- -p "$PORT"
 
-            TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-            RELEASE_DIR="$BASE_PATH/releases/$TIMESTAMP"
-            LOG_DIR="$BASE_PATH/logs"
-            LOG_FILE="$LOG_DIR/deploy_$TIMESTAMP.log"
+          ln -sfn "$RELEASE_DIR" "$APP_PATH/current"
 
-            mkdir -p "$BASE_PATH/releases"
-            mkdir -p "$LOG_DIR"
+          pm2 delete "$APP_NAME" || true
+          pm2 rename "${APP_NAME}-new" "$APP_NAME"
 
-            {
-              echo "===== DEPLOY START: $TIMESTAMP ====="
+          pm2 save
 
-              # 🚨 FAIL FAST IF CLONE FAILS
-              GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
-              git clone --branch "$BRANCH" git@github.com:masdar-alhayat/masdar-web.git "$RELEASE_DIR"
+          echo "===== DEPLOY SUCCESS ====="
+        } >> "$LOG_FILE" 2>&1 || {
+          echo "===== DEPLOY FAILED ====="
+          echo "Check log: $LOG_FILE"
+          pm2 delete "${APP_NAME}-new" || true
+          exit 1
+        }
 
-              cd "$RELEASE_DIR"
-
-              # Install & build
-              npm ci
-              npm run build
-
-              # Start new instance
-              pm2 start npm --name "${APP_NAME}-new" -- start -- -p "$PORT"
-
-              # Switch symlink
-              ln -sfn "$RELEASE_DIR" "$BASE_PATH/current"
-
-              # Replace old process safely
-              pm2 delete "$APP_NAME" || true
-              pm2 rename "${APP_NAME}-new" "$APP_NAME"
-
-              pm2 save
-
-              echo "===== DEPLOY SUCCESS ====="
-
-            } >> "$LOG_FILE" 2>&1 || {
-
-              echo "===== DEPLOY FAILED ====="
-              echo "Check log: $LOG_FILE"
-
-              # Cleanup failed process
-              pm2 delete "${APP_NAME}-new" || true
-
-              exit 1
-            }
-
-            # Cleanup old releases (keep last 3)
-            cd "$BASE_PATH/releases"
-            ls -dt */ | tail -n +4 | xargs rm -rf || true
-
-          EOF
+        cd "$APP_PATH/releases"
+        ls -dt */ | tail -n +4 | xargs rm -rf || true
+REMOTE
