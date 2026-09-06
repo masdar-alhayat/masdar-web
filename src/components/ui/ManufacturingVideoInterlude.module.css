@@ -1,0 +1,163 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(2.5rem, 6vw, 6rem);
+  background:
+    linear-gradient(
+      180deg,
+      var(--mah-green-950) 0%,
+      var(--mah-green-950) 42%,
+      var(--mah-wheat) 42%,
+      var(--mah-wheat) 100%
+    );
+}
+
+.section::before {
+  position: absolute;
+  z-index: -1;
+  inset: 42% 0 auto;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(184, 125, 61, .6), transparent);
+}
+
+.container {
+  position: relative;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  min-height: clamp(25rem, 56vw, 46rem);
+  margin: 0;
+  overflow: hidden;
+  background: #0d2917;
+  border: 1px solid rgba(255, 255, 255, .2);
+  box-shadow:
+    0 2.5rem 6rem rgba(18, 57, 31, .25),
+    0 .75rem 2rem rgba(18, 57, 31, .14);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 54px), calc(100% - 54px) 100%, 0 100%);
+  transform-origin: center center;
+}
+
+:global(html[dir="rtl"]) .frame {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 54px 100%, 0 calc(100% - 54px));
+}
+
+.media {
+  position: absolute;
+  inset: -10% 0;
+  will-change: transform;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  animation: manufacturing-video-reveal .42s ease-out both;
+}
+
+@keyframes manufacturing-video-reveal {
+  from {
+    opacity: .2;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(8, 31, 17, .13), transparent 30%, transparent 68%, rgba(8, 31, 17, .24)),
+    linear-gradient(90deg, rgba(18, 57, 31, .18), transparent 34%, transparent 72%, rgba(139, 63, 39, .1));
+}
+
+.inset {
+  position: absolute;
+  inset: clamp(.75rem, 1.5vw, 1.35rem);
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, .26);
+}
+
+.accent {
+  position: absolute;
+  inset: auto auto clamp(.75rem, 1.5vw, 1.35rem) clamp(.75rem, 1.5vw, 1.35rem);
+  width: clamp(5rem, 10vw, 9rem);
+  height: 3px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--mah-sand), var(--mah-copper));
+}
+
+.brandBadge {
+  position: absolute;
+  z-index: 2;
+  top: clamp(1.65rem, 3vw, 2.75rem);
+  right: clamp(1.65rem, 3vw, 2.75rem);
+  display: grid;
+  place-items: center;
+  width: clamp(9rem, 14vw, 12.5rem);
+  padding: clamp(.65rem, 1.1vw, .95rem) clamp(.85rem, 1.35vw, 1.2rem);
+  background: rgba(255, 255, 255, .97);
+  border: 1px solid rgba(255, 255, 255, .72);
+  box-shadow:
+    0 1.25rem 3rem rgba(8, 31, 17, .24),
+    inset 0 -3px 0 rgba(139, 63, 39, .16);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  backdrop-filter: blur(8px);
+}
+
+.brandBadge img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+:global(html[dir="rtl"]) .accent {
+  inset-inline: auto clamp(.75rem, 1.5vw, 1.35rem);
+  background: linear-gradient(-90deg, var(--mah-sand), var(--mah-copper));
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding-block: 2rem 3.5rem;
+    background:
+      linear-gradient(
+        180deg,
+        var(--mah-green-950) 0%,
+        var(--mah-green-950) 35%,
+        var(--mah-wheat) 35%,
+        var(--mah-wheat) 100%
+      );
+  }
+
+  .frame {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+  }
+
+  .brandBadge {
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 7rem;
+    padding: .55rem .7rem;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+
+  :global(html[dir="rtl"]) .frame {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media {
+    inset: 0;
+  }
+}
