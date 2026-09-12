@@ -78,7 +78,7 @@ jobs:
               if [ -n "$PREVIOUS_RELEASE" ] && [ -d "$PREVIOUS_RELEASE" ]; then
                 ln -sfn "$PREVIOUS_RELEASE" "$BASE_PATH/current"
                 cd "$BASE_PATH/current"
-                pm2 start npm --name "$APP_NAME" -- start -- -p "$PORT"
+                pm2 start npm --name "$APP_NAME" --cwd "$BASE_PATH/current" -- start -- -p "$PORT"
                 pm2 save
                 echo "Restored previous release: $PREVIOUS_RELEASE"
               fi
@@ -108,18 +108,42 @@ jobs:
           pm2 delete "${APP_NAME}-new" || true
           pm2 delete "$APP_NAME" || true
           cd "$BASE_PATH/current"
-          pm2 start npm --name "$APP_NAME" -- start -- -p "$PORT"
+          pm2 start npm --name "$APP_NAME" --cwd "$BASE_PATH/current" -- start -- -p "$PORT"
+
+          check_release() {
+            node - "$PORT" "$DEPLOYED_COMMIT" << 'NODE_CHECK'
+          const port = process.argv[2];
+          const expectedCommit = process.argv[3];
+          const baseUrl = `http://127.0.0.1:${port}`;
+
+          async function get(path) {
+            const response = await fetch(`${baseUrl}${path}`, {redirect: "follow"});
+            if (!response.ok) throw new Error(`${path} returned HTTP ${response.status}`);
+            return response;
+          }
+
+          try {
+            const version = (await (await get("/deployment-version.txt")).text()).trim();
+            if (version !== expectedCommit) {
+              throw new Error(`expected commit ${expectedCommit}, received ${version}`);
+            }
+
+            const html = await (await get("/")).text();
+            const cssPath = html.match(/\/_next\/static\/[^" ]+\.css/)?.[0];
+            if (!cssPath) throw new Error("homepage did not reference a compiled stylesheet");
+
+            await get(cssPath);
+            await get("/brand/masdar-logo.png");
+          } catch (error) {
+            console.error(error.message);
+            process.exit(1);
+          }
+          NODE_CHECK
+          }
 
           READY=0
           for attempt in $(seq 1 15); do
-            HTML=$(curl -fsSL "http://127.0.0.1:$PORT/" || true)
-            CSS_PATH=$(printf '%s' "$HTML" | grep -oE '/_next/static/[^" ]+\.css' | head -n 1 || true)
-            SERVED_COMMIT=$(curl -fsSL "http://127.0.0.1:$PORT/deployment-version.txt" || true)
-
-            if [ "$SERVED_COMMIT" = "$DEPLOYED_COMMIT" ] \
-              && [ -n "$CSS_PATH" ] \
-              && curl -fsSL "http://127.0.0.1:$PORT$CSS_PATH" > /dev/null \
-              && curl -fsSL "http://127.0.0.1:$PORT/brand/masdar-logo.png" > /dev/null; then
+            if check_release; then
               READY=1
               break
             fi
