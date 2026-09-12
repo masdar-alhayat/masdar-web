@@ -14,10 +14,6 @@ const VISION_VALUES_HIDDEN_SECTIONS = new Set([
   "Our Strategic Direction",
 ]);
 
-const OPERATIONS_HIDDEN_SECTIONS = new Set([
-  "Smart Operations & Efficiency",
-]);
-
 const QUALITY_HIDDEN_SECTIONS = new Set([
   "Food Safety Approach",
 ]);
@@ -46,6 +42,12 @@ export function InternalPage({
   const groupTimeline = imageKey === "groupStory"
     ? sections.find((section) => section.title === "Group Development Timeline")
     : undefined;
+  const orderedSections = imageKey === "brands"
+    ? [
+        ...sections.filter((section) => section.title === "Our Brand Portfolio"),
+        ...sections.filter((section) => section.title !== "Our Brand Portfolio"),
+      ]
+    : sections;
 
   return (
     <main
@@ -61,10 +63,9 @@ export function InternalPage({
         brandLogoAlt={locale === "ar" ? "شعار مجموعة التميمي" : "Tamimi Group logo"}
       />
 
-      {sections.map((section, index) => {
+      {orderedSections.map((section, index) => {
         if (imageKey === "groupStory" && GROUP_STORY_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "visionValues" && VISION_VALUES_HIDDEN_SECTIONS.has(section.title)) return null;
-        if (imageKey === "operations" && OPERATIONS_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "quality" && QUALITY_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "logistics" && LOGISTICS_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "manufacturing" && MANUFACTURING_HIDDEN_SECTIONS.has(section.title)) return null;

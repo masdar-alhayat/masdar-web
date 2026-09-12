@@ -61,6 +61,15 @@ export const PAGE_IMAGES = {
 } as const;
 
 export const HOME_IMAGES = {
+  glanceSaudiPresence: "/assets/images/glance-saudi-presence-v1.png",
+  glanceProductionStrength: "/assets/images/masdar-enhanced/masdar_al_hayat_34.png",
+  glanceProductPortfolio: "/assets/images/glance-product-portfolio-v1.png",
+  glanceMarketDelivery: "/assets/images/masdar-enhanced/masdar_al_hayat-50.png",
+  foodPortfolioBread: "/assets/images/food-portfolio-1.jpg",
+  foodPortfolioCake: "/assets/images/food-portfolio-2-clean.png",
+  foodPortfolioSauces: "/assets/images/food-portfolio-3-clean.png",
+  foodPortfolioReadyMeals: "/assets/images/food-portfolio-4-clean.png",
+  foodPortfolioPackaged: "/assets/images/food-portfolio-5-clean.png",
   hero: APPROVED_IMAGES.masdar1,
   whoWeAre: "/assets/images/masdar-enhanced/masdar_al_hayat_01.png",
   manufacturingStrength: "/assets/images/masdar-enhanced/masdar_al_hayat-49.png",

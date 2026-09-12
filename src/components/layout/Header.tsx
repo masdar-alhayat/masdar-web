@@ -10,7 +10,7 @@ import type {Locale} from "@/types/content";
 
 gsap.registerPlugin(useGSAP);
 
-type MenuItem = {label: {en: string; ar: string}; href?: string; children?: MenuItem[]};
+type MenuItem = {label: {en: string; ar: string}; href?: string; logo?: string; children?: MenuItem[]};
 const menu: MenuItem[] = [
   {label: {en: "Home", ar: "الرئيسية"}, href: "/"},
   {label: {en: "About Us", ar: "من نحن"}, children: [
@@ -25,10 +25,14 @@ const menu: MenuItem[] = [
     {label: {en: "Quality & Compliance", ar: "الجودة والامتثال"}, href: "/capabilities/quality-compliance"},
     {label: {en: "Logistics & Distribution", ar: "الخدمات اللوجستية والتوزيع"}, href: "/capabilities/logistics-distribution"}
   ]},
-  {label: {en: "Brands & Partnerships", ar: "العلامات والشراكات"}, children: [
-    {label: {en: "Brands", ar: "العلامات التجارية"}, href: "/brands-partnerships/brands"},
-    {label: {en: "Partnerships", ar: "الشراكات"}, href: "/brands-partnerships/partnerships"}
+  {label: {en: "Our Brands", ar: "علاماتنا التجارية"}, children: [
+    {label: {en: "Fonte", ar: "فونتي"}, href: "/brands-partnerships/brands", logo: "/brand/fonte-transparent-logo.png"},
+    {label: {en: "Fonte HORECA", ar: "فونتي هوريكا"}, href: "/brands-partnerships/brands", logo: "/brand/fonte-logo-full.png"},
+    {label: {en: "Paneto", ar: "بانيتو"}, href: "/brands-partnerships/brands", logo: "/brand/paneto-logo.png"},
+    {label: {en: "Amraj", ar: "أمراج"}, href: "/brands-partnerships/brands", logo: "/brand/amraj-logo.jpg"},
+    {label: {en: "Nature’s Oven", ar: "نيتشرز أوفن"}, href: "/brands-partnerships/brands", logo: "/brand/natures-oven-logo.png"}
   ]},
+  {label: {en: "Partnerships", ar: "الشراكات"}, href: "/brands-partnerships/partnerships"},
   {label: {en: "Careers", ar: "الوظائف"}, href: "/careers"}
 ];
 
@@ -37,6 +41,7 @@ export function Header({locale}: {locale: Locale}) {
   const [mobile, setMobile] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const router = useRouter();
   const isAr = locale === "ar";
@@ -52,12 +57,30 @@ export function Header({locale}: {locale: Locale}) {
     return () => document.body.classList.remove("menu-open");
   }, [mobile]);
 
+  useEffect(() => () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+  }, []);
+
   useGSAP(() => {
     if (!open) return;
     gsap.fromTo(".mega-menu.is-open", {opacity: 0, y: -12, clipPath: "inset(0 0 100% 0)"}, {opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)", duration: 0.42, ease: "power3.out"});
   }, {dependencies: [open], scope: navRef});
 
   const switchLanguage = () => router.replace(pathname, {locale: isAr ? "en" : "ar"});
+
+  const openMenu = (label: string) => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = null;
+    setOpen(label);
+  };
+
+  const closeMenuSoon = () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = setTimeout(() => {
+      setOpen(null);
+      closeTimerRef.current = null;
+    }, 160);
+  };
 
   const closeOnLink = (event: React.MouseEvent<HTMLElement>) => {
     if ((event.target as Element).closest("a")) { setOpen(null); setMobile(false); }
@@ -75,15 +98,15 @@ export function Header({locale}: {locale: Locale}) {
             const label = item.label[locale];
             if (!item.children) return <Link key={label} href={item.href!} className={pathname === item.href ? "is-active" : ""}>{label}</Link>;
             const active = open === label;
-            return <div className="nav-group" key={label}>
-              <button type="button" aria-expanded={active} onClick={() => setOpen(active ? null : label)}>{label}<ChevronDown size={15}/></button>
+            return <div className="nav-group" key={label} onMouseEnter={() => openMenu(label)} onMouseLeave={closeMenuSoon} onFocusCapture={() => openMenu(label)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) closeMenuSoon(); }}>
+              <button type="button" aria-expanded={active} onClick={() => { if (active) setOpen(null); else openMenu(label); }}>{label}<ChevronDown size={15}/></button>
               <div className={`mega-menu ${active ? "is-open" : ""}`} hidden={!active}>
                 <div className="mega-menu__intro">
                   <span>{isAr ? "استكشف مصدر الحياة" : "Explore Masdar Al Hayat"}</span>
                   <strong>{label}</strong>
                 </div>
                 <div className="mega-menu__links">
-                  {item.children.map((child, index) => <Link key={child.href} href={child.href!}><span>0{index + 1}</span><strong>{child.label[locale]}</strong><ArrowUpRight className="directional-icon" size={18}/></Link>)}
+                  {item.children.map((child, index) => <Link className={child.logo ? "mega-menu__brand-link" : undefined} key={child.label.en} href={child.href!}><span className="mega-menu__index">0{index + 1}</span>{child.logo && <span className={`mega-menu__brand-logo${child.label.en === "Amraj" ? " mega-menu__brand-logo--amraj" : ""}`}><Image src={child.logo} alt="" fill sizes="88px"/></span>}<strong>{child.label[locale]}</strong><ArrowUpRight className="directional-icon" size={18}/></Link>)}
                 </div>
               </div>
             </div>;
@@ -111,7 +134,7 @@ export function Header({locale}: {locale: Locale}) {
         </div>
         <div className="mobile-menu__body">
           {menu.map((item) => <div className="mobile-menu__item" key={item.label.en}>
-            {item.href ? <Link href={item.href}>{item.label[locale]}</Link> : <details><summary>{item.label[locale]}<ChevronDown size={18}/></summary><div>{item.children?.map(child => <Link key={child.href} href={child.href!}>{child.label[locale]}<ArrowUpRight className="directional-icon" size={16}/></Link>)}</div></details>}
+            {item.href ? <Link href={item.href}>{item.label[locale]}</Link> : <details><summary>{item.label[locale]}<ChevronDown size={18}/></summary><div>{item.children?.map(child => <Link className={child.logo ? "mobile-menu__brand-link" : undefined} key={child.label.en} href={child.href!}>{child.logo && <span className={`mobile-menu__brand-logo${child.label.en === "Amraj" ? " mobile-menu__brand-logo--amraj" : ""}`}><Image src={child.logo} alt="" fill sizes="72px"/></span>}<span>{child.label[locale]}</span><ArrowUpRight className="directional-icon" size={16}/></Link>)}</div></details>}
           </div>)}
         </div>
         <div className="mobile-menu__footer"><button onClick={switchLanguage}>{isAr ? "English" : "العربية"}</button><Link href="/contact">{isAr ? "تواصل معنا" : "Start a conversation"}</Link></div>

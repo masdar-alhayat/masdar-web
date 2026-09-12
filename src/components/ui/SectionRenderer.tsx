@@ -11,6 +11,7 @@ import {
 } from "./ManufacturingCapabilitiesFlow";
 import {ManufacturingVideoInterlude} from "./ManufacturingVideoInterlude";
 import {ManufacturingGallery} from "./ManufacturingGallery";
+import {ProductRangeCarousel} from "./ProductRangeCarousel";
 import {
   HeritageTimeline,
   HeritageTimelineGrid,
@@ -54,8 +55,6 @@ import type {
 import {
   Boxes,
   Building2,
-  CalendarClock,
-  ChartNoAxesCombined,
   CircleCheckBig,
   Check,
   ChefHat,
@@ -69,7 +68,6 @@ import {
   Lightbulb,
   Mail,
   MapPin,
-  MonitorCog,
   PackageCheck,
   PackageOpen,
   Phone,
@@ -89,7 +87,6 @@ import {
   Wheat,
   Warehouse,
   Truck,
-  Zap,
 } from "lucide-react";
 
 interface SectionRendererProps {
@@ -894,16 +891,6 @@ export function SectionRenderer({
 
     return (
       <>
-        {theme === "portfolio" && (
-          <ManufacturingVideoInterlude
-            label={
-              isAr
-                ? "مشاهد متتابعة من عمليات تصنيع منتجات فونتي"
-                : "Fonte manufacturing operations video sequence"
-            }
-          />
-        )}
-
         <AnimatedSection className={`content-section brand-portfolio-section content-section--${theme}`} variant="stagger">
           <div className="container-xxl">
             <header className="brand-portfolio__header" data-animate>
@@ -942,57 +929,78 @@ export function SectionRenderer({
             </div>
           </div>
         </AnimatedSection>
+
       </>
     );
   }
 
   if (/Flagship Brand/i.test(section.title)) {
     const productCategories = groups.filter((group) => group.prefix === "Product Category");
-    const categoryIcons = [Wheat, PackageOpen, ChefHat, Sparkles, Soup, Boxes];
+    const productRangeImages = [
+      "/assets/images/prod-range-01-clean.png",
+      "/assets/images/prod-range-02-clean.png",
+      "/assets/images/prod-range-03-clean.png",
+      "/assets/images/prod-range-04-clean.png",
+      "/assets/images/prod-range-05-clean.png",
+      "/assets/images/prod-range-06-clean.png",
+    ];
+    const productRangeItems = productCategories.map((category, categoryIndex) => ({
+      title: groupText(category, "Title"),
+      description: value(category.parts.Description, locale),
+      image: productRangeImages[categoryIndex]
+        ? {
+            src: productRangeImages[categoryIndex],
+            alt: isAr
+              ? `صورة مجموعة ${groupText(category, "Title")}`
+              : `${groupText(category, "Title")} product range`,
+          }
+        : undefined,
+    }));
     const secondary = localizedItemValue(section, "Secondary CTA", locale);
 
     return (
-      <AnimatedSection className={`content-section flagship-brand-section content-section--${theme}`} variant="mask">
-        <div className="container-xxl flagship-brand__grid">
-          <div className="flagship-brand__mark" data-animate>
-            <span className="flagship-brand__halo" aria-hidden="true" />
-            <Image
-              src="/brand/fonte-logo-full.png"
-              alt={isAr ? "شعار فونتي الكامل" : "Fonte full logo"}
-              width={640}
-              height={500}
-              className="flagship-brand__logo"
-            />
-            <small>{isAr ? "العلامة الرئيسية لمصدر الحياة" : "The flagship brand of Masdar Al Hayat"}</small>
-          </div>
-          <div className="flagship-brand__copy" data-animate>
-            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
-            <h2>{heading}</h2>
-            {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
-            <div className="flagship-brand__range-heading">
-              <span>{isAr ? "مجموعة المنتجات" : "Product range"}</span>
-              <i aria-hidden="true" />
+      <>
+        <AnimatedSection className={`content-section flagship-brand-section content-section--${theme}`} variant="mask">
+          <div className="container-xxl flagship-brand__layout">
+            <div className="flagship-brand__intro">
+              <div className="flagship-brand__mark" data-animate>
+                <span className="flagship-brand__halo" aria-hidden="true" />
+                <Image
+                  src="/brand/fonte-logo-full.png"
+                  alt={isAr ? "شعار فونتي الكامل" : "Fonte full logo"}
+                  width={640}
+                  height={500}
+                  className="flagship-brand__logo"
+                />
+                <small>{isAr ? "العلامة الرئيسية لمصدر الحياة" : "The flagship brand of Masdar Al Hayat"}</small>
+              </div>
+              <div className="flagship-brand__copy" data-animate>
+                {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+                <h2>{heading}</h2>
+                {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
+              </div>
             </div>
-            <div className="flagship-brand__categories">
-              {productCategories.map((category, categoryIndex) => {
-                const Icon = categoryIcons[categoryIndex % categoryIcons.length];
-                return (
-                  <article key={category.key}>
-                    <span><Icon aria-hidden="true" /></span>
-                    <div>
-                      <h3>{groupText(category, "Title")}</h3>
-                      <p>{value(category.parts.Description, locale)}</p>
-                    </div>
-                  </article>
-                );
-              })}
+
+            <div className="flagship-brand__range" data-animate>
+              <ProductRangeCarousel items={productRangeItems} locale={locale}/>
             </div>
-            <div className="flagship-brand__actions">
+
+            <div className="flagship-brand__actions" data-animate>
               {secondary && <ArrowLink href={resolveCtaHref(secondary)}>{secondary}</ArrowLink>}
             </div>
           </div>
-        </div>
-      </AnimatedSection>
+        </AnimatedSection>
+
+        {theme === "portfolio" && (
+          <ManufacturingVideoInterlude
+            label={
+              isAr
+                ? "مشاهد متتابعة من عمليات تصنيع منتجات فونتي"
+                : "Fonte manufacturing operations video sequence"
+            }
+          />
+        )}
+      </>
     );
   }
 
@@ -1540,11 +1548,11 @@ export function SectionRenderer({
 
   if (theme === "operations" && index === 3 && groups.length >= 5) {
     const planningIcons = [
-      ChartNoAxesCombined,
-      CalendarClock,
+      Handshake,
       Boxes,
-      UsersRound,
-      Check,
+      ShieldCheck,
+      Gauge,
+      RefreshCw,
     ] as const;
 
     const planningSteps = groups.slice(0, 5).map((group, stepIndex) => ({
@@ -1595,7 +1603,7 @@ export function SectionRenderer({
   }
 
   if (theme === "operations" && index === 4 && groups.length >= 5) {
-    const smartIcons = [ScanLine, MonitorCog, Gauge, RefreshCw, Zap] as const;
+    const smartIcons = [ClipboardCheck, Warehouse, ScanLine, PackageOpen, Truck] as const;
     const improvements = groups.slice(0, 5).map((group, improvementIndex) => ({
       title: groupText(group, "Title") || groupText(group, "Value"),
       Icon: smartIcons[improvementIndex],
@@ -1627,7 +1635,7 @@ export function SectionRenderer({
               <span className="smart-operations-showcase__orbit smart-operations-showcase__orbit--outer" />
               <span className="smart-operations-showcase__orbit smart-operations-showcase__orbit--inner" />
               <div>
-                <MonitorCog />
+                <Warehouse />
                 <span>01 — 05</span>
               </div>
             </div>

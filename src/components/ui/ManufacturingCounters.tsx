@@ -11,11 +11,12 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 export interface ManufacturingCounterItem {
   value: number;
   label: string;
+  suffix?: string;
 }
 
 function formatCounter(value: number, locale: Locale) {
   return new Intl.NumberFormat(locale === "ar" ? "ar-SA" : "en-US", {
-    useGrouping: false,
+    useGrouping: true,
   }).format(value);
 }
 
@@ -36,7 +37,7 @@ export function ManufacturingCounters({
     const cards = gsap.utils.toArray<HTMLElement>(".manufacturing-metrics__item", root);
 
     counters.forEach((counter) => {
-      counter.textContent = formatCounter(0, locale);
+      counter.textContent = `${formatCounter(0, locale)}${counter.dataset.manufacturingSuffix ?? ""}`;
     });
 
     const timeline = gsap.timeline({
@@ -65,7 +66,7 @@ export function ManufacturingCounters({
         ease: "power2.out",
         snap: {value: 1},
         onUpdate: () => {
-          counter.textContent = formatCounter(Math.round(state.value), locale);
+          counter.textContent = `${formatCounter(Math.round(state.value), locale)}${counter.dataset.manufacturingSuffix ?? ""}`;
         },
       }, 0.12 + index * 0.08);
     });
@@ -73,12 +74,12 @@ export function ManufacturingCounters({
 
   return <div
     ref={scope}
-    className="manufacturing-home__metrics"
+    className="home-metrics"
     aria-label={locale === "ar" ? "قوة مصدر الحياة بالأرقام" : "Masdar Al Hayat strength in numbers"}
   >
     <div className="manufacturing-metrics__grid">
       {items.map((item) => <div className="manufacturing-metrics__item" key={item.label}>
-        <strong data-manufacturing-count={item.value}>{formatCounter(item.value, locale)}</strong>
+        <strong dir="ltr" data-manufacturing-count={item.value} data-manufacturing-suffix={item.suffix}>{formatCounter(item.value, locale)}{item.suffix}</strong>
         <span>{item.label}</span>
       </div>)}
     </div>

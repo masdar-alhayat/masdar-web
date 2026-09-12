@@ -34,8 +34,8 @@
           },
           {
             "label": "Main Heading",
-            "en": "Manufacturing Food & Beverages. Building Trust. Creating Lasting Value.",
-            "ar": "نصنع الأغذية والمشروبات. نبني الثقة. ونحقق قيمة مستدامة."
+            "en": "Manufacturing Food.\n\nDriving Innovation.\n\nDelivering Lasting Value.",
+            "ar": "نصنع الغذاء.\n\nنقود الابتكار.\n\nنقدم قيمة مستدامة."
           },
           {
             "label": "Supporting Paragraph 1",
@@ -74,13 +74,8 @@
           },
           {
             "label": "Paragraph 1",
-            "en": "Since beginning commercial operations in 2009, Masdar Al Hayat has grown as a food and beverages manufacturer and distributor, creating dependable value from manufacturing and quality control to distribution and market delivery.",
-            "ar": "منذ انطلاق عملياتها التجارية في عام 2009، تطورت مصدر الحياة لتصبح شركة مصنّعة وموزّعة للأغذية والمشروبات، وتحقق قيمة موثوقة عبر مختلف المراحل، من التصنيع ومراقبة الجودة إلى التوزيع وتلبية احتياجات السوق."
-          },
-          {
-            "label": "Paragraph 2",
-            "en": "As part of Tamimi Group, we operate with a long-term outlook shaped by institutional strength, responsible growth and a commitment to supporting the evolving food requirements of Saudi Arabia.",
-            "ar": "وبصفتنا إحدى شركات مجموعة التميمي، نعمل برؤية طويلة المدى تستند إلى قوة مؤسسية راسخة، ونمو مسؤول، والتزام بمواكبة الاحتياجات المتغيرة لقطاع الغذاء في المملكة العربية السعودية."
+            "en": null,
+            "ar": null
           },
           {
             "label": "CTA",
@@ -99,8 +94,8 @@
           },
           {
             "label": "Main Heading",
-            "en": "A Strong Foundation for Sustainable Growth",
-            "ar": "أسس راسخة لنمو مستدام"
+          "en": "Strong Capabilities. Sustainable Growth.",
+          "ar": "قدرات قوية. نمو مستدام."
           },
           {
             "label": "Introduction",
@@ -124,8 +119,8 @@
           },
           {
             "label": "Highlight 2 Value",
-            "en": "Institutional Strength",
-            "ar": "قوة مؤسسية"
+            "en": "Our Institutional Strength",
+            "ar": "قوتنا المؤسسية"
           },
           {
             "label": "Highlight 2 Title",
@@ -139,8 +134,8 @@
           },
           {
             "label": "Highlight 3 Value",
-            "en": "Production Strength",
-            "ar": "قوة إنتاجية"
+            "en": "Our Production Strength",
+            "ar": "قوتنا الإنتاجية"
           },
           {
             "label": "Highlight 3 Title",
@@ -194,18 +189,13 @@
           },
           {
             "label": "Main Heading",
-            "en": "From Production to Distribution, Consistency Guides Every Step",
-            "ar": "من الإنتاج إلى التوزيع، الجودة المتسقة أساس كل خطوة"
+            "en": "From Manufacturing and Innovation to Distribution and Market Delivery.",
+            "ar": "من التصنيع والابتكار إلى التوزيع والوصول إلى السوق."
           },
           {
             "label": "Paragraph 1",
-            "en": "Our operations are structured to support dependable production, consistent product quality and efficient delivery across our food & beverages portfolio.",
-            "ar": "صُممت عملياتنا لدعم إنتاج موثوق، وجودة متسقة للمنتجات، وكفاءة في التوصيل عبر مختلف فئات محفظة الأغذية والمشروبات."
-          },
-          {
-            "label": "Paragraph 2",
-            "en": "Our experienced teams combine production technology with disciplined processes to maintain control throughout manufacturing, continually adapting operations to changing market needs while upholding the standards expected of a professional food and beverages manufacturer.",
-            "ar": "وتجمع فرقنا ذات الخبرة بين تقنيات الإنتاج والإجراءات التشغيلية المنضبطة لتعزيز الرقابة في جميع مراحل التصنيع، مع مواصلة تطوير عملياتنا للاستجابة لمتطلبات السوق المتغيرة والمحافظة على المعايير المتوقعة من شركة مصنّعة للأغذية والمشروبات."
+            "en": "We Bring Quality Food Products to Consumers at Scale.",
+            "ar": "نقدم منتجات غذائية عالية الجودة للمستهلكين على نطاق واسع."
           },
           {
             "label": "Counter 1 Value",
@@ -219,33 +209,58 @@
           },
           {
             "label": "Counter 2 Value",
-            "en": 4,
-            "ar": 4
+            "en": 20000,
+            "ar": 20000
           },
           {
             "label": "Counter 2 Label",
-            "en": "Core Product Categories",
-            "ar": "فئات المنتجات الأساسية"
+            "en": "Tons Annual Production Capacity",
+            "ar": "طن من الطاقة الإنتاجية السنوية"
           },
           {
             "label": "Counter 3 Value",
-            "en": 4,
-            "ar": 4
+            "en": 1000,
+            "ar": 1000
+          },
+          {
+            "label": "Counter 3 Suffix",
+            "en": "+",
+            "ar": "+"
           },
           {
             "label": "Counter 3 Label",
-            "en": "Integrated Capabilities",
-            "ar": "قدرات متكاملة"
+            "en": "Employees",
+            "ar": "موظف"
           },
           {
             "label": "Counter 4 Value",
-            "en": 3,
-            "ar": 3
+            "en": 200,
+            "ar": 200
+          },
+          {
+            "label": "Counter 4 Suffix",
+            "en": "+",
+            "ar": "+"
           },
           {
             "label": "Counter 4 Label",
-            "en": "Quality & Food Safety Frameworks",
-            "ar": "أطر الجودة وسلامة الغذاء"
+            "en": "Products",
+            "ar": "منتج"
+          },
+          {
+            "label": "Counter 5 Value",
+            "en": 1000,
+            "ar": 1000
+          },
+          {
+            "label": "Counter 5 Suffix",
+            "en": "+",
+            "ar": "+"
+          },
+          {
+            "label": "Counter 5 Label",
+            "en": "Diverse Clients",
+            "ar": "عميل متنوع"
           },
           {
             "label": "Pillar 1 Title",
@@ -294,8 +309,8 @@
           },
           {
             "label": "CTA",
-            "en": "Explore Our Operations",
-            "ar": "اكتشف عملياتنا"
+            "en": "Explore Manufacturing",
+            "ar": "اكتشف قدراتنا التصنيعية"
           }
         ]
       },
@@ -304,23 +319,23 @@
         "items": [
           {
             "label": "Section Label",
-            "en": "Our Product Category Portfolio",
-            "ar": "محفظة فئات منتجاتنا"
+            "en": "Our Food Portfolio",
+            "ar": "محفظتنا الغذائية"
           },
           {
             "label": "Main Heading",
-            "en": "Food Solutions Created for Different Moments, Markets and Needs",
-            "ar": "حلول غذائية لمختلف الأوقات والأسواق والاحتياجات"
+            "en": "Made For Every Moment",
+            "ar": "صُنعت لكل لحظة"
           },
           {
             "label": "Paragraph 1",
-            "en": "Masdar Al Hayat manufactures and distributes packaged food products across multiple categories.",
-            "ar": "تقوم مصدر الحياة بتصنيع وتوزيع منتجات غذائية معبأة ضمن فئات متعددة."
+            "en": null,
+            "ar": null
           },
           {
             "label": "Paragraph 2",
-            "en": "Our portfolio is developed to address everyday consumer requirements as well as the operational needs of retail, distribution, foodservice and institutional market channels.",
-            "ar": "وقد تم تطوير محفظتنا لتلبية الاحتياجات اليومية للمستهلكين، إلى جانب المتطلبات التشغيلية لقطاعات التجزئة والتوزيع وخدمات الأغذية والقنوات المؤسسية."
+            "en": "Our Food Portfolio is developed to address everyday consumer requirements as well as the operational needs of retail, distribution, foodservice and institutional market channels.",
+            "ar": "تم تطوير محفظتنا الغذائية لتلبية الاحتياجات اليومية للمستهلكين، إلى جانب المتطلبات التشغيلية لقطاعات التجزئة والتوزيع وخدمات الأغذية والقنوات المؤسسية."
           },
           {
             "label": "Category 1 Title",
@@ -393,19 +408,9 @@
             "ar": "فونتي — جودة غذائية تثري تفاصيل الحياة اليومية"
           },
           {
-            "label": "Paragraph 1",
-            "en": "Fonte is the flagship brand within Masdar Al Hayat’s growing food portfolio.",
-            "ar": "تُعد فونتي العلامة التجارية الرئيسية ضمن محفظة مصدر الحياة الغذائية المتنامية."
-          },
-          {
             "label": "Paragraph 2",
             "en": "Through bakery products, breads, sauces, condiments, frozen foods and ready-meal solutions, Fonte brings together familiar tastes, practical convenience and continuous product development.",
             "ar": "ومن خلال منتجات المخابز والخبز والصلصات والتتبيلات والأغذية المجمدة والوجبات الجاهزة، تجمع فونتي بين المذاق المألوف، والخيارات العملية، والتطوير المستمر للمنتجات."
-          },
-          {
-            "label": "Paragraph 3",
-            "en": "The brand represents our connection with consumers and the market, transforming Masdar Al Hayat’s manufacturing capabilities into food experiences made for everyday moments.",
-            "ar": "وتمثل العلامة حلقة الوصل بين قدرات مصدر الحياة التصنيعية واحتياجات المستهلك والسوق، لتقدم تجارب غذائية تناسب تفاصيل الحياة اليومية."
           },
           {
             "label": "CTA",
@@ -2371,8 +2376,8 @@
       },
       {
         "label": "Meta Description",
-        "en": "Discover how Masdar Al Hayat coordinates planning, people, systems and operational processes to support reliable food manufacturing and market readiness.",
-        "ar": "تعرّف على كيفية تنسيق مصدر الحياة للتخطيط والكوادر والأنظمة والعمليات التشغيلية لدعم التصنيع الغذائي الموثوق والجاهزية للسوق."
+        "en": "Discover how Masdar Al Hayat connects supply chain, procurement, warehousing and inventory management to support reliable food manufacturing and market readiness.",
+        "ar": "تعرّف على كيفية ربط مصدر الحياة بين سلسلة الإمداد والمشتريات والتخزين وإدارة المخزون لدعم التصنيع الغذائي الموثوق والجاهزية للسوق."
       },
       {
         "label": "Suggested English URL",
@@ -2396,13 +2401,13 @@
           },
           {
             "label": "Main Heading",
-            "en": "Coordinated Operations That Support Reliable Performance",
-            "ar": "عمليات منسقة تدعم أداءً موثوقاً"
+            "en": "Integrated Operations Across the Food Value Chain",
+            "ar": "عمليات متكاملة عبر سلسلة القيمة الغذائية"
           },
           {
             "label": "Supporting Content",
-            "en": "Masdar Al Hayat’s operations connect planning, production coordination, quality awareness, technology and teamwork to support consistent performance across the food value chain.",
-            "ar": "تربط عمليات مصدر الحياة بين التخطيط، وتنسيق الإنتاج، والوعي بالجودة، والتقنية، والعمل الجماعي لدعم أداء متسق عبر سلسلة القيمة الغذائية."
+            "en": "Masdar Al Hayat coordinates supply chain, procurement, warehousing and inventory management to keep materials, products and market requirements aligned from source to delivery.",
+            "ar": "تنسّق مصدر الحياة بين سلسلة الإمداد والمشتريات والتخزين وإدارة المخزون لمواءمة المواد والمنتجات ومتطلبات السوق من المصدر حتى التسليم."
           },
           {
             "label": "Breadcrumb",
@@ -2416,28 +2421,28 @@
         "items": [
           {
             "label": "Section Label",
-            "en": "Our Operational Approach",
-            "ar": "نهجنا التشغيلي"
+            "en": "Supply Chain",
+            "ar": "سلسلة الإمداد"
           },
           {
             "label": "Main Heading",
-            "en": "Turning Plans into Consistent Execution",
-            "ar": "نحول الخطط إلى تنفيذ متسق"
+            "en": "Connecting Supply, Production and Market Demand",
+            "ar": "ربط الإمداد والإنتاج وطلب السوق"
           },
           {
             "label": "Paragraph 1",
-            "en": "Operations at Masdar Al Hayat are designed to support the smooth movement of work from demand planning to production readiness and market supply.",
-            "ar": "صُممت العمليات في مصدر الحياة لدعم انسيابية العمل من تخطيط الطلب إلى جاهزية الإنتاج والتوريد إلى السوق."
+            "en": "Our supply chain approach links demand planning, material availability, production priorities and delivery requirements across the business.",
+            "ar": "يربط نهجنا في سلسلة الإمداد بين تخطيط الطلب وتوفر المواد وأولويات الإنتاج ومتطلبات التسليم عبر مختلف أعمال الشركة."
           },
           {
             "label": "Paragraph 2",
-            "en": "Our teams coordinate materials, schedules, production requirements, quality expectations and business priorities to help maintain operational reliability.",
-            "ar": "تنسق فرقنا المواد والجداول ومتطلبات الإنتاج وتوقعات الجودة وأولويات الأعمال للمساعدة في المحافظة على الموثوقية التشغيلية."
+            "en": "By coordinating information and responsibilities between commercial, manufacturing and logistics teams, we support continuity, improve visibility and respond to changing market needs with greater control.",
+            "ar": "ومن خلال تنسيق المعلومات والمسؤوليات بين الفرق التجارية والتصنيعية واللوجستية، ندعم الاستمرارية ونحسّن وضوح العمليات ونستجيب لمتطلبات السوق المتغيرة بقدرة أكبر على التحكم."
           },
           {
             "label": "Paragraph 3",
-            "en": "This operational discipline helps the company respond to changing market requirements while maintaining focus on efficiency, consistency and service.",
-            "ar": "يساعد هذا الانضباط التشغيلي الشركة على الاستجابة لمتغيرات السوق مع المحافظة على التركيز على الكفاءة والثبات والخدمة."
+            "en": "This connected approach helps maintain a dependable flow of materials and products while keeping operational decisions aligned with customer and business priorities.",
+            "ar": "يساعد هذا النهج المترابط في الحفاظ على تدفق موثوق للمواد والمنتجات، مع مواءمة القرارات التشغيلية مع أولويات العملاء والأعمال."
           }
         ]
       },
@@ -2446,48 +2451,48 @@
         "items": [
           {
             "label": "Section Label",
-            "en": "Planning and Coordination",
-            "ar": "التخطيط والتنسيق"
+            "en": "Procurement",
+            "ar": "المشتريات"
           },
           {
             "label": "Main Heading",
-            "en": "Aligning Demand, Materials and Production Priorities",
-            "ar": "مواءمة الطلب والمواد وأولويات الإنتاج"
+            "en": "Sourcing Materials with Quality, Value and Continuity in Mind",
+            "ar": "تأمين المواد مع التركيز على الجودة والقيمة والاستمرارية"
           },
           {
             "label": "Paragraph 1",
-            "en": "Effective operations begin with clear planning. We align expected demand, available materials, production capacity and delivery priorities to support business continuity.",
-            "ar": "تبدأ العمليات الفعالة بتخطيط واضح، حيث ننسق بين الطلب المتوقع، وتوفر المواد، والطاقة الإنتاجية، وأولويات التوريد لدعم استمرارية الأعمال."
+            "en": "Procurement supports our operations by aligning ingredient, packaging and operational requirements with production plans and business priorities.",
+            "ar": "تدعم المشتريات عملياتنا من خلال مواءمة احتياجات المكونات ومواد التعبئة والمتطلبات التشغيلية مع خطط الإنتاج وأولويات الأعمال."
           },
           {
             "label": "Paragraph 2",
-            "en": "Cross-functional coordination allows commercial, production, supply chain and quality teams to work around shared priorities and respond to changes more effectively.",
-            "ar": "يتيح التنسيق بين الإدارات لفرق المبيعات والإنتاج وسلسلة الإمداد والجودة العمل حول أولويات مشتركة والاستجابة للتغيرات بفاعلية أكبر."
+            "en": "Our teams evaluate supply requirements, coordinate with approved suppliers and monitor availability and lead times to support dependable purchasing decisions and continuity of supply.",
+            "ar": "تقيّم فرقنا احتياجات التوريد، وتنسّق مع الموردين المعتمدين، وتتابع التوفر وفترات التوريد لدعم قرارات شراء موثوقة واستمرارية الإمداد."
           },
           {
             "label": "Focus 1 Title",
-            "en": "Demand Planning",
-            "ar": "تخطيط الطلب"
+            "en": "Supplier Coordination",
+            "ar": "تنسيق الموردين"
           },
           {
             "label": "Focus 2 Title",
-            "en": "Production Scheduling",
-            "ar": "جدولة الإنتاج"
+            "en": "Material Planning",
+            "ar": "تخطيط المواد"
           },
           {
             "label": "Focus 3 Title",
-            "en": "Material Availability",
-            "ar": "توفر المواد"
+            "en": "Quality Requirements",
+            "ar": "متطلبات الجودة"
           },
           {
             "label": "Focus 4 Title",
-            "en": "Team Coordination",
-            "ar": "تنسيق الفرق"
+            "en": "Cost and Value",
+            "ar": "التكلفة والقيمة"
           },
           {
             "label": "Focus 5 Title",
-            "en": "Service Readiness",
-            "ar": "جاهزية الخدمة"
+            "en": "Supply Continuity",
+            "ar": "استمرارية الإمداد"
           }
         ]
       },
@@ -2496,48 +2501,48 @@
         "items": [
           {
             "label": "Section Label",
-            "en": "Smart Operations",
-            "ar": "عمليات أكثر ذكاءً"
+            "en": "Warehousing",
+            "ar": "التخزين"
           },
           {
             "label": "Main Heading",
-            "en": "Using Information to Improve Efficiency and Control",
-            "ar": "نستخدم المعلومات لتحسين الكفاءة والرقابة"
+            "en": "Organised Storage That Supports Product Readiness",
+            "ar": "تخزين منظم يدعم جاهزية المنتجات"
           },
           {
             "label": "Paragraph 1",
-            "en": "Operational improvement depends on clear visibility. By using better information, digital systems and performance monitoring, our teams can identify gaps and improve the way work is planned and executed.",
-            "ar": "يعتمد تحسين العمليات على وضوح المعلومات. فمن خلال استخدام بيانات أفضل وأنظمة رقمية ومتابعة الأداء، تستطيع فرقنا تحديد الفجوات وتطوير طريقة التخطيط والتنفيذ."
+            "en": "Warehousing connects production output with order fulfilment through structured receiving, storage, handling and dispatch processes.",
+            "ar": "يربط التخزين بين مخرجات الإنتاج وتنفيذ الطلبات من خلال عمليات منظمة للاستلام والتخزين والمناولة والإرسال."
           },
           {
             "label": "Paragraph 2",
-            "en": "Our operational focus includes improving efficiency, reducing unnecessary delays, strengthening coordination and supporting better decision-making across relevant functions.",
-            "ar": "يشمل تركيزنا التشغيلي رفع الكفاءة، والحد من التأخير غير الضروري، وتعزيز التنسيق، ودعم اتخاذ قرارات أفضل بين الإدارات ذات العلاقة."
+            "en": "Clear location control, product identification and coordinated movement help protect product condition, improve visibility and prepare finished goods for timely market delivery.",
+            "ar": "يساعد ضبط مواقع التخزين وتعريف المنتجات وتنسيق حركتها في حماية حالة المنتج وتحسين مستوى الوضوح وتجهيز المنتجات النهائية للتسليم إلى السوق في الوقت المناسب."
           },
           {
             "label": "Improvement 1 Title",
-            "en": "Operational Visibility",
-            "ar": "وضوح العمليات"
+            "en": "Receiving and Inspection",
+            "ar": "الاستلام والفحص"
           },
           {
             "label": "Improvement 2 Title",
-            "en": "Digital Monitoring",
-            "ar": "المتابعة الرقمية"
+            "en": "Structured Storage",
+            "ar": "التخزين المنظم"
           },
           {
             "label": "Improvement 3 Title",
-            "en": "Efficiency Improvement",
-            "ar": "تحسين الكفاءة"
+            "en": "Product Identification",
+            "ar": "تعريف المنتجات"
           },
           {
             "label": "Improvement 4 Title",
-            "en": "Process Consistency",
-            "ar": "ثبات العمليات"
+            "en": "Order Preparation",
+            "ar": "تجهيز الطلبات"
           },
           {
             "label": "Improvement 5 Title",
-            "en": "Faster Decision-Making",
-            "ar": "سرعة اتخاذ القرار"
+            "en": "Dispatch Coordination",
+            "ar": "تنسيق الإرسال"
           }
         ]
       },
@@ -2546,28 +2551,28 @@
         "items": [
           {
             "label": "Section Label",
-            "en": "Reliable Performance",
-            "ar": "أداء موثوق"
+            "en": "Inventory Management",
+            "ar": "إدارة المخزون"
           },
           {
             "label": "Main Heading",
-            "en": "Supporting Consistency Across Daily Operations",
-            "ar": "دعم الثبات في العمليات اليومية"
+            "en": "Maintaining Visibility and Control Across Inventory",
+            "ar": "الحفاظ على وضوح المخزون والتحكم فيه"
           },
           {
             "label": "Paragraph 1",
-            "en": "Reliable operations require people, systems and processes to work together with clarity and accountability.",
-            "ar": "تتطلب العمليات الموثوقة أن تعمل الكوادر والأنظمة والعمليات معاً بوضوح ومسؤولية."
+            "en": "Inventory management helps balance material availability with production demand and finished-product requirements.",
+            "ar": "تساعد إدارة المخزون في موازنة توفر المواد مع الطلب الإنتاجي واحتياجات المنتجات النهائية."
           },
           {
             "label": "Paragraph 2",
-            "en": "Masdar Al Hayat supports operational reliability through defined responsibilities, practical communication, performance review and continuous improvement.",
-            "ar": "تدعم مصدر الحياة الموثوقية التشغيلية من خلال تحديد المسؤوليات، والتواصل العملي، ومراجعة الأداء، والتحسين المستمر."
+            "en": "Through routine monitoring, stock coordination and clear records, our teams support replenishment decisions, reduce avoidable gaps and maintain the right products in the right quantities.",
+            "ar": "ومن خلال المتابعة الدورية وتنسيق المخزون والسجلات الواضحة، تدعم فرقنا قرارات إعادة التوريد وتحد من الفجوات الممكن تجنبها وتحافظ على المنتجات المناسبة بالكميات المناسبة."
           },
           {
             "label": "Paragraph 3",
-            "en": "This helps ensure that operational decisions remain connected to product quality, production readiness and customer expectations.",
-            "ar": "ويساعد ذلك على ضمان ارتباط القرارات التشغيلية بجودة المنتجات، وجاهزية الإنتاج، وتوقعات العملاء."
+            "en": "This visibility strengthens production readiness, warehouse planning and service reliability across customer and market channels.",
+            "ar": "يعزز هذا الوضوح جاهزية الإنتاج وتخطيط المستودعات وموثوقية الخدمة عبر قنوات العملاء والسوق."
           }
         ]
       },
@@ -2576,13 +2581,13 @@
         "items": [
           {
             "label": "Main Heading",
-            "en": "Discover How Our Capabilities Work Together",
-            "ar": "اكتشف كيف تتكامل قدراتنا"
+            "en": "Explore Our Integrated Operational Capabilities",
+            "ar": "استكشف قدراتنا التشغيلية المتكاملة"
           },
           {
             "label": "Supporting Content",
-            "en": "Explore how Masdar Al Hayat connects manufacturing, quality, logistics and distribution to serve market needs with reliability and care.",
-            "ar": "تعرّف على كيفية ربط مصدر الحياة بين التصنيع والجودة والخدمات اللوجستية والتوزيع لخدمة احتياجات السوق بموثوقية وعناية."
+            "en": "See how supply chain, procurement, warehousing and inventory management work together to support manufacturing continuity and dependable market service.",
+            "ar": "تعرّف على كيفية تكامل سلسلة الإمداد والمشتريات والتخزين وإدارة المخزون لدعم استمرارية التصنيع وخدمة السوق بموثوقية."
           },
           {
             "label": "Primary CTA",
@@ -3237,8 +3242,8 @@
         "items": [
           {
             "label": "Section Label",
-            "en": "Our Portfolio",
-            "ar": "محفظتنا"
+            "en": "Our Brand Portfolio",
+            "ar": "محفظة علاماتنا التجارية"
           },
           {
             "label": "Main Heading",
