@@ -76,30 +76,29 @@ jobs:
               # Checkout correct branch
               git checkout "\$BRANCH"
 
+              DEPLOYED_COMMIT=\$(git rev-parse --short HEAD)
+              echo "Building commit \$DEPLOYED_COMMIT from branch \$BRANCH"
+
               # Install dependencies and build
               npm install
               npm run build
 
-              # Start new instance
-              pm2 start npm --name "\${APP_NAME}-new" -- start -- -p "\$PORT"
-
-              # Switch symlink (zero downtime)
+              # Point the stable path at the completed release.
               ln -sfn "\$RELEASE_DIR" "\$BASE_PATH/current"
 
-              # Replace old process
+              # The old and new processes cannot listen on the same port. Restart
+              # the service from the stable path after the new build is ready.
               pm2 delete "\$APP_NAME" || true
-              pm2 rename "\${APP_NAME}-new" "\$APP_NAME"
+              cd "\$BASE_PATH/current"
+              pm2 start npm --name "\$APP_NAME" -- start -- -p "\$PORT"
 
               pm2 save
 
-              echo "Deployment successful"
+              echo "Deployment successful: \$DEPLOYED_COMMIT"
 
             } >> "\$LOG_FILE" 2>&1 || {
 
               echo "Deployment failed. Check log: \$LOG_FILE"
-
-              # Cleanup failed process
-              pm2 delete "\${APP_NAME}-new" || true
 
               exit 1
             }

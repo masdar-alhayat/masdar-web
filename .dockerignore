@@ -7,3 +7,7 @@ docker-compose*
 README.md
 npm-debug.log
 .vscode
+.tmp-*
+.codex-temp
+.pnpm-store
+test-results
