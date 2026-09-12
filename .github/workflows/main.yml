@@ -26,6 +26,7 @@ jobs:
 
       # Deploy to VPS
       - name: Deploy
+        shell: bash
         run: |
           BASE_PATH="${{ secrets.VPS_BASE_PATH }}"
 
@@ -41,70 +42,102 @@ jobs:
             BRANCH="main"
           fi
 
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
+          ssh "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            bash -s -- "$APP_PATH" "$APP_NAME" "$PORT" "$BRANCH" << 'REMOTE_SCRIPT'
+          set -Eeuo pipefail
 
-            set -e
+          BASE_PATH="$1"
+          APP_NAME="$2"
+          PORT="$3"
+          BRANCH="$4"
 
-            BASE_PATH="$APP_PATH"
-            APP_NAME="$APP_NAME"
-            PORT="$PORT"
-            BRANCH="$BRANCH"
+          if [ ! -d "$BASE_PATH" ]; then
+            echo "Base path does not exist: $BASE_PATH"
+            exit 1
+          fi
 
-            # Fail if base path does not exist
-            if [ ! -d "\$BASE_PATH" ]; then
-              echo "Base path does not exist: \$BASE_PATH"
-              exit 1
+          TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+          RELEASE_DIR="$BASE_PATH/releases/$TIMESTAMP"
+          LOG_DIR="$BASE_PATH/logs"
+          LOG_FILE="$LOG_DIR/deploy_$TIMESTAMP.log"
+          PREVIOUS_RELEASE=$(readlink -f "$BASE_PATH/current" || true)
+          SWITCHED=0
+
+          mkdir -p "$BASE_PATH/releases" "$LOG_DIR"
+          exec > >(tee -a "$LOG_FILE") 2>&1
+
+          rollback() {
+            status=$?
+            trap - ERR
+            set +e
+            echo "Deployment failed. Check log: $LOG_FILE"
+
+            if [ "$SWITCHED" = "1" ]; then
+              pm2 delete "${APP_NAME}-new" || true
+              pm2 delete "$APP_NAME" || true
+              if [ -n "$PREVIOUS_RELEASE" ] && [ -d "$PREVIOUS_RELEASE" ]; then
+                ln -sfn "$PREVIOUS_RELEASE" "$BASE_PATH/current"
+                cd "$BASE_PATH/current"
+                pm2 start npm --name "$APP_NAME" -- start -- -p "$PORT"
+                pm2 save
+                echo "Restored previous release: $PREVIOUS_RELEASE"
+              fi
             fi
 
-            TIMESTAMP=\$(date +"%Y-%m-%d_%H-%M-%S")
-            RELEASE_DIR="\$BASE_PATH/releases/\$TIMESTAMP"
-            LOG_DIR="\$BASE_PATH/logs"
-            LOG_FILE="\$LOG_DIR/deploy_\$TIMESTAMP.log"
+            exit "$status"
+          }
+          trap rollback ERR
 
-            mkdir -p "\$BASE_PATH/releases"
-            mkdir -p "\$LOG_DIR"
+          echo "Starting deployment at $TIMESTAMP"
 
-            {
-              echo "Starting deployment at \$TIMESTAMP"
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
+            git clone --branch "$BRANCH" --single-branch \
+            git@github.com:masdar-alhayat/masdar-web.git "$RELEASE_DIR"
 
-              # Clone repo using explicit SSH key
-              GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
-              git clone git@github.com:masdar-alhayat/masdar-web.git "\$RELEASE_DIR"
+          cd "$RELEASE_DIR"
+          DEPLOYED_COMMIT=$(git rev-parse --short HEAD)
+          echo "Building commit $DEPLOYED_COMMIT from branch $BRANCH"
+          printf '%s\n' "$DEPLOYED_COMMIT" > public/deployment-version.txt
 
-              cd "\$RELEASE_DIR"
+          npm ci
+          npm run build
 
-              # Checkout correct branch
-              git checkout "\$BRANCH"
+          ln -sfn "$RELEASE_DIR" "$BASE_PATH/current"
+          SWITCHED=1
 
-              DEPLOYED_COMMIT=\$(git rev-parse --short HEAD)
-              echo "Building commit \$DEPLOYED_COMMIT from branch \$BRANCH"
+          pm2 delete "${APP_NAME}-new" || true
+          pm2 delete "$APP_NAME" || true
+          cd "$BASE_PATH/current"
+          pm2 start npm --name "$APP_NAME" -- start -- -p "$PORT"
 
-              # Install dependencies and build
-              npm install
-              npm run build
+          READY=0
+          for attempt in $(seq 1 15); do
+            HTML=$(curl -fsSL "http://127.0.0.1:$PORT/" || true)
+            CSS_PATH=$(printf '%s' "$HTML" | grep -oE '/_next/static/[^" ]+\.css' | head -n 1 || true)
+            SERVED_COMMIT=$(curl -fsSL "http://127.0.0.1:$PORT/deployment-version.txt" || true)
 
-              # Point the stable path at the completed release.
-              ln -sfn "\$RELEASE_DIR" "\$BASE_PATH/current"
+            if [ "$SERVED_COMMIT" = "$DEPLOYED_COMMIT" ] \
+              && [ -n "$CSS_PATH" ] \
+              && curl -fsSL "http://127.0.0.1:$PORT$CSS_PATH" > /dev/null \
+              && curl -fsSL "http://127.0.0.1:$PORT/brand/masdar-logo.png" > /dev/null; then
+              READY=1
+              break
+            fi
 
-              # The old and new processes cannot listen on the same port. Restart
-              # the service from the stable path after the new build is ready.
-              pm2 delete "\$APP_NAME" || true
-              cd "\$BASE_PATH/current"
-              pm2 start npm --name "\$APP_NAME" -- start -- -p "\$PORT"
+            sleep 2
+          done
 
-              pm2 save
+          if [ "$READY" != "1" ]; then
+            echo "New release did not serve its CSS and public assets."
+            pm2 logs "$APP_NAME" --lines 100 --nostream || true
+            false
+          fi
 
-              echo "Deployment successful: \$DEPLOYED_COMMIT"
+          pm2 save
+          trap - ERR
 
-            } >> "\$LOG_FILE" 2>&1 || {
+          echo "Deployment successful: $DEPLOYED_COMMIT"
 
-              echo "Deployment failed. Check log: \$LOG_FILE"
-
-              exit 1
-            }
-
-            # Cleanup old releases (keep last 3)
-            cd "\$BASE_PATH/releases"
-            ls -dt */ | tail -n +4 | xargs rm -rf || true
-
-          EOF
+          cd "$BASE_PATH/releases"
+          ls -dt */ | tail -n +4 | xargs -r rm -rf --
+          REMOTE_SCRIPT
