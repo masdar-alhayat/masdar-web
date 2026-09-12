@@ -11,6 +11,10 @@ on:
           - staging
           - production
 
+concurrency:
+  group: masdar-pm2-${{ inputs.environment }}
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -56,15 +60,37 @@ jobs:
             exit 1
           fi
 
+          BASE_PATH=$(cd "$BASE_PATH" && pwd -P)
           TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
           RELEASE_DIR="$BASE_PATH/releases/$TIMESTAMP"
           LOG_DIR="$BASE_PATH/logs"
           LOG_FILE="$LOG_DIR/deploy_$TIMESTAMP.log"
-          PREVIOUS_RELEASE=$(readlink -f "$BASE_PATH/current" || true)
+          CURRENT_PATH="$BASE_PATH/current"
+          LEGACY_BACKUP="$BASE_PATH/current-backup-$TIMESTAMP"
+          PREVIOUS_RELEASE=""
+          if [ -e "$CURRENT_PATH" ]; then
+            PREVIOUS_RELEASE=$(readlink -f "$CURRENT_PATH")
+          fi
+          LEGACY_MOVED=0
           SWITCHED=0
+          PROCESS_REPLACED=0
+          NODE_BIN=$(command -v node)
 
           mkdir -p "$BASE_PATH/releases" "$LOG_DIR"
           exec > >(tee -a "$LOG_FILE") 2>&1
+
+          start_release() {
+            local release="$1"
+            test -s "$release/.next/BUILD_ID" || return 1
+            test -d "$release/.next/static" || return 1
+            test -f "$release/node_modules/next/dist/bin/next" || return 1
+            echo "Starting Next.js from physical release: $release"
+            NODE_ENV=production pm2 start "$release/node_modules/next/dist/bin/next" \
+              --name "$APP_NAME" --cwd "$release" --interpreter "$NODE_BIN" \
+              --output "$LOG_DIR/app_$TIMESTAMP.out.log" \
+              --error "$LOG_DIR/app_$TIMESTAMP.err.log" --time \
+              -- start "$release" --hostname 0.0.0.0 --port "$PORT"
+          }
 
           rollback() {
             status=$?
@@ -72,16 +98,31 @@ jobs:
             set +e
             echo "Deployment failed. Check log: $LOG_FILE"
 
-            if [ "$SWITCHED" = "1" ]; then
+            if [ "$PROCESS_REPLACED" = "1" ]; then
               pm2 delete "${APP_NAME}-new" || true
               pm2 delete "$APP_NAME" || true
-              if [ -n "$PREVIOUS_RELEASE" ] && [ -d "$PREVIOUS_RELEASE" ]; then
-                ln -sfn "$PREVIOUS_RELEASE" "$BASE_PATH/current"
-                cd "$BASE_PATH/current"
-                pm2 start npm --name "$APP_NAME" --cwd "$BASE_PATH/current" -- start -- -p "$PORT"
-                pm2 save
-                echo "Restored previous release: $PREVIOUS_RELEASE"
+            fi
+
+            if [ "$LEGACY_MOVED" = "1" ]; then
+              # Remove only the link we installed, then restore the saved directory.
+              if [ -L "$CURRENT_PATH" ]; then unlink "$CURRENT_PATH"; fi
+              mv -T -- "$LEGACY_BACKUP" "$CURRENT_PATH"
+              echo "Restored legacy directory: $CURRENT_PATH"
+            elif [ "$SWITCHED" = "1" ]; then
+              if [ -n "$PREVIOUS_RELEASE" ]; then
+                ln -sfnT -- "$PREVIOUS_RELEASE" "$CURRENT_PATH"
+              elif [ -L "$CURRENT_PATH" ]; then
+                unlink "$CURRENT_PATH"
               fi
+            fi
+
+            if [ "$PROCESS_REPLACED" = "1" ]; then
+              if [ -n "$PREVIOUS_RELEASE" ] && start_release "$PREVIOUS_RELEASE"; then
+                echo "Restarted previous release; availability still requires verification."
+              else
+                echo "No runnable previous build was available. Preserved release files for recovery."
+              fi
+              pm2 save --force
             fi
 
             exit "$status"
@@ -102,22 +143,35 @@ jobs:
           npm ci
           npm run build
 
-          ln -sfn "$RELEASE_DIR" "$BASE_PATH/current"
+          # Validate the build before touching the existing service or current path.
+          test -s "$RELEASE_DIR/.next/BUILD_ID"
+          test -d "$RELEASE_DIR/.next/static"
+          test -f "$RELEASE_DIR/node_modules/next/dist/bin/next"
+          if [ -e "$CURRENT_PATH" ] && [ ! -L "$CURRENT_PATH" ]; then
+            test -d "$CURRENT_PATH"
+            test ! -e "$LEGACY_BACKUP"
+            mv -T -- "$CURRENT_PATH" "$LEGACY_BACKUP"
+            LEGACY_MOVED=1
+            echo "Preserved existing current directory at $LEGACY_BACKUP"
+          fi
+          # -T forbids silently creating a nested link inside an existing directory.
+          ln -sfnT -- "$RELEASE_DIR" "$CURRENT_PATH"
           SWITCHED=1
+          test "$(readlink -f "$CURRENT_PATH")" = "$RELEASE_DIR"
 
+          PROCESS_REPLACED=1
           pm2 delete "${APP_NAME}-new" || true
           pm2 delete "$APP_NAME" || true
-          cd "$BASE_PATH/current"
-          pm2 start npm --name "$APP_NAME" --cwd "$BASE_PATH/current" -- start -- -p "$PORT"
+          start_release "$RELEASE_DIR"
 
           check_release() {
-            node - "$PORT" "$DEPLOYED_COMMIT" << 'NODE_CHECK'
+            "$NODE_BIN" --input-type=module - "$PORT" "$DEPLOYED_COMMIT" << 'NODE_CHECK'
           const port = process.argv[2];
           const expectedCommit = process.argv[3];
           const baseUrl = `http://127.0.0.1:${port}`;
 
           async function get(path) {
-            const response = await fetch(`${baseUrl}${path}`, {redirect: "follow"});
+            const response = await fetch(`${baseUrl}${path}`, {redirect: "follow", signal: AbortSignal.timeout(5000)});
             if (!response.ok) throw new Error(`${path} returned HTTP ${response.status}`);
             return response;
           }
@@ -136,6 +190,7 @@ jobs:
             await get("/brand/masdar-logo.png");
           } catch (error) {
             console.error(error.message);
+            if (error.cause) console.error(error.cause);
             process.exit(1);
           }
           NODE_CHECK
@@ -162,6 +217,5 @@ jobs:
 
           echo "Deployment successful: $DEPLOYED_COMMIT"
 
-          cd "$BASE_PATH/releases"
-          ls -dt */ | tail -n +4 | xargs -r rm -rf --
+          # Keep releases and the legacy backup available for recovery.
           REMOTE_SCRIPT
