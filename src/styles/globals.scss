@@ -418,6 +418,12 @@ html[dir="rtl"] .section-heading--wide p {
   object-position: center
 }
 
+.mega-menu__brand-logo--horeca img,
+.mobile-menu__brand-logo--horeca img {
+  object-fit: cover;
+  object-position: center
+}
+
 .site-header__actions {
   display: flex;
   align-items: center;

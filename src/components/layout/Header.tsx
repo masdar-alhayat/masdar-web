@@ -27,7 +27,7 @@ const menu: MenuItem[] = [
   ]},
   {label: {en: "Our Brands", ar: "علاماتنا التجارية"}, children: [
     {label: {en: "Fonte", ar: "فونتي"}, href: "/brands-partnerships/brands", logo: "/brand/fonte-transparent-logo.png"},
-    {label: {en: "Fonte HORECA", ar: "فونتي هوريكا"}, href: "/brands-partnerships/brands", logo: "/brand/fonte-logo-full.png"},
+    {label: {en: "Fonte HORECA", ar: "فونتي هوريكا"}, href: "/brands-partnerships/brands", logo: "/brand/fonte-horeca-bg.png"},
     {label: {en: "Paneto", ar: "بانيتو"}, href: "/brands-partnerships/brands", logo: "/brand/paneto-logo.png"},
     {label: {en: "Amraj", ar: "أمراج"}, href: "/brands-partnerships/brands", logo: "/brand/amraj-logo.jpg"},
     {label: {en: "Nature’s Oven", ar: "نيتشرز أوفن"}, href: "/brands-partnerships/brands", logo: "/brand/natures-oven-logo.png"}
@@ -106,7 +106,7 @@ export function Header({locale}: {locale: Locale}) {
                   <strong>{label}</strong>
                 </div>
                 <div className="mega-menu__links">
-                  {item.children.map((child, index) => <Link className={child.logo ? "mega-menu__brand-link" : undefined} key={child.label.en} href={child.href!}><span className="mega-menu__index">0{index + 1}</span>{child.logo && <span className={`mega-menu__brand-logo${child.label.en === "Amraj" ? " mega-menu__brand-logo--amraj" : ""}`}><Image src={child.logo} alt="" fill sizes="88px"/></span>}<strong>{child.label[locale]}</strong><ArrowUpRight className="directional-icon" size={18}/></Link>)}
+                  {item.children.map((child, index) => <Link className={child.logo ? "mega-menu__brand-link" : undefined} key={child.label.en} href={child.href!}><span className="mega-menu__index">0{index + 1}</span>{child.logo && <span className={`mega-menu__brand-logo${child.label.en === "Amraj" ? " mega-menu__brand-logo--amraj" : child.label.en === "Fonte HORECA" ? " mega-menu__brand-logo--horeca" : ""}`}><Image src={child.logo} alt="" fill sizes="88px"/></span>}<strong>{child.label[locale]}</strong><ArrowUpRight className="directional-icon" size={18}/></Link>)}
                 </div>
               </div>
             </div>;
@@ -134,7 +134,7 @@ export function Header({locale}: {locale: Locale}) {
         </div>
         <div className="mobile-menu__body">
           {menu.map((item) => <div className="mobile-menu__item" key={item.label.en}>
-            {item.href ? <Link href={item.href}>{item.label[locale]}</Link> : <details><summary>{item.label[locale]}<ChevronDown size={18}/></summary><div>{item.children?.map(child => <Link className={child.logo ? "mobile-menu__brand-link" : undefined} key={child.label.en} href={child.href!}>{child.logo && <span className={`mobile-menu__brand-logo${child.label.en === "Amraj" ? " mobile-menu__brand-logo--amraj" : ""}`}><Image src={child.logo} alt="" fill sizes="72px"/></span>}<span>{child.label[locale]}</span><ArrowUpRight className="directional-icon" size={16}/></Link>)}</div></details>}
+            {item.href ? <Link href={item.href}>{item.label[locale]}</Link> : <details><summary>{item.label[locale]}<ChevronDown size={18}/></summary><div>{item.children?.map(child => <Link className={child.logo ? "mobile-menu__brand-link" : undefined} key={child.label.en} href={child.href!}>{child.logo && <span className={`mobile-menu__brand-logo${child.label.en === "Amraj" ? " mobile-menu__brand-logo--amraj" : child.label.en === "Fonte HORECA" ? " mobile-menu__brand-logo--horeca" : ""}`}><Image src={child.logo} alt="" fill sizes="72px"/></span>}<span>{child.label[locale]}</span><ArrowUpRight className="directional-icon" size={16}/></Link>)}</div></details>}
           </div>)}
         </div>
         <div className="mobile-menu__footer"><button onClick={switchLanguage}>{isAr ? "English" : "العربية"}</button><Link href="/contact">{isAr ? "تواصل معنا" : "Start a conversation"}</Link></div>
