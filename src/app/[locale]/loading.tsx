@@ -1,14 +1,14 @@
 import Image from "next/image";
+import masdarLogo from "../../../public/brand/masdar-logo-text.png";
 
 export default function Loading() {
   return (
     <main className="loading-screen" aria-label="Loading">
       <div className="loading-screen__logo">
         <Image
-          src="/brand/masdar-logo.png"
+          src={masdarLogo}
           alt="Masdar Al Hayat for Food Industries"
-          width={220}
-          height={102}
+          unoptimized
           priority
         />
       </div>

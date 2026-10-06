@@ -2,6 +2,8 @@ import type {Metadata} from "next";
 import {getPageContent, getPageDefinition, type PageKey} from "@/content/pages";
 import {meta} from "@/lib/content";
 import type {Locale} from "@/types/content";
+import {getPathname} from "@/i18n/navigation";
+import {routing} from "@/i18n/routing";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.masdaralhayat.com";
 
@@ -10,7 +12,7 @@ export function createPageMetadata(key: PageKey, locale: Locale): Metadata {
   const definition = getPageDefinition(key);
   const title = meta(page, "Meta Title", locale) || "Masdar Al Hayat for Food Industries";
   const description = meta(page, "Meta Description", locale);
-  const localizedPath = locale === "ar" ? `/ar${definition.path === "/" ? "" : definition.path}` : definition.path;
+  const localizedPath = getPathname({href: definition.path, locale});
   const canonical = `${SITE_URL}${localizedPath}`;
   return {
     title,
@@ -18,9 +20,9 @@ export function createPageMetadata(key: PageKey, locale: Locale): Metadata {
     alternates: {
       canonical,
       languages: {
-        en: `${SITE_URL}${definition.path}`,
-        ar: `${SITE_URL}/ar${definition.path === "/" ? "" : definition.path}`,
-        "x-default": `${SITE_URL}${definition.path}`
+        en: `${SITE_URL}${getPathname({href: definition.path, locale: "en"})}`,
+        ar: `${SITE_URL}${getPathname({href: definition.path, locale: "ar"})}`,
+        "x-default": `${SITE_URL}${getPathname({href: definition.path, locale: routing.defaultLocale})}`
       }
     },
     openGraph: {
@@ -30,7 +32,7 @@ export function createPageMetadata(key: PageKey, locale: Locale): Metadata {
       title,
       description,
       siteName: "Masdar Al Hayat for Food Industries",
-      images: [{url: `${SITE_URL}/brand/masdar-logo.png`, width: 1200, height: 630, alt: "Masdar Al Hayat"}]
+      images: [{url: `${SITE_URL}/brand/masdar-logo-text.png`, width: 1842, height: 854, alt: "Masdar Al Hayat"}]
     },
     twitter: {card: "summary_large_image", title, description}
   };

@@ -17,24 +17,24 @@ const routes = [
 ];
 
 for (const route of routes) {
-  test(`loads ${route}`, async ({page}) => {
-    await page.goto(route);
+  test(`loads English ${route}`, async ({page}) => {
+    await page.goto(route === "/" ? "/en" : `/en${route}`);
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
     await expect(page.locator("h1")).toBeVisible();
     await expect(page).toHaveTitle(/Masdar|مصدر/);
   });
 
   test(`loads Arabic ${route}`, async ({page}) => {
-    const ar = route === "/" ? "/ar" : `/ar${route}`;
-    await page.goto(ar);
+    await page.goto(route === "/" ? "/ar" : `/ar${route}`);
     await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
     await expect(page.locator("h1")).toBeVisible();
   });
 }
 
 test("homepage CTA opens an internal page", async ({page}) => {
-  await page.goto("/");
+  await page.goto("/en");
   await Promise.all([
-    page.waitForURL("**/about/masdar-al-hayat"),
+    page.waitForURL("**/en/about/masdar-al-hayat"),
     page.getByRole("link", {name: "Discover Masdar Al Hayat", exact: true}).click(),
   ]);
   await expect(page.locator("h1")).toBeVisible();
@@ -64,7 +64,31 @@ test("removed Market Presence routes return 404", async ({page}) => {
 });
 
 test("career CTAs target the preserved application form", async ({page}) => {
-  await page.goto("/careers");
+  await page.goto("/en/careers");
   await expect(page.locator("#career-application")).toBeVisible();
   await expect(page.getByRole("heading", {name: "Career Application"})).toBeVisible();
+});
+
+test("main URL defaults to Arabic despite English browser preferences", async ({page, context, baseURL}) => {
+  await context.setExtraHTTPHeaders({"Accept-Language": "en-US,en;q=0.9"});
+  await context.addCookies([{name: "NEXT_LOCALE", value: "en", url: baseURL!}]);
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveAttribute("lang", "ar");
+  await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
+  await page.locator(".language-switch").click();
+  await expect(page).toHaveURL(/\/en$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await page.locator(".language-switch").click();
+  await expect(page.locator("html")).toHaveAttribute("lang", "ar");
+});
+
+test("header and logo backgrounds match before and after scrolling", async ({page}) => {
+  await page.goto("/");
+  const background = async (selector: string) => page.locator(selector).evaluate(element => getComputedStyle(element).backgroundColor);
+  const initialBackground = await background(".site-header");
+  expect(initialBackground).toBe("rgb(247, 243, 234)");
+  expect(await background(".site-logo")).toBe(initialBackground);
+  await page.evaluate(() => window.scrollTo({top: 700, behavior: "instant"}));
+  expect(await background(".site-header")).toBe(initialBackground);
+  expect(await background(".site-logo")).toBe(initialBackground);
 });

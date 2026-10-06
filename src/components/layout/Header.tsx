@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import masdarLogo from "../../../public/brand/masdar-logo-text.png";
 import {useEffect, useRef, useState} from "react";
 import {ChevronDown, Menu, X, ArrowUpRight} from "lucide-react";
 import {gsap} from "gsap";
@@ -39,18 +40,11 @@ const menu: MenuItem[] = [
 export function Header({locale}: {locale: Locale}) {
   const [open, setOpen] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const router = useRouter();
   const isAr = locale === "ar";
-
-  useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 24);
-    update(); window.addEventListener("scroll", update, {passive: true});
-    return () => window.removeEventListener("scroll", update);
-  }, []);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", mobile);
@@ -88,10 +82,10 @@ export function Header({locale}: {locale: Locale}) {
 
   return (
     <>
-      <header onClickCapture={closeOnLink} className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <header onClickCapture={closeOnLink} className="site-header">
         <div className="container-xxl site-header__inner" ref={navRef}>
         <Link href="/" className="site-logo" aria-label={isAr ? "مصدر الحياة — الرئيسية" : "Masdar Al Hayat — Home"}>
-          <Image src="/brand/masdar-logo.png" alt="Masdar Al Hayat for Food Industries" width={220} height={102} priority />
+          <Image src={masdarLogo} alt="Masdar Al Hayat for Food Industries" unoptimized priority />
         </Link>
         <nav className="desktop-nav" aria-label={isAr ? "التنقل الرئيسي" : "Primary navigation"}>
           {menu.map((item) => {
@@ -129,7 +123,7 @@ export function Header({locale}: {locale: Locale}) {
         onClickCapture={closeOnLink}
       >
         <div className="mobile-menu__top">
-          <Image src="/brand/masdar-logo.png" alt="Masdar Al Hayat" width={190} height={88}/>
+          <Image src={masdarLogo} alt="Masdar Al Hayat" unoptimized/>
           <button onClick={() => setMobile(false)} aria-label={isAr ? "إغلاق القائمة" : "Close menu"}><X/></button>
         </div>
         <div className="mobile-menu__body">

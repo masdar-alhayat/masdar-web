@@ -1,4 +1,4 @@
-import {redirect} from "next/navigation";
+import {redirect} from "@/i18n/navigation";
 import type {Locale} from "@/types/content";
 
-export default async function Page({params}: {params: Promise<{locale: Locale}>}) { const {locale} = await params; redirect(locale === "ar" ? "/ar/capabilities/manufacturing" : "/capabilities/manufacturing"); }
+export default async function Page({params}: {params: Promise<{locale: Locale}>}) { const {locale} = await params; redirect({href: "/capabilities/manufacturing", locale}); }

@@ -230,6 +230,8 @@ html[dir="rtl"] .section-heading--wide p {
   position: fixed;
   inset: 0 0 auto;
   z-index: 1000;
+  background: var(--mah-cream);
+  box-shadow: 0 12px 40px rgba(24, 33, 27, .08);
   transition: background .35s, box-shadow .35s, transform .35s
 }
 
@@ -238,16 +240,6 @@ html[dir="rtl"] .section-heading--wide p {
   position: absolute;
   inset: auto 0 0;
   height: 1px;
-  background: rgba(255, 255, 255, .22)
-}
-
-.site-header.is-scrolled {
-  background: rgba(247, 243, 234, .96);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 12px 40px rgba(24, 33, 27, .08)
-}
-
-.site-header.is-scrolled:after {
   background: rgba(30, 78, 42, .12)
 }
 
@@ -265,7 +257,7 @@ html[dir="rtl"] .section-heading--wide p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(247, 243, 234, .98);
+  background: var(--mah-cream);
   padding: .55rem .75rem
 }
 
@@ -286,7 +278,7 @@ html[dir="rtl"] .section-heading--wide p {
 .nav-group>button {
   border: 0;
   background: transparent;
-  color: #fff;
+  color: var(--mah-charcoal);
   font-size: .81rem;
   font-weight: 650;
   padding: .8rem .12rem;
@@ -295,11 +287,6 @@ html[dir="rtl"] .section-heading--wide p {
   gap: .25rem;
   white-space: nowrap;
   position: relative
-}
-
-.site-header.is-scrolled .desktop-nav>a,
-.site-header.is-scrolled .nav-group>button {
-  color: var(--mah-charcoal)
 }
 
 .desktop-nav>a:after,
@@ -433,39 +420,26 @@ html[dir="rtl"] .section-heading--wide p {
 .language-switch {
   border: 0;
   background: transparent;
-  color: #fff;
+  color: var(--mah-green-900);
   font-weight: 700;
   padding: .6rem
-}
-
-.site-header.is-scrolled .language-switch {
-  color: var(--mah-green-900)
 }
 
 .header-cta {
   display: flex;
   align-items: center;
   gap: .45rem;
-  background: #fff;
-  color: var(--mah-green-900);
+  background: var(--mah-green-900);
+  color: #fff;
   padding: .75rem 1rem;
   font-size: .82rem;
   font-weight: 750
-}
-
-.site-header.is-scrolled .header-cta {
-  background: var(--mah-green-900);
-  color: #fff
 }
 
 .mobile-trigger {
   display: none;
   border: 0;
   background: transparent;
-  color: #fff
-}
-
-.site-header.is-scrolled .mobile-trigger {
   color: var(--mah-green-900)
 }
 
@@ -635,12 +609,17 @@ html[dir="rtl"] .home-hero__media .brand-image__veil {
   font-size: clamp(3.4rem, 5.5vw, 5.5rem);
   max-width: 1000px;
   margin: 1.1rem 0 3rem;
+  line-height: 1.2;
   font-weight: 620
+}
+
+html[dir="rtl"] .home-hero h1 {
+  line-height: 1.45
 }
 
 .home-hero h1 span {
   display: block;
-  overflow: hidden
+  overflow: visible
 }
 
 .home-hero__bottom {
@@ -4671,10 +4650,12 @@ html[dir="rtl"] .mission-statement__image {
 }
 
 .footer-brand img {
+  width: 100%;
   max-width: 210px;
+  height: auto;
   background: var(--mah-cream);
   padding: .65rem;
-  object-fit: cover;
+  object-fit: contain;
   margin-bottom: 0.5rem;
 }
 

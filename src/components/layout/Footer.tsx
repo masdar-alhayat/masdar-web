@@ -1,4 +1,5 @@
 import Image from "next/image";
+import masdarLogo from "../../../public/brand/masdar-logo-text.png";
 import {
   ArrowUpRight,
   Mail,
@@ -46,7 +47,7 @@ export function Footer({locale}: {locale: Locale}) {
 
       <div className="site-footer__grid">
         <div className="footer-brand">
-          <Image src="/brand/masdar-logo.png" alt="Masdar Al Hayat" width={230} height={107}/>
+          <Image src={masdarLogo} alt="Masdar Al Hayat" unoptimized/>
           <p>{ar ? "شركة مصنّعة للأغذية والمشروبات، وإحدى شركات مجموعة التميمي." : "A food and beverages manufacturer operating as part of Tamimi Group."}</p>
         </div>
 
