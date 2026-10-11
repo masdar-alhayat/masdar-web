@@ -3868,6 +3868,148 @@
       }
     ]
   },
+  "SALES": {
+    "title": "Sales",
+    "metadata": [
+      {
+        "label": "Meta Title",
+        "en": "Sales & Customer Network | Masdar Al Hayat",
+        "ar": "المبيعات وشبكة العملاء | مصدر الحياة"
+      },
+      {
+        "label": "Meta Description",
+        "en": "Explore Masdar Al Hayat’s sales network and food solutions for local and grocery stores, supermarkets, wholesalers, foodservice businesses and institutional customers in Saudi Arabia.",
+        "ar": "تعرّف على شبكة مبيعات مصدر الحياة وحلولها الغذائية للمتاجر المحلية ومتاجر المواد الغذائية والسوبرماركت وتجار الجملة وقطاع خدمات الأغذية والعملاء من المؤسسات في المملكة العربية السعودية."
+      },
+      {
+        "label": "English URL",
+        "en": "/en/capabilities/sales",
+        "ar": "—"
+      },
+      {
+        "label": "Arabic URL",
+        "en": "—",
+        "ar": "/ar/capabilities/sales"
+      }
+    ],
+    "sections": [
+      {
+        "title": "Hero Section",
+        "items": [
+          {
+            "label": "Eyebrow",
+            "en": "Sales & Customer Network",
+            "ar": "المبيعات وشبكة العملاء"
+          },
+          {
+            "label": "Main Heading",
+            "en": "Quality Food. Closer to You.",
+            "ar": "غذاء عالي الجودة. أقرب إليكم."
+          },
+          {
+            "label": "Supporting Paragraph 1",
+            "en": "We supply quality food to local grocery stores, supermarkets, wholesalers and foodservice businesses, with product choices and sales support tailored to their needs.",
+            "ar": "نوفر منتجات غذائية عالية الجودة للمتاجر المحلية ومتاجر المواد الغذائية والسوبرماركت وتجار الجملة وقطاع خدمات الأغذية، مع خيارات منتجات ودعم مبيعات يلبي احتياجاتهم."
+          },
+          {
+            "label": "Breadcrumb",
+            "en": "Home / Our Capabilities / Sales",
+            "ar": "الرئيسية / قدراتنا / المبيعات"
+          },
+          {
+            "label": "Primary CTA",
+            "en": "Connect with Our Sales Team",
+            "ar": "تواصل مع فريق المبيعات"
+          }
+        ]
+      },
+      {
+        "title": "Our Customers",
+        "items": [
+          {
+            "label": "Render Variant",
+            "en": "sales-customers",
+            "ar": "sales-customers"
+          },
+          {
+            "label": "Section Label",
+            "en": "Our Customers",
+            "ar": "عملاؤنا"
+          },
+          {
+            "label": "Main Heading",
+            "en": "Food Solutions for Every Customer.",
+            "ar": "حلول غذائية لكل عميل."
+          },
+          {
+            "label": "Introductory Content",
+            "en": "From neighbourhood stores to major retailers and distributors, we help customers choose the right products for their markets.",
+            "ar": "من متاجر الأحياء إلى كبار تجار التجزئة والموزعين، نساعد عملاءنا على اختيار المنتجات المناسبة لأسواقهم."
+          },
+          {
+            "label": "Image Alt",
+            "en": "Masdar Al Hayat sales representatives discussing Fonte products with customers in a grocery store",
+            "ar": "ممثلون عن مبيعات مصدر الحياة يناقشون منتجات فونتي مع العملاء في متجر للمواد الغذائية"
+          },
+          {
+            "label": "Customer 1 Title",
+            "en": "Local / Grocery Stores",
+            "ar": "المتاجر المحلية ومتاجر المواد الغذائية"
+          },
+          {
+            "label": "Customer 1 Description",
+            "en": "Everyday food essentials for neighbourhood shops and grocery stores.",
+            "ar": "منتجات غذائية يومية لمتاجر الأحياء ومتاجر المواد الغذائية."
+          },
+          {
+            "label": "Customer 2 Title",
+            "en": "Supermarkets & Hypermarkets",
+            "ar": "السوبرماركت والهايبرماركت"
+          },
+          {
+            "label": "Customer 2 Description",
+            "en": "A varied product range that meets everyday shopper demand.",
+            "ar": "تشكيلة متنوعة من المنتجات تلبي احتياجات المتسوقين اليومية."
+          },
+          {
+            "label": "Customer 3 Title",
+            "en": "Wholesalers & Distributors",
+            "ar": "تجار الجملة والموزّعون"
+          },
+          {
+            "label": "Customer 3 Description",
+            "en": "Supply partnerships that bring our products to more markets.",
+            "ar": "شراكات توريد توصل منتجاتنا إلى المزيد من الأسواق."
+          }
+        ]
+      },
+      {
+        "title": "Closing — Customer Relationships & Sales Support",
+        "items": [
+          {
+            "label": "Section Label",
+            "en": "Customer Relationships & Sales Support",
+            "ar": "علاقات العملاء ودعم المبيعات"
+          },
+          {
+            "label": "Main Heading",
+            "en": "Supporting Your Business.",
+            "ar": "ندعم أعمالكم."
+          },
+          {
+            "label": "Paragraph 1",
+            "en": "Our sales team helps you select products, plan orders and coordinate replenishment, supported by our operations and distribution teams.",
+            "ar": "يساعدكم فريق المبيعات في اختيار المنتجات وتخطيط الطلبات وتنسيق إعادة التزويد، بالتعاون مع فرق العمليات والتوزيع."
+          },
+          {
+            "label": "Primary CTA",
+            "en": "Discuss Your Supply Requirements",
+            "ar": "ناقش معنا احتياجات التوريد"
+          }
+        ]
+      }
+    ]
+  },
   "CONTACT": {
     "title": "Contact",
     "metadata": [

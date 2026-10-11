@@ -24,7 +24,8 @@ const menu: MenuItem[] = [
     {label: {en: "Manufacturing", ar: "التصنيع"}, href: "/capabilities/manufacturing"},
     {label: {en: "Operations", ar: "العمليات"}, href: "/capabilities/operations"},
     {label: {en: "Quality & Compliance", ar: "الجودة والامتثال"}, href: "/capabilities/quality-compliance"},
-    {label: {en: "Logistics & Distribution", ar: "الخدمات اللوجستية والتوزيع"}, href: "/capabilities/logistics-distribution"}
+    {label: {en: "Logistics & Distribution", ar: "الخدمات اللوجستية والتوزيع"}, href: "/capabilities/logistics-distribution"},
+    {label: {en: "Sales", ar: "المبيعات"}, href: "/capabilities/sales"}
   ]},
   {label: {en: "Our Brands", ar: "علاماتنا التجارية"}, children: [
     {label: {en: "Fonte", ar: "فونتي"}, href: "/brands-partnerships/brands", logo: "/brand/fonte-transparent-logo.png"},

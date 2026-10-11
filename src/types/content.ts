@@ -28,6 +28,7 @@ export type PageTheme =
   | "operations"
   | "quality"
   | "logistics"
+  | "sales"
   | "portfolio"
   | "partnership"
   | "market"

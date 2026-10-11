@@ -11,6 +11,7 @@ export const PAGE_KEYS = {
   operations: "OPERATIONS",
   quality: "QUALITY & COMPLIANCE",
   logistics: "LOGISTICS & DISTRIBUTION",
+  sales: "SALES",
   brands: "BRANDS",
   partnerships: "PARTNERSHIPS",
   careers: "CAREERS",
@@ -54,6 +55,7 @@ export const PAGE_IMAGES = {
   operations: "/assets/images/masdar-enhanced/masdar_al_hayat_21.png",
   quality: "/assets/images/masdar-enhanced/masdar_al_hayat_33.png",
   logistics: "/assets/images/masdar-enhanced/masdar_al_hayat_24.png",
+  sales: "/assets/images/masdar-18.png",
   brands: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
   partnerships: "/assets/images/masdar-enhanced/masdar_al_hayat-41.png",
   careers: "/assets/images/masdar-enhanced/masdar_al_hayat-43.png",
@@ -130,6 +132,9 @@ export const SECTION_IMAGE_MAP: Partial<
   logistics: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat_25.png",
   },
+  sales: {
+    2: "/assets/images/masdar-19.png",
+  },
   partnerships: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat-42.png",
   },
@@ -155,6 +160,7 @@ export const PAGE_DEFINITIONS: PageDefinition[] = [
   {key: "operations", path: "/capabilities/operations", theme: "operations", imageKey: "operations"},
   {key: "quality", path: "/capabilities/quality-compliance", theme: "quality", imageKey: "quality"},
   {key: "logistics", path: "/capabilities/logistics-distribution", theme: "logistics", imageKey: "logistics"},
+  {key: "sales", path: "/capabilities/sales", theme: "sales", imageKey: "sales"},
   {key: "brands", path: "/brands-partnerships/brands", theme: "portfolio", imageKey: "brands"},
   {key: "partnerships", path: "/brands-partnerships/partnerships", theme: "partnership", imageKey: "partnerships"},
   {key: "careers", path: "/careers", theme: "careers", imageKey: "careers"},

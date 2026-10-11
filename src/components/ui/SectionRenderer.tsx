@@ -81,6 +81,7 @@ import {
   Snowflake,
   Soup,
   Sparkles,
+  Store,
   ShoppingCart,
   Sprout,
   UsersRound,
@@ -558,6 +559,41 @@ export function SectionRenderer({
     );
   }
 
+  if (renderVariant === "sales-customers") {
+    const customers = groups.filter((group) => group.prefix === "Customer");
+    const customerIcons = [Store, ShoppingCart, Boxes, Hotel, Building2] as const;
+
+    return (
+      <AnimatedSection className="content-section partnership-channels-section content-section--sales sales-customers" variant="stagger">
+        <div className="container-xxl">
+          <header className="partnership-channels__header sales-customers__header">
+            <div data-animate>
+              {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+              <h2>{heading}</h2>
+              {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
+            </div>
+            <BrandImage src={image} alt={localizedItemValue(section, "Image Alt", locale)} className="sales-customers__image"/>
+          </header>
+          <div className="partnership-channels__grid sales-customers__grid">
+            {customers.map((customer, customerIndex) => {
+              const CustomerIcon = customerIcons[customerIndex % customerIcons.length];
+              return (
+                <article key={customer.key} data-animate>
+                  <div className="partnership-channels__meta">
+                    <span aria-hidden="true">{new Intl.NumberFormat(locale, {minimumIntegerDigits: 2}).format(customerIndex + 1)}</span>
+                    <CustomerIcon aria-hidden="true"/>
+                  </div>
+                  <h3>{groupText(customer, "Title")}</h3>
+                  <p>{value(customer.parts.Description, locale)}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
   if (/Partnership Channels/i.test(section.title)) {
     const partnershipChannels = groups.filter((group) => group.prefix === "Channel").slice(0, 4);
     const channelIcons = [ShoppingCart, Boxes, Hotel, Building2] as const;
@@ -966,10 +1002,11 @@ export function SectionRenderer({
               <div className="flagship-brand__mark" data-animate>
                 <span className="flagship-brand__halo" aria-hidden="true" />
                 <Image
-                  src="/brand/fonte-logo-full.png"
-                  alt={isAr ? "شعار فونتي الكامل" : "Fonte full logo"}
-                  width={640}
-                  height={500}
+                  src="/brand/fonte-transparent-logo.png"
+                  alt={isAr ? "شعار فونتي" : "Fonte logo"}
+                  width={197}
+                  height={80}
+                  unoptimized
                   className="flagship-brand__logo"
                 />
                 <small>{isAr ? "العلامة الرئيسية لمصدر الحياة" : "The flagship brand of Masdar Al Hayat"}</small>
