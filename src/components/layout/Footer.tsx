@@ -56,6 +56,7 @@ export function Footer({locale}: {locale: Locale}) {
           <Link href="/">{ar ? "الرئيسية" : "Home"}</Link>
           <Link href="/about/masdar-al-hayat">{ar ? "عن مصدر الحياة" : "About us"}</Link>
           <Link href="/brands-partnerships/brands">{ar ? "العلامات التجارية" : "Brands"}</Link>
+          <Link href="/brands-partnerships/brands-portfolio">{ar ? "محفظة علاماتنا التجارية" : "Our Brand Portfolio"}</Link>
           <Link href="/brands-partnerships/partnerships">{ar ? "الشراكات" : "Partnerships"}</Link>
           <Link href="/careers">{ar ? "الوظائف" : "Careers"}</Link>
           <Link href="/contact">{ar ? "تواصل معنا" : "Contact"}</Link>

@@ -26,6 +26,19 @@ const MANUFACTURING_HIDDEN_SECTIONS = new Set([
   "Quality-Led Manufacturing",
 ]);
 
+const RESEARCH_HIDDEN_SECTIONS = new Set([
+  "Process & Operational Innovation",
+]);
+
+const BRANDS_HIDDEN_SECTIONS = new Set([
+  "Fonte HORECA",
+]);
+
+const PARTNERSHIPS_HIDDEN_SECTIONS = new Set([
+  "Partnership Overview",
+  "How Partnership Works",
+]);
+
 export function InternalPage({
   page,
   locale,
@@ -42,12 +55,8 @@ export function InternalPage({
   const groupTimeline = imageKey === "groupStory"
     ? sections.find((section) => section.title === "Group Development Timeline")
     : undefined;
-  const orderedSections = imageKey === "brands"
-    ? [
-        ...sections.filter((section) => section.title === "Our Brand Portfolio"),
-        ...sections.filter((section) => section.title !== "Our Brand Portfolio"),
-      ]
-    : sections;
+  const featuredSections = sections.filter(section => section.items.some(item => item.label === "Render Variant" && /^(partner-logos|logistics-counters)$/.test(String(item.en))));
+  const orderedSections = sections.filter(section => !featuredSections.includes(section));
 
   return (
     <main
@@ -63,12 +72,17 @@ export function InternalPage({
         brandLogoAlt={locale === "ar" ? "شعار مجموعة التميمي" : "Tamimi Group logo"}
       />
 
+      {featuredSections.map(section => <SectionRenderer key={section.title} section={section} index={0} locale={locale} theme={theme} image=""/>)}
+
       {orderedSections.map((section, index) => {
         if (imageKey === "groupStory" && GROUP_STORY_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "visionValues" && VISION_VALUES_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "quality" && QUALITY_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "logistics" && LOGISTICS_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "manufacturing" && MANUFACTURING_HIDDEN_SECTIONS.has(section.title)) return null;
+        if (imageKey === "research" && RESEARCH_HIDDEN_SECTIONS.has(section.title)) return null;
+        if (imageKey === "brands" && BRANDS_HIDDEN_SECTIONS.has(section.title)) return null;
+        if (imageKey === "partnerships" && PARTNERSHIPS_HIDDEN_SECTIONS.has(section.title)) return null;
 
         const sectionIndex = index + 2;
 

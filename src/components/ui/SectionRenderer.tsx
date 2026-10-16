@@ -12,6 +12,10 @@ import {
 import {ManufacturingVideoInterlude} from "./ManufacturingVideoInterlude";
 import {ManufacturingGallery} from "./ManufacturingGallery";
 import {ProductRangeCarousel} from "./ProductRangeCarousel";
+import {LogoCarousel} from "./LogoCarousel";
+import {ManufacturingCounters} from "./ManufacturingCounters";
+import {BRAND_PORTFOLIO} from "@/content/brands";
+import clientLogos from "@/content/client-logos.json";
 import {
   HeritageTimeline,
   HeritageTimelineGrid,
@@ -446,7 +450,7 @@ export function SectionRenderer({
     locale,
   );
 
-  const sectionCopy = paragraphs(section, locale);
+  const sectionCopy = paragraphs(section, locale).filter(paragraph => theme !== "manifesto" || paragraph !== statementLabel);
   const copy =
     theme === "operations" && section.title === "Operations Overview"
       ? sectionCopy.slice(0, 2)
@@ -485,6 +489,79 @@ export function SectionRenderer({
       locale,
     );
   };
+
+  if (renderVariant === "partner-logos" || renderVariant === "client-logos") {
+    const logos = renderVariant === "partner-logos" ? clientLogos.partners : clientLogos.clients;
+    return <AnimatedSection className={`content-section logo-showcase logo-showcase--${renderVariant}`} variant="rise">
+      <div className="container-xxl">
+        <header className="logo-showcase__header" data-animate>
+          <div>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+          </div>
+          <div>{copy.map((paragraph, i) => <p key={i}>{paragraph}</p>)}</div>
+        </header>
+        <LogoCarousel items={logos} locale={locale} label={heading}/>
+      </div>
+    </AnimatedSection>;
+  }
+
+  if (renderVariant === "logistics-counters") {
+    const items = groups.filter(group => group.prefix === "Counter").map(group => ({
+      value: Number(value(group.parts.Value, locale)),
+      label: value(group.parts.Label, locale),
+      suffix: value(group.parts.Suffix, locale),
+    }));
+    return <AnimatedSection className="content-section logistics-strength" variant="stagger">
+      <div className="container-xxl">
+        <header className="logistics-strength__header" data-animate>
+          {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+          <h2>{heading}</h2>
+          {copy.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
+        </header>
+        <ManufacturingCounters items={items} locale={locale}/>
+      </div>
+    </AnimatedSection>;
+  }
+
+  if (renderVariant === "brand-profiles") {
+    return <AnimatedSection className="content-section brand-profiles" variant="stagger">
+      <div className="container-xxl">
+        <header className="brand-profiles__header" data-animate>
+          {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+          <h2>{heading}</h2>
+        </header>
+        <div className="brand-profiles__list">
+          {BRAND_PORTFOLIO.filter(brand => brand.id !== "fonte").map((brand, brandIndex) => <article className={`brand-profile brand-profile--${brand.id}`} id={brand.id} key={brand.id}>
+            <div className="brand-profile__logo" data-animate>
+              <Image src={brand.logo} alt={isAr ? `شعار ${brand.name.ar}` : `${brand.name.en} logo`} fill sizes="(max-width: 767px) 80vw, 35vw" unoptimized/>
+            </div>
+            <div className="brand-profile__copy" data-animate>
+              <span className="brand-profile__index" aria-hidden="true">{new Intl.NumberFormat(locale, {minimumIntegerDigits: 2}).format(brandIndex + 1)}</span>
+              <h2>{brand.name[locale]}</h2>
+              <p>{brand.description[locale]}</p>
+            </div>
+          </article>)}
+        </div>
+      </div>
+    </AnimatedSection>;
+  }
+
+  if (renderVariant === "horeca-brand") {
+    return <AnimatedSection className="content-section horeca-brand" variant="rise">
+      <div className="container-xxl horeca-brand__layout">
+        <div className="horeca-brand__logo" data-animate>
+          <Image src="/brand/fonte-horeca-mark.webp" alt={isAr ? "شعار فونتي هوريكا" : "Fonte HORECA logo"} fill sizes="(max-width: 767px) 80vw, 35vw" unoptimized/>
+        </div>
+        <div data-animate>
+          {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+          <h2>{heading}</h2>
+          {copy.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
+          <ArrowLink href="/brands-partnerships/brands-portfolio#fonte-horeca">{localizedItemValue(section, "Primary CTA", locale)}</ArrowLink>
+        </div>
+      </div>
+    </AnimatedSection>;
+  }
 
   /*
    * ========================================================
@@ -914,59 +991,6 @@ export function SectionRenderer({
           </div>
         </div>
       </AnimatedSection>
-    );
-  }
-
-  if (/Our Brand Portfolio/i.test(section.title)) {
-    const portfolioBrands = groups.filter((group) => group.prefix === "Brand").slice(0, 3);
-    const brandAssets = [
-      {key: "amraj", src: "/brand/amraj-logo.jpg"},
-      {key: "paneto", src: "/brand/paneto-logo.png"},
-      {key: "natures-oven", src: "/brand/natures-oven-logo.png"},
-    ];
-
-    return (
-      <>
-        <AnimatedSection className={`content-section brand-portfolio-section content-section--${theme}`} variant="stagger">
-          <div className="container-xxl">
-            <header className="brand-portfolio__header" data-animate>
-              <div>
-                {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
-                <h2>{heading}</h2>
-              </div>
-              <div className="brand-portfolio__intro">
-                {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
-              </div>
-            </header>
-
-            <div className="brand-portfolio__grid">
-              {portfolioBrands.map((brand, brandIndex) => {
-                const asset = brandAssets[brandIndex];
-                const brandTitle = groupText(brand, "Title");
-
-                return (
-                  <article className={`brand-portfolio-card brand-portfolio-card--${asset.key}`} key={brand.key} data-animate>
-                    <div className="brand-portfolio-card__logo">
-                      <Image
-                        src={asset.src}
-                        alt={`${brandTitle} ${isAr ? "شعار" : "logo"}`}
-                        fill
-                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
-                      />
-                    </div>
-                    <div className="brand-portfolio-card__content">
-                      <span aria-hidden="true" />
-                      <h3>{brandTitle}</h3>
-                      <p>{value(brand.parts.Description, locale)}</p>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </AnimatedSection>
-
-      </>
     );
   }
 

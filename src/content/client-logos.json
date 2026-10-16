@@ -1,0 +1,265 @@
+{
+  "partners": [
+    {
+      "name": {
+        "en": "DIYAFA - Saudi Hospitality Company",
+        "ar": "شركة الضيافة السعودية"
+      },
+      "src": "/brand/partners/diyafa.svg"
+    },
+    {
+      "name": {
+        "en": "Namaa",
+        "ar": "نماء"
+      },
+      "src": "/brand/partners/namaa.webp"
+    },
+    {
+      "name": {
+        "en": "Shawarmer",
+        "ar": "شاورمر"
+      },
+      "src": "/brand/partners/shawarmer.webp"
+    },
+    {
+      "name": {
+        "en": "Burger King",
+        "ar": "برغر كينج"
+      },
+      "src": "/brand/partners/burger-king.webp"
+    },
+    {
+      "name": {
+        "en": "The Ritz-Carlton",
+        "ar": "الريتز كارلتون"
+      },
+      "src": "/brand/partners/ritz-carlton.webp"
+    },
+    {
+      "name": {
+        "en": "Burgerizzr",
+        "ar": "برغرايززر"
+      },
+      "src": "/brand/partners/burgerizzr.svg"
+    },
+    {
+      "name": {
+        "en": "Steak House",
+        "ar": "ستيك هاوس"
+      },
+      "src": "/brand/partners/steak-house.webp"
+    },
+    {
+      "name": {
+        "en": "Al Faisaliah Hotel",
+        "ar": "فندق الفيصلية"
+      },
+      "src": "/brand/partners/al-faisaliah.webp"
+    },
+    {
+      "name": {
+        "en": "Al Kuzama Trading Co.",
+        "ar": "شركة الخزامى للتجارة"
+      },
+      "src": "/brand/partners/al-kuzama.webp"
+    },
+    {
+      "name": {
+        "en": "Diet Watchers",
+        "ar": "دايت واتشرز"
+      },
+      "src": "/brand/partners/diet-watchers.webp"
+    },
+    {
+      "name": {
+        "en": "IKEA",
+        "ar": "إيكيا"
+      },
+      "src": "/brand/partners/ikea.webp"
+    },
+    {
+      "name": {
+        "en": "Kitopi",
+        "ar": "كيتوبي"
+      },
+      "src": "/brand/partners/kitopi.webp"
+    },
+    {
+      "name": {
+        "en": "Manga Productions",
+        "ar": "مانجا للإنتاج"
+      },
+      "src": "/brand/partners/manga.webp"
+    },
+    {
+      "name": {
+        "en": "National Center for Palms & Dates",
+        "ar": "المركز الوطني للنخيل والتمور"
+      },
+      "src": "/brand/partners/palms-dates.webp"
+    },
+    {
+      "name": {
+        "en": "Piatto",
+        "ar": "بياتو"
+      },
+      "src": "/brand/partners/piatto.webp"
+    },
+    {
+      "name": {
+        "en": "Radisson Blu",
+        "ar": "راديسون بلو"
+      },
+      "src": "/brand/partners/radisson-blu.webp"
+    },
+    {
+      "name": {
+        "en": "Shawarma House",
+        "ar": "بيت الشاورما"
+      },
+      "src": "/brand/partners/shawarma-house.webp"
+    },
+    {
+      "name": {
+        "en": "SMC Hospitals",
+        "ar": "مستشفيات إس إم سي"
+      },
+      "src": "/brand/partners/smc.webp"
+    },
+    {
+      "name": {
+        "en": "Swiss Butter",
+        "ar": "سويس باتر"
+      },
+      "src": "/brand/partners/swiss-butter.webp"
+    },
+    {
+      "name": {
+        "en": "Tamimi Group",
+        "ar": "مجموعة التميمي"
+      },
+      "src": "/brand/partners/tamimi-group.webp"
+    },
+    {
+      "name": {
+        "en": "Tamimi Markets",
+        "ar": "أسواق التميمي"
+      },
+      "src": "/brand/partners/tamimi-markets.webp"
+    },
+    {
+      "name": {
+        "en": "Tim Hortons",
+        "ar": "تيم هورتنز"
+      },
+      "src": "/brand/partners/tim-hortons.webp"
+    },
+    {
+      "name": {
+        "en": "Diet Center",
+        "ar": "دايت سنتر"
+      },
+      "src": "/brand/partners/diet-center.webp"
+    }
+  ],
+  "clients": [
+    {
+      "name": {
+        "en": "Al Jazera",
+        "ar": "الجزيرة"
+      },
+      "src": "/brand/clients/al-jazera.webp"
+    },
+    {
+      "name": {
+        "en": "Alwafa Hypermarket",
+        "ar": "هايبر الوفاء"
+      },
+      "src": "/brand/clients/alwafa.webp"
+    },
+    {
+      "name": {
+        "en": "Noon",
+        "ar": "نون"
+      },
+      "src": "/brand/clients/noon.webp"
+    },
+    {
+      "name": {
+        "en": "Carrefour",
+        "ar": "كارفور"
+      },
+      "src": "/brand/clients/carrefour.webp"
+    },
+    {
+      "name": {
+        "en": "Danube",
+        "ar": "الدانوب"
+      },
+      "src": "/brand/clients/danube.webp"
+    },
+    {
+      "name": {
+        "en": "Farm Superstores",
+        "ar": "أسواق المزرعة"
+      },
+      "src": "/brand/clients/farm.webp"
+    },
+    {
+      "name": {
+        "en": "LuLu",
+        "ar": "لولو"
+      },
+      "src": "/brand/clients/lulu.webp"
+    },
+    {
+      "name": {
+        "en": "Nesto",
+        "ar": "نستو"
+      },
+      "src": "/brand/clients/nesto.webp"
+    },
+    {
+      "name": {
+        "en": "SPAR",
+        "ar": "سبار"
+      },
+      "src": "/brand/clients/spar.webp"
+    },
+    {
+      "name": {
+        "en": "Spinneys",
+        "ar": "سبينس"
+      },
+      "src": "/brand/clients/spinneys.webp"
+    },
+    {
+      "name": {
+        "en": "BinDawood",
+        "ar": "بن داود"
+      },
+      "src": "/brand/clients/bin-dawood.webp"
+    },
+    {
+      "name": {
+        "en": "Tamimi Markets",
+        "ar": "أسواق التميمي"
+      },
+      "src": "/brand/clients/tamimi-markets.webp"
+    },
+    {
+      "name": {
+        "en": "Panda",
+        "ar": "بنده"
+      },
+      "src": "/brand/clients/panda.webp"
+    },
+    {
+      "name": {
+        "en": "Al Othaim Markets",
+        "ar": "أسواق العثيم"
+      },
+      "src": "/brand/clients/othaim.webp"
+    }
+  ]
+}

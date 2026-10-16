@@ -94,8 +94,8 @@
           },
           {
             "label": "Main Heading",
-          "en": "Strong Capabilities. Sustainable Growth.",
-          "ar": "قدرات قوية. نمو مستدام."
+            "en": "Strong Capabilities. Sustainable Growth.",
+            "ar": "قدرات قوية. نمو مستدام."
           },
           {
             "label": "Introduction",
@@ -911,8 +911,8 @@
           }
         ]
       },
-     {
-       "title": "Closing Call to Action",
+      {
+        "title": "Closing Call to Action",
         "items": [
           {
             "label": "Main Heading",
@@ -1700,23 +1700,8 @@
           },
           {
             "label": "Vision Statement",
-            "en": "To be a trusted and leading food and beverages manufacturer, recognised for delivering quality-led, relevant and responsible food solutions that enrich everyday life and create lasting value for consumers, partners and the Kingdom.",
-            "ar": "أن نكون شركة موثوقة ورائدة في تصنيع الأغذية والمشروبات، نتميّز بتقديم حلول غذائية عالية الجودة وملائمة ومسؤولة، تثري الحياة اليومية وتحقق قيمة مستدامة للمستهلكين والشركاء والمملكة."
-          },
-          {
-            "label": "Supporting Paragraph 1",
-            "en": "Our vision reflects our ambition to grow beyond production capacity alone. We aim to build a food company recognised for the reliability of its operations, the relevance of its portfolio and the trust it establishes across the market.",
-            "ar": "تعكس رؤيتنا طموحنا للنمو بما يتجاوز القدرات الإنتاجية وحدها. ونسعى إلى بناء شركة غذائية تتميز بموثوقية عملياتها، وملاءمة محفظتها، والثقة التي تبنيها في مختلف قطاعات السوق."
-          },
-          {
-            "label": "Supporting Paragraph 2",
-            "en": "We seek to remain attentive to changing lifestyles, developing food preferences and the evolving requirements of consumers and businesses.",
-            "ar": "ونحرص على مواكبة أنماط الحياة المتغيرة، وتطور التفضيلات الغذائية، والاحتياجات المتجددة للمستهلكين وقطاعات الأعمال."
-          },
-          {
-            "label": "Supporting Paragraph 3",
-            "en": "Through responsible growth and continuous development, we aim to strengthen our contribution to Saudi Arabia’s food manufacturing sector and its future opportunities.",
-            "ar": "ومن خلال النمو المسؤول والتطوير المستمر، نسعى إلى تعزيز مساهمتنا في قطاع الصناعات الغذائية السعودي وفرصه المستقبلية."
+            "en": "To be a trusted partner and a leader in the food sector by providing high-quality solutions and products, and expanding our services to meet the needs of government sectors, institutions and individuals efficiently and sustainably.",
+            "ar": "أن نكون شريكاً موثوقاً ورائداً في قطاع الأغذية، من خلال تقديم حلول ومنتجات عالية الجودة، وتوسيع نطاق خدماتنا بما يواكب احتياجات القطاعات الحكومية والمؤسسات والأفراد بكفاءة واستدامة."
           },
           {
             "label": "Vision Pillar 1 Title",
@@ -1805,23 +1790,8 @@
           },
           {
             "label": "Mission Statement",
-            "en": "To develop, manufacture and distribute dependable food solutions by combining market understanding, disciplined operations, food safety, purposeful innovation and strong partnerships, while investing in our people and continuously improving the way we serve.",
-            "ar": "تطوير وتصنيع وتوزيع حلول غذائية موثوقة من خلال الجمع بين فهم السوق، والانضباط التشغيلي، وسلامة الغذاء، والابتكار الهادف، والشراكات القوية، مع الاستثمار في كوادرنا والتحسين المستمر لأسلوب خدمتنا."
-          },
-          {
-            "label": "Supporting Paragraph 1",
-            "en": "Our mission defines what we work to achieve every day across product development, manufacturing, quality, distribution and commercial relationships.",
-            "ar": "تحدد رسالتنا ما نعمل على تحقيقه يومياً في تطوير المنتجات والتصنيع والجودة والتوزيع والعلاقات التجارية."
-          },
-          {
-            "label": "Supporting Paragraph 2",
-            "en": "It requires us to understand the market before developing solutions, manage our operations with discipline and deliver with a consistent sense of responsibility.",
-            "ar": "وتتطلب منا فهم السوق قبل تطوير الحلول، وإدارة عملياتنا بانضباط، وتنفيذ أعمالنا بمستوى ثابت من المسؤولية."
-          },
-          {
-            "label": "Supporting Paragraph 3",
-            "en": "It also reflects the importance of our employees, suppliers, customers and partners in creating sustainable value across the food value chain.",
-            "ar": "كما تعكس أهمية موظفينا وموردينا وعملائنا وشركائنا في تحقيق قيمة مستدامة عبر سلسلة القيمة الغذائية."
+            "en": "To provide integrated food products and services to the highest standards of quality and operational efficiency, supported by advanced manufacturing facilities, a modern distribution network and tailored solutions for hospitality, catering and institutions, ensuring reliable service, diverse choices and continuity.",
+            "ar": "تقديم منتجات وخدمات غذائية متكاملة وفق أعلى معايير الجودة والكفاءة التشغيلية، مدعومة بمرافق تصنيع متطورة، وشبكة توزيع حديثة، وحلول مخصصة لقطاع الضيافة والتموين والمؤسسات، بما يضمن موثوقية الخدمة، وتنوع الخيارات، والاستمرارية."
           }
         ]
       },
@@ -3079,6 +3049,86 @@
             "ar": "تواصل مع فريقنا"
           }
         ]
+      },
+      {
+        "title": "Distribution Strength",
+        "items": [
+          {
+            "label": "Render Variant",
+            "en": "logistics-counters",
+            "ar": "logistics-counters"
+          },
+          {
+            "label": "Section Label",
+            "en": "Our Network in Numbers",
+            "ar": "شبكتنا بالأرقام"
+          },
+          {
+            "label": "Main Heading",
+            "en": "Distribution Strength Across the Kingdom",
+            "ar": "قوة توزيع تصل إلى مختلف أنحاء المملكة"
+          },
+          {
+            "label": "Paragraph 1",
+            "en": "Fonte products travel from our manufacturing hub in Riyadh to regions across Saudi Arabia and selected regional markets through an extensive, well-organised distribution network.",
+            "ar": "تنطلق منتجات فونتي من مركز التصنيع في الرياض لتصل إلى مختلف مناطق المملكة، بالإضافة إلى عدد من الأسواق الإقليمية، من خلال شبكة توزيع واسعة ومنظمة."
+          },
+          {
+            "label": "Counter 1 Value",
+            "en": 16,
+            "ar": 16
+          },
+          {
+            "label": "Counter 1 Suffix",
+            "en": "+",
+            "ar": "+"
+          },
+          {
+            "label": "Counter 1 Label",
+            "en": "Logistics locations across the Kingdom",
+            "ar": "موقعاً لوجستياً حول المملكة"
+          },
+          {
+            "label": "Counter 2 Value",
+            "en": 500,
+            "ar": 500
+          },
+          {
+            "label": "Counter 2 Suffix",
+            "en": "+",
+            "ar": "+"
+          },
+          {
+            "label": "Counter 2 Label",
+            "en": "Vehicles in the distribution fleet",
+            "ar": "مركبة ضمن أسطول التوزيع"
+          },
+          {
+            "label": "Counter 3 Value",
+            "en": 4,
+            "ar": 4
+          },
+          {
+            "label": "Counter 3 Label",
+            "en": "Main warehouses and distribution centres",
+            "ar": "مستودعات ومراكز توزيع رئيسية"
+          },
+          {
+            "label": "Counter 4 Value",
+            "en": 10,
+            "ar": 10
+          },
+          {
+            "label": "Counter 4 Suffix",
+            "en": "+",
+            "ar": "+"
+          },
+          {
+            "label": "Counter 4 Label",
+            "en": "Regional export markets",
+            "ar": "أسواق تصدير إقليمية"
+          }
+        ]
       }
     ]
   },
@@ -3238,57 +3288,57 @@
         ]
       },
       {
-        "title": "Our Brand Portfolio",
+        "title": "Fonte HORECA",
         "items": [
           {
+            "label": "Render Variant",
+            "en": "horeca-brand",
+            "ar": "horeca-brand"
+          },
+          {
             "label": "Section Label",
-            "en": "Our Brand Portfolio",
-            "ar": "محفظة علاماتنا التجارية"
+            "en": "For Professional Kitchens",
+            "ar": "للمطابخ المهنية"
           },
           {
             "label": "Main Heading",
-            "en": "Distinctive Brands for Evolving Food Moments",
-            "ar": "علامات مميزة لمناسبات غذائية متجددة"
+            "en": "Fonte HORECA",
+            "ar": "فونتي هوريكا"
           },
           {
             "label": "Paragraph 1",
-            "en": "Beyond Fonte, Masdar Al Hayat’s portfolio brings together distinctive consumer brands developed for different tastes, occasions and market needs.",
-            "ar": "إلى جانب فونتي، تجمع محفظة مصدر الحياة علامات استهلاكية مميزة تم تطويرها لتناسب أذواقاً ومناسبات واحتياجات سوقية متنوعة."
+            "en": "Food solutions created for hotels, restaurants, cafes and catering businesses. Fonte HORECA brings our manufacturing expertise to professional kitchens, supporting consistent quality and versatile menu choices.",
+            "ar": "حلول غذائية مصممة للفنادق والمطاعم والمقاهي وقطاع الإعاشة. تقدم فونتي هوريكا خبراتنا التصنيعية للمطابخ المهنية، لدعم الجودة المتسقة وتنوع خيارات قوائم الطعام."
           },
           {
-            "label": "Paragraph 2",
-            "en": "Each brand is supported by the company’s manufacturing capability, quality-focused operations and understanding of changing consumer expectations.",
-            "ar": "تستند كل علامة إلى قدرات الشركة التصنيعية وعملياتها المرتكزة على الجودة وفهمها لتوقعات المستهلكين المتغيرة."
+            "label": "Primary CTA",
+            "en": "Explore Our Brand Portfolio",
+            "ar": "استكشف محفظة علاماتنا التجارية"
+          }
+        ]
+      },
+      {
+        "title": "Our Diverse Portfolio of Clients",
+        "items": [
+          {
+            "label": "Render Variant",
+            "en": "client-logos",
+            "ar": "client-logos"
           },
           {
-            "label": "Brand 1 Title",
-            "en": "Amraj",
-            "ar": "أمراج"
+            "label": "Section Label",
+            "en": "Our Clients",
+            "ar": "عملاؤنا"
           },
           {
-            "label": "Brand 1 Description",
-            "en": "Part of Masdar Al Hayat’s growing portfolio of consumer food brands.",
-            "ar": "إحدى العلامات الغذائية الاستهلاكية ضمن محفظة مصدر الحياة المتنامية."
+            "label": "Main Heading",
+            "en": "Our Diverse Portfolio of Clients",
+            "ar": "مجموعة عملائنا المتنوعة"
           },
           {
-            "label": "Brand 2 Title",
-            "en": "Paneto",
-            "ar": "بانيتو"
-          },
-          {
-            "label": "Brand 2 Description",
-            "en": "A consumer food brand supported by Masdar Al Hayat’s manufacturing capability.",
-            "ar": "علامة غذائية استهلاكية تدعمها القدرات التصنيعية لمصدر الحياة."
-          },
-          {
-            "label": "Brand 3 Title",
-            "en": "Nature’s Oven",
-            "ar": "نيتشرز أوفن"
-          },
-          {
-            "label": "Brand 3 Description",
-            "en": "A portfolio brand developed for evolving everyday food needs.",
-            "ar": "علامة ضمن المحفظة طُوّرت لتلبية الاحتياجات الغذائية اليومية المتجددة."
+            "label": "Paragraph 1",
+            "en": "Our products reach consumers through relationships with leading retailers and grocery businesses across the market.",
+            "ar": "تصل منتجاتنا إلى المستهلكين من خلال علاقاتنا مع كبرى شركات التجزئة ومتاجر المواد الغذائية في السوق."
           }
         ]
       },
@@ -3376,6 +3426,31 @@
             "label": "Secondary CTA",
             "en": "Explore Our Brands",
             "ar": "استكشف علاماتنا التجارية"
+          }
+        ]
+      },
+      {
+        "title": "Key Strategic Alliances and Valued Partners",
+        "items": [
+          {
+            "label": "Render Variant",
+            "en": "partner-logos",
+            "ar": "partner-logos"
+          },
+          {
+            "label": "Section Label",
+            "en": "Trusted Relationships",
+            "ar": "علاقات موثوقة"
+          },
+          {
+            "label": "Main Heading",
+            "en": "Key Strategic Alliances and Valued Partners",
+            "ar": "التحالفات الاستراتيجية الرئيسية والشركاء المميزون"
+          },
+          {
+            "label": "Paragraph 1",
+            "en": "Working with businesses across foodservice, hospitality, retail and institutional markets to bring quality food to more people.",
+            "ar": "نعمل مع شركائنا في قطاعات خدمات الأغذية والضيافة والتجزئة والمؤسسات لإيصال الغذاء عالي الجودة إلى المزيد من الناس."
           }
         ]
       },
@@ -3651,7 +3726,7 @@
       }
     ]
   },
- "CAREERS": {
+  "CAREERS": {
     "title": "Careers",
     "metadata": [
       {
@@ -4457,6 +4532,68 @@
             "label": "Note 3",
             "en": "Do not submit confidential commercial or personal information unless specifically requested by an authorised representative.",
             "ar": "يرجى عدم إرسال معلومات تجارية أو شخصية سرية ما لم يطلبها ممثل معتمد بشكل صريح."
+          }
+        ]
+      }
+    ]
+  },
+  "BRAND PORTFOLIO": {
+    "title": "Our Brand Portfolio",
+    "metadata": [
+      {
+        "label": "Meta Title",
+        "en": "Our Brand Portfolio | Masdar Al Hayat",
+        "ar": "محفظة علاماتنا التجارية | مصدر الحياة"
+      },
+      {
+        "label": "Meta Description",
+        "en": "Explore Fonte HORECA, Paneto, Amraj and Demirco, the food brands in Masdar Al Hayat's portfolio.",
+        "ar": "اكتشف فونتي هوريكا وبانيتو وأمراج وديميركو ضمن محفظة العلامات الغذائية لمصدر الحياة."
+      }
+    ],
+    "sections": [
+      {
+        "title": "Hero",
+        "items": [
+          {
+            "label": "Section Label",
+            "en": "Our Brand Portfolio",
+            "ar": "محفظة علاماتنا التجارية"
+          },
+          {
+            "label": "Main Heading",
+            "en": "Distinctive Brands. Shared Quality.",
+            "ar": "علامات مميزة. جودة تجمعنا."
+          },
+          {
+            "label": "Supporting Content",
+            "en": "A family of food brands serving everyday moments and professional kitchens, supported by Masdar Al Hayat's manufacturing expertise.",
+            "ar": "عائلة من العلامات الغذائية تخدم اللحظات اليومية والمطابخ المهنية، وتستند إلى الخبرات التصنيعية لمصدر الحياة."
+          },
+          {
+            "label": "Breadcrumb",
+            "en": "Home / Our Brands / Our Brand Portfolio",
+            "ar": "الرئيسية / علاماتنا التجارية / محفظة علاماتنا التجارية"
+          }
+        ]
+      },
+      {
+        "title": "Our Brand Profiles",
+        "items": [
+          {
+            "label": "Render Variant",
+            "en": "brand-profiles",
+            "ar": "brand-profiles"
+          },
+          {
+            "label": "Section Label",
+            "en": "Our Brands",
+            "ar": "علاماتنا التجارية"
+          },
+          {
+            "label": "Main Heading",
+            "en": "A Brand for Different Needs",
+            "ar": "علامات تلبي احتياجات متنوعة"
           }
         ]
       }

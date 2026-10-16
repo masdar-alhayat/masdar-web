@@ -8,6 +8,7 @@ import {gsap} from "gsap";
 import {useGSAP} from "@gsap/react";
 import {Link, usePathname, useRouter} from "@/i18n/navigation";
 import type {Locale} from "@/types/content";
+import {BRAND_PORTFOLIO} from "@/content/brands";
 
 gsap.registerPlugin(useGSAP);
 
@@ -27,13 +28,11 @@ const menu: MenuItem[] = [
     {label: {en: "Logistics & Distribution", ar: "الخدمات اللوجستية والتوزيع"}, href: "/capabilities/logistics-distribution"},
     {label: {en: "Sales", ar: "المبيعات"}, href: "/capabilities/sales"}
   ]},
-  {label: {en: "Our Brands", ar: "علاماتنا التجارية"}, children: [
-    {label: {en: "Fonte", ar: "فونتي"}, href: "/brands-partnerships/brands", logo: "/brand/fonte-transparent-logo.png"},
-    {label: {en: "Fonte HORECA", ar: "فونتي هوريكا"}, href: "/brands-partnerships/brands", logo: "/brand/fonte-horeca-bg.png"},
-    {label: {en: "Paneto", ar: "بانيتو"}, href: "/brands-partnerships/brands", logo: "/brand/paneto-logo.png"},
-    {label: {en: "Amraj", ar: "أمراج"}, href: "/brands-partnerships/brands", logo: "/brand/amraj-logo.jpg"},
-    {label: {en: "Nature’s Oven", ar: "نيتشرز أوفن"}, href: "/brands-partnerships/brands", logo: "/brand/natures-oven-logo.png"}
-  ]},
+  {label: {en: "Our Brands", ar: "علاماتنا التجارية"}, children: BRAND_PORTFOLIO.map(brand => ({
+    label: brand.name,
+    href: brand.id === "fonte" ? "/brands-partnerships/brands" : `/brands-partnerships/brands-portfolio#${brand.id}`,
+    logo: brand.logo,
+  }))},
   {label: {en: "Partnerships", ar: "الشراكات"}, href: "/brands-partnerships/partnerships"},
   {label: {en: "Careers", ar: "الوظائف"}, href: "/careers"}
 ];

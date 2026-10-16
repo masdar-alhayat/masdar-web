@@ -13,6 +13,7 @@ export const PAGE_KEYS = {
   logistics: "LOGISTICS & DISTRIBUTION",
   sales: "SALES",
   brands: "BRANDS",
+  brandPortfolio: "BRAND PORTFOLIO",
   partnerships: "PARTNERSHIPS",
   careers: "CAREERS",
   contact: "CONTACT"
@@ -57,6 +58,7 @@ export const PAGE_IMAGES = {
   logistics: "/assets/images/masdar-enhanced/masdar_al_hayat_24.png",
   sales: "/assets/images/masdar-18.png",
   brands: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
+  brandPortfolio: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
   partnerships: "/assets/images/masdar-enhanced/masdar_al_hayat-41.png",
   careers: "/assets/images/masdar-enhanced/masdar_al_hayat-43.png",
   contact: "/assets/images/masdar-enhanced/masdar_al_hayat-48.png",
@@ -162,6 +164,7 @@ export const PAGE_DEFINITIONS: PageDefinition[] = [
   {key: "logistics", path: "/capabilities/logistics-distribution", theme: "logistics", imageKey: "logistics"},
   {key: "sales", path: "/capabilities/sales", theme: "sales", imageKey: "sales"},
   {key: "brands", path: "/brands-partnerships/brands", theme: "portfolio", imageKey: "brands"},
+  {key: "brandPortfolio", path: "/brands-partnerships/brands-portfolio", theme: "portfolio", imageKey: "brandPortfolio"},
   {key: "partnerships", path: "/brands-partnerships/partnerships", theme: "partnership", imageKey: "partnerships"},
   {key: "careers", path: "/careers", theme: "careers", imageKey: "careers"},
   {key: "contact", path: "/contact", theme: "contact", imageKey: "contact"}

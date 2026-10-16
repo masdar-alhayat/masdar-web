@@ -77,6 +77,7 @@ export function resolveCtaHref(label: string): string {
   if (/operation|العمليات/.test(text)) return "/capabilities/operations";
   if (/partnership|partner|الشراكات|شريك/.test(text)) return "/brands-partnerships/partnerships";
   if (/fonte website|موقع فونتي/.test(text)) return "https://www.masdar.sa";
+  if (/brand portfolio|محفظة علامات/.test(text)) return "/brands-partnerships/brands-portfolio";
   if (/brand|fonte|علامات|العلامات|فونتي/.test(text)) return "/brands-partnerships/brands";
   if (/career|وظائف/.test(text)) return "/careers";
   if (/enquiry|contact|sales team|supply requirements|تواصل|استفسار|فريق المبيعات|احتياجات التوريد/.test(text)) return "/contact#contact-form";

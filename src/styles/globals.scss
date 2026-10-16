@@ -8315,7 +8315,6 @@ html[dir="rtl"] .product-range-slider__top>div:first-child span {
 
 .brand-portfolio-card--amraj { --brand-accent: #b70000; }
 .brand-portfolio-card--paneto { --brand-accent: #0b2d70; }
-.brand-portfolio-card--natures-oven { --brand-accent: #b96d48; }
 
 .brand-portfolio-card__logo {
   position: relative;
@@ -8343,13 +8342,6 @@ html[dir="rtl"] .product-range-slider__top>div:first-child span {
   object-position: center 82%;
   padding: 0;
   transform: scale(1.08);
-}
-
-.brand-portfolio-card--natures-oven .brand-portfolio-card__logo img {
-  object-fit: cover;
-  object-position: center;
-  padding: 0;
-  transform: scale(1.04);
 }
 
 .brand-portfolio-card__content {
@@ -8593,6 +8585,223 @@ html[dir="rtl"] .inner-hero--sales h1 {
 .sales-customers__grid p {
   align-self: start;
   margin: 0;
+}
+
+/* Brand and client relationships share the site's cream, green and brass palette. */
+.content-section.logo-showcase {
+  overflow: hidden;
+  background: var(--mah-cream);
+}
+
+.logo-showcase__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+  margin-bottom: 2.5rem;
+}
+
+.logo-showcase__header h2 {
+  max-width: 23ch;
+  margin-bottom: 0;
+}
+
+.logo-showcase__header p:last-child { margin-bottom: 0; }
+
+.logo-carousel__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  color: var(--mah-green-900);
+  font-size: .8rem;
+}
+
+.logo-carousel__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  flex-shrink: 0;
+  padding: .65rem .9rem;
+  color: var(--mah-green-900);
+  background: transparent;
+  border: 1px solid rgba(30, 78, 42, .25);
+}
+
+.logo-carousel__toggle:hover { background: #fff; }
+
+.logo-carousel__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  padding-block: 1rem 1.5rem;
+  mask-image: linear-gradient(90deg, transparent, #000 2%, #000 98%, transparent);
+}
+
+.logo-carousel__viewport::-webkit-scrollbar { display: none; }
+
+.logo-carousel__track {
+  display: flex;
+  width: max-content;
+  animation: client-logo-loop 56s linear infinite;
+  animation-play-state: paused;
+}
+
+.logo-carousel__track--reverse { animation-direction: reverse; }
+html[dir="rtl"] .logo-carousel__track { animation-direction: reverse; }
+html[dir="rtl"] .logo-carousel__track--reverse { animation-direction: normal; }
+
+.logo-carousel[data-running="true"] .logo-carousel__track { animation-play-state: running; }
+.logo-carousel:hover .logo-carousel__track,
+.logo-carousel:focus-within .logo-carousel__track { animation-play-state: paused; }
+
+.logo-carousel__group {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0 1.25rem 0 0;
+}
+
+.logo-carousel__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: clamp(12rem, 18vw, 15rem);
+  min-height: 12.5rem;
+  padding: 1.5rem 1.25rem 1rem;
+  background: #fff;
+  border: 1px solid rgba(30, 78, 42, .12);
+  border-bottom: 3px solid var(--mah-gold);
+  box-shadow: 0 10px 22px rgba(18, 57, 31, .045);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.logo-carousel__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(18, 57, 31, .1);
+}
+
+.logo-carousel__image {
+  position: relative;
+  width: 100%;
+  height: 7.5rem;
+}
+
+.logo-carousel__image img { object-fit: contain; }
+
+.logo-carousel__card > span {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--mah-green-950);
+  font-size: .75rem;
+  line-height: 1.5;
+}
+
+@keyframes client-logo-loop {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.content-section.brand-profiles {
+  background: var(--mah-cream);
+}
+
+.brand-profiles__header { margin-bottom: 3rem; }
+.brand-profiles__header h2 { max-width: 22ch; }
+.brand-profiles__list { display: grid; gap: clamp(2rem, 4vw, 3.5rem); }
+
+.brand-profile {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  background: #fff;
+  border: 1px solid rgba(30, 78, 42, .12);
+  border-inline-start: 4px solid var(--mah-copper);
+  scroll-margin-top: 9rem;
+}
+
+.brand-profile__logo,
+.horeca-brand__logo {
+  position: relative;
+  min-height: 15rem;
+  background: #fff;
+}
+
+.brand-profile__logo img,
+.horeca-brand__logo img {
+  object-fit: contain;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.brand-profile__index {
+  display: block;
+  margin-bottom: .9rem;
+  font-size: .75rem;
+  letter-spacing: .14em;
+  color: var(--mah-copper);
+}
+
+.brand-profile__copy h2 { font-size: clamp(2rem, 3.3vw, 3.5rem); margin-bottom: 1.25rem; }
+.brand-profile__copy p { max-width: 56ch; margin-bottom: 0; }
+.brand-profile__copy .arrow-link { margin-top: 1.5rem; }
+
+.content-section.horeca-brand { background: var(--mah-wheat); }
+.horeca-brand__layout {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.horeca-brand__logo { min-height: 20rem; border-bottom: 4px solid var(--mah-gold); }
+
+.mega-menu__brand-logo--horeca img,
+.mobile-menu__brand-logo--horeca img,
+.mega-menu__brand-logo--amraj img,
+.mobile-menu__brand-logo--amraj img { object-fit: contain; }
+
+.content-section.logistics-strength {
+  background: #fff;
+  color: var(--mah-charcoal);
+}
+
+.logistics-strength__header { max-width: 68rem; margin-inline: auto; text-align: center; }
+.logistics-strength__header h2 { color: var(--mah-green-950); }
+.logistics-strength__header p { max-width: 65ch; margin: 1.5rem auto 0; color: var(--mah-charcoal-700); }
+.logistics-strength .section-kicker { color: var(--mah-green-700); }
+.logistics-strength .home-metrics { width: 100%; margin-bottom: 0; box-shadow: 0 18px 45px rgba(18,57,31,.08); }
+.logistics-strength .manufacturing-metrics__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.logistics-strength .manufacturing-metrics__item { min-height: 12rem; padding: 2rem; text-align: center; }
+
+@media (max-width: 991px) {
+  .logo-showcase__header { grid-template-columns: 1fr; gap: 1.25rem; }
+  .logistics-strength .manufacturing-metrics__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .logistics-strength .manufacturing-metrics__item:nth-child(3) { border-inline-start: 0; }
+  .logistics-strength .manufacturing-metrics__item:nth-child(n+3) { border-top: 1px solid rgba(30, 78, 42, .16); }
+}
+
+@media (max-width: 767px) {
+  .brand-profile,
+  .horeca-brand__layout { grid-template-columns: 1fr; gap: 1.5rem; }
+  .brand-profile__logo { min-height: 12rem; }
+  .horeca-brand__logo { min-height: 15rem; }
+  .logo-carousel__toolbar > span { max-width: 22ch; }
+  .logo-carousel__card { width: 12rem; }
+  .logistics-strength .manufacturing-metrics__item { min-height: 11rem; padding: 1.5rem .85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-carousel__track { animation: none; transform: none; }
+  .logo-carousel__group[aria-hidden="true"],
+  .logo-carousel__toggle { display: none; }
+  .logo-carousel__card { transition: none; }
 }
 
 @media (max-width: 1199px) {
