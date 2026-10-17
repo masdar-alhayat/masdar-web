@@ -490,6 +490,24 @@ export function SectionRenderer({
     );
   };
 
+  if (renderVariant === "tamimi-sectors") {
+    const sectors = groups.filter(group => group.prefix === "Sector");
+    const sectorImages = ["industrial", "food-retail", "real-estate", "investments", "transport-logistics", "services"];
+    return <ManufacturingCapabilitiesFlow
+      kicker={visibleKicker}
+      heading={heading}
+      intro={copy.join(" ")}
+      items={sectors.map((sector, i) => ({
+        title: groupText(sector, "Title"),
+        description: "",
+        image: `/assets/images/tamimi-sectors/${sectorImages[i]}.webp`,
+        objectPosition: "center center",
+      }))}
+      isRtl={isAr}
+      variant="sectors"
+    />;
+  }
+
   if (renderVariant === "partner-logos" || renderVariant === "client-logos") {
     const logos = renderVariant === "partner-logos" ? clientLogos.partners : clientLogos.clients;
     return <AnimatedSection className={`content-section logo-showcase logo-showcase--${renderVariant}`} variant="rise">

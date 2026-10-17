@@ -1,4 +1,5 @@
 import content from "./content.generated.json";
+import {researchInnovation2Content} from "./research-innovation-2";
 import type {PageContent, PageTheme} from "@/types/content";
 
 export const PAGE_KEYS = {
@@ -7,6 +8,7 @@ export const PAGE_KEYS = {
   groupStory: "GROUP STORY – TAMIMI GROUP",
   visionValues: "VISION, MISSION & VALUES",
   research: "RESEARCH & INNOVATION",
+  research2: "RESEARCH & INNOVATION 2",
   manufacturing: "MANUFACTURING",
   operations: "OPERATIONS",
   quality: "QUALITY & COMPLIANCE",
@@ -49,7 +51,7 @@ export const APPROVED_IMAGES = {
 export const PAGE_IMAGES = {
   home: APPROVED_IMAGES.masdar1,
   about: APPROVED_IMAGES.masdar2,
-  groupStory: "/assets/images/masdar-enhanced/masdar_al_hayat_07.jpg",
+  groupStory: "/brand/tamimi-group-logo-2026.png",
   visionValues: "/assets/images/masdar-enhanced/masdar_al_hayat_09.png",
   research: "/assets/images/masdar-enhanced/masdar_al_hayat_13.png",
   manufacturing: "/assets/images/masdar-enhanced/masdar_al_hayat_16.png",
@@ -110,9 +112,6 @@ export const SECTION_IMAGE_MAP: Partial<
   about: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat_06.png",
   },
-  groupStory: {
-    2: "/assets/images/masdar-enhanced/masdar_al_hayat_08.jpeg",
-  },
   visionValues: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat_11.png",
     3: "/assets/images/masdar-enhanced/masdar_al_hayat_10.png",
@@ -158,6 +157,7 @@ export const PAGE_DEFINITIONS: PageDefinition[] = [
   {key: "groupStory", path: "/about/group-story-tamimi-group", theme: "heritage", imageKey: "groupStory"},
   {key: "visionValues", path: "/about/vision-mission-values", theme: "manifesto", imageKey: "visionValues"},
   {key: "research", path: "/research-innovation", theme: "innovation", imageKey: "research"},
+  {key: "research2", path: "/research-innovation-2", theme: "innovation", imageKey: "research"},
   {key: "manufacturing", path: "/capabilities/manufacturing", theme: "industrial", imageKey: "manufacturing"},
   {key: "operations", path: "/capabilities/operations", theme: "operations", imageKey: "operations"},
   {key: "quality", path: "/capabilities/quality-compliance", theme: "quality", imageKey: "quality"},
@@ -178,6 +178,7 @@ export function getSectionImage(
 }
 
 export function getPageContent(key: PageKey): PageContent {
+  if (key === "research2") return researchInnovation2Content;
   return content[PAGE_KEYS[key] as keyof typeof content] as PageContent;
 }
 

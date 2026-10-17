@@ -1044,27 +1044,27 @@
     ]
   },
   "GROUP STORY – TAMIMI GROUP": {
-    "title": "Group Story – Tamimi Group",
+    "title": "Tamimi Group",
     "metadata": [
       {
         "label": "Meta Title",
-        "en": "Tamimi Group Story | The Group Behind Masdar Al Hayat",
-        "ar": "قصة مجموعة التميمي | المجموعة الداعمة لمصدر الحياة"
+        "en": "Tamimi Group | Masdar Al Hayat",
+        "ar": "مجموعة التميمي | مصدر الحياة"
       },
       {
         "label": "Meta Description",
-        "en": "Discover the story of Tamimi Group, a Saudi business group whose journey began in 1942 and whose long-standing experience provides a strong institutional foundation for Masdar Al Hayat.",
-        "ar": "تعرّف على قصة مجموعة التميمي، مجموعة الأعمال السعودية التي بدأت مسيرتها عام 1942، والتي توفر خبرتها الممتدة أساساً مؤسسياً قوياً لمصدر الحياة."
+        "en": "Masdar Al Hayat is part of Tamimi Group, a diversified Saudi business group established in 1942 and headquartered in Dammam.",
+        "ar": "مصدر الحياة جزء من مجموعة التميمي، مجموعة أعمال سعودية متنوعة تأسست عام 1942 وتتخذ من الدمام مقراً لها."
       },
       {
         "label": "Suggested English URL",
-        "en": "/about/tamimi-group",
+        "en": "/about/group-story-tamimi-group",
         "ar": "—"
       },
       {
         "label": "Suggested Arabic URL",
         "en": "—",
-        "ar": "/ar/about/tamimi-group"
+        "ar": "/ar/about/group-story-tamimi-group"
       }
     ],
     "sections": [
@@ -1073,253 +1073,63 @@
         "items": [
           {
             "label": "Section Label",
-            "en": "Group Story",
-            "ar": "قصة المجموعة"
+            "en": "Tamimi Group",
+            "ar": "مجموعة التميمي"
           },
           {
             "label": "Main Heading",
-            "en": "A Legacy of Enterprise, Growth and Contribution Since 1942",
-            "ar": "إرث من الريادة والنمو والعطاء منذ عام 1942"
+            "en": "Masdar Al Hayat is Part of Tamimi Group",
+            "ar": "مصدر الحياة جزء من مجموعة التميمي"
           },
           {
             "label": "Supporting Content",
-            "en": "Masdar Al Hayat is part of Tamimi Group, a Saudi business group whose journey has developed alongside the growth and transformation of the Kingdom.",
-            "ar": "تعمل مصدر الحياة ضمن مجموعة التميمي، وهي مجموعة أعمال سعودية تطورت مسيرتها بالتوازي مع نمو المملكة وتحولها الاقتصادي."
+            "en": "Tamimi Group (Ali Abdullah Al-Tamimi Company) is one of Saudi Arabia’s largest privately held conglomerates. Founded in 1942 by the late Sheikh Ali Abdullah Al-Tamimi, it began in contracting and trading, supporting the Kingdom’s early oil industry.",
+            "ar": "تُعد مجموعة التميمي (شركة علي عبدالله التميمي) من أكبر مجموعات الأعمال الخاصة في المملكة. أسسها المغفور له الشيخ علي عبدالله التميمي عام ١٩٤٢، وبدأت نشاطها في المقاولات والتجارة دعماً لبدايات قطاع النفط السعودي."
+          },
+          {
+            "label": "Supporting Paragraph 2",
+            "en": "Headquartered in Dammam, the Group brings over eight decades of experience, with more than 21,000 employees across over 40 subsidiaries and joint ventures.",
+            "ar": "وتتخذ المجموعة من الدمام مقراً لها، وتستند إلى خبرة تتجاوز ثمانية عقود، وتضم أكثر من ٢١٬٠٠٠ موظف ضمن أكثر من ٤٠ شركة تابعة ومشروعاً مشتركاً."
+          },
+          {
+            "label": "Image Alt",
+            "en": "Tamimi Group logo",
+            "ar": "شعار مجموعة التميمي"
           },
           {
             "label": "Breadcrumb",
-            "en": "Home / About Us / Group Story – Tamimi Group",
-            "ar": "الرئيسية / من نحن / قصة مجموعة التميمي"
+            "en": "Home / About Us / Tamimi Group",
+            "ar": "الرئيسية / من نحن / مجموعة التميمي"
           }
         ]
       },
       {
-        "title": "The Beginning of the Journey",
+        "title": "Tamimi Group Sectors",
         "items": [
           {
+            "label": "Render Variant",
+            "en": "tamimi-sectors",
+            "ar": "tamimi-sectors"
+          },
+          {
             "label": "Section Label",
-            "en": "The Beginning",
-            "ar": "البداية"
+            "en": "Tamimi Group at a Glance",
+            "ar": "مجموعة التميمي في لمحة"
           },
           {
             "label": "Main Heading",
-            "en": "An Entrepreneurial Vision That Began in 1942",
-            "ar": "رؤية ريادية بدأت عام 1942"
-          },
-          {
-            "label": "Paragraph 1",
-            "en": "The story of Tamimi Group began in 1942 through the entrepreneurial vision of Sheikh Ali bin Abdullah Al Tamimi. What began as an ambitious Saudi enterprise developed over the decades into a diversified group operating across important sectors of the national economy.",
-            "ar": "بدأت قصة مجموعة التميمي عام 1942 برؤية ريادية للشيخ علي بن عبدالله التميمي. وما بدأ كمشروع سعودي طموح، تطور عبر العقود ليصبح مجموعة متنوعة الأعمال تعمل في قطاعات مهمة من الاقتصاد الوطني."
-          },
-          {
-            "label": "Paragraph 2",
-            "en": "During its early years, the business supported the Kingdom’s developing industrial economy by supplying materials and services required by major economic activities.",
-            "ar": "وخلال سنواتها الأولى، أسهمت أعمال المجموعة في دعم الاقتصاد الصناعي الناشئ في المملكة من خلال توفير المواد والخدمات اللازمة للأنشطة الاقتصادية الكبرى."
-          },
-          {
-            "label": "Paragraph 3",
-            "en": "This early foundation established a business culture centred on opportunity, reliability, hard work and the ability to respond to the changing requirements of the Saudi market.",
-            "ar": "وأسست هذه الانطلاقة المبكرة لثقافة أعمال تقوم على اغتنام الفرص والموثوقية والعمل الجاد والقدرة على الاستجابة لمتطلبات السوق السعودي المتغيرة."
-          },
-          {
-            "label": "Paragraph 1",
-            "en": "Sheikh Ali bin Abdullah Al Tamimi established the foundations of the Group with an entrepreneurial mindset and a belief in the opportunities emerging across Saudi Arabia.",
-            "ar": "وضع الشيخ علي بن عبدالله التميمي أسس المجموعة بعقلية ريادية وإيمان بالفرص التي كانت تتشكل في مختلف أنحاء المملكة العربية السعودية."
-          },
-          {
-            "label": "Paragraph 2",
-            "en": "His approach was based on building dependable businesses, understanding customer requirements and developing capabilities that could grow alongside the Kingdom.",
-            "ar": "واستند نهجه إلى بناء أعمال موثوقة، وفهم احتياجات العملاء، وتطوير قدرات قادرة على النمو بالتوازي مع تطور المملكة."
-          },
-          {
-            "label": "Paragraph 3",
-            "en": "This legacy continues to influence the Group’s long-term direction and its commitment to creating value through responsible enterprise, operational development and lasting business relationships.",
-            "ar": "ويواصل هذا الإرث تأثيره في توجه المجموعة طويل المدى والتزامها بتحقيق القيمة من خلال الأعمال المسؤولة والتطوير التشغيلي وبناء علاقات تجارية مستدامة."
-          }
-        ]
-      },
-      {
-        "title": "Group Development Timeline",
-        "items": [
-          {
-            "label": "Section Label",
-            "en": "Our Journey Through the Decades",
-            "ar": "مسيرتنا عبر العقود"
-          },
-          {
-            "label": "Main Heading",
-            "en": "Growing with the Kingdom",
-            "ar": "ننمو مع المملكة"
-          },
-          {
-            "label": "Introduction",
-            "en": "Tamimi Group’s history reflects a continuous journey of enterprise, diversification and response to the needs of Saudi Arabia’s developing economy.",
-            "ar": "تعكس مسيرة مجموعة التميمي رحلة متواصلة من الريادة والتنوع والاستجابة لاحتياجات الاقتصاد السعودي المتطور."
-          },
-          {
-            "label": "Timeline Year 1",
-            "en": 1942,
-            "ar": 1942
-          },
-          {
-            "label": "Timeline Title 1",
-            "en": "The Entrepreneurial Journey Begins",
-            "ar": "بداية المسيرة الريادية"
-          },
-          {
-            "label": "Timeline Description 1",
-            "en": "Sheikh Ali bin Abdullah Al Tamimi begins trading construction materials with Saudi Aramco, establishing the foundation from which the Group would grow.",
-            "ar": "بدأ الشيخ علي بن عبدالله التميمي تجارة مواد البناء مع أرامكو السعودية، واضعاً الأساس الذي انطلقت منه مسيرة نمو المجموعة."
-          },
-          {
-            "label": "Timeline Year 2",
-            "en": 1949,
-            "ar": 1949
-          },
-          {
-            "label": "Timeline Title 2",
-            "en": "Tamimi Commercial Is Established",
-            "ar": "تأسيس التميمي التجارية"
-          },
-          {
-            "label": "Timeline Description 2",
-            "en": "Tamimi Commercial is established as the Group’s trading arm, developing into a nationwide importer and distributor with enduring international partnerships.",
-            "ar": "تأسست التميمي التجارية ذراعاً تجارياً للمجموعة، وتطورت إلى مستورد وموزع على مستوى المملكة بشراكات دولية ممتدة."
-          },
-          {
-            "label": "Timeline Year 3",
-            "en": 1953,
-            "ar": 1953
-          },
-          {
-            "label": "Timeline Title 3",
-            "en": "Expansion into Energy and Real Estate",
-            "ar": "التوسع في الطاقة والعقار"
-          },
-          {
-            "label": "Timeline Description 3",
-            "en": "The Group broadens its activities into energy-related business and real estate development, with its real estate presence rooted in Saudi Arabia’s Eastern Province.",
-            "ar": "وسعت المجموعة أنشطتها لتشمل الأعمال المرتبطة بالطاقة والتطوير العقاري، مع حضور عقاري راسخ في المنطقة الشرقية من المملكة."
-          },
-          {
-            "label": "Timeline Year 4",
-            "en": 1959,
-            "ar": 1959
-          },
-          {
-            "label": "Timeline Title 4",
-            "en": "Transportation Capabilities Develop",
-            "ar": "تطوير قدرات النقل"
-          },
-          {
-            "label": "Timeline Description 4",
-            "en": "TASECO adds a Saudi-owned transport platform that would diversify into passenger and professional transport services across the Kingdom.",
-            "ar": "أضافت تاسكو منصة نقل سعودية توسعت لاحقاً في خدمات نقل الركاب والنقل المهني في مختلف أنحاء المملكة."
-          },
-          {
-            "label": "Timeline Year 5",
-            "en": 1977,
-            "ar": 1977
-          },
-          {
-            "label": "Timeline Title 5",
-            "en": "Services and Operational Support",
-            "ar": "الخدمات والدعم التشغيلي"
-          },
-          {
-            "label": "Timeline Description 5",
-            "en": "Tamimi Global expands the Group into catering, operations and maintenance, facilities management, industrial services and workforce support.",
-            "ar": "وسعت التميمي العالمية أعمال المجموعة لتشمل الإعاشة والتشغيل والصيانة وإدارة المرافق والخدمات الصناعية ودعم القوى العاملة."
-          },
-          {
-            "label": "Timeline Year 6",
-            "en": 1979,
-            "ar": 1979
-          },
-          {
-            "label": "Timeline Title 6",
-            "en": "A New Chapter in Food Retail",
-            "ar": "فصل جديد في تجارة التجزئة الغذائية"
-          },
-          {
-            "label": "Timeline Description 6",
-            "en": "Tamimi Markets opens the Kingdom’s first modern supermarket in Khobar in partnership with Safeway Stores USA, marking a new era in food retail.",
-            "ar": "افتتحت أسواق التميمي أول سوبرماركت حديث في المملكة بمدينة الخبر بالشراكة مع متاجر سيفوي الأمريكية، لتبدأ مرحلة جديدة في تجارة الأغذية بالتجزئة."
-          },
-          {
-            "label": "Timeline Year 7",
-            "en": 1998,
-            "ar": 1998
-          },
-          {
-            "label": "Timeline Title 7",
-            "en": "Strengthening Infrastructure Activities",
-            "ar": "تعزيز أنشطة البنية التحتية"
-          },
-          {
-            "label": "Timeline Description 7",
-            "en": "Thrustboring Construction Company expands the Group into specialised tunnelling and infrastructure works across Saudi Arabia and the Gulf.",
-            "ar": "وسعت شركة إنشاءات حفر الأنفاق أعمال المجموعة إلى أعمال الأنفاق والبنية التحتية المتخصصة في المملكة ومنطقة الخليج."
-          },
-          {
-            "label": "Timeline Year 8",
-            "en": 2009,
-            "ar": 2009
-          },
-          {
-            "label": "Timeline Title 8",
-            "en": "Masdar Al Hayat Begins Operations",
-            "ar": "انطلاق عمليات مصدر الحياة"
-          },
-          {
-            "label": "Timeline Description 8",
-            "en": "Masdar Al Hayat begins manufacturing and distributing consumer packaged foods through a growing brand portfolio led by Fonte, serving varied market channels.",
-            "ar": "بدأت مصدر الحياة تصنيع وتوزيع الأغذية الاستهلاكية المعبأة عبر محفظة علامات متنامية تقودها فونتي وتخدم قنوات سوق متنوعة."
-          },
-          {
-            "label": "Timeline Year 9",
-            "en": 2017,
-            "ar": 2017
-          },
-          {
-            "label": "Timeline Title 9",
-            "en": "Developing New Investment Platforms",
-            "ar": "تطوير منصات استثمارية جديدة"
-          },
-          {
-            "label": "Timeline Description 9",
-            "en": "Eastern Yields is established as an investment platform focused on private equity and venture capital, supporting growth opportunities locally and internationally.",
-            "ar": "تأسست عوائد الشرقية منصةً استثمارية تركز على الأسهم الخاصة ورأس المال الجريء لدعم فرص النمو محلياً ودولياً."
-          }
-        ]
-      },
-      {
-        "title": "A Diversified Saudi Business Group",
-        "items": [
-          {
-            "label": "Section Label",
-            "en": "Group Capabilities",
-            "ar": "قدرات المجموعة"
-          },
-          {
-            "label": "Main Heading",
-            "en": "Experience Across Essential Economic Sectors",
-            "ar": "خبرات تمتد عبر قطاعات اقتصادية أساسية"
+            "en": "A Diversified Group Across Key Sectors",
+            "ar": "مجموعة متنوعة في قطاعات رئيسية"
           },
           {
             "label": "Introductory Content",
-            "en": "Over the decades, Tamimi Group has developed a diversified business portfolio that combines operational experience, market knowledge and long-term investment thinking.",
-            "ar": "طورت مجموعة التميمي عبر العقود محفظة أعمال متنوعة تجمع بين الخبرة التشغيلية والمعرفة بالسوق والرؤية الاستثمارية طويلة المدى."
+            "en": "The Group’s diversified portfolio spans the following business sectors.",
+            "ar": "تتنوع محفظة أعمال المجموعة لتشمل القطاعات التالية."
           },
           {
             "label": "Sector 1 Title",
-            "en": "Industrial and Infrastructure",
-            "ar": "الصناعة والبنية التحتية"
-          },
-          {
-            "label": "Sector 1 Description",
-            "en": "Businesses supporting industrial requirements, infrastructure development and specialised technical services.",
-            "ar": "أعمال تدعم الاحتياجات الصناعية وتطوير البنية التحتية والخدمات الفنية المتخصصة."
+            "en": "Industrial, Construction & Infrastructure",
+            "ar": "الصناعة والإنشاءات والبنية التحتية"
           },
           {
             "label": "Sector 2 Title",
@@ -1327,269 +1137,24 @@
             "ar": "الأغذية والتجزئة"
           },
           {
-            "label": "Sector 2 Description",
-            "en": "Activities covering food retail, manufacturing, distribution and commercial market services.",
-            "ar": "أنشطة تشمل تجارة الأغذية بالتجزئة والتصنيع والتوزيع والخدمات التجارية المرتبطة بالسوق."
-          },
-          {
             "label": "Sector 3 Title",
-            "en": "Services",
-            "ar": "الخدمات"
-          },
-          {
-            "label": "Sector 3 Description",
-            "en": "Integrated capabilities across facilities management, operations, maintenance, catering and workforce support.",
-            "ar": "قدرات متكاملة في إدارة المرافق والتشغيل والصيانة والإعاشة ودعم القوى العاملة."
+            "en": "Real Estate",
+            "ar": "العقارات"
           },
           {
             "label": "Sector 4 Title",
-            "en": "Real Estate",
-            "ar": "العقار"
-          },
-          {
-            "label": "Sector 4 Description",
-            "en": "Development and management activities supporting residential and commercial growth.",
-            "ar": "أنشطة تطوير وإدارة تدعم النمو في المشاريع السكنية والتجارية."
+            "en": "Investments",
+            "ar": "الاستثمارات"
           },
           {
             "label": "Sector 5 Title",
-            "en": "Transportation and Logistics",
+            "en": "Transportation & Logistics",
             "ar": "النقل والخدمات اللوجستية"
           },
           {
-            "label": "Sector 5 Description",
-            "en": "Transportation and logistics services developed to support organisations and market requirements across the Kingdom.",
-            "ar": "خدمات نقل ولوجستيات تم تطويرها لدعم المؤسسات ومتطلبات السوق في مختلف أنحاء المملكة."
-          },
-          {
             "label": "Sector 6 Title",
-            "en": "Training and Information Technology",
-            "ar": "التدريب وتقنية المعلومات"
-          },
-          {
-            "label": "Sector 6 Description",
-            "en": "Solutions focused on professional capability development, technology and organisational performance.",
-            "ar": "حلول تركز على تطوير القدرات المهنية والتقنية ورفع الأداء المؤسسي."
-          },
-          {
-            "label": "Sector 7 Title",
-            "en": "Investment",
-            "ar": "الاستثمار"
-          },
-          {
-            "label": "Sector 7 Description",
-            "en": "Long-term investment activities designed to identify opportunities and create sustainable value across different fields.",
-            "ar": "أنشطة استثمارية طويلة المدى تهدف إلى اكتشاف الفرص وتحقيق قيمة مستدامة في مجالات متعددة."
-          }
-        ]
-      },
-      {
-        "title": "Masdar Al Hayat Within Tamimi Group",
-        "items": [
-          {
-            "label": "Section Label",
-            "en": "Our Place Within the Group",
-            "ar": "موقعنا ضمن المجموعة"
-          },
-          {
-            "label": "Main Heading",
-            "en": "Extending the Group’s Experience into Food Manufacturing",
-            "ar": "نواصل خبرة المجموعة في مجال التصنيع الغذائي"
-          },
-          {
-            "label": "Paragraph 1",
-            "en": "Masdar Al Hayat is a limited liability company operating within Tamimi Group and began its commercial operations in 2009.",
-            "ar": "مصدر الحياة شركة ذات مسؤولية محدودة تعمل ضمن مجموعة التميمي، وقد بدأت عملياتها التجارية عام 2009."
-          },
-          {
-            "label": "Paragraph 2",
-            "en": "The company specialises in manufacturing and distributing packaged food products through a growing portfolio led by Fonte.",
-            "ar": "وتتخصص الشركة في تصنيع وتوزيع المنتجات الغذائية المعبأة من خلال محفظة متنامية تقودها علامة فونتي."
-          },
-          {
-            "label": "Paragraph 3",
-            "en": "Within the wider Group, Masdar Al Hayat represents a focused food-manufacturing platform that connects product development, manufacturing capability and distribution with the evolving needs of the Saudi market.",
-            "ar": "وتمثل مصدر الحياة ضمن المجموعة منصة متخصصة في التصنيع الغذائي، تربط بين تطوير المنتجات والقدرات التصنيعية والتوزيع والاحتياجات المتغيرة للسوق السعودي."
-          },
-          {
-            "label": "Paragraph 4",
-            "en": "This position allows Masdar Al Hayat to maintain its specialised operational identity while being part of a broader Saudi business legacy.",
-            "ar": "ويتيح هذا الموقع لمصدر الحياة المحافظة على هويتها التشغيلية المتخصصة، مع كونها جزءاً من إرث أعمال سعودي أوسع."
-          },
-          {
-            "label": "Introductory Content",
-            "en": "Being part of Tamimi Group places Masdar Al Hayat within a broader corporate environment shaped by decades of commercial and operational experience.",
-            "ar": "يضع انتماء مصدر الحياة إلى مجموعة التميمي الشركة ضمن بيئة مؤسسية أوسع تشكلت عبر عقود من الخبرة التجارية والتشغيلية."
-          },
-          {
-            "label": "Pillar 1 Title",
-            "en": "Long-Term Perspective",
-            "ar": "رؤية طويلة المدى"
-          },
-          {
-            "label": "Pillar 1 Description",
-            "en": "A business outlook centred on continuity, responsible development and sustainable value creation.",
-            "ar": "رؤية أعمال تركز على الاستمرارية والتطور المسؤول وتحقيق قيمة مستدامة."
-          },
-          {
-            "label": "Pillar 2 Title",
-            "en": "Diverse Experience",
-            "ar": "خبرات متنوعة"
-          },
-          {
-            "label": "Pillar 2 Description",
-            "en": "Exposure to multiple sectors provides a wider institutional understanding of markets, operations and business relationships.",
-            "ar": "يوفر العمل في قطاعات متعددة فهماً مؤسسياً أوسع للأسواق والعمليات وعلاقات الأعمال."
-          },
-          {
-            "label": "Pillar 3 Title",
-            "en": "Entrepreneurial Culture",
-            "ar": "ثقافة ريادية"
-          },
-          {
-            "label": "Pillar 3 Description",
-            "en": "A heritage of identifying opportunities, developing new capabilities and responding to changing market needs.",
-            "ar": "إرث يقوم على اكتشاف الفرص وتطوير القدرات الجديدة والاستجابة لاحتياجات السوق المتغيرة."
-          },
-          {
-            "label": "Pillar 4 Title",
-            "en": "Operational Discipline",
-            "ar": "انضباط تشغيلي"
-          },
-          {
-            "label": "Pillar 4 Description",
-            "en": "Decades of business activity have reinforced the importance of structured operations, reliability and consistent delivery.",
-            "ar": "عززت عقود من النشاط التجاري أهمية العمليات المنظمة والموثوقية والثبات في التنفيذ."
-          },
-          {
-            "label": "Pillar 5 Title",
-            "en": "Commitment to Quality",
-            "ar": "التزام بالجودة"
-          },
-          {
-            "label": "Pillar 5 Description",
-            "en": "A continuing focus on improving products and services to meet customer and market expectations.",
-            "ar": "تركيز مستمر على تحسين المنتجات والخدمات لتلبية توقعات العملاء والسوق."
-          },
-          {
-            "label": "Pillar 6 Title",
-            "en": "Saudi Market Knowledge",
-            "ar": "معرفة عميقة بالسوق السعودي"
-          },
-          {
-            "label": "Pillar 6 Description",
-            "en": "Long-standing participation in the Kingdom provides a strong understanding of local requirements, opportunities and development priorities.",
-            "ar": "يوفر الحضور الممتد في المملكة فهماً قوياً للاحتياجات المحلية والفرص وأولويات التنمية."
-          }
-        ]
-      },
-      {
-        "title": "Growing Alongside Saudi Arabia",
-        "items": [
-          {
-            "label": "Section Label",
-            "en": "National Contribution",
-            "ar": "مساهمة وطنية"
-          },
-          {
-            "label": "Main Heading",
-            "en": "Part of the Kingdom’s Economic Development Journey",
-            "ar": "جزء من مسيرة التنمية الاقتصادية للمملكة"
-          },
-          {
-            "label": "Paragraph 1",
-            "en": "Tamimi Group’s journey has developed alongside Saudi Arabia’s economic expansion, industrial growth and increasing market sophistication.",
-            "ar": "تطورت مسيرة مجموعة التميمي بالتوازي مع التوسع الاقتصادي والنمو الصناعي والتطور المتسارع للأسواق في المملكة العربية السعودية."
-          },
-          {
-            "label": "Paragraph 2",
-            "en": "Through businesses operating across different sectors, the Group has contributed capabilities, services, employment opportunities and commercial activity that support the wider economy.",
-            "ar": "ومن خلال شركات تعمل في قطاعات متنوعة، أسهمت المجموعة في توفير القدرات والخدمات وفرص العمل والأنشطة التجارية التي تدعم الاقتصاد بشكل أوسع."
-          },
-          {
-            "label": "Paragraph 3",
-            "en": "Today, the Group continues to develop its businesses in line with changing market requirements and the Kingdom’s ambition for a more diversified, innovative and sustainable economy.",
-            "ar": "واليوم، تواصل المجموعة تطوير أعمالها بما يتناسب مع متطلبات السوق المتغيرة وطموح المملكة نحو اقتصاد أكثر تنوعاً وابتكاراً واستدامة."
-          },
-          {
-            "label": "Paragraph 4",
-            "en": "Masdar Al Hayat contributes to this direction by strengthening local food-manufacturing capabilities and developing food solutions for consumers and businesses across the Kingdom.",
-            "ar": "وتسهم مصدر الحياة في هذا التوجه من خلال تعزيز قدرات التصنيع الغذائي المحلي وتطوير حلول غذائية للمستهلكين وقطاعات الأعمال في مختلف أنحاء المملكة."
-          }
-        ]
-      },
-      {
-        "title": "Closing Call to Action",
-        "items": [
-          {
-            "label": "Main Heading",
-            "en": "Discover Masdar Al Hayat’s Role Within a Lasting Saudi Legacy",
-            "ar": "اكتشف دور مصدر الحياة ضمن إرث سعودي راسخ"
-          },
-          {
-            "label": "Supporting Content",
-            "en": "Learn how Masdar Al Hayat transforms the strength of its corporate foundation into food-manufacturing capabilities, quality-focused operations and long-term market value.",
-            "ar": "تعرّف على كيفية تحويل مصدر الحياة لقوة أساسها المؤسسي إلى قدرات في التصنيع الغذائي وعمليات ترتكز على الجودة وقيمة طويلة المدى في السوق."
-          },
-          {
-            "label": "Primary CTA",
-            "en": "About Masdar Al Hayat",
-            "ar": "عن مصدر الحياة"
-          },
-          {
-            "label": "Secondary CTA",
-            "en": "Explore Manufacturing",
-            "ar": "استكشف التصنيع"
-          },
-          {
-            "label": "Suggested Group Highlight Labels",
-            "en": null,
-            "ar": null
-          },
-          {
-            "label": "English",
-            "en": "Arabic",
-            "ar": null
-          },
-          {
-            "label": "A Saudi Journey Since 1942",
-            "en": "مسيرة سعودية منذ عام 1942",
-            "ar": null
-          },
-          {
-            "label": "Founded by Sheikh Ali bin Abdullah Al Tamimi",
-            "en": "أسسها الشيخ علي بن عبدالله التميمي",
-            "ar": null
-          },
-          {
-            "label": "More Than Eight Decades of Experience",
-            "en": "أكثر من ثمانية عقود من الخبرة",
-            "ar": null
-          },
-          {
-            "label": "Diversified Business Heritage",
-            "en": "إرث متنوع في عالم الأعمال",
-            "ar": null
-          },
-          {
-            "label": "Operating Across Key Economic Sectors",
-            "en": "حضور في قطاعات اقتصادية رئيسية",
-            "ar": null
-          },
-          {
-            "label": "Food and Retail Experience",
-            "en": "خبرة في الأغذية والتجزئة",
-            "ar": null
-          },
-          {
-            "label": "Masdar Al Hayat Since 2009",
-            "en": "مصدر الحياة منذ عام 2009",
-            "ar": null
-          },
-          {
-            "label": "Growing Alongside the Kingdom",
-            "en": "ننمو مع المملكة",
-            "ar": null
+            "en": "Services, Catering & Facility Management",
+            "ar": "الخدمات والإعاشة وإدارة المرافق"
           }
         ]
       }
@@ -1630,8 +1195,8 @@
           },
           {
             "label": "Main Heading",
-            "en": "The Principles Guiding Our Purpose and Progress",
-            "ar": "المبادئ التي توجه أهدافنا ومسيرتنا"
+            "en": "Our Vision, Mission & Values",
+            "ar": "رؤيتنا ورسالتنا وقيمنا"
           },
           {
             "label": "Supporting Content",

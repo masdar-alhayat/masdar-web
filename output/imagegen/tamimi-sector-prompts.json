@@ -1,0 +1,48 @@
+{
+  "generator": "Built-in image_gen",
+  "purpose": "Illustrative sector photography without branding",
+  "assets": [
+    {
+      "slug": "industrial",
+      "sector": "Industrial, Construction & Infrastructure",
+      "source": "C:\\Users\\LENOVO\\.codex\\generated_images\\01a08b35-412e-7792-86cf-ce3fb645414a\\exec-139510e9-e2f9-4285-ae7f-2c6680d5214d.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium corporate website sector slider photograph. Primary request: illustrate Industrial, Construction & Infrastructure. Scene: A realistic contemporary industrial construction site in Saudi Arabia, an orderly steel-frame industrial building under construction, one tower crane and an engineered access road, distant pipework and industrial infrastructure, limestone-colored ground, physically accurate equipment and structure. Three-quarter architectural viewpoint, no close-up people. Style: highly realistic editorial commercial photography, understated and credible, authentic textures, balanced exposure, gently warm neutral natural colors, cohesive with other sector photographs. Composition: one single landscape photograph, 3:2 aspect ratio, clear central subject with generous framing suitable for responsive crops. Lighting: soft natural daylight, no exaggerated HDR or cinematic effects. Constraints: NO branding, NO logos, NO watermarks, NO typography, NO readable text or signage anywhere; no collages, no icons, no illustrations, no artificial CGI finish. This is illustrative sector imagery, not a claim to depict a particular company property.",
+      "file": "public/assets/images/tamimi-sectors/industrial.webp"
+    },
+    {
+      "slug": "food-retail",
+      "sector": "Food and Retail",
+      "source": "C:\\Users\\LENOVO\\.codex\\generated_images\\01a08b35-412e-7792-86cf-ce3fb645414a\\exec-a5fc6be6-7077-4086-be89-21f7a0c0181e.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium corporate website sector slider photograph. Primary request: illustrate Food and Retail. Scene: A pristine contemporary Saudi supermarket fresh-food area, abundant neatly arranged vegetables, fruit and bakery bread in plain baskets, tidy refrigerated cases in the background, realistic commercial interior, natural produce textures, eye-level editorial photography. No packaged goods with visible labels. Style: highly realistic editorial commercial photography, understated and credible, authentic textures, balanced exposure, gently warm neutral natural colors, cohesive with other sector photographs. Composition: one single landscape photograph, 3:2 aspect ratio, clear central subject with generous framing suitable for responsive crops. Lighting: soft natural daylight, no exaggerated HDR or cinematic effects. Constraints: NO branding, NO logos, NO watermarks, NO typography, NO readable text or signage anywhere; no collages, no icons, no illustrations, no artificial CGI finish. This is illustrative sector imagery, not a claim to depict a particular company property.",
+      "file": "public/assets/images/tamimi-sectors/food-retail.webp"
+    },
+    {
+      "slug": "real-estate",
+      "sector": "Real Estate",
+      "source": "C:\\Users\\LENOVO\\.codex\\generated_images\\01a08b35-412e-7792-86cf-ce3fb645414a\\exec-813742e0-0e71-4a41-b4f0-2a1af46fdb2c.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium corporate website sector slider photograph. Primary request: illustrate Real Estate. Scene: A refined contemporary commercial property in Saudi Arabia, warm limestone office buildings with glass facades, shaded pedestrian courtyard and restrained palms, carefully maintained landscaping, realistic Middle Eastern architecture, eye-level architectural photography, no recognizable landmark. Style: highly realistic editorial commercial photography, understated and credible, authentic textures, balanced exposure, gently warm neutral natural colors, cohesive with other sector photographs. Composition: one single landscape photograph, 3:2 aspect ratio, clear central subject with generous framing suitable for responsive crops. Lighting: soft natural daylight, no exaggerated HDR or cinematic effects. Constraints: NO branding, NO logos, NO watermarks, NO typography, NO readable text or signage anywhere; no collages, no icons, no illustrations, no artificial CGI finish. This is illustrative sector imagery, not a claim to depict a particular company property.",
+      "file": "public/assets/images/tamimi-sectors/real-estate.webp"
+    },
+    {
+      "slug": "investments",
+      "sector": "Investments",
+      "source": "C:\\Users\\LENOVO\\.codex\\generated_images\\01a08b35-412e-7792-86cf-ce3fb645414a\\exec-7ce1bcae-e48c-4f26-b356-fce28602cb86.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium corporate website sector slider photograph. Primary request: illustrate Investments. Scene: A realistic business investment planning scene in a modern Saudi office, close editorial view of a clean walnut meeting table with architectural scale model of a commercial building and neatly arranged printed financial charts without any legible words, two business professionals seen only from torso and hands reviewing the project, natural hand anatomy, softly blurred modern city beyond the window. Understated, professional, no staged handshake, no floating graphics. Style: highly realistic editorial commercial photography, understated and credible, authentic textures, balanced exposure, gently warm neutral natural colors, cohesive with other sector photographs. Composition: one single landscape photograph, 3:2 aspect ratio, clear central subject with generous framing suitable for responsive crops. Lighting: soft natural daylight, no exaggerated HDR or cinematic effects. Constraints: NO branding, NO logos, NO watermarks, NO typography, NO readable text or signage anywhere; no collages, no icons, no illustrations, no artificial CGI finish. This is illustrative sector imagery, not a claim to depict a particular company property.",
+      "file": "public/assets/images/tamimi-sectors/investments.webp"
+    },
+    {
+      "slug": "transport-logistics",
+      "sector": "Transportation & Logistics",
+      "source": "C:\\Users\\LENOVO\\.codex\\generated_images\\01a08b35-412e-7792-86cf-ce3fb645414a\\exec-33424065-9a62-4baf-9327-4a34cb0fa74c.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium corporate website sector slider photograph. Primary request: illustrate Transportation & Logistics. Scene: A realistic modern distribution logistics hub in Saudi Arabia, two plain white semi-trailer trucks at an immaculate loading dock, one truck in three-quarter foreground and warehouse loading bays receding behind, accurate vehicle proportions, orderly paved yard, calm early morning light, no people close to camera. Style: highly realistic editorial commercial photography, understated and credible, authentic textures, balanced exposure, gently warm neutral natural colors, cohesive with other sector photographs. Composition: one single landscape photograph, 3:2 aspect ratio, clear central subject with generous framing suitable for responsive crops. Lighting: soft natural daylight, no exaggerated HDR or cinematic effects. Constraints: NO branding, NO logos, NO watermarks, NO typography, NO readable text or signage anywhere; no collages, no icons, no illustrations, no artificial CGI finish. This is illustrative sector imagery, not a claim to depict a particular company property.",
+      "file": "public/assets/images/tamimi-sectors/transport-logistics.webp"
+    },
+    {
+      "slug": "services",
+      "sector": "Services, Catering & Facility Management",
+      "source": "C:\\Users\\LENOVO\\.codex\\generated_images\\01a08b35-412e-7792-86cf-ce3fb645414a\\exec-0dfa8010-fd93-456c-88b7-135677baeeeb.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium corporate website sector slider photograph. Primary request: illustrate Services, Catering & Facility Management. Scene: A realistic modern commercial catering kitchen in Saudi Arabia, professional chef wearing plain white chef jacket and hair covering carefully preparing an organized row of plated meals on a stainless steel counter, a second staff member in soft background, clean professional equipment, natural human proportions and hands, calm competent working atmosphere, editorial hospitality photography. Style: highly realistic editorial commercial photography, understated and credible, authentic textures, balanced exposure, gently warm neutral natural colors, cohesive with other sector photographs. Composition: one single landscape photograph, 3:2 aspect ratio, clear central subject with generous framing suitable for responsive crops. Lighting: soft natural daylight, no exaggerated HDR or cinematic effects. Constraints: NO branding, NO logos, NO watermarks, NO typography, NO readable text or signage anywhere; no collages, no icons, no illustrations, no artificial CGI finish. This is illustrative sector imagery, not a claim to depict a particular company property.",
+      "file": "public/assets/images/tamimi-sectors/services.webp"
+    }
+  ]
+}

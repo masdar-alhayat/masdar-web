@@ -20,7 +20,10 @@ const menu: MenuItem[] = [
     {label: {en: "Group Story — Tamimi Group", ar: "قصة المجموعة — مجموعة التميمي"}, href: "/about/group-story-tamimi-group"},
     {label: {en: "Vision, Mission & Values", ar: "الرؤية والرسالة والقيم"}, href: "/about/vision-mission-values"}
   ]},
-  {label: {en: "Research & Innovation", ar: "البحث والابتكار"}, href: "/research-innovation"},
+  {label: {en: "Research & Innovation", ar: "البحث والابتكار"}, children: [
+    {label: {en: "Research & Innovation", ar: "البحث والابتكار"}, href: "/research-innovation"},
+    {label: {en: "Research & Innovation 2", ar: "البحث والابتكار ٢"}, href: "/research-innovation-2"},
+  ]},
   {label: {en: "Our Capabilities", ar: "قدراتنا"}, children: [
     {label: {en: "Manufacturing", ar: "التصنيع"}, href: "/capabilities/manufacturing"},
     {label: {en: "Operations", ar: "العمليات"}, href: "/capabilities/operations"},

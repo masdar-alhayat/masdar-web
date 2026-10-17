@@ -1667,24 +1667,23 @@ html[dir="rtl"] .inner-hero__media .brand-image {
 }
 
 .inner-hero__brand-logo {
-  position: absolute;
-  inset-inline-end: clamp(1rem, 3vw, 3rem);
-  bottom: clamp(1.25rem, 3vw, 2.5rem);
-  z-index: 4;
-  width: clamp(9rem, 15vw, 13rem);
-  padding: clamp(.55rem, 1vw, .85rem);
-  background: rgba(255, 255, 255, .96);
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 32rem;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  background: #fff;
   border: 1px solid rgba(210, 169, 96, .55);
   border-top: 3px solid var(--mah-gold);
   box-shadow: 0 18px 42px rgba(7, 31, 16, .32);
-  backdrop-filter: blur(8px)
 }
 
 .inner-hero__brand-logo img {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 8rem;
+  height: 100%;
   object-fit: contain
 }
 
@@ -1767,10 +1766,6 @@ html[dir="rtl"] .story-video-section__overlay {
 
 .inner-hero--heritage {
   background: var(--mah-copper)
-}
-
-.inner-hero--heritage .brand-image__img {
-  object-position: 42% center
 }
 
 .inner-hero--manifesto {
@@ -8829,4 +8824,76 @@ html[dir="rtl"] .logo-carousel__track--reverse { animation-direction: normal; }
   .sales-customers__grid article {
     min-height: 15rem;
   }
+}
+
+/* A concise introduction to the group behind Masdar Al Hayat. */
+.inner-hero--heritage {
+  min-height: 0;
+  padding-top: clamp(8.5rem, 11vw, 10rem);
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.inner-hero--heritage .inner-hero__grid {
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+}
+
+.inner-hero--heritage .inner-hero__content { padding-block: 1rem; }
+.inner-hero--heritage .inner-hero__crumb { margin-bottom: 1.5rem; }
+.inner-hero--heritage .section-kicker { color: var(--mah-cream); }
+.inner-hero--heritage h1 {
+  max-width: 19ch;
+  font-size: clamp(2.35rem, 4.1vw, 4.2rem);
+  line-height: 1.16;
+  margin-bottom: 1.5rem;
+}
+
+html[dir="rtl"] .inner-hero--heritage h1 { line-height: 1.4; }
+.inner-hero--heritage .inner-hero__content p {
+  max-width: 65ch;
+  color: rgba(255, 255, 255, .88);
+  font-size: clamp(1rem, 1.15vw, 1.1rem);
+  line-height: 1.8;
+}
+
+.inner-hero--heritage .inner-hero__content p:last-child { margin-bottom: 0; }
+.tamimi-sectors .section-kicker { color: var(--mah-sand); }
+.tamimi-sectors .manufacturing-flow__header p {
+  max-width: 65ch;
+  margin: 0;
+  color: rgba(255, 255, 255, .75);
+  font-size: 1rem;
+}
+
+.tamimi-sectors .manufacturing-flow__copy h3 {
+  max-width: 17ch;
+  margin: 0;
+  line-height: 1.35;
+}
+
+html[dir="rtl"] .tamimi-sectors .manufacturing-flow__copy h3 { line-height: 1.5; }
+.tamimi-sectors .manufacturing-flow__stage:focus-visible { outline: 2px solid var(--mah-gold); outline-offset: 6px; }
+
+/* Keep every sector reachable by touch, keyboard and reduced-motion users. */
+.tamimi-sectors:not(.is-enhanced) .manufacturing-flow__stage {
+  overflow-x: auto;
+  padding-bottom: 1.25rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--mah-gold) rgba(255, 255, 255, .15);
+  scrollbar-width: thin;
+}
+
+.tamimi-sectors:not(.is-enhanced) .manufacturing-flow__track { display: flex; gap: 1.5rem; }
+.tamimi-sectors:not(.is-enhanced) .manufacturing-flow__card {
+  flex: 0 0 min(82vw, 34rem);
+  scroll-snap-align: start;
+}
+
+.tamimi-sectors:not(.is-enhanced) .manufacturing-flow__visual { aspect-ratio: 3 / 2; }
+.tamimi-sectors:not(.is-enhanced) .manufacturing-flow__copy { min-height: 15rem; }
+
+@media (max-width: 991px) {
+  .inner-hero--heritage .inner-hero__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .inner-hero--heritage .inner-hero__media { width: 100%; max-width: 40rem; margin-inline: auto; }
+  .inner-hero--heritage h1 { max-width: 24ch; }
 }

@@ -20,11 +20,15 @@ export function ManufacturingCapabilitiesFlow({
   heading,
   items,
   isRtl,
+  variant = "manufacturing",
+  intro,
 }: {
   kicker: string;
   heading: string;
   items: ManufacturingCapabilityItem[];
   isRtl: boolean;
+  variant?: "manufacturing" | "sectors";
+  intro?: string;
 }) {
   const scope = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
@@ -107,6 +111,7 @@ export function ManufacturingCapabilitiesFlow({
                       duration: {min: .18, max: .42},
                       delay: .04,
                       ease: "power1.inOut",
+                      inertia: variant !== "sectors",
                     }
                   : undefined,
                 onUpdate: (self) => {
@@ -137,6 +142,8 @@ export function ManufacturingCapabilitiesFlow({
       mm.add(
         "(max-width: 991px) and (prefers-reduced-motion: no-preference)",
         () => {
+          // Sector cards use native horizontal scrolling on touch screens.
+          if (variant === "sectors") return;
           const reveals = cards.map((card) =>
             gsap.from(card, {
               y: 60,
@@ -158,28 +165,31 @@ export function ManufacturingCapabilitiesFlow({
 
       return () => mm.revert();
     },
-    {scope, dependencies: [isRtl, items.length]},
+    {scope, dependencies: [isRtl, items.length, variant]},
   );
 
   return (
     <section
       ref={scope}
-      className="mah-section manufacturing-flow content-section content-section--industrial"
+      className={`mah-section manufacturing-flow content-section ${variant === "sectors" ? "content-section--heritage tamimi-sectors" : "content-section--industrial"}`}
     >
       <div className="container-xxl manufacturing-flow__container">
         <header className="manufacturing-flow__header">
           <span className="section-kicker">{kicker}</span>
           <h2>{heading}</h2>
+          {intro && <p>{intro}</p>}
         </header>
 
         <div
           ref={stage}
           className="manufacturing-flow__stage"
           aria-label={heading}
+          tabIndex={variant === "sectors" ? 0 : undefined}
+          role={variant === "sectors" ? "region" : undefined}
         >
           <div ref={track} className="manufacturing-flow__track">
             {items.map((item, itemIndex) => (
-              <article className="manufacturing-flow__card" key={item.title}>
+              <article className={`manufacturing-flow__card${variant === "sectors" ? " tamimi-sector" : ""}`} key={item.title}>
                 <figure className="manufacturing-flow__visual">
                   <Image
                     src={item.image}
@@ -193,10 +203,10 @@ export function ManufacturingCapabilitiesFlow({
 
                 <div className="manufacturing-flow__copy">
                   <span className="manufacturing-flow__number">
-                    {String(itemIndex + 1).padStart(2, "0")}
+                    {new Intl.NumberFormat(isRtl ? "ar" : "en", {minimumIntegerDigits: 2}).format(itemIndex + 1)}
                   </span>
                   <h3>{item.title}</h3>
-                  <p>{item.description}</p>
+                  {item.description && <p>{item.description}</p>}
                 </div>
               </article>
             ))}
@@ -204,11 +214,11 @@ export function ManufacturingCapabilitiesFlow({
         </div>
 
         <div className="manufacturing-flow__progress" aria-hidden="true">
-          <span>01</span>
+          <span>{new Intl.NumberFormat(isRtl ? "ar" : "en", {minimumIntegerDigits: 2}).format(1)}</span>
           <div>
             <span ref={progress} />
           </div>
-          <span>{String(items.length).padStart(2, "0")}</span>
+          <span>{new Intl.NumberFormat(isRtl ? "ar" : "en", {minimumIntegerDigits: 2}).format(items.length)}</span>
         </div>
       </div>
     </section>

@@ -1,14 +1,8 @@
 import {InnerHero} from "@/components/ui/InnerHero";
 import {SectionRenderer} from "@/components/ui/SectionRenderer";
 import {BRAND_LOGOS, getSectionImage, PAGE_IMAGES} from "@/content/pages";
+import {byLabel, value} from "@/lib/content";
 import type {Locale, PageContent, PageTheme} from "@/types/content";
-
-const GROUP_STORY_HIDDEN_SECTIONS = new Set([
-  "Group Development Timeline",
-  "A Diversified Saudi Business Group",
-  "Masdar Al Hayat Within Tamimi Group",
-  "Growing Alongside Saudi Arabia",
-]);
 
 const VISION_VALUES_HIDDEN_SECTIONS = new Set([
   "Our Strategic Direction",
@@ -52,9 +46,6 @@ export function InternalPage({
 }) {
   const [hero, ...sections] = page.sections;
   const heroImage = PAGE_IMAGES[imageKey];
-  const groupTimeline = imageKey === "groupStory"
-    ? sections.find((section) => section.title === "Group Development Timeline")
-    : undefined;
   const featuredSections = sections.filter(section => section.items.some(item => item.label === "Render Variant" && /^(partner-logos|logistics-counters)$/.test(String(item.en))));
   const orderedSections = sections.filter(section => !featuredSections.includes(section));
 
@@ -70,12 +61,12 @@ export function InternalPage({
         image={heroImage}
         brandLogo={imageKey === "groupStory" ? BRAND_LOGOS.tamimiGroup : undefined}
         brandLogoAlt={locale === "ar" ? "شعار مجموعة التميمي" : "Tamimi Group logo"}
+        additionalSupporting={imageKey === "groupStory" ? value(byLabel(hero, "Supporting Paragraph 2"), locale) : undefined}
       />
 
       {featuredSections.map(section => <SectionRenderer key={section.title} section={section} index={0} locale={locale} theme={theme} image=""/>)}
 
       {orderedSections.map((section, index) => {
-        if (imageKey === "groupStory" && GROUP_STORY_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "visionValues" && VISION_VALUES_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "quality" && QUALITY_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "logistics" && LOGISTICS_HIDDEN_SECTIONS.has(section.title)) return null;
@@ -90,7 +81,6 @@ export function InternalPage({
           <SectionRenderer
             key={section.title}
             section={section}
-            supplementalSection={imageKey === "groupStory" && section.title === "The Beginning of the Journey" ? groupTimeline : undefined}
             index={sectionIndex}
             locale={locale}
             theme={theme}
