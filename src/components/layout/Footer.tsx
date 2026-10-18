@@ -69,6 +69,7 @@ export function Footer({locale}: {locale: Locale}) {
           <Link href="/capabilities/quality-compliance">{ar ? "الجودة والامتثال" : "Quality & Compliance"}</Link>
           <Link href="/capabilities/logistics-distribution">{ar ? "الخدمات اللوجستية والتوزيع" : "Logistics & Distribution"}</Link>
           <Link href="/capabilities/sales">{ar ? "المبيعات" : "Sales"}</Link>
+          <Link href="/capabilities/marketing">{ar ? "التسويق" : "Marketing"}</Link>
         </div>
 
         <div className="footer-contact">

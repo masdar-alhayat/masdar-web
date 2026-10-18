@@ -1,5 +1,6 @@
 import content from "./content.generated.json";
 import {researchInnovation2Content} from "./research-innovation-2";
+import {marketingPageContent} from "./marketing";
 import type {PageContent, PageTheme} from "@/types/content";
 
 export const PAGE_KEYS = {
@@ -14,6 +15,7 @@ export const PAGE_KEYS = {
   quality: "QUALITY & COMPLIANCE",
   logistics: "LOGISTICS & DISTRIBUTION",
   sales: "SALES",
+  marketing: "MARKETING",
   brands: "BRANDS",
   brandPortfolio: "BRAND PORTFOLIO",
   partnerships: "PARTNERSHIPS",
@@ -59,6 +61,7 @@ export const PAGE_IMAGES = {
   quality: "/assets/images/masdar-enhanced/masdar_al_hayat_33.png",
   logistics: "/assets/images/masdar-enhanced/masdar_al_hayat_24.png",
   sales: "/assets/images/masdar-18.png",
+  marketing: "/assets/images/prod-range-03-clean.png",
   brands: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
   brandPortfolio: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
   partnerships: "/assets/images/masdar-enhanced/masdar_al_hayat-41.png",
@@ -163,6 +166,7 @@ export const PAGE_DEFINITIONS: PageDefinition[] = [
   {key: "quality", path: "/capabilities/quality-compliance", theme: "quality", imageKey: "quality"},
   {key: "logistics", path: "/capabilities/logistics-distribution", theme: "logistics", imageKey: "logistics"},
   {key: "sales", path: "/capabilities/sales", theme: "sales", imageKey: "sales"},
+  {key: "marketing", path: "/capabilities/marketing", theme: "market", imageKey: "marketing"},
   {key: "brands", path: "/brands-partnerships/brands", theme: "portfolio", imageKey: "brands"},
   {key: "brandPortfolio", path: "/brands-partnerships/brands-portfolio", theme: "portfolio", imageKey: "brandPortfolio"},
   {key: "partnerships", path: "/brands-partnerships/partnerships", theme: "partnership", imageKey: "partnerships"},
@@ -179,6 +183,7 @@ export function getSectionImage(
 
 export function getPageContent(key: PageKey): PageContent {
   if (key === "research2") return researchInnovation2Content;
+  if (key === "marketing") return marketingPageContent;
   return content[PAGE_KEYS[key] as keyof typeof content] as PageContent;
 }
 

@@ -29,7 +29,8 @@ const menu: MenuItem[] = [
     {label: {en: "Operations", ar: "العمليات"}, href: "/capabilities/operations"},
     {label: {en: "Quality & Compliance", ar: "الجودة والامتثال"}, href: "/capabilities/quality-compliance"},
     {label: {en: "Logistics & Distribution", ar: "الخدمات اللوجستية والتوزيع"}, href: "/capabilities/logistics-distribution"},
-    {label: {en: "Sales", ar: "المبيعات"}, href: "/capabilities/sales"}
+    {label: {en: "Sales", ar: "المبيعات"}, href: "/capabilities/sales"},
+    {label: {en: "Marketing", ar: "التسويق"}, href: "/capabilities/marketing"}
   ]},
   {label: {en: "Our Brands", ar: "علاماتنا التجارية"}, children: BRAND_PORTFOLIO.map(brand => ({
     label: brand.name,

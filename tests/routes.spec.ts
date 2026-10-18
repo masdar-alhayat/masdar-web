@@ -12,6 +12,7 @@ const routes = [
   "/capabilities/quality-compliance",
   "/capabilities/logistics-distribution",
   "/capabilities/sales",
+  "/capabilities/marketing",
   "/brands-partnerships/brands",
   "/brands-partnerships/brands-portfolio",
   "/brands-partnerships/partnerships",
