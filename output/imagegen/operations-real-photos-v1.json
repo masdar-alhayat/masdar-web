@@ -1,0 +1,20 @@
+{
+  "tool": "Built-in image_gen",
+  "mode": "photo enhancement",
+  "edits": [
+    {
+      "key": "operationsHero",
+      "file": "masdar-22.jpg",
+      "prompt": "Use case: precise-object-edit / lighting enhancement.\nEdit the supplied REAL photograph, preserving its documentary authenticity. Improve exposure, neutral white balance, local contrast, shadow detail, clarity and gentle edge sharpness. Reduce the slight haze/softness and color cast, while retaining highlight texture, natural depth and realistic industrial lighting. The result should be a carefully retouched photograph, not a reimagined or AI-generated warehouse.\n\nHARD INVARIANTS: Keep exactly the same viewpoint, framing, lens perspective, architecture, inventory, product/package identities and printed marks, racking, pallet positions, machinery, floor markings, lights and background. No invented details, relabeled packaging, added or removed objects, brand changes, decorative graphics, logos, people, captions or watermarks. Do not beautify the facility into a different place or make equipment look new. Preserve real surface texture and natural wear. No HDR glow, oversaturated colors, heavy denoising, artificial detail, sharpening halos or painterly surfaces.\nPreserve the full original 16:9 composition and resolution. Request 3840 x 2160 output, matching the original source, with crisp but realistic detail suitable for the corporate website.\nSPECIFIC SUBJECT: A masked warehouse operator with a blue hairnet, operating an orange powered pallet truck/forklift between racks of white ingredient sacks and blue drums. Keep the operator's identity, facial proportions, skin texture, protective clothing, exact pose, hands and equipment geometry unchanged. Improve the visibility and texture of the operator and orange machine without flattening the lighting. Keep all sacks and rack beams in their existing positions. This is the Operations HERO photograph; do not crop it, the page will handle its focal position."
+    },
+    {
+      "key": "operationsSupply",
+      "file": "masdar-23.jpg",
+      "prompt": "Use case: precise-object-edit / lighting enhancement.\nEdit the supplied REAL photograph, preserving its documentary authenticity. Improve exposure, neutral white balance, local contrast, shadow detail, clarity and gentle edge sharpness. Reduce the slight haze/softness and color cast, while retaining highlight texture, natural depth and realistic industrial lighting. The result should be a carefully retouched photograph, not a reimagined or AI-generated warehouse.\n\nHARD INVARIANTS: Keep exactly the same viewpoint, framing, lens perspective, architecture, inventory, product/package identities and printed marks, racking, pallet positions, machinery, floor markings, lights and background. No invented details, relabeled packaging, added or removed objects, brand changes, decorative graphics, logos, people, captions or watermarks. Do not beautify the facility into a different place or make equipment look new. Preserve real surface texture and natural wear. No HDR glow, oversaturated colors, heavy denoising, artificial detail, sharpening halos or painterly surfaces.\nPreserve the full original 16:9 composition and resolution. Request 3840 x 2160 output, matching the original source, with crisp but realistic detail suitable for the corporate website.\nSPECIFIC SUBJECT: A real ingredient warehouse aisle, with blue/orange pallet racking, shrink-wrapped sacks and cartons, a central structural column and a long perspective down the aisle. Keep the exact racks, aisle geometry, floor lines, storage contents, wrapping, existing carton text and packet artwork unchanged. Enhance the depth and separation between racks, lift dim areas gently, and keep the white sacks and plastic wrap detailed without blown highlights. This is the Operations SUPPLY CHAIN section photograph. Do not add a person or forklift. Do not crop or reframe the scene."
+    }
+  ],
+  "outputs": [
+    "public/assets/images/operations/masdar-22-enhanced-v1.webp",
+    "public/assets/images/operations/masdar-23-enhanced-v1.webp"
+  ]
+}

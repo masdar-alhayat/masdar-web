@@ -1,0 +1,243 @@
+{
+  "playback_order": [
+    3,
+    4,
+    5,
+    10,
+    11,
+    6,
+    7,
+    8,
+    9
+  ],
+  "inputs": [
+    {
+      "file": "public/assets/videos/masdar-video-3.mov",
+      "bytes": 13136655,
+      "duration_seconds": 5.04,
+      "frames": 126,
+      "video": "Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt709, progressive), 1920x1080, 19307 kb/s, 25 fps, 25 tbr, 12800 tbn (default)",
+      "audio": "Stream #0:1[0x2](eng): Audio: pcm_s16le (sowt / 0x74776F73), 48000 Hz, stereo, s16, 1536 kb/s (default)"
+    },
+    {
+      "file": "public/assets/videos/masdar-video-4.mov",
+      "bytes": 19519792,
+      "duration_seconds": 4.16,
+      "frames": 104,
+      "video": "Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt709, progressive), 1920x1080, 35993 kb/s, 25 fps, 25 tbr, 12800 tbn (default)",
+      "audio": "Stream #0:1[0x2](eng): Audio: pcm_s16le (sowt / 0x74776F73), 48000 Hz, stereo, s16, 1536 kb/s (default)"
+    },
+    {
+      "file": "public/assets/videos/masdar-video-5.mov",
+      "bytes": 27272758,
+      "duration_seconds": 6.32,
+      "frames": 158,
+      "video": "Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt709, progressive), 1920x1080, 32979 kb/s, 25 fps, 25 tbr, 12800 tbn (default)",
+      "audio": "Stream #0:1[0x2](eng): Audio: pcm_s16le (sowt / 0x74776F73), 48000 Hz, stereo, s16, 1536 kb/s (default)"
+    },
+    {
+      "file": "public/assets/videos/masdar-video-10.mov",
+      "bytes": 21523801,
+      "duration_seconds": 6.36,
+      "frames": 159,
+      "video": "Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt709, progressive), 1920x1080, 25530 kb/s, 25 fps, 25 tbr, 12800 tbn (default)",
+      "audio": "Stream #0:1[0x2](eng): Audio: pcm_s16le (sowt / 0x74776F73), 48000 Hz, stereo, s16, 1536 kb/s (default)"
+    },
+    {
+      "file": "public/assets/videos/masdar-video-11.mov",
+      "bytes": 34639391,
+      "duration_seconds": 9.04,
+      "frames": 226,
+      "video": "Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt709, progressive), 1920x1080, 29111 kb/s, 25 fps, 25 tbr, 12800 tbn (default)",
+      "audio": "Stream #0:1[0x2](eng): Audio: pcm_s16le (sowt / 0x74776F73), 48000 Hz, stereo, s16, 1536 kb/s (default)"
+    },
+    {
+      "file": "public/assets/videos/masdar-video-6.mov",
+      "bytes": 17996879,
+      "duration_seconds": 5.12,
+      "frames": 128,
+      "video": "Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt709, progressive), 1920x1080, 26576 kb/s, 25 fps, 25 tbr, 12800 tbn (default)",
+      "audio": "Stream #0:1[0x2](eng): Audio: pcm_s16le (sowt / 0x74776F73), 48000 Hz, stereo, s16, 1536 kb/s (default)"
+    },
+    {
+      "file": "public/assets/videos/masdar-video-7.mov",
+      "bytes": 13066383,
+      "duration_seconds": 3.76,
+      "frames": 94,
+      "video": "Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt709, progressive), 1920x1080, 26255 kb/s, 25 fps, 25 tbr, 12800 tbn (default)",
+      "audio": "Stream #0:1[0x2](eng): Audio: pcm_s16le (sowt / 0x74776F73), 48000 Hz, stereo, s16, 1536 kb/s (default)"
+    },
+    {
+      "file": "public/assets/videos/masdar-video-8.mov",
+      "bytes": 13007100,
+      "duration_seconds": 4.16,
+      "frames": 104,
+      "video": "Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt709, progressive), 1920x1080, 23468 kb/s, 25 fps, 25 tbr, 12800 tbn (default)",
+      "audio": "Stream #0:1[0x2](eng): Audio: pcm_s16le (sowt / 0x74776F73), 48000 Hz, stereo, s16, 1536 kb/s (default)"
+    },
+    {
+      "file": "public/assets/videos/masdar-video-9.mov",
+      "bytes": 18372227,
+      "duration_seconds": 4.84,
+      "frames": 121,
+      "video": "Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt709, progressive), 1920x1080, 28823 kb/s, 25 fps, 25 tbr, 12800 tbn (default)",
+      "audio": "Stream #0:1[0x2](eng): Audio: pcm_s16le (sowt / 0x74776F73), 48000 Hz, stereo, s16, 1536 kb/s (default)"
+    }
+  ],
+  "total_source_bytes": 178534986,
+  "total_source_duration_seconds": 48.8,
+  "total_source_frames": 1220,
+  "encode": {
+    "output": "output/video/manufacturing-combined-enhanced-v1.mp4",
+    "resolution": "1920x1080",
+    "fps": 25,
+    "codec": "H.264 High / AAC",
+    "preset": "slow",
+    "crf": 18,
+    "filters": "eq=contrast=1.025:brightness=0.006:gamma=1.02:saturation=1.01,unsharp=5:5:0.30:3:3:0,scale=iw:ih:in_range=full:out_range=tv:flags=lanczos,format=yuv420p",
+    "audio": "Original stereo audio retained and encoded to AAC at 192 kb/s",
+    "command": [
+      "D:\\SULTAN-macbook\\SULTAN\\PROJECTS\\MASDAR-AL-HAYAT\\MASDAR-WEB\\masdar-web\\.codex-temp\\video-tools\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+      "-hide_banner",
+      "-n",
+      "-nostats",
+      "-stats_period",
+      "3",
+      "-progress",
+      "D:\\SULTAN-macbook\\SULTAN\\PROJECTS\\MASDAR-AL-HAYAT\\MASDAR-WEB\\masdar-web\\.codex-temp\\manufacturing-progress.txt",
+      "-f",
+      "concat",
+      "-safe",
+      "0",
+      "-i",
+      "D:\\SULTAN-macbook\\SULTAN\\PROJECTS\\MASDAR-AL-HAYAT\\MASDAR-WEB\\masdar-web\\.codex-temp\\manufacturing-concat.txt",
+      "-map",
+      "0:v:0",
+      "-map",
+      "0:a:0",
+      "-vf",
+      "eq=contrast=1.025:brightness=0.006:gamma=1.02:saturation=1.01,unsharp=5:5:0.30:3:3:0,scale=iw:ih:in_range=full:out_range=tv:flags=lanczos,format=yuv420p",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "slow",
+      "-crf",
+      "18",
+      "-profile:v",
+      "high",
+      "-level:v",
+      "4.1",
+      "-threads",
+      "6",
+      "-pix_fmt",
+      "yuv420p",
+      "-fps_mode",
+      "cfr",
+      "-r",
+      "25",
+      "-color_range",
+      "tv",
+      "-colorspace",
+      "bt709",
+      "-color_primaries",
+      "bt709",
+      "-color_trc",
+      "bt709",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-map_metadata",
+      "-1",
+      "-metadata",
+      "title=Masdar Al Hayat Manufacturing",
+      "-metadata",
+      "comment=Original clip order preserved: 3,4,5,10,11,6,7,8,9. Gentle brightness, contrast and sharpening. 1080p25 high-quality web encode.",
+      "-movflags",
+      "+faststart",
+      "D:\\SULTAN-macbook\\SULTAN\\PROJECTS\\MASDAR-AL-HAYAT\\MASDAR-WEB\\masdar-web\\output\\video\\manufacturing-combined-enhanced-v1.mp4"
+    ]
+  },
+  "output_bytes": 88751762,
+  "reduction_percent": 50.29,
+  "verification": {
+    "decoded_without_errors": true,
+    "frame_count": 1220,
+    "duration_seconds": 48.8,
+    "source_order_and_frame_counts_preserved": true,
+    "video": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 14350 kb/s, 25 fps, 25 tbr, 12800 tbn (default)",
+    "audio": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 192 kb/s (default)",
+    "faststart": true,
+    "enhanced_reference_ssim": 0.98388,
+    "segments": [
+      {
+        "file": "public/assets/videos/masdar-video-3.mov",
+        "start_seconds": 0,
+        "duration_seconds": 5.04,
+        "frame_count": 126,
+        "enhanced_reference_ssim": 0.986544
+      },
+      {
+        "file": "public/assets/videos/masdar-video-4.mov",
+        "start_seconds": 5.04,
+        "duration_seconds": 4.16,
+        "frame_count": 104,
+        "enhanced_reference_ssim": 0.980998
+      },
+      {
+        "file": "public/assets/videos/masdar-video-5.mov",
+        "start_seconds": 9.2,
+        "duration_seconds": 6.32,
+        "frame_count": 158,
+        "enhanced_reference_ssim": 0.982187
+      },
+      {
+        "file": "public/assets/videos/masdar-video-10.mov",
+        "start_seconds": 15.52,
+        "duration_seconds": 6.36,
+        "frame_count": 159,
+        "enhanced_reference_ssim": 0.983587
+      },
+      {
+        "file": "public/assets/videos/masdar-video-11.mov",
+        "start_seconds": 21.88,
+        "duration_seconds": 9.04,
+        "frame_count": 226,
+        "enhanced_reference_ssim": 0.981516
+      },
+      {
+        "file": "public/assets/videos/masdar-video-6.mov",
+        "start_seconds": 30.92,
+        "duration_seconds": 5.12,
+        "frame_count": 128,
+        "enhanced_reference_ssim": 0.986832
+      },
+      {
+        "file": "public/assets/videos/masdar-video-7.mov",
+        "start_seconds": 36.04,
+        "duration_seconds": 3.76,
+        "frame_count": 94,
+        "enhanced_reference_ssim": 0.98253
+      },
+      {
+        "file": "public/assets/videos/masdar-video-8.mov",
+        "start_seconds": 39.8,
+        "duration_seconds": 4.16,
+        "frame_count": 104,
+        "enhanced_reference_ssim": 0.984723
+      },
+      {
+        "file": "public/assets/videos/masdar-video-9.mov",
+        "start_seconds": 43.96,
+        "duration_seconds": 4.84,
+        "frame_count": 121,
+        "enhanced_reference_ssim": 0.987793
+      }
+    ],
+    "note": "SSIM is measured against the enhanced source, isolating compression changes from the intentional tone/sharpness adjustments. This is a high-quality lossy encode, not a lossless master."
+  }
+}

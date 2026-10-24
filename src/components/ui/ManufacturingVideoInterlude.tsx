@@ -9,6 +9,8 @@ import styles from "./ManufacturingVideoInterlude.module.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+const manufacturingVideo = "/assets/videos/manufacturing-combined-enhanced-v1.mp4";
+
 const manufacturingVideos = [
   "/assets/videos/masdar-video-3.mov",
   "/assets/videos/masdar-video-4.mov",
@@ -21,17 +23,15 @@ const manufacturingVideos = [
   "/assets/videos/masdar-video-9.mov",
 ];
 
-export function ManufacturingVideoInterlude({label}: {label: string}) {
+export function ManufacturingVideoInterlude({label, combined = false}: {label: string; combined?: boolean}) {
   const scope = useRef<HTMLElement>(null);
   const frame = useRef<HTMLElement>(null);
   const media = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
-
+  const videoSrc = combined ? manufacturingVideo : manufacturingVideos[activeVideoIndex];
   const playNextVideo = useCallback(() => {
-    setActiveVideoIndex(
-      (currentIndex) => (currentIndex + 1) % manufacturingVideos.length,
-    );
+    setActiveVideoIndex(index => (index + 1) % manufacturingVideos.length);
   }, []);
 
   useGSAP(
@@ -141,19 +141,20 @@ export function ManufacturingVideoInterlude({label}: {label: string}) {
         <figure ref={frame} className={styles.frame}>
           <div ref={media} className={styles.media}>
             <video
-              key={manufacturingVideos[activeVideoIndex]}
+              key={videoSrc}
               ref={video}
               className={styles.video}
-              src={manufacturingVideos[activeVideoIndex]}
+              src={videoSrc}
               autoPlay
+              loop={combined}
               muted
               playsInline
-              preload="auto"
-              onEnded={playNextVideo}
+              preload={combined ? "metadata" : "auto"}
+              onEnded={combined ? undefined : playNextVideo}
               onLoadedData={(event) => {
                 void event.currentTarget.play().catch(() => undefined);
               }}
-              data-sequence-index={activeVideoIndex}
+              data-sequence-index={combined ? undefined : activeVideoIndex}
               aria-hidden="true"
             />
           </div>

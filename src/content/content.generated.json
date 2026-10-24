@@ -39,7 +39,7 @@
           },
           {
             "label": "Supporting Paragraph 1",
-            "en": "Masdar Al Hayat for Food Industries is a food and beverages manufacturer and distributor operating as part of Tamimi Group.",
+            "en": "Masdar Al Hayat for Food Industries is a food and beverages manufacturer and distributor operating in Kingdom of Saudi Arabia and beyond.",
             "ar": "مصدر الحياة للصناعات الغذائية شركة مصنّعة وموزّعة للأغذية والمشروبات، وتعمل ضمن مجموعة التميمي."
           },
           {
@@ -751,8 +751,8 @@
           },
           {
             "label": "Main Heading",
-            "en": "A Food & Beverages Company Built on Quality, Capability and Trust",
-            "ar": "شركة أغذية ومشروبات تقوم على الجودة والقدرة والثقة"
+            "en": "Built on Innovation, Capability and Trust",
+            "ar": "نرتكز على الابتكار والقدرة والثقة"
           },
           {
             "label": "Supporting Content",
@@ -776,8 +776,8 @@
           },
           {
             "label": "Main Heading",
-            "en": "Creating Food Solutions for a Changing Market",
-            "ar": "نقدم حلولاً غذائية لسوق متجدد"
+            "en": "Creating Food Innovation for a Changing Market",
+            "ar": "نقدم ابتكارات غذائية لسوق متجدد"
           },
           {
             "label": "Paragraph 1",
@@ -1364,14 +1364,9 @@
         "title": "Our Values",
         "items": [
           {
-            "label": "Section Label",
+            "label": "Main Heading",
             "en": "Our Values",
             "ar": "قيمنا"
-          },
-          {
-            "label": "Main Heading",
-            "en": "The Standards We Expect from Ourselves",
-            "ar": "المعايير التي نلتزم بها"
           },
           {
             "label": "Paragraph 1",
@@ -2969,8 +2964,8 @@
           },
           {
             "label": "Main Heading",
-            "en": "Building Food Partnerships with Shared Value",
-            "ar": "نبني شراكات غذائية تحقق قيمة مشتركة"
+            "en": "Building Strong Client Partnerships",
+            "ar": "نبني شراكات قوية مع عملائنا"
           },
           {
             "label": "Supporting Content",
@@ -3056,16 +3051,6 @@
             "label": "Main Heading",
             "en": "Serving Different Business Channels",
             "ar": "نخدم قنوات أعمال متنوعة"
-          },
-          {
-            "label": "Channel 1 Title",
-            "en": "Retail and Modern Trade",
-            "ar": "التجزئة والتجارة الحديثة"
-          },
-          {
-            "label": "Channel 1 Description",
-            "en": "For supermarkets, hypermarkets and organised retailers seeking dependable food brands and coordinated supply.",
-            "ar": "للمتاجر والأسواق المركزية وقطاعات التجزئة المنظمة الباحثة عن علامات غذائية موثوقة وتوريد منسق."
           },
           {
             "label": "Channel 2 Title",
@@ -3556,6 +3541,11 @@
             "en": "Home / Our Capabilities / Sales",
             "ar": "الرئيسية / قدراتنا / المبيعات"
           },
+    {
+      "label": "Image Alt",
+      "en": "A centered hypermarket rack stocked with Fonte bread, buns, tortillas, cupcakes, tomato paste and breadcrumbs",
+      "ar": "رف في هايبرماركت يعرض خبز فونتي وخبز البرجر والتورتيلا والكب كيك ومعجون الطماطم والبقسماط"
+    },
           {
             "label": "Primary CTA",
             "en": "Connect with Our Sales Team",
@@ -3588,8 +3578,8 @@
           },
           {
             "label": "Image Alt",
-            "en": "Masdar Al Hayat sales representatives discussing Fonte products with customers in a grocery store",
-            "ar": "ممثلون عن مبيعات مصدر الحياة يناقشون منتجات فونتي مع العملاء في متجر للمواد الغذائية"
+            "en": "A customer choosing Fonte bread from a grocery store shelf",
+            "ar": "عميل يختار خبز فونتي من رف متجر للمواد الغذائية"
           },
           {
             "label": "Customer 1 Title",

@@ -704,12 +704,12 @@ export function SectionRenderer({
             <h2>{heading}</h2>
           </header>
 
-          <div className="partnership-channels__grid">
+          <div className={`partnership-channels__grid${partnershipChannels.length === 3 ? " partnership-channels__grid--three" : ""}`} data-animate>
             {partnershipChannels.map((channel, channelIndex) => {
-              const ChannelIcon = channelIcons[channelIndex % channelIcons.length];
+              const ChannelIcon = channelIcons[(channel.number - 1) % channelIcons.length];
 
               return (
-                <article key={channel.key} data-animate>
+                <article key={channel.key} data-channel={channel.number}>
                   <div className="partnership-channels__meta">
                     <span>{String(channelIndex + 1).padStart(2, "0")}</span>
                     <ChannelIcon aria-hidden="true" />
@@ -1072,6 +1072,7 @@ export function SectionRenderer({
 
         {theme === "portfolio" && (
           <ManufacturingVideoInterlude
+            combined
             label={
               isAr
                 ? "مشاهد متتابعة من عمليات تصنيع منتجات فونتي"
@@ -1533,7 +1534,7 @@ export function SectionRenderer({
         objectPosition: "64% center",
       },
       {
-        image: "/assets/images/masdar-enhanced/masdar_al_hayat_14.png",
+        image: "/assets/images/manufacturing-production-coordination-v1.png",
         objectPosition: "center center",
       },
     ] as const;
@@ -1568,6 +1569,7 @@ export function SectionRenderer({
     return (
       <>
         <ManufacturingVideoInterlude
+          combined
           label={
             isAr
               ? "مشهد من عمليات التصنيع في مصدر الحياة"
@@ -1594,7 +1596,7 @@ export function SectionRenderer({
             <div className="product-categories-showcase__body">
               <figure className="product-categories-showcase__visual" data-animate>
                 <BrandImage
-                  src="/assets/images/masdar-enhanced/masdar_al_hayat_19.png"
+                  src="/assets/images/manufacturing-product-categories-v1.png"
                   alt={heading}
                   className="product-categories-showcase__image"
                 />
@@ -1710,14 +1712,13 @@ export function SectionRenderer({
           </header>
 
           <div className="smart-operations-showcase__body">
-            <div className="smart-operations-showcase__core" data-animate aria-hidden="true">
-              <span className="smart-operations-showcase__orbit smart-operations-showcase__orbit--outer" />
-              <span className="smart-operations-showcase__orbit smart-operations-showcase__orbit--inner" />
-              <div>
-                <Warehouse />
-                <span>01 — 05</span>
-              </div>
-            </div>
+            <BrandImage
+              src={image}
+              alt={isAr
+                ? "منصات منتجات غذائية أثناء المناولة في مستودع مصدر الحياة"
+                : "Palletised food products being handled in the Masdar Al Hayat warehouse"}
+              className="smart-operations-showcase__image"
+            />
 
             <div className="smart-operations-showcase__grid">
               {improvements.map(({title: improvementTitle, Icon}, improvementIndex) => (
@@ -1728,6 +1729,27 @@ export function SectionRenderer({
                 </article>
               ))}
             </div>
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (theme === "operations" && section.title === "Operational Reliability") {
+    return (
+      <AnimatedSection
+        className="content-section inventory-management content-section--operations"
+        variant="rise"
+      >
+        <div className="container-xxl inventory-management__grid">
+          <header data-animate>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+          </header>
+          <div className="inventory-management__copy" data-animate>
+            {copy.map((paragraph, paragraphIndex) => (
+              <p key={paragraphIndex}>{paragraph}</p>
+            ))}
           </div>
         </div>
       </AnimatedSection>

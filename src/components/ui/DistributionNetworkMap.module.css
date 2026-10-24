@@ -1,0 +1,115 @@
+.section {
+  position: relative;
+  padding-block: clamp(2rem, 5vw, 5rem);
+  overflow: hidden;
+  background: var(--mah-cream);
+  border-block: 1px solid rgba(30, 78, 42, .08);
+}
+
+.frame {
+  position: relative;
+  isolation: isolate;
+}
+
+.header {
+  max-width: 850px;
+  margin: 0 auto clamp(1.5rem, 3vw, 3rem);
+  text-align: center;
+}
+
+.header h2 {
+  margin: 0 0 1.1rem;
+  padding-block: .06em .15em;
+  color: var(--mah-green-950);
+  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  line-height: 1.25;
+}
+
+.header p {
+  max-width: 660px;
+  margin: 0 auto;
+  color: var(--mah-charcoal-700);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.8;
+}
+
+.locationLabel {
+  fill: var(--mah-green-950);
+  stroke: var(--mah-cream);
+  stroke-width: 3px;
+  paint-order: stroke;
+  stroke-linejoin: round;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.locationLabel[direction="rtl"] { font-size: 15px; }
+
+.frame::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 5% 15%;
+  background: radial-gradient(ellipse, rgba(184, 125, 61, .07), transparent 70%);
+  pointer-events: none;
+}
+
+.map {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 760px;
+  margin-inline: auto;
+  overflow: visible;
+  direction: ltr;
+}
+
+.route {
+  stroke: var(--mah-green-900);
+  stroke-width: 2.5;
+  stroke-dasharray: 1 9;
+}
+
+.localRoute {
+  stroke: var(--mah-gold);
+  stroke-width: 2;
+  stroke-dasharray: 1 6;
+}
+
+.pin {
+  fill: var(--mah-green-900);
+  stroke: var(--mah-cream);
+}
+
+.minorPin {
+  fill: var(--mah-gold);
+  stroke: var(--mah-cream);
+}
+
+.shadow {
+  fill: var(--mah-green-950);
+  opacity: .16;
+  stroke: none;
+}
+
+.pinCenter {
+  fill: var(--mah-cream);
+  stroke: none;
+}
+
+.factory {
+  fill: none;
+  stroke: var(--mah-cream);
+  stroke-width: 1.05;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+@media (max-width: 575px) {
+  .section { padding-block: 2rem; }
+  .frame { padding-inline: .5rem; }
+  .header { padding-inline: 1rem; }
+  .locationLabel { font-size: 22px; }
+  .locationLabel[direction="rtl"] { font-size: 23px; }
+}

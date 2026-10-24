@@ -52,19 +52,19 @@ export const APPROVED_IMAGES = {
  */
 export const PAGE_IMAGES = {
   home: APPROVED_IMAGES.masdar1,
-  about: APPROVED_IMAGES.masdar2,
+  about: "/assets/images/about-facility-hero-v1.webp",
   groupStory: "/brand/tamimi-group-logo-2026.png",
   visionValues: "/assets/images/masdar-enhanced/masdar_al_hayat_09.png",
   research: "/assets/images/masdar-enhanced/masdar_al_hayat_13.png",
-  manufacturing: "/assets/images/masdar-enhanced/masdar_al_hayat_16.png",
-  operations: "/assets/images/masdar-enhanced/masdar_al_hayat_21.png",
+  manufacturing: "/assets/images/masdar-21.jpg",
+  operations: "/assets/images/operations/masdar-22-enhanced-v2.webp",
   quality: "/assets/images/masdar-enhanced/masdar_al_hayat_33.png",
-  logistics: "/assets/images/masdar-enhanced/masdar_al_hayat_24.png",
-  sales: "/assets/images/masdar-18.png",
+  logistics: "/assets/images/masdar-21.jpg",
+  sales: "/assets/images/sales-hypermarket-hero-v1.webp",
   marketing: "/assets/images/prod-range-03-clean.png",
   brands: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
   brandPortfolio: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
-  partnerships: "/assets/images/masdar-enhanced/masdar_al_hayat-41.png",
+  partnerships: "/assets/images/partnerships-hero-v2.png",
   careers: "/assets/images/masdar-enhanced/masdar_al_hayat-43.png",
   contact: "/assets/images/masdar-enhanced/masdar_al_hayat-48.png",
 } as const;
@@ -113,7 +113,7 @@ export const SECTION_IMAGE_MAP: Partial<
   Record<keyof typeof PAGE_IMAGES, Record<number, string>>
 > = {
   about: {
-    2: "/assets/images/masdar-enhanced/masdar_al_hayat_06.png",
+    2: "/assets/images/masdar-20.png",
   },
   visionValues: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat_11.png",
@@ -128,16 +128,17 @@ export const SECTION_IMAGE_MAP: Partial<
     2: "/assets/images/masdar-enhanced/masdar_al_hayat_17.png",
   },
   operations: {
-    2: "/assets/images/masdar-enhanced/masdar_al_hayat_22.png",
+    2: "/assets/images/operations/masdar-23-enhanced-v1.webp",
+    4: "/assets/images/operations/masdar-24-enhanced-v1.webp",
   },
   quality: {
-    2: "/assets/images/masdar-enhanced/masdar_al_hayat_23.png",
+    2: "/assets/images/quality-commitment-v1.png",
   },
   logistics: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat_25.png",
   },
   sales: {
-    2: "/assets/images/masdar-19.png",
+    2: "/assets/images/sales-customers-enhanced-v1.webp",
   },
   partnerships: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat-42.png",

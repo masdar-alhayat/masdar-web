@@ -1780,8 +1780,17 @@ html[dir="rtl"] .story-video-section__overlay {
   object-position: 62% center
 }
 
+.inner-hero--editorial .brand-image__img {
+  object-position: 60% 65%
+}
+
 .inner-hero--industrial .brand-image__img {
   object-position: 60% center
+}
+
+.inner-hero--operations .brand-image__img,
+.media-section.content-section--operations .brand-image__img {
+  object-position: 25% center
 }
 
 .media-section.content-section--innovation .brand-image {
@@ -2243,7 +2252,9 @@ html[dir="rtl"] .product-categories-showcase::before {
 
 .product-categories-showcase__visual {
   position: relative;
-  min-height: 620px;
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+  align-self: center;
   margin: 0;
   overflow: hidden;
   background: var(--mah-green-950);
@@ -2258,26 +2269,29 @@ html[dir="rtl"] .product-categories-showcase__visual {
 .product-categories-showcase__image,
 .product-categories-showcase__image img {
   width: 100%;
-  height: 100%
+  height: 100%;
+  min-height: 0
 }
 
 .product-categories-showcase__image img {
   object-fit: cover;
   object-position: center;
-  transform: scale(1.015);
-  transition: transform 1.1s cubic-bezier(.22, 1, .36, 1)
+  transform: none
 }
 
 .product-categories-showcase__visual:hover .product-categories-showcase__image img {
-  transform: scale(1.055)
+  transform: none
+}
+
+.product-categories-showcase__image .brand-image__veil {
+  background: none
 }
 
 .product-categories-showcase__visual > span {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, transparent 46%, rgba(18, 57, 31, .45)),
-    linear-gradient(90deg, rgba(18, 57, 31, .18), transparent 48%)
+    linear-gradient(180deg, transparent 80%, rgba(18, 57, 31, .12))
 }
 
 .product-categories-showcase__visual figcaption {
@@ -2422,7 +2436,7 @@ html[dir="rtl"] .product-categories-showcase__list article > span {
   }
 
   .product-categories-showcase__visual {
-    aspect-ratio: 3 / 2
+    aspect-ratio: 1 / 1
   }
 
   .product-categories-showcase__list article {
@@ -2432,7 +2446,7 @@ html[dir="rtl"] .product-categories-showcase__list article > span {
 
 @media(max-width:575px) {
   .product-categories-showcase__visual {
-    aspect-ratio: 4 / 3
+    aspect-ratio: 1 / 1
   }
 
   .product-categories-showcase__list {
@@ -2654,92 +2668,27 @@ html[dir="rtl"] .planning-coordination-showcase__rail {
 
 .smart-operations-showcase__body {
   display: grid;
-  grid-template-columns: minmax(22rem, .75fr) minmax(0, 1.25fr);
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
   gap: clamp(2rem, 5vw, 5rem);
-  align-items: center
+  align-items: stretch
 }
 
-.smart-operations-showcase__core {
-  position: relative;
-  min-height: 500px;
-  display: grid;
-  place-items: center;
-  isolation: isolate
+.smart-operations-showcase__image {
+  min-height: 530px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .2);
+  clip-path: polygon(6% 0, 100% 0, 100% 94%, 94% 100%, 0 100%, 0 6%)
 }
 
-.smart-operations-showcase__core::before {
-  content: "";
-  position: absolute;
-  width: 72%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(184, 125, 61, .22), rgba(184, 125, 61, .03) 52%, transparent 70%);
-  filter: blur(1px)
+html[dir="rtl"] .smart-operations-showcase__image {
+  clip-path: polygon(0 0, 94% 0, 100% 6%, 100% 100%, 6% 100%, 0 94%)
 }
 
-.smart-operations-showcase__orbit {
-  position: absolute;
-  aspect-ratio: 1;
-  border: 1px solid rgba(244, 216, 175, .26);
-  border-radius: 50%
+.smart-operations-showcase__image .brand-image__img {
+  object-position: 32% center
 }
 
-.smart-operations-showcase__orbit::before,
-.smart-operations-showcase__orbit::after {
-  content: "";
-  position: absolute;
-  width: .7rem;
-  height: .7rem;
-  background: var(--mah-copper);
-  border: 3px solid var(--mah-green-950);
-  border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(184, 125, 61, .18)
-}
-
-.smart-operations-showcase__orbit::before {
-  inset: 12% 17% auto auto
-}
-
-.smart-operations-showcase__orbit::after {
-  inset: auto auto 12% 17%
-}
-
-.smart-operations-showcase__orbit--outer {
-  width: min(100%, 470px)
-}
-
-.smart-operations-showcase__orbit--inner {
-  width: min(68%, 310px);
-  border-style: dashed
-}
-
-.smart-operations-showcase__core > div {
-  position: relative;
-  z-index: 2;
-  width: 9rem;
-  height: 9rem;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: .65rem;
-  color: #fff;
-  background: var(--mah-copper);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 10px rgba(139, 63, 39, .2),
-    0 22px 60px rgba(0, 0, 0, .3)
-}
-
-.smart-operations-showcase__core svg {
-  width: 2.4rem;
-  height: 2.4rem;
-  stroke-width: 1.4
-}
-
-.smart-operations-showcase__core > div span {
-  font-size: .68rem;
-  font-weight: 800;
-  letter-spacing: .12em
+.smart-operations-showcase__image .brand-image__veil {
+  background: linear-gradient(180deg, transparent 78%, rgba(18, 57, 31, .2))
 }
 
 .smart-operations-showcase__grid {
@@ -2847,8 +2796,9 @@ html[dir="rtl"] .smart-operations-showcase__grid article > span {
     min-height: 170px
   }
 
-  .smart-operations-showcase__core {
-    min-height: 420px
+  .smart-operations-showcase__image {
+    min-height: 0;
+    aspect-ratio: 4 / 3
   }
 }
 
@@ -2883,14 +2833,6 @@ html[dir="rtl"] .smart-operations-showcase__grid article > span {
     min-height: 145px
   }
 
-  .smart-operations-showcase__core {
-    min-height: 330px
-  }
-
-  .smart-operations-showcase__orbit--outer {
-    width: 19rem
-  }
-
   .smart-operations-showcase__grid {
     grid-template-columns: 1fr
   }
@@ -2899,6 +2841,49 @@ html[dir="rtl"] .smart-operations-showcase__grid article > span {
   .smart-operations-showcase__grid article:last-child {
     grid-column: auto;
     min-height: 170px
+  }
+}
+
+.page-theme--operations .content-section.inventory-management {
+  background: #fff;
+  border-block-start: 4px solid var(--mah-copper)
+}
+
+.inventory-management__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start
+}
+
+.inventory-management h2 {
+  max-width: 20ch;
+  margin-bottom: 0;
+  color: var(--mah-green-950)
+}
+
+.inventory-management__copy {
+  border-inline-start: 1px solid var(--mah-copper);
+  padding-inline-start: clamp(1.25rem, 3vw, 3rem)
+}
+
+.inventory-management__copy p {
+  line-height: 1.8;
+  margin-bottom: 1.25rem
+}
+
+.inventory-management__copy p:first-child {
+  color: var(--mah-green-950);
+  font-size: clamp(1.15rem, 1.5vw, 1.4rem)
+}
+
+.inventory-management__copy p:last-child {
+  margin-bottom: 0
+}
+
+@media(max-width:991px) {
+  .inventory-management__grid {
+    grid-template-columns: 1fr
   }
 }
 
@@ -4238,6 +4223,19 @@ html[dir="rtl"] .mission-statement__image {
   min-height: 650px
 }
 
+.media-section.content-section--quality .brand-image {
+  min-height: 0;
+  aspect-ratio: 9 / 8
+}
+
+.media-section.content-section--quality .brand-image__img {
+  object-position: left center
+}
+
+.media-section.content-section--quality .brand-image__veil {
+  background: none
+}
+
 .media-section__list {
   margin-top: 2rem;
   display: grid;
@@ -4749,6 +4747,15 @@ html[dir="rtl"] .mission-statement__image {
     var(--mah-cream) !important
 }
 
+.page-theme--partnership .partnership-channels-section {
+  padding-block-end: clamp(2.5rem, 5vw, 4rem);
+  background: #fff !important
+}
+
+.page-theme--partnership .partnership-channels-section + .logo-showcase--partner-logos {
+  padding-block-start: clamp(2.5rem, 5vw, 4rem)
+}
+
 .partnership-channels__header {
   max-width: 56rem;
   margin-bottom: clamp(3rem, 6vw, 5rem)
@@ -4764,6 +4771,10 @@ html[dir="rtl"] .mission-statement__image {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: stretch;
   gap: clamp(1rem, 2vw, 1.5rem)
+}
+
+.partnership-channels__grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr))
 }
 
 .partnership-channels__grid article {
@@ -4829,6 +4840,56 @@ html[dir="rtl"] .mission-statement__image {
   margin: auto 0 0;
   color: var(--mah-charcoal-700);
   font-size: .94rem
+}
+
+/* Match the Logistics Market Channels palette on the Partnership page. */
+.content-section--partnership .partnership-channels__grid article {
+  color: var(--mah-charcoal);
+  background: #fff;
+  border-color: rgba(30, 78, 42, .1);
+  transform: none;
+  transition: box-shadow .3s ease, background .3s ease
+}
+
+.content-section--partnership .partnership-channels__grid article[data-channel="2"] {
+  background: var(--mah-sand)
+}
+
+.content-section--partnership .partnership-channels__grid article[data-channel="3"] {
+  background: var(--mah-green-950)
+}
+
+.content-section--partnership .partnership-channels__grid article[data-channel="4"] {
+  background: var(--mah-copper)
+}
+
+.content-section--partnership .partnership-channels__meta svg {
+  color: var(--mah-copper)
+}
+
+.content-section--partnership .partnership-channels__meta span {
+  color: var(--mah-gold)
+}
+
+.content-section--partnership .partnership-channels__grid p {
+  color: inherit
+}
+
+.content-section--partnership .partnership-channels__grid article:is([data-channel="3"], [data-channel="4"]) {
+  color: #fff
+}
+
+.content-section--partnership .partnership-channels__grid article:is([data-channel="3"], [data-channel="4"]) h3 {
+  color: #fff
+}
+
+.content-section--partnership .partnership-channels__grid article:is([data-channel="3"], [data-channel="4"]) p {
+  color: rgba(255, 255, 255, .78)
+}
+
+.content-section--partnership .partnership-channels__grid article:is([data-channel="3"], [data-channel="4"]) .partnership-channels__meta svg,
+.content-section--partnership .partnership-channels__grid article:is([data-channel="3"], [data-channel="4"]) .partnership-channels__meta span {
+  color: var(--mah-sand)
 }
 
 @media (max-width: 1199px) {
@@ -8527,6 +8588,28 @@ html[dir="rtl"] .inner-hero--sales h1 {
 .inner-hero--sales .inner-hero__media .brand-image {
   min-height: 0;
   aspect-ratio: 3 / 2;
+  clip-path: polygon(4% 0, 100% 0, 100% 96%, 96% 100%, 0 100%, 0 4%);
+}
+
+html[dir="rtl"] .inner-hero--sales .inner-hero__media .brand-image {
+  clip-path: polygon(0 0, 96% 0, 100% 4%, 100% 100%, 4% 100%, 0 96%);
+}
+
+.inner-hero--sales .brand-image__img {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+
+.inner-hero--sales .brand-image__veil {
+  background: none;
+}
+
+@media(min-width:992px) {
+  .inner-hero--sales .inner-hero__grid {
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 4vw, 4rem);
+  }
 }
 
 .sales-customers__image .brand-image__veil {

@@ -1,5 +1,6 @@
 import {InnerHero} from "@/components/ui/InnerHero";
 import {SectionRenderer} from "@/components/ui/SectionRenderer";
+import {DistributionNetworkMap} from "@/components/ui/DistributionNetworkMap";
 import {BRAND_LOGOS, getSectionImage, PAGE_IMAGES} from "@/content/pages";
 import {byLabel, value} from "@/lib/content";
 import type {Locale, PageContent, PageTheme} from "@/types/content";
@@ -10,10 +11,13 @@ const VISION_VALUES_HIDDEN_SECTIONS = new Set([
 
 const QUALITY_HIDDEN_SECTIONS = new Set([
   "Food Safety Approach",
+  "Compliance & Traceability",
 ]);
 
 const LOGISTICS_HIDDEN_SECTIONS = new Set([
   "Warehousing & Product Readiness",
+  "Market Channels Served",
+  "Delivery Coordination",
 ]);
 
 const MANUFACTURING_HIDDEN_SECTIONS = new Set([
@@ -46,7 +50,8 @@ export function InternalPage({
 }) {
   const [hero, ...sections] = page.sections;
   const heroImage = PAGE_IMAGES[imageKey];
-  const featuredSections = sections.filter(section => section.items.some(item => item.label === "Render Variant" && /^(partner-logos|logistics-counters)$/.test(String(item.en))));
+  const leadingSections = imageKey === "partnerships" ? sections.filter(section => section.title === "Partnership Channels") : [];
+  const featuredSections = [...leadingSections, ...sections.filter(section => section.items.some(item => item.label === "Render Variant" && /^(partner-logos|logistics-counters)$/.test(String(item.en))))];
   const orderedSections = sections.filter(section => !featuredSections.includes(section));
 
   return (
@@ -67,6 +72,7 @@ export function InternalPage({
       {featuredSections.map(section => <SectionRenderer key={section.title} section={section} index={0} locale={locale} theme={theme} image=""/>)}
 
       {orderedSections.map((section, index) => {
+        if (imageKey === "logistics" && section.title === "Distribution Overview") return <DistributionNetworkMap key={section.title} locale={locale}/>;
         if (imageKey === "visionValues" && VISION_VALUES_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "quality" && QUALITY_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "logistics" && LOGISTICS_HIDDEN_SECTIONS.has(section.title)) return null;
