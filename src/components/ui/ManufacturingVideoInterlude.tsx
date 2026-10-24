@@ -9,7 +9,7 @@ import styles from "./ManufacturingVideoInterlude.module.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const manufacturingVideo = "/assets/videos/manufacturing-combined-enhanced-v1.mp4";
+const manufacturingVideo = "/assets/videos/manufacturing-combined-enhanced-v2.mp4";
 
 const manufacturingVideos = [
   "/assets/videos/masdar-video-3.mov",

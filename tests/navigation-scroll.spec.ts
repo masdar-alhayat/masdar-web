@@ -65,7 +65,7 @@ for (const locale of ["en", "ar"] as const) {
 test("Brands and Manufacturing use the same combined video", async ({page}) => {
   for (const path of ["/en/brands-partnerships/brands", "/en/capabilities/manufacturing"]) {
     await page.goto(path);
-    const video = page.locator('video[src="/assets/videos/manufacturing-combined-enhanced-v1.mp4"]');
+    const video = page.locator('video[src="/assets/videos/manufacturing-combined-enhanced-v2.mp4"]');
     await expect(video).toHaveCount(1);
     await expect(video).toHaveAttribute("loop", "");
     await expect(page.locator('video[src$=".mov"]')).toHaveCount(0);

@@ -1,0 +1,31 @@
+{
+  "source_bytes": 88751762,
+  "source_sha256": "c921cf1d93488b52cb0cd235308342af19d276b447b697e01e2b7e09b71339d5",
+  "output": "public/assets/videos/manufacturing-combined-enhanced-v2.mp4",
+  "preset": "slow",
+  "video_bitrate_kbps": 7000,
+  "encoding": "Two-pass H.264; original AAC audio copied",
+  "about_video_sha256": "4340e43d555063a5d211a8cd06e07ba5a68aa8a0f7786abd6d30f7996ca62cea",
+  "playback_order": [
+    3,
+    4,
+    5,
+    10,
+    11,
+    6,
+    7,
+    8,
+    9
+  ],
+  "output_bytes": 43653665,
+  "output_mb": 43.65,
+  "output_mib": 41.63,
+  "reduction_percent": 50.81,
+  "ssim": 0.982597,
+  "decoded_frames": 1220,
+  "audio_bit_identical": true,
+  "resolution": "1920x1080",
+  "fps": 25,
+  "duration_seconds": 48.8,
+  "output_sha256": "a7385506ddd5bf336ffb7709bbd7bb124c59086ddaa0a943b49d03dba6ed74a6"
+}
