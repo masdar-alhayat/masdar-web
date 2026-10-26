@@ -1,6 +1,7 @@
 import content from "./content.generated.json";
 import {researchInnovation2Content} from "./research-innovation-2";
 import {marketingPageContent} from "./marketing";
+import {fonteContent} from "./fonte-test";
 import type {PageContent, PageTheme} from "@/types/content";
 
 export const PAGE_KEYS = {
@@ -183,6 +184,7 @@ export function getSectionImage(
 }
 
 export function getPageContent(key: PageKey): PageContent {
+  if (key === "brands") return fonteContent;
   if (key === "research2") return researchInnovation2Content;
   if (key === "marketing") return marketingPageContent;
   return content[PAGE_KEYS[key] as keyof typeof content] as PageContent;

@@ -6,10 +6,9 @@ import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {useGSAP} from "@gsap/react";
 import styles from "./ManufacturingVideoInterlude.module.css";
+import {MANUFACTURING_VIDEO_SRC} from "@/content/media";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-const manufacturingVideo = "/assets/videos/manufacturing-combined-enhanced-v2.mp4";
 
 const manufacturingVideos = [
   "/assets/videos/masdar-video-3.mov",
@@ -29,7 +28,7 @@ export function ManufacturingVideoInterlude({label, combined = false}: {label: s
   const media = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
-  const videoSrc = combined ? manufacturingVideo : manufacturingVideos[activeVideoIndex];
+  const videoSrc = combined ? MANUFACTURING_VIDEO_SRC : manufacturingVideos[activeVideoIndex];
   const playNextVideo = useCallback(() => {
     setActiveVideoIndex(index => (index + 1) % manufacturingVideos.length);
   }, []);

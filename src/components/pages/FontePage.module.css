@@ -1,0 +1,134 @@
+.page {
+  --fonte-red: #e91c29;
+  --fonte-deep: #9c1420;
+  --fonte-gold: #f6b533;
+  --fonte-ink: #421a1c;
+  --fonte-cream: #fff9ef;
+  --mah-green-950: #64161e;
+  --mah-green-900: #981b24;
+  --mah-green-700: #b51b28;
+  --mah-sand: #efb24c;
+  --mah-cream: #fff9ef;
+  color: var(--fonte-ink);
+  background: var(--fonte-cream);
+}
+.page :is(h1,h2,h3) {color: inherit; letter-spacing: -.045em;}
+.page :is(h2,h3) {line-height: 1.15;}
+.page :is(section,nav)[id] {scroll-margin-top: 125px;}
+.page :is(button,a):focus-visible {outline: 3px solid var(--fonte-gold); outline-offset: 5px;}
+.page p {color: #715c55; line-height: 1.85;}
+.hero {position: relative; overflow: hidden; padding: clamp(10rem,13vw,12rem) 0 5rem; color: #fff; background: linear-gradient(120deg,#b40f1b 0%,#e91c29 60%,#f23638 100%);}
+.hero::before {content: ""; position: absolute; width: 65vw; height: 65vw; border: 1px solid #ffffff25; border-radius: 50%; inset: -26vw -24vw auto auto; box-shadow: 0 0 0 4rem #ffffff05,0 0 0 8rem #ffffff04; pointer-events: none;}
+.hero::after {content: ""; position: absolute; height: 6rem; width: 110%; inset: auto -5% -5rem; background: var(--fonte-cream); border-radius: 50% 50% 0 0;}
+.heroGrid {position: relative; display: grid; grid-template-columns: minmax(0,.95fr) minmax(0,1.05fr); gap: clamp(2rem,5vw,5rem); align-items: center;}
+.breadcrumb {display: flex; flex-wrap: wrap; gap: .65rem; color: #ffe0cf; font-size: .73rem; margin-bottom: 2rem;}
+.breadcrumb a:hover {color: #fff; text-decoration: underline;}
+.brandSignature {display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; width: 100%; margin-bottom: 2rem; text-align: center;}
+.brandSignature img {width: clamp(205px,17vw,255px); height: auto; padding: 10px 15px; background: #fff; border-radius: 12px;}
+.brandSignature > span {font-size: clamp(.95rem,1.15vw,1.1rem); line-height: 1.5; color: #ffe8d2;}
+.hero h1 {font-size: clamp(2.8rem,5.1vw,5.2rem); line-height: 1.07; font-weight: 750; margin-bottom: 1.6rem;}
+.hero h1 em {display: block; color: #ffdc94; font-style: normal;}
+.heroCopy > p {color: #ffede3; font-size: clamp(1rem,1.35vw,1.2rem); max-width: 43ch; margin-bottom: 2rem;}
+.primaryButton {display: inline-flex; align-items: center; justify-content: center; gap: 1.1rem; min-height: 52px; padding: .85rem 1.5rem; border: 1px solid transparent; border-radius: 50px; background: var(--fonte-red); color: #fff; font-size: .87rem; font-weight: 750; transition: background .25s,transform .25s;}
+.primaryButton:hover {color: #fff; background: var(--fonte-deep); transform: translateY(-2px);}
+.hero .primaryButton {background: #fff6e5; color: var(--fonte-deep);}
+.hero .primaryButton:hover {background: var(--fonte-gold);}
+.heroVisual {margin: 0; padding: 1.3rem; border-radius: 2.4rem 2.4rem 5rem 2.4rem; background: #fff; box-shadow: 0 25px 70px #69010b33; overflow: hidden;}
+.heroProducts {position: relative; aspect-ratio: 1.1;}
+.heroProducts img {object-fit: contain;}
+.brandNav {background: var(--fonte-cream); border-bottom: 1px solid #e6d4bf;}
+.brandNav > div {display: flex; align-items: center; gap: clamp(1.5rem,4vw,4rem); padding-block: 1.5rem; overflow-x: auto; white-space: nowrap; font-size: .8rem;}
+.brandNav > div > span {margin-inline-end: auto; color: #b07b29; font-size: .68rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase;}
+.brandNav a {padding-block: .35rem; border-bottom: 1px solid transparent; font-weight: 650;}
+.brandNav a:hover {color: var(--fonte-red); border-color: currentColor;}
+.eyebrow {display: block; margin-bottom: 1rem; color: #a31c27; font-size: .7rem; font-weight: 750; letter-spacing: .14em; text-transform: uppercase;}
+.products {background: var(--fonte-cream);}
+.sectionHeader {display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); align-items: end; gap: clamp(2rem,6vw,6rem); margin-bottom: 3rem;}
+.sectionHeader h2 {font-size: clamp(2.2rem,4.2vw,4rem); max-width: 20ch; margin: 0;}
+.sectionHeader p {margin: 0; max-width: 47ch;}
+.tabs {display: flex; gap: .55rem; overflow-x: auto; padding: .5rem .25rem 1.1rem; margin-bottom: 1.25rem; scrollbar-width: thin; scrollbar-color: #d9ae76 transparent;}
+.tabs button {flex: 1 0 auto; display: flex; align-items: center; justify-content: center; gap: .6rem; border: 1px solid #e2ceba; border-radius: 50px; padding: .85rem 1.15rem; background: transparent; color: #80514a; font-size: .8rem; font-weight: 650; transition: background .25s,border-color .25s,color .25s;}
+.tabs button:hover {border-color: var(--fonte-red); color: var(--fonte-red);}
+.tabs button[aria-selected="true"] {color: #fff; background: var(--fonte-red); border-color: var(--fonte-red); box-shadow: 0 7px 20px #e91c2920;}
+.productPanel {display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); gap: clamp(2rem,5vw,5rem); padding: clamp(1rem,2vw,1.8rem); align-items: center; border-radius: 1.8rem; background: #fff; border: 1px solid #eaded1; overflow: hidden;}
+.productPanel[hidden] {display: none;}
+.productImage {position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 1.1rem; background: #fbf5ec;}
+.productImage img {object-fit: contain;}
+.productCopy {padding: 1.5rem clamp(.75rem,2.2vw,2rem) 1.5rem 0; position: relative;}
+.productNumber {display: block; margin-bottom: 3rem; color: #b99c82; font-size: .75rem; letter-spacing: .12em;}
+.productCopy h3 {font-size: clamp(2rem,3.3vw,3.4rem); margin-bottom: 1.35rem;}
+.productCopy p {margin-bottom: 2rem; max-width: 36ch;}
+.textLink {display: inline-flex; align-items: center; gap: .75rem; padding-block: .5rem; color: var(--fonte-deep); font-size: .83rem; font-weight: 750; border-bottom: 1px solid #bd1a2a55;}
+.textLink:hover {color: var(--fonte-red); gap: 1rem;}
+.productDots {display: flex; gap: .5rem; margin-top: 3rem;}
+.productDots span {width: 1.3rem; height: 3px; background: #ebd7bf; border-radius: 5px;}
+.productDots span[data-active="true"] {width: 2.5rem; background: var(--fonte-red);}
+.story {background: #fff;}
+.storyGrid {display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); gap: clamp(2rem,6vw,6rem); align-items: center;}
+.storyVisual {position: relative; min-height: 520px; background: #c1000a; border-radius: 1.5rem 6rem 1.5rem 1.5rem; overflow: hidden;}
+.storyVisual > img {object-fit: cover; object-position: 47% center;}
+.storyLogo {position: absolute; top: 1.4rem; inset-inline-start: 1.4rem; padding: .6rem 1rem; border-radius: 10px; background: #fff;}
+.storyLogo img {height: auto; width: 132px;}
+.storyCopy h2 {font-size: clamp(2rem,3.3vw,3.4rem); margin-bottom: 1.6rem;}
+.storyCopy > p {font-size: 1rem;}
+.storyCopy .textLink {margin-top: .5rem;}
+.film {background: linear-gradient(125deg,#9b101e,#db1a29); color: #fff; overflow: hidden;}
+.film .eyebrow {color: #ffcf7d;}
+.film .sectionHeader p {color: #ffe4d7;}
+.videoFrame {overflow: hidden; border-radius: 1.5rem; border: 1px solid #ffdc943d; background: #31090d; box-shadow: 0 20px 60px #54000a55;}
+.videoFrame video {display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;}
+.filmCaption {display: flex; justify-content: flex-end; align-items: center; padding-top: 1.4rem;}
+.filmCaption p {color: #ffdec8; margin: 0; font-size: .8rem;}
+.clients {background: #fffaf4;}
+.clients :global(.logo-carousel__card) {border-radius: 1rem; box-shadow: 0 8px 25px #6c362507; border-color: #eadccc;}
+.clients :global(.logo-carousel__card:hover) {border-color: #d99c62;}
+.clients :global(.logo-carousel__toggle) {border-radius: 40px; border-color: #d9b69d;}
+.contact {position: relative; overflow: hidden; background: #f6deb4; border-top: 1px solid #e4be82;}
+.contact::after {content: ""; position: absolute; width: 32rem; height: 32rem; border: 1px solid #c3944b33; border-radius: 50%; inset: auto -15rem -16rem auto; box-shadow: 0 0 0 3rem #c3944b0a,0 0 0 6rem #c3944b08; pointer-events: none;}
+.contactInner {position: relative; z-index: 1; text-align: center;}
+.contactInner > img {height: auto; width: 170px; margin-bottom: 2.2rem;}
+.contact h2 {max-width: 22ch; margin: 0 auto 1.5rem; font-size: clamp(2.4rem,4.5vw,4.5rem);}
+.contact p {max-width: 62ch; margin: 0 auto; color: #715139;}
+.contactActions {display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; justify-content: center; margin-top: 2rem;}
+:global(html[dir="rtl"]) .page :is(h1,h2,h3) {letter-spacing: 0; line-height: 1.45;}
+:global(html[dir="rtl"]) .eyebrow {letter-spacing: 0;}
+:global(html[dir="rtl"]) .productNumber {text-align: right;}
+:global(html[dir="rtl"]) .heroVisual {border-radius: 2.4rem 2.4rem 2.4rem 5rem;}
+:global(html[dir="rtl"]) .productCopy {padding: 1.5rem 0 1.5rem clamp(.75rem,2.2vw,2rem);}
+:global(html[dir="rtl"]) .storyVisual {border-radius: 6rem 1.5rem 1.5rem 1.5rem;}
+@media(max-width:1199px) {
+  .tabs button {flex: 0 0 auto;}
+  .hero h1 {font-size: clamp(2.6rem,4.7vw,4.2rem);}
+  .storyVisual {min-height: 450px;}
+}
+@media(max-width:991px) {
+  .hero {padding-top: 9rem; padding-bottom: 3.5rem;}
+  .heroGrid,.storyGrid {grid-template-columns: 1fr; gap: 3rem;}
+  .heroCopy {max-width: 42rem;}
+  .hero h1 {font-size: clamp(3rem,7vw,4.5rem);}
+  .heroVisual {max-width: 39rem; width: 100%; justify-self: center;}
+  .sectionHeader {grid-template-columns: 1fr; gap: 1.5rem;}
+  .sectionHeader p {max-width: 60ch;}
+  .storyVisual {min-height: 440px;}
+  .brandNav > div > span {display: none;}
+  .brandNav > div {justify-content: center; gap: 2rem;}
+}
+@media(max-width:767px) {
+  .productPanel {grid-template-columns: 1fr; gap: .5rem; padding: 1rem; border-radius: 1.2rem;}
+  .productImage {aspect-ratio: 1.1;}
+  .productCopy,:global(html[dir="rtl"]) .productCopy {padding: 1.5rem .5rem;}
+  .productNumber {margin-bottom: 1.5rem;}
+  .productDots {margin-top: 2rem;}
+  .sectionHeader {margin-bottom: 2rem;}
+  .brandSignature {margin-bottom: 1.8rem;}
+  .storyVisual {min-height: 350px;}
+  .heroVisual {padding: 1rem; border-radius: 1.4rem 1.4rem 3rem 1.4rem;}
+  :global(html[dir="rtl"]) .heroVisual {border-radius: 1.4rem 1.4rem 1.4rem 3rem;}
+  .brandNav > div {justify-content: start; font-size: .74rem; gap: 1.8rem; padding-block: 1rem;}
+  .contactActions {flex-direction: column; gap: 1rem;}
+  .filmCaption p {font-size: .7rem;}
+  .page :is(section,nav)[id] {scroll-margin-top: 95px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .page :is(a,button) {transition: none;}
+}
