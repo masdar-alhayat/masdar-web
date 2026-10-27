@@ -22,6 +22,16 @@ for (const locale of ["en", "ar"] as const) {
     await expect(brandSignature.locator("span")).toContainText(locale === "en" ? "The flagship brand of Masdar Al Hayat" : "العلامة الرئيسية لمصدر الحياة");
     const signatureTextBox = await brandSignature.locator("span").boundingBox();
     expect(signatureTextBox!.y).toBeGreaterThanOrEqual(logoBox!.y + logoBox!.height);
+    const heroBox = await hero.boundingBox();
+    expect(Math.abs((logoBox!.x + logoBox!.width / 2) - (heroBox!.x + heroBox!.width / 2))).toBeLessThan(2);
+    expect(await brandSignature.locator("span").evaluate(element => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(20);
+    const headingBox = await hero.locator("h1").boundingBox();
+    const productBox = await hero.locator("figure").boundingBox();
+    expect(headingBox!.y).toBeGreaterThanOrEqual(signatureTextBox!.y + signatureTextBox!.height);
+    expect(productBox!.y).toBeGreaterThanOrEqual(signatureTextBox!.y + signatureTextBox!.height);
+    if (page.viewportSize()!.width > 991) {
+      expect(locale === "en" ? headingBox!.x < productBox!.x : headingBox!.x > productBox!.x).toBeTruthy();
+    }
     const collection = hero.locator('img[alt*="product collection"], img[alt*="مجموعة منتجات فونتي"]');
     await collection.evaluate(async image => {await (image as HTMLImageElement).decode();});
     await expect(collection).toHaveCSS("object-fit", "contain");
