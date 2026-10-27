@@ -6,7 +6,6 @@ const routes = [
   "/about/group-story-tamimi-group",
   "/about/vision-mission-values",
   "/research-innovation",
-  "/research-innovation-2",
   "/capabilities/manufacturing",
   "/capabilities/operations",
   "/capabilities/quality-compliance",

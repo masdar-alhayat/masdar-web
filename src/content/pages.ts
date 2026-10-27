@@ -1,5 +1,5 @@
 import content from "./content.generated.json";
-import {researchInnovation2Content} from "./research-innovation-2";
+import {researchInnovationContent} from "./research-innovation";
 import {marketingPageContent} from "./marketing";
 import {fonteContent} from "./fonte-test";
 import type {PageContent, PageTheme} from "@/types/content";
@@ -10,7 +10,6 @@ export const PAGE_KEYS = {
   groupStory: "GROUP STORY – TAMIMI GROUP",
   visionValues: "VISION, MISSION & VALUES",
   research: "RESEARCH & INNOVATION",
-  research2: "RESEARCH & INNOVATION 2",
   manufacturing: "MANUFACTURING",
   operations: "OPERATIONS",
   quality: "QUALITY & COMPLIANCE",
@@ -162,7 +161,6 @@ export const PAGE_DEFINITIONS: PageDefinition[] = [
   {key: "groupStory", path: "/about/group-story-tamimi-group", theme: "heritage", imageKey: "groupStory"},
   {key: "visionValues", path: "/about/vision-mission-values", theme: "manifesto", imageKey: "visionValues"},
   {key: "research", path: "/research-innovation", theme: "innovation", imageKey: "research"},
-  {key: "research2", path: "/research-innovation-2", theme: "innovation", imageKey: "research"},
   {key: "manufacturing", path: "/capabilities/manufacturing", theme: "industrial", imageKey: "manufacturing"},
   {key: "operations", path: "/capabilities/operations", theme: "operations", imageKey: "operations"},
   {key: "quality", path: "/capabilities/quality-compliance", theme: "quality", imageKey: "quality"},
@@ -185,7 +183,7 @@ export function getSectionImage(
 
 export function getPageContent(key: PageKey): PageContent {
   if (key === "brands") return fonteContent;
-  if (key === "research2") return researchInnovation2Content;
+  if (key === "research") return researchInnovationContent;
   if (key === "marketing") return marketingPageContent;
   return content[PAGE_KEYS[key] as keyof typeof content] as PageContent;
 }
