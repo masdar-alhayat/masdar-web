@@ -1,0 +1,79 @@
+{
+  "mode": "Built-in image_gen",
+  "intent": "edit/compositing",
+  "date": "2026-10-28",
+  "jobs": [
+    {
+      "id": "insight",
+      "refs": [
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/focus-insight-v1.webp",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/fonte/product-collection.webp"
+      ],
+      "prompt": "Use case: compositing. Edit image 1 as the base photograph for a premium Saudi food company Research & Innovation website card. Keep the original people, faces, camera, portrait 4:5 composition, natural lighting, authentic materials, and photographic realism. Products must be actual Fonte retail packs copied faithfully from the supplied supporting product photographs: preserve the exact red gold-edged Fonte Arabic/English shield, product names, color blocks, artwork, food illustrations, pack shape and relative retail scale. Do not redesign packs or invent alternative branding. Integrate perspective, plastic reflections, contact shadows and natural depth of field; avoid a flat sticker effect. Action and branded products should remain within upper/middle 70% of frame because card copy covers the lower portion. No overlaid titles, watermarks, Masdar logos, display charts or promotional wall signage. Image 2 is the real product identity reference, specifically its two tall tied bread bags at the top: white sliced loaf with yellow/red artwork and red gathered top, bran loaf with green/gold artwork and green gathered top. Replace the unbranded bread that the shopper is reaching toward with a correctly sized authentic Fonte white sliced loaf, label facing camera naturally. Stock the immediately adjacent shelf with a few of these actual white/bran Fonte loaves. Keep clear visibility of the researcher's notebook and conversational customer insight scene. Do not add brand logos to either woman's clothes. The two bread packs must resemble the actual supplied retail packaging, not generic clear breadbags with new labels.",
+      "source": "C:/Users/LENOVO/.codex/generated_images/01a08b35-412e-7792-86cf-ce3fb645414a/exec-47c89d7f-1e96-4c4c-8aa2-3b1b858744f5.png",
+      "output": "public/assets/images/research-innovation/focus-insight-v2.webp"
+    },
+    {
+      "id": "recipes",
+      "refs": [
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/focus-recipes-v1.webp",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/brand/fonte-transparent-logo.png",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/tortilla-protein.webp"
+      ],
+      "prompt": "Use case: compositing. Edit image 1 as the base photograph for a premium Saudi food company Research & Innovation website card. Keep the original people, faces, camera, portrait 4:5 composition, natural lighting, authentic materials, and photographic realism. Products must be actual Fonte retail packs copied faithfully from the supplied supporting product photographs: preserve the exact red gold-edged Fonte Arabic/English shield, product names, color blocks, artwork, food illustrations, pack shape and relative retail scale. Do not redesign packs or invent alternative branding. Integrate perspective, plastic reflections, contact shadows and natural depth of field; avoid a flat sticker effect. Action and branded products should remain within upper/middle 70% of frame because card copy covers the lower portion. No overlaid titles, watermarks, Masdar logos, display charts or promotional wall signage. Image 2 is the sole permitted coat logo reference. Add one modest professionally embroidered Fonte shield on the female technologist's visible upper coat chest, about 6 cm wide, naturally following the fabric. Male baker's coat stays plain. Image 3 is a real high-protein Fonte tortilla pack, purple left panel, black 37 protein strip and clear tortilla area. Place one actual closed flat retail pack propped at a low believable angle on the right of the test bench just behind the raw tortilla stack and below the man's hands, clearly visible in the middle of the image. Keep the testing of bread texture and tortilla flexibility, ingredients and scale. This is a real development kitchen, not a product catalogue. Do not print anything on the loose tortillas. Preserve all product identity details from image 3.",
+      "source": "C:/Users/LENOVO/.codex/generated_images/01a08b35-412e-7792-86cf-ce3fb645414a/exec-780e3a3c-cdc0-4c90-82ac-af1a69035d01.png",
+      "output": "public/assets/images/research-innovation/focus-recipes-v2.webp"
+    },
+    {
+      "id": "packaging",
+      "refs": [
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/focus-packaging-v1.webp",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/tortilla-wraps.webp",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/pancake-single-strawberry.webp"
+      ],
+      "prompt": "Use case: compositing. Edit image 1 as the base photograph for a premium Saudi food company Research & Innovation website card. Keep the original people, faces, camera, portrait 4:5 composition, natural lighting, authentic materials, and photographic realism. Products must be actual Fonte retail packs copied faithfully from the supplied supporting product photographs: preserve the exact red gold-edged Fonte Arabic/English shield, product names, color blocks, artwork, food illustrations, pack shape and relative retail scale. Do not redesign packs or invent alternative branding. Integrate perspective, plastic reflections, contact shadows and natural depth of field; avoid a flat sticker effect. Action and branded products should remain within upper/middle 70% of frame because card copy covers the lower portion. No overlaid titles, watermarks, Masdar logos, display charts or promotional wall signage. Image 2 is the exact yellow Fonte Tortilla Wraps retail resealable pouch; image 3 the exact pink single strawberry Fonte Pan Cake pack. Replace the plain clear tortilla bag in the hands with the authentic yellow Fonte Tortilla Wraps pouch from image 2, at realistic retail scale with its resealable transparent upper seal held gently between the fingers; front artwork faces the camera. Keep the actual yellow panel, red shield, large tortilla serving image and bilingual text layout unchanged. Replace the unbranded individual pastry on the bench with ONE authentic pink strawberry Pan Cake individual pack from image 3, lying flat in the middle ground below the held pouch. Remove the unbranded loaf on the left to simplify and give the featured packs space. Keep the lunchbox and realistic workbench; coat plain, no added logos elsewhere. Show the real product packs and practical packaging development, not a brand advertisement.",
+      "source": "C:/Users/LENOVO/.codex/generated_images/01a08b35-412e-7792-86cf-ce3fb645414a/exec-e186c4f9-2dd4-4577-ac23-093d5fc67d88.png",
+      "output": "public/assets/images/research-innovation/focus-packaging-v2.webp"
+    },
+    {
+      "id": "quality",
+      "refs": [
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/focus-quality-v1.webp",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/brand/fonte-transparent-logo.png",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/tortilla-wraps.webp"
+      ],
+      "prompt": "Use case: compositing. Edit image 1 as the base photograph for a premium Saudi food company Research & Innovation website card. Keep the people, faces, portrait 4:5 composition, natural light, authentic materials and photographic realism. Supporting product photographs supply exact actual Fonte retail packaging: retain the red gold-edged bilingual Fonte shield, color blocks, Arabic/English text layout, product illustration and retail proportions. Do not redesign the packaging, invent brands or use a generic label substitute. Integrate products with realistic perspective, reflections, contact shadows and depth of field. Keep important action and products within upper/middle 70% because lower card has text overlay. No overlaid headings, fake chart displays, Masdar marks, promotional signage or watermarks. Image 2 is the actual Fonte coat logo; put a single modest about 6cm embroidered shield on the visible upper chest of the main inspector's coat. No logos on anyone else. Image 3 is the exact yellow Fonte Tortilla Wraps retail pouch. Replace the generic wrapped bread in the front-right with one actual sealed yellow Fonte pouch from image 3, lying flat in perspective on the inspection bench beside the scale, with label facing up and package not obstructed by her hand. Keep her thermometer probe and small unwrapped bread sample unchanged so quality testing remains the main action. Packaging front must preserve original design and actual pack shape. Subtle authentic professional quality inspection, not a product advertisement.",
+      "source": "C:/Users/LENOVO/.codex/generated_images/01a08b35-412e-7792-86cf-ce3fb645414a/exec-0605d692-abc1-44b1-b521-66f44e3a391e.png",
+      "output": "public/assets/images/research-innovation/focus-quality-v2.webp"
+    },
+    {
+      "id": "digital",
+      "refs": [
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/focus-digital-v1.webp",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/pancake-box-strawberry.webp",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/tortilla-wraps.webp"
+      ],
+      "prompt": "Use case: compositing. Edit image 1 as the base photograph for a premium Saudi food company Research & Innovation website card. Keep the people, faces, portrait 4:5 composition, natural light, authentic materials and photographic realism. Supporting product photographs supply exact actual Fonte retail packaging: retain the red gold-edged bilingual Fonte shield, color blocks, Arabic/English text layout, product illustration and retail proportions. Do not redesign the packaging, invent brands or use a generic label substitute. Integrate products with realistic perspective, reflections, contact shadows and depth of field. Keep important action and products within upper/middle 70% because lower card has text overlay. No overlaid headings, fake chart displays, Masdar marks, promotional signage or watermarks. Image 2 shows the actual Fonte strawberry Pan Cake display carton containing individually wrapped snacks. Image 3 shows the exact yellow Fonte Tortilla Wraps retail pouch. Replace the central closed plain carton with an open brown shipping carton containing ONE actual pink Fonte strawberry Pan Cake display box from image 2, settled inside the shipping carton naturally and facing the camera, with its original printed display header visible around the height of the man's lower chest. An actual yellow Fonte tortilla pouch from image 3 lies flat beside the carton on the conveyor in middle ground. The scanner in the man's hand points to a small shipping barcode on the outer carton. Keep his colleague checking the back-facing rugged tablet, natural operations teamwork and warehouse environment. Do not add logos to shirts, walls or large shipping carton faces. Avoid oversized packs: displaybox about25cm wide, tortilla pack about24cm wide.",
+      "source": "C:/Users/LENOVO/.codex/generated_images/01a08b35-412e-7792-86cf-ce3fb645414a/exec-c26b67f9-c835-44e6-a4e2-c6fe753c4058.png",
+      "output": "public/assets/images/research-innovation/focus-digital-v2.webp"
+    },
+    {
+      "id": "partners",
+      "refs": [
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/focus-partners-v1.webp",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/tortilla-protein.webp",
+        "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/pancake-box-strawberry.webp"
+      ],
+      "prompt": "Use case: compositing. Edit image 1 as the base photograph for a premium Saudi food company Research & Innovation website card. Keep the people, faces, portrait 4:5 composition, natural light, authentic materials and photographic realism. Supporting product photographs supply exact actual Fonte retail packaging: retain the red gold-edged bilingual Fonte shield, color blocks, Arabic/English text layout, product illustration and retail proportions. Do not redesign the packaging, invent brands or use a generic label substitute. Integrate products with realistic perspective, reflections, contact shadows and depth of field. Keep important action and products within upper/middle 70% because lower card has text overlay. No overlaid headings, fake chart displays, Masdar marks, promotional signage or watermarks. Image 2 is the actual purple/black Fonte Protein Tortilla pack, including the37gprotein artwork. Image 3 is the actual pink Fonte strawberry Pan Cake retail display carton with individually wrapped snacks. Keep the shared-knowledge discussion around grains and recipe samples, Saudi business dress and the technologist. Replace the clear grain prototype pouches at center-right with a single authentic Fonte protein tortilla retail pouch from image 2 propped at a slight angle and a small actual Fonte Pan Cake displaybox from image 3 on the table immediately to its right. Both are development reference products being discussed, not a large advertising display. Leave some grain jars, cut bread and notes visible. Pack fronts preserve supplied identity precisely, with plausible real retail scale. No added logos on any clothing or wall, no handshake pose. Preserve the human interaction and faces.",
+      "source": "C:/Users/LENOVO/.codex/generated_images/01a08b35-412e-7792-86cf-ce3fb645414a/exec-dcd7ae7c-fb09-4ce5-ba94-0862286219e9.png",
+      "output": "public/assets/images/research-innovation/focus-partners-v2.webp"
+    }
+  ],
+  "digitalCorrection": {
+    "prompt": "Use case: precise-object-edit. Edit ONLY the central printed pancake illustration on the raised pink strawberry Fonte Pan Cake display carton header in image 1. The previous edit mistakenly put a red Fonte shield ON the golden pancake illustration. Remove that mistaken red shield and restore the original plain dark brown Fonte wordmark with its curved underline directly on the golden pancake, exactly like the display carton in image 2. This is printed package artwork, not a real loose pancake. Preserve the original character drawing, strawberries, PAN CAKE lettering, x12, bilingual flavour text and carton shape. Keep every other element of image 1 unchanged: people, hands, scanner, tablet, outer carton barcode, tortilla pouch, warehouse, lighting, composition and realism. Image 2 is solely the exact authentic product artwork reference. No new logos or text. Portrait4:5.",
+    "refs": [
+      "C:/Users/LENOVO/.codex/generated_images/01a08b35-412e-7792-86cf-ce3fb645414a/exec-407fbcb6-af97-492a-91d8-84c00037a054.png",
+      "D:/SULTAN-macbook/SULTAN/PROJECTS/MASDAR-AL-HAYAT/MASDAR-WEB/masdar-web/public/assets/images/research-innovation/pancake-box-strawberry.webp"
+    ]
+  }
+}
