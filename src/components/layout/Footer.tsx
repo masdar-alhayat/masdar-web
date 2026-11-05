@@ -7,23 +7,11 @@ import {
   Phone,
 } from "lucide-react";
 import {FaLinkedinIn} from "react-icons/fa6";
-import {
-  SiFacebook,
-  SiInstagram,
-  SiSnapchat,
-  SiTiktok,
-  SiX,
-} from "react-icons/si";
 import {Link} from "@/i18n/navigation";
 import type {Locale} from "@/types/content";
 
 const socialLinks = [
-  {label: "Facebook", href: "https://www.facebook.com/282830791817902", Icon: SiFacebook},
-  {label: "Instagram", href: "https://www.instagram.com/fonte2me/", Icon: SiInstagram},
-  {label: "Twitter / X", href: "https://x.com/fonte2me", Icon: SiX},
   {label: "LinkedIn", href: "https://www.linkedin.com/company/fonte-masdaralhayat", Icon: FaLinkedinIn},
-  {label: "Snapchat", href: "https://www.snapchat.com/add/fonte2me", Icon: SiSnapchat},
-  {label: "TikTok", href: "https://www.tiktok.com/@fonte2me", Icon: SiTiktok},
 ] as const;
 
 export function Footer({locale}: {locale: Locale}) {
