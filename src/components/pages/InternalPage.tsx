@@ -1,7 +1,7 @@
 import {InnerHero} from "@/components/ui/InnerHero";
 import {SectionRenderer} from "@/components/ui/SectionRenderer";
 import {DistributionNetworkMap} from "@/components/ui/DistributionNetworkMap";
-import {BRAND_LOGOS, getSectionImage, PAGE_IMAGES} from "@/content/pages";
+import {ABOUT_HERO_GALLERY, BRAND_LOGOS, getSectionImage, PAGE_IMAGES} from "@/content/pages";
 import {byLabel, value} from "@/lib/content";
 import type {Locale, PageContent, PageTheme} from "@/types/content";
 
@@ -67,6 +67,7 @@ export function InternalPage({
         brandLogo={imageKey === "groupStory" ? BRAND_LOGOS.tamimiGroup : undefined}
         brandLogoAlt={locale === "ar" ? "شعار مجموعة التميمي" : "Tamimi Group logo"}
         additionalSupporting={imageKey === "groupStory" ? value(byLabel(hero, "Supporting Paragraph 2"), locale) : undefined}
+        gallery={imageKey === "about" ? ABOUT_HERO_GALLERY.map(photo => ({src: photo.src, alt: photo.alt[locale]})) : undefined}
       />
 
       {featuredSections.map(section => <SectionRenderer key={section.title} section={section} index={0} locale={locale} theme={theme} image=""/>)}

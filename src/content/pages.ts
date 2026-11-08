@@ -71,7 +71,8 @@ export const PAGE_IMAGES = {
 
 export const HOME_IMAGES = {
   glanceSaudiPresence: "/assets/images/glance-saudi-presence-v1.png",
-  glanceProductionStrength: "/assets/images/masdar-enhanced/masdar_al_hayat_34.png",
+  glanceInstitutionalStrength: "/assets/images/masdar-enhanced/masdar_al_hayat_07.jpg",
+  glanceProductionStrength: "/assets/images/glance-production-strength-fonte.webp",
   glanceProductPortfolio: "/assets/images/glance-product-portfolio-v1.png",
   glanceMarketDelivery: "/assets/images/masdar-enhanced/masdar_al_hayat-50.png",
   foodPortfolioBread: "/assets/images/food-portfolio-1.jpg",
@@ -83,6 +84,10 @@ export const HOME_IMAGES = {
   whoWeAre: "/assets/images/masdar-enhanced/masdar_al_hayat_01.png",
   manufacturingStrength: "/assets/images/masdar-enhanced/masdar_al_hayat-49.png",
   manufacturingStrengthSecondary: "/assets/images/masdar-enhanced/masdar_al_hayat_02.png",
+  workingTogetherRetail: "/assets/images/working-together-retail.webp",
+  workingTogetherFoodservice: "/assets/images/working-together-foodservice.webp",
+  workingTogetherDistribution: "/assets/images/working-together-distribution.webp",
+  workingTogetherInstitutional: "/assets/images/working-together-institutional.webp",
   qualitySystem: "/assets/images/masdar-enhanced/masdar_al_hayat_03.png",
   careers: "/assets/images/masdar-enhanced/masdar_al_hayat_05.jpeg",
 } as const;
@@ -147,6 +152,16 @@ export const SECTION_IMAGE_MAP: Partial<
     2: "/assets/images/masdar-enhanced/masdar_al_hayat-44.png",
   },
 };
+
+// Production photographs shown as an overlapping collage in the About hero, in tile order.
+export const ABOUT_HERO_GALLERY = [
+  {src: "/assets/images/about/production-tortilla-pressing.webp", alt: {en: "Tortilla dough discs pressed and placed on a production belt", ar: "أقراص عجين التورتيلا تُكبس وتوضع على سير الإنتاج"}},
+  {src: "/assets/images/about/production-tortilla-dividing.webp", alt: {en: "Dough portions moving through an automated sheeting line", ar: "قطع العجين تمر عبر خط تشكيل آلي"}},
+  {src: "/assets/images/about/production-dough-rounding.webp", alt: {en: "Rounded dough balls on an automated rounding conveyor", ar: "كرات العجين على سير التكوير الآلي"}},
+  {src: "/assets/images/about/production-swiss-roll-sheets.webp", alt: {en: "Sponge sheets layered with filling before rolling", ar: "طبقات الكيك الإسفنجي مع الحشوة قبل اللف"}},
+  {src: "/assets/images/about/production-tomato-paste-line.webp", alt: {en: "Fonte tomato paste packs on a coding and conveyor line", ar: "عبوات معجون الطماطم فونتي على خط الترميز والنقل"}},
+  {src: "/assets/images/about/production-swiss-roll-line.webp", alt: {en: "Decorated Swiss rolls moving along a packing conveyor", ar: "لفائف السويس رول المزينة على سير التعبئة"}},
+] as const;
 
 export interface PageDefinition {
   key: PageKey;

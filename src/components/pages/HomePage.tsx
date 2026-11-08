@@ -1,15 +1,26 @@
-import {ArrowDown, ArrowRight, ShieldCheck, Users, BriefcaseBusiness} from "lucide-react";
+import {ArrowDown, ArrowRight, Users} from "lucide-react";
 import Image from "next/image";
 import {AnimatedSection} from "@/components/motion/AnimatedSection";
 import {HeroMotion} from "@/components/motion/HeroMotion";
 import {ArrowLink} from "@/components/ui/ArrowLink";
 import {BrandImage} from "@/components/ui/BrandImage";
-import {GlanceCarousel} from "@/components/ui/GlanceCarousel";
+import {GlanceBanners} from "@/components/ui/GlanceBanners";
 import {FoodPortfolioCarousel} from "@/components/ui/FoodPortfolioCarousel";
 import {ManufacturingCounters} from "@/components/ui/ManufacturingCounters";
 import {BRAND_LOGOS, HOME_IMAGES, HOME_VIDEOS} from "@/content/pages";
 import {byLabel, numberedGroups, paragraphs, value} from "@/lib/content";
 import type {Locale, PageContent} from "@/types/content";
+
+// Hidden for now at the client's request. Set to true to show the section again.
+const SHOW_FOOD_PORTFOLIO = false;
+const SHOW_TAMIMI_STRENGTH = false;
+
+const partnershipImages = [
+  {src: HOME_IMAGES.workingTogetherRetail, en: "Retail staff arranging Fonte bread on a shelf", ar: "موظفو متجر يرتبون خبز فونتي على الرف"},
+  {src: HOME_IMAGES.workingTogetherFoodservice, en: "Chef preparing burgers with Fonte potato buns", ar: "طاهٍ يحضّر البرغر بخبز البطاطس من فونتي"},
+  {src: HOME_IMAGES.workingTogetherDistribution, en: "Loading dock with Fonte cartons ready for distribution", ar: "رصيف تحميل مع صناديق فونتي الجاهزة للتوزيع"},
+  {src: HOME_IMAGES.workingTogetherInstitutional, en: "Partners reviewing Fonte tortilla samples", ar: "شركاء يراجعون عينات تورتيلا فونتي"},
+];
 
 export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
   const ar = locale === "ar";
@@ -34,21 +45,17 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       src: HOME_IMAGES.glanceSaudiPresence,
       alt: ar ? "مجسم لخريطة المملكة العربية السعودية باللون الأخضر الداكن وحواف ذهبية على خلفية كريمية" : "Sculpted Saudi Arabia map in forest green with a fine brass edge on warm ivory stone",
     } : index === 1 ? {
-      src: BRAND_LOGOS.tamimiGroup,
-      alt: ar ? "شعار مجموعة التميمي" : "Tamimi Group logo",
-      kind: "logo" as const,
+      src: HOME_IMAGES.glanceInstitutionalStrength,
+      alt: ar ? "صورة أرشيفية لمبنى التميمي التاريخي" : "Archive photograph of the historic Tamimi building",
     } : index === 2 ? {
       src: HOME_IMAGES.glanceProductionStrength,
       alt: ar ? "خط إنتاج وتعبئة خبز التورتيلا من فونتي في منشأة مصدر الحياة" : "Fonte tortilla wraps moving through a packaging line at the Masdar Al Hayat facility",
-      kind: "photo" as const,
     } : index === 3 ? {
       src: HOME_IMAGES.glanceProductPortfolio,
       alt: ar ? "مجموعة متنوعة من منتجات فونتي تشمل الخبز والتورتيلا والكيك" : "A selection of Fonte breads, tortilla wraps and cakes from the Masdar Al Hayat product portfolio",
-      kind: "product" as const,
     } : index === 4 ? {
       src: HOME_IMAGES.glanceMarketDelivery,
       alt: ar ? "تحميل المنتجات الغذائية المعبأة في شاحنات مبردة لتوزيعها في السوق السعودي" : "Packaged food products being loaded into refrigerated trucks for distribution across the Saudi market",
-      kind: "photo" as const,
     } : undefined,
   }));
   const portfolioItems = numberedGroups(portfolio).map((group, index) => ({
@@ -102,7 +109,7 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       </div>
     </AnimatedSection>
 
-    <AnimatedSection className="glance-section" variant="rise"><div className="container-xxl"><header className="section-heading" data-animate><span className="section-kicker">{value(byLabel(glance,"Section Label"),locale)}</span><h2>{value(byLabel(glance,"Main Heading"),locale)}</h2><p>{value(byLabel(glance,"Introduction"),locale)}</p></header><div data-animate><GlanceCarousel items={glanceItems} locale={locale}/></div></div></AnimatedSection>
+    <AnimatedSection className="glance-section" variant="rise"><div className="container-xxl"><header className="section-heading" data-animate><span className="section-kicker">{value(byLabel(glance,"Section Label"),locale)}</span><h2>{value(byLabel(glance,"Main Heading"),locale)}</h2><p>{value(byLabel(glance,"Introduction"),locale)}</p></header><div data-animate><GlanceBanners items={glanceItems} locale={locale}/></div></div></AnimatedSection>
 
     <AnimatedSection className="fonte-home" variant="slide">
       <div className="fonte-home__background" aria-hidden="true">
@@ -155,7 +162,7 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       </div>
     </AnimatedSection>
 
-    <AnimatedSection className="portfolio-home" variant="stagger">
+    {SHOW_FOOD_PORTFOLIO && <AnimatedSection className="portfolio-home" variant="stagger">
       <div className="container-xxl">
         <header className="portfolio-home__header" data-animate>
           <div><span className="section-kicker">{value(byLabel(portfolio,"Section Label"),locale)}</span><h2>{value(byLabel(portfolio,"Main Heading"),locale)}</h2></div>
@@ -163,12 +170,11 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
         </header>
         <div data-animate><FoodPortfolioCarousel items={portfolioItems} locale={locale}/></div>
       </div>
-    </AnimatedSection>
+    </AnimatedSection>}
 
     <AnimatedSection className="quality-home" variant="line">
       <div className="container-xxl quality-home__grid">
         <header data-animate>
-          <ShieldCheck/>
           <span className="section-kicker">{value(byLabel(quality,"Section Label"),locale)}</span>
           <h2>{value(byLabel(quality,"Main Heading"),locale)}</h2>
         </header>
@@ -186,7 +192,7 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       </div>
     </AnimatedSection>
 
-    <AnimatedSection className="legacy-home" variant="mask">
+    {SHOW_TAMIMI_STRENGTH && <AnimatedSection className="legacy-home" variant="mask">
       <div className="container-xxl legacy-home__grid">
         <figure className="legacy-home__emblem" data-animate>
           <div className="legacy-home__logo-frame">
@@ -206,20 +212,35 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
           <ArrowLink href="/about/group-story-tamimi-group">{value(byLabel(tamimi,"CTA"),locale)}</ArrowLink>
         </div>
       </div>
-    </AnimatedSection>
+    </AnimatedSection>}
 
     <AnimatedSection className="partnership-home" variant="stagger">
       <div className="container-xxl">
         <header className="section-heading section-heading--wide" data-animate>
           <div>
-            <BriefcaseBusiness/>
             <span className="section-kicker">{value(byLabel(partnerships,"Section Label"),locale)}</span>
             <h2>{value(byLabel(partnerships,"Main Heading"),locale)}</h2>
           </div>
           <div>{paragraphs(partnerships,locale).map((p,i)=><p key={i}>{p}</p>)}</div>
         </header>
         <div className="partnership-home__channels">
-          {numberedGroups(partnerships).map((g,i)=><article data-animate key={g.key}><span>0{i+1}</span><h3>{value(g.parts.Title,locale)}</h3><p>{value(g.parts.Description,locale)}</p><ArrowRight className="directional-icon"/></article>)}
+          {numberedGroups(partnerships).map((group) => {
+            const image = partnershipImages[group.number - 1];
+            return <article data-animate key={group.key}>
+              {image && <Image
+                className="partnership-home__channel-image"
+                src={image.src}
+                alt={image[locale]}
+                width={1448}
+                height={1086}
+                sizes="(max-width: 767px) 85vw, (max-width: 1199px) 45vw, 300px"
+              />}
+              <span>{String(group.number).padStart(2, "0")}</span>
+              <h3>{value(group.parts.Title, locale)}</h3>
+              <p>{value(group.parts.Description, locale)}</p>
+              <ArrowRight className="directional-icon" aria-hidden="true"/>
+            </article>;
+          })}
         </div>
         <div className="partnership-home__cta" data-animate>
           <ArrowLink href="/brands-partnerships/partnerships" light>{value(byLabel(partnerships,"CTA"),locale)}</ArrowLink>
@@ -230,7 +251,6 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
     <AnimatedSection className="careers-home" variant="rise">
       <div className="container-xxl careers-home__grid">
         <div data-animate>
-          <Users/>
           <span className="section-kicker">{value(byLabel(careers,"Section Label"),locale)}</span>
           <h2>{value(byLabel(careers,"Main Heading"),locale)}</h2>
           {paragraphs(careers,locale).map((p,i)=><p key={i}>{p}</p>)}
