@@ -7,14 +7,26 @@ for (const locale of ["en", "ar"] as const) {
     const banners = page.locator(".glance-banner");
     await expect(banners).toHaveCount(5);
     await page.locator(".glance-banners").evaluate(element => element.scrollIntoView({block: "center", behavior: "instant"}));
-    for (const banner of await banners.all()) await expect(banner).toBeInViewport();
-
     const target = banners.nth(2);
-    if (isMobile) await target.click();
-    else await target.hover();
-    await expect(target).toHaveAttribute("data-active", "true");
-    await expect(target.locator(".glance-banner__body p")).toBeVisible();
-    await expect(page.locator('.glance-banner[data-active="true"]')).toHaveCount(1);
+
+    if (isMobile) {
+      // Mobile shows one card per slide, with dots to move between them.
+      await expect(banners.nth(0)).toBeInViewport({ratio: .95});
+      await expect(banners.nth(1)).not.toBeInViewport({ratio: .5});
+      const dots = page.locator(".glance-dots button");
+      await expect(dots).toHaveCount(5);
+      await dots.nth(2).click();
+      await expect(target).toBeInViewport({ratio: .95});
+      await expect(dots.nth(2)).toHaveAttribute("aria-current", "true");
+      await expect(target.locator(".glance-banner__body p")).toBeVisible();
+    } else {
+      for (const banner of await banners.all()) await expect(banner).toBeInViewport();
+      await expect(page.locator(".glance-dots")).toBeHidden();
+      await target.hover();
+      await expect(target).toHaveAttribute("data-active", "true");
+      await expect(target.locator(".glance-banner__body p")).toBeVisible();
+      await expect(page.locator('.glance-banner[data-active="true"]')).toHaveCount(1);
+    }
 
     await expect(page.locator(".portfolio-home")).toHaveCount(0);
     await expect(page.locator(".legacy-home")).toHaveCount(0);
