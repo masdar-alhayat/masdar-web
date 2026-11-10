@@ -6,7 +6,7 @@ for (const locale of ["en", "ar"] as const) {
     await page.goto(`/${locale}/capabilities/sales`);
     await expect(page.locator("html")).toHaveAttribute("lang", locale);
     await expect(page.locator("html")).toHaveAttribute("dir", locale === "ar" ? "rtl" : "ltr");
-    await expect(page.locator("main > section")).toHaveCount(3);
+    await expect(page.locator("main > section")).toHaveCount(2);
     await expect(page.locator(".sales-customers__grid article")).toHaveCount(3);
     await expect(page.locator(".sales-customers__grid")).toContainText(locale === "ar" ? "المتاجر المحلية ومتاجر المواد الغذائية" : "Local / Grocery Stores");
     await expect(page.locator(".inner-hero__media img")).toHaveAttribute("src", /masdar-18\.png/);
@@ -25,7 +25,9 @@ for (const locale of ["en", "ar"] as const) {
     }
 
     await expect(page.locator(".inner-hero__actions a")).toHaveAttribute("href", `/${locale}/contact#contact-form`);
-    await page.locator(".closing-section a").click();
+    // Capabilities pages no longer end with a closing call to action.
+    await expect(page.locator(".closing-section")).toHaveCount(0);
+    await page.locator(".inner-hero__actions a").click();
     await expect(page).toHaveURL(new RegExp(`/${locale}/contact#contact-form$`));
     await expect(page.locator("#contact-form")).toBeAttached();
 

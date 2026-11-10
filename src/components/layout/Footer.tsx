@@ -1,18 +1,23 @@
 import Image from "next/image";
 import masdarLogo from "../../../public/brand/masdar-logo-text.png";
 import {
-  ArrowUpRight,
   Mail,
   MapPin,
   Phone,
+  Printer,
 } from "lucide-react";
 import {FaLinkedinIn} from "react-icons/fa6";
 import {Link} from "@/i18n/navigation";
+import {getPageContent} from "@/content/pages";
+import {byLabel, value} from "@/lib/content";
 import type {Locale} from "@/types/content";
 
 const socialLinks = [
   {label: "LinkedIn", href: "https://www.linkedin.com/company/fonte-masdaralhayat", Icon: FaLinkedinIn},
 ] as const;
+
+// The footer introduces the company with the home page hero's opening paragraph.
+const homeHero = getPageContent("home").sections[0];
 
 export function Footer({locale}: {locale: Locale}) {
   const ar = locale === "ar";
@@ -23,20 +28,10 @@ export function Footer({locale}: {locale: Locale}) {
   return <footer className="site-footer">
     <div className="site-footer__grain" aria-hidden="true"/>
     <div className="container-xxl">
-      <div className="site-footer__lead">
-        <div>
-          <span>{ar ? "نصنع الغذاء. نبني الثقة." : "Manufacturing food. Building trust."}</span>
-          <h2>{ar ? "لنصنع قيمة تدوم." : "Let’s create lasting value."}</h2>
-        </div>
-        <Link href="/brands-partnerships/partnerships" className="footer-circle">
-          {ar ? "كن شريكاً لنا" : "Partner with us"}<ArrowUpRight className="directional-icon"/>
-        </Link>
-      </div>
-
       <div className="site-footer__grid">
         <div className="footer-brand">
           <Image src={masdarLogo} alt="Masdar Al Hayat" unoptimized/>
-          <p>{ar ? "شركة مصنّعة للأغذية والمشروبات، وإحدى شركات مجموعة التميمي." : "A food and beverages manufacturer operating as part of Tamimi Group."}</p>
+          <p>{value(byLabel(homeHero, "Supporting Paragraph 1"), locale)}</p>
         </div>
 
         <div>
@@ -63,9 +58,10 @@ export function Footer({locale}: {locale: Locale}) {
         <div className="footer-contact">
           <h3>{ar ? "تواصل" : "Connect"}</h3>
           <a href="mailto:info@masdar.sa"><Mail size={17}/>info@masdar.sa</a>
-          <a href="tel:+966112656000"><Phone size={17}/><span dir="ltr">+966 11 265 6000</span></a>
+          <a href="tel:+966920005841"><Phone size={17}/><span dir="ltr">+966 9200 05841</span></a>
+          <p className="footer-contact__fax"><Printer size={17}/><span>{ar ? "فاكس" : "Fax"}</span><span dir="ltr">+966 11 265 9000</span></p>
           <a href="https://www.google.com/maps/search/?api=1&query=Masdar%20Al-Hayat%20Food%20Industries%20Riyadh" target="_blank" rel="noreferrer">
-            <MapPin size={17}/>{ar ? "256، المدينة الصناعية الثالثة، الرياض 14336" : "256 III Industrial City, Riyadh 14336"}
+            <MapPin size={17}/>{ar ? "مصدر الحياة، المنطقة الصناعية رقم 2، ص.ب 355011، الرياض 11383، المملكة العربية السعودية" : "Masdar Al Hayat, Industrial Zone No. 2, P.O. Box 355011, Riyadh 11383, Kingdom of Saudi Arabia"}
           </a>
           <div className="footer-socials" aria-label={ar ? "حسابات التواصل الاجتماعي" : "Social media"}>
             {socialLinks.map(({label, href, Icon}) => <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} title={label}><Icon size={18}/></a>)}

@@ -38,18 +38,17 @@ for (const locale of ["en", "ar"] as const) {
     const section = page.locator(".tamimi-sectors");
     const stage = section.locator(".manufacturing-flow__stage");
     const finalCard = section.locator(".tamimi-sector").last();
+    // A plain slider: the page is never pinned while the sectors move.
+    await expect(page.locator(".pin-spacer")).toHaveCount(0);
+    await stage.scrollIntoViewIfNeeded();
     if (isMobile) {
-      await stage.scrollIntoViewIfNeeded();
       await stage.evaluate((element, rtl) => element.scrollTo({left: rtl ? -element.scrollWidth : element.scrollWidth}), locale === "ar");
     } else {
-      await expect(section).toHaveClass(/is-enhanced/);
-      const {start, distance} = await section.evaluate(element => {
-        const spacer = element.parentElement!;
-        return {start: spacer.getBoundingClientRect().top + scrollY, distance: spacer.offsetHeight - innerHeight};
-      });
-      await page.evaluate(y => window.scrollTo(0, y), start + distance * .4);
+      const next = section.locator(".manufacturing-flow__buttons button").last();
+      await next.click();
+      await next.click();
       await expect.poll(async () => section.locator(".tamimi-sector.is-active h3").textContent()).toBe(await section.locator(".tamimi-sector h3").nth(2).textContent());
-      await page.evaluate(y => window.scrollTo(0, y), start + distance - 2);
+      while (await next.isEnabled()) await next.click();
       await expect.poll(async () => section.locator(".tamimi-sector.is-active").locator("h3").textContent()).toBe(await finalCard.locator("h3").textContent());
     }
     await expect.poll(async () => finalCard.evaluate(element => {

@@ -56,7 +56,7 @@ export const PAGE_IMAGES = {
   groupStory: "/brand/tamimi-group-logo-2026.png",
   visionValues: "/assets/images/masdar-enhanced/masdar_al_hayat_09.png",
   research: "/assets/images/masdar-enhanced/masdar_al_hayat_13.png",
-  manufacturing: "/assets/images/masdar-21.jpg",
+  manufacturing: "/assets/images/masdar-20.png",
   operations: "/assets/images/operations/masdar-22-enhanced-v2.webp",
   quality: "/assets/images/masdar-enhanced/masdar_al_hayat_33.png",
   logistics: "/assets/images/masdar-21.jpg",
@@ -66,7 +66,7 @@ export const PAGE_IMAGES = {
   brandPortfolio: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
   partnerships: "/assets/images/partnerships-hero-v2.png",
   careers: "/assets/images/masdar-enhanced/masdar_al_hayat-43.png",
-  contact: "/assets/images/masdar-enhanced/masdar_al_hayat-48.png",
+  contact: "/assets/images/contact-hero.webp",
 } as const;
 
 export const HOME_IMAGES = {

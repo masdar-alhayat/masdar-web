@@ -10,11 +10,11 @@ export const BRAND_PORTFOLIO = [
   },
   {
     id: "fonte-horeca",
-    name: {en: "Fonte HORECA", ar: "فونتي هوريكا"},
+    name: {en: "HORECA", ar: "هوريكا"},
     logo: "/brand/fonte-horeca-mark.webp",
     description: {
-      en: "Food solutions for hotels, restaurants, cafes and catering businesses. Fonte HORECA connects our manufacturing expertise with the practical needs of professional kitchens, supporting consistent quality and versatile menu choices.",
-      ar: "حلول غذائية للفنادق والمطاعم والمقاهي وقطاع الإعاشة. تربط فونتي هوريكا خبراتنا التصنيعية بالاحتياجات العملية للمطابخ المهنية، لدعم الجودة المتسقة وتنوع خيارات قوائم الطعام.",
+      en: "Food solutions for hotels, restaurants, cafes and catering businesses. HORECA connects our manufacturing expertise with the practical needs of professional kitchens, supporting consistent quality and versatile menu choices.",
+      ar: "حلول غذائية للفنادق والمطاعم والمقاهي وقطاع الإعاشة. تربط هوريكا خبراتنا التصنيعية بالاحتياجات العملية للمطابخ المهنية، لدعم الجودة المتسقة وتنوع خيارات قوائم الطعام.",
     },
   },
   {

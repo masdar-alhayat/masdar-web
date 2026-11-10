@@ -75,6 +75,7 @@ import {
   PackageCheck,
   PackageOpen,
   Phone,
+  Printer,
   Radar,
   RefreshCw,
   Rocket,
@@ -569,7 +570,7 @@ export function SectionRenderer({
     return <AnimatedSection className="content-section horeca-brand" variant="rise">
       <div className="container-xxl horeca-brand__layout">
         <div className="horeca-brand__logo" data-animate>
-          <Image src="/brand/fonte-horeca-mark.webp" alt={isAr ? "شعار فونتي هوريكا" : "Fonte HORECA logo"} fill sizes="(max-width: 767px) 80vw, 35vw" unoptimized/>
+          <Image src="/brand/fonte-horeca-mark.webp" alt={isAr ? "شعار هوريكا" : "HORECA logo"} fill sizes="(max-width: 767px) 80vw, 35vw" unoptimized/>
         </div>
         <div data-animate>
           {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
@@ -817,25 +818,44 @@ export function SectionRenderer({
   });
 
   if (theme === "careers" && title === "current opportunities") {
-    const applicationCta = localizedItemValue(section, "CTA Text", locale);
+    const formHeading = supplementalSection ? localizedItemValue(supplementalSection, "Display Heading", locale) : "";
+    const steps = isAr
+      ? [
+          {title: "شارك بياناتك", text: "أكمل النموذج وأرفق سيرتك الذاتية."},
+          {title: "نراجع ملفك", text: "يراجع فريقنا الطلبات وفق الفرص الحالية والمستقبلية."},
+          {title: "نتواصل معك", text: "يتواصل الفريق المختص مع المرشحين المناسبين."},
+        ]
+      : [
+          {title: "Share your details", text: "Complete the form and attach your CV."},
+          {title: "We review your profile", text: "Our team reviews applications against current and future opportunities."},
+          {title: "We get in touch", text: "The relevant team contacts candidates whose experience fits."},
+        ];
 
+    // Opportunities and the application form live together, so the section keeps the form's anchor.
     return (
       <AnimatedSection
-        id="current-opportunities"
+        id="career-application"
         className={`content-section career-opportunities-section content-section--${theme}`}
         variant="rise"
       >
-        <div className="container-xxl">
-          <header className="section-heading" data-animate>
+        <div className="container-xxl career-apply">
+          <aside className="career-apply__intro" data-animate>
             {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
             <h2>{heading}</h2>
             {copy.map((paragraph, paragraphIndex) => (
               <p key={paragraphIndex}>{paragraph}</p>
             ))}
-            {applicationCta && (
-              <ArrowLink href="#career-application">{applicationCta}</ArrowLink>
-            )}
-          </header>
+            <ol className="career-apply__steps">
+              {steps.map((step, stepIndex) => <li key={step.title}>
+                <span>{new Intl.NumberFormat(isAr ? "ar" : "en", {minimumIntegerDigits: 2}).format(stepIndex + 1)}</span>
+                <div><strong>{step.title}</strong><p>{step.text}</p></div>
+              </li>)}
+            </ol>
+          </aside>
+          {supplementalSection && <div className="career-apply__form" data-animate>
+            {formHeading && <h3>{formHeading}</h3>}
+            <CorporateForm section={supplementalSection} locale={locale} kind="careers"/>
+          </div>}
         </div>
       </AnimatedSection>
     );
@@ -938,12 +958,14 @@ export function SectionRenderer({
 
   if (/Contact Information/i.test(section.title)) {
     const phone = localizedItemValue(section, "Phone", locale);
+    const fax = localizedItemValue(section, "Fax", locale);
     const email = localizedItemValue(section, "Email", locale);
     const address = localizedItemValue(section, "Address", locale);
     const contactCards = [
-      {label: isAr ? "الهاتف" : "Phone", value: phone, href: "tel:+966112656000", Icon: Phone},
-      {label: isAr ? "البريد الإلكتروني" : "Email", value: email, href: `mailto:${email}`, Icon: Mail},
-      {label: isAr ? "العنوان" : "Address", value: address, href: "https://www.google.com/maps/search/?api=1&query=Masdar%20Al-Hayat%20Food%20Industries%20Riyadh", Icon: MapPin},
+      {label: isAr ? "الهاتف" : "Phone", value: phone, href: "tel:+966920005841", Icon: Phone, ltr: true},
+      {label: isAr ? "الفاكس" : "Fax", value: fax, href: "", Icon: Printer, ltr: true},
+      {label: isAr ? "البريد الإلكتروني" : "Email", value: email, href: `mailto:${email}`, Icon: Mail, ltr: false},
+      {label: isAr ? "العنوان" : "Address", value: address, href: "https://www.google.com/maps/search/?api=1&query=Masdar%20Al-Hayat%20Food%20Industries%20Riyadh", Icon: MapPin, ltr: false},
     ].filter((card) => card.value);
 
     return (
@@ -955,11 +977,15 @@ export function SectionRenderer({
             {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
           </header>
           <div className="contact-card-grid">
-            {contactCards.map(({label, value: cardValue, href, Icon}) => <a key={label} href={href} data-animate>
-              <Icon aria-hidden="true"/>
-              <span>{label}</span>
-              <strong dir={label === "Phone" || label === "الهاتف" ? "ltr" : undefined}>{cardValue}</strong>
-            </a>)}
+            {contactCards.map(({label, value: cardValue, href, Icon, ltr}) => {
+              const content = <>
+                <Icon aria-hidden="true"/>
+                <span>{label}</span>
+                <strong dir={ltr ? "ltr" : undefined}>{cardValue}</strong>
+              </>;
+              // A fax number has nothing to link to, so it renders as a plain card.
+              return href ? <a key={label} href={href} data-animate>{content}</a> : <div key={label} data-animate>{content}</div>;
+            })}
           </div>
         </div>
       </AnimatedSection>
@@ -2021,9 +2047,12 @@ export function SectionRenderer({
       processSearchText,
     )
   ) {
+    // The Development Journey shows its label as a centred title in place of the heading.
+    const journey = section.title === "Development Journey";
+
     return (
       <AnimatedSection
-        className={`content-section process-section content-section--${theme}`}
+        className={`content-section process-section${journey ? " process-section--journey" : ""} content-section--${theme}`}
         variant="line"
       >
         <div className="container-xxl">
@@ -2035,13 +2064,13 @@ export function SectionRenderer({
               {String(index).padStart(2, "0")}
             </span>
 
-            {visibleKicker && (
+            {!journey && visibleKicker && (
               <span className="section-kicker">
                 {visibleKicker}
               </span>
             )}
 
-            <h2>{heading}</h2>
+            <h2>{journey ? visibleKicker || heading : heading}</h2>
 
             {copy[0] && <p>{copy[0]}</p>}
           </header>

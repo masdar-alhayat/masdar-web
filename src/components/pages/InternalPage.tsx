@@ -29,8 +29,23 @@ const RESEARCH_HIDDEN_SECTIONS = new Set([
 ]);
 
 const BRANDS_HIDDEN_SECTIONS = new Set([
-  "Fonte HORECA",
+  "HORECA",
 ]);
+
+// The career application form is shown inside Current Opportunities instead of on its own.
+const CAREERS_FORM_SECTION = "Career Application Form";
+
+const CAREERS_HIDDEN_SECTIONS = new Set([
+  "Working at Masdar Al Hayat",
+  CAREERS_FORM_SECTION,
+]);
+
+const CONTACT_HIDDEN_SECTIONS = new Set([
+  "Before Submitting Your Enquiry",
+]);
+
+// These pages end straight into the footer, without a closing call to action.
+const PAGES_WITHOUT_CLOSING = new Set(["about", "visionValues", "manufacturing", "operations", "quality", "logistics", "sales", "partnerships", "careers"]);
 
 const PARTNERSHIPS_HIDDEN_SECTIONS = new Set([
   "Partnership Overview",
@@ -53,6 +68,7 @@ export function InternalPage({
   const leadingSections = imageKey === "partnerships" ? sections.filter(section => section.title === "Partnership Channels") : [];
   const featuredSections = [...leadingSections, ...sections.filter(section => section.items.some(item => item.label === "Render Variant" && /^(partner-logos|logistics-counters)$/.test(String(item.en))))];
   const orderedSections = sections.filter(section => !featuredSections.includes(section));
+  const careersForm = imageKey === "careers" ? sections.find(section => section.title === CAREERS_FORM_SECTION) : undefined;
 
   return (
     <main
@@ -81,6 +97,9 @@ export function InternalPage({
         if (imageKey === "research" && RESEARCH_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "brands" && BRANDS_HIDDEN_SECTIONS.has(section.title)) return null;
         if (imageKey === "partnerships" && PARTNERSHIPS_HIDDEN_SECTIONS.has(section.title)) return null;
+        if (imageKey === "careers" && CAREERS_HIDDEN_SECTIONS.has(section.title)) return null;
+        if (imageKey === "contact" && CONTACT_HIDDEN_SECTIONS.has(section.title)) return null;
+        if (PAGES_WITHOUT_CLOSING.has(imageKey) && /Closing|Call to Action/i.test(section.title)) return null;
 
         const sectionIndex = index + 2;
 
@@ -88,6 +107,7 @@ export function InternalPage({
           <SectionRenderer
             key={section.title}
             section={section}
+            supplementalSection={section.title === "Current Opportunities" ? careersForm : undefined}
             index={sectionIndex}
             locale={locale}
             theme={theme}

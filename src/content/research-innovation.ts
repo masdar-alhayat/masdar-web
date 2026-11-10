@@ -6,7 +6,6 @@ export interface FocusArea {
   id: string;
   image: string;
   label: string;
-  title: string;
   text: string;
 }
 
@@ -27,7 +26,7 @@ export interface ResearchCopy {
   intro: string;
   productsCta: string;
   areasCta: string;
-  heroNotes: {protein: string; sugar: string; flavours: string};
+  heroNotes: {protein: string; brioche: string; flavours: string};
   pillars: {title: string; text: string}[];
   areasKicker: string;
   areasHeading: string;
@@ -65,7 +64,7 @@ export const researchCopy: Record<Locale, ResearchCopy> = {
     intro: "At Masdar Al Hayat, research and innovation connect what we learn from people and markets with our food and manufacturing know-how, so every new idea is measured by one question: does it make everyday food better?",
     productsCta: "See our latest innovations",
     areasCta: "Explore our focus areas",
-    heroNotes: {protein: "37 g protein per pack", sugar: "No added sugar", flavours: "3 new filled flavours"},
+    heroNotes: {protein: "Protein Tortilla", brioche: "Hanini Brioche", flavours: "Fonte Pancakes"},
     pillars: [
       {title: "Research", text: "Understand people, markets and possibilities."},
       {title: "Innovation", text: "Turn insight into better food and better ways of working."},
@@ -74,12 +73,12 @@ export const researchCopy: Record<Locale, ResearchCopy> = {
     areasHeading: "Six areas where the next better idea begins.",
     areasIntro: "Research and innovation reach across our business, from the first consumer insight to the way products are made, packed and delivered.",
     areas: [
-      {id: "insight", image: `${IMG}/focus-insight-v2.webp`, label: "Consumer & Market Insight", title: "Understanding people and markets", text: "Consumer preferences, customer feedback and changing market conditions show us where the next idea should begin."},
-      {id: "recipes", image: `${IMG}/focus-recipes-v2.webp`, label: "Recipe & Product Innovation", title: "Better taste, texture and formats", text: "We explore recipes, ingredients and formats, from new filled flavours to higher-protein and no-added-sugar choices."},
-      {id: "packaging", image: `${IMG}/focus-packaging-v2.webp`, label: "Packaging & Convenience", title: "Packs designed for real life", text: "Formats and packs are shaped around how food is stored, carried, shared and enjoyed, from single portions to family packs."},
-      {id: "quality", image: `${IMG}/focus-quality-v2.webp`, label: "Quality & Food Safety", title: "Confidence built in by design", text: "Quality expectations and product protection are considered from the first idea, not added at the end."},
-      {id: "digital", image: `${IMG}/focus-digital-v2.webp`, label: "Digital & Process Innovation", title: "Smarter ways of working", text: "Useful data, digital tools and practical process improvements help our teams work with more consistency and insight."},
-      {id: "partners", image: `${IMG}/focus-partners-v2.webp`, label: "Open Innovation & Partnerships", title: "Growing through shared knowledge", text: "Customers, suppliers and partners bring new perspectives that we turn into useful improvements together."},
+      {id: "insight", image: `${IMG}/focus-insight-v2.webp`, label: "Consumer & Market Insight", text: "Consumer preferences, customer feedback and changing market conditions show us where the next idea should begin."},
+      {id: "recipes", image: `${IMG}/focus-recipes-gloves.webp`, label: "Recipe & Product Innovation", text: "We explore recipes, ingredients and formats, from new filled flavours to higher-protein and no-added-sugar choices."},
+      {id: "packaging", image: `${IMG}/focus-packaging-v2.webp`, label: "Packaging & Convenience", text: "Formats and packs are shaped around how food is stored, carried, shared and enjoyed, from single portions to family packs."},
+      {id: "quality", image: `${IMG}/focus-quality-v2.webp`, label: "Quality & Food Safety", text: "Quality expectations and product protection are considered from the first idea, not added at the end."},
+      {id: "digital", image: `${IMG}/focus-digital-v2.webp`, label: "Digital & Process Innovation", text: "Useful data, digital tools and practical process improvements help our teams work with more consistency and insight."},
+      {id: "partners", image: `${IMG}/focus-partners-v2.webp`, label: "Open Innovation & Partnerships", text: "Customers, suppliers and partners bring new perspectives that we turn into useful improvements together."},
     ],
     productsKicker: "Product innovation",
     productsHeading: "Innovation you can taste.",
@@ -88,7 +87,7 @@ export const researchCopy: Record<Locale, ResearchCopy> = {
     innovationLabel: "The innovation",
     products: [
       {id: "pancake", name: "Fonte Pan Cake", tag: "New filled snack", thumb: productImages.pancake, insight: "Families look for a soft, filled treat that is easy to pack, share and enjoy anywhere.", innovation: "Fluffy pan cakes with a fruit or chocolate-hazelnut filling, individually packed and presented in a 12-piece display box.", facts: ["3 flavours", "Individually packed", "12-piece display box"]},
-      {id: "brioche", name: "Hanini Brioche", tag: "New", thumb: productImages.brioche, insight: "People want the softness of brioche with choices that fit a more balanced everyday table.", innovation: "A sliced brioche with no added sugar and a source of fibre, wrapped in a pack inspired by local heritage patterns.", facts: ["No added sugar", "Source of fibre", "500 g"]},
+      {id: "brioche", name: "Hanini Brioche", tag: "New", thumb: productImages.brioche, insight: "People want the softness of brioche with choices that fit a more balanced everyday table.", innovation: "A soft sliced brioche loaf made with dates, bringing their natural sweetness to everyday bread with no added sugar and a source of fibre.", facts: ["No added sugar", "Source of fibre", "500 g"]},
       {id: "protein", name: "Protein Tortilla", tag: "High protein", thumb: productImages.protein, insight: "Active consumers want familiar food that works harder for their goals.", innovation: "A tortilla with 37 g of protein per pack, high in fibre and with no added sugar, ready for wraps, fajitas and shawarma.", facts: ["37 g protein per pack", "High fibre", "No added sugar"]},
       {id: "tortillas", name: "Tortilla Range", tag: "7 varieties", thumb: productImages.tortillas, insight: "Every kitchen wraps differently, from classic and whole-wheat to bold and spicy.", innovation: "A growing family of 8-inch tortillas, each with six pieces per pack, covering everyday and specialty tastes.", facts: ["7 varieties", "6 pieces per pack", "8-inch size"]},
     ],
@@ -107,7 +106,7 @@ export const researchCopy: Record<Locale, ResearchCopy> = {
     intro: "في مصدر الحياة، يربط البحث والابتكار ما نتعلّمه من الناس والأسواق بخبراتنا في الغذاء والتصنيع، لتُقاس كل فكرة جديدة بسؤال واحد: هل تجعل غذاءنا اليومي أفضل؟",
     productsCta: "اكتشف أحدث ابتكاراتنا",
     areasCta: "استكشف مجالات تركيزنا",
-    heroNotes: {protein: "٣٧ غ بروتين في العبوة", sugar: "بدون سكر مضاف", flavours: "٣ نكهات محشوة جديدة"},
+    heroNotes: {protein: "تورتيلا بالبروتين", brioche: "بريوش حنيني", flavours: "بان كيك فونتي"},
     pillars: [
       {title: "البحث", text: "نفهم الناس والأسواق والإمكانات."},
       {title: "الابتكار", text: "نحوّل الفهم إلى غذاء أفضل وأساليب عمل أفضل."},
@@ -116,12 +115,12 @@ export const researchCopy: Record<Locale, ResearchCopy> = {
     areasHeading: "ستة مجالات تبدأ منها الفكرة الأفضل التالية.",
     areasIntro: "يمتد البحث والابتكار عبر أعمالنا، من أول فهم لاحتياجات المستهلك إلى طريقة تصنيع المنتجات وتعبئتها وإيصالها.",
     areas: [
-      {id: "insight", image: `${IMG}/focus-insight-v2.webp`, label: "رؤى المستهلك والسوق", title: "نفهم الناس والأسواق", text: "تكشف لنا تفضيلات المستهلكين وملاحظات العملاء ومتغيرات السوق من أين يجب أن تبدأ الفكرة التالية."},
-      {id: "recipes", image: `${IMG}/focus-recipes-v2.webp`, label: "ابتكار الوصفات والمنتجات", title: "مذاق وقوام وأشكال أفضل", text: "نستكشف الوصفات والمكوّنات والأشكال، من النكهات المحشوة الجديدة إلى الخيارات الغنية بالبروتين والخالية من السكر المضاف."},
-      {id: "packaging", image: `${IMG}/focus-packaging-v2.webp`, label: "التعبئة وسهولة الاستخدام", title: "عبوات مصممة للحياة اليومية", text: "نصمم الأشكال والعبوات وفق طريقة حفظ الغذاء وحمله ومشاركته والاستمتاع به، من الحصص الفردية إلى العبوات العائلية."},
-      {id: "quality", image: `${IMG}/focus-quality-v2.webp`, label: "الجودة وسلامة الغذاء", title: "ثقة مدمجة منذ البداية", text: "نراعي توقعات الجودة وحماية المنتج منذ الفكرة الأولى، لا في المرحلة الأخيرة."},
-      {id: "digital", image: `${IMG}/focus-digital-v2.webp`, label: "الابتكار الرقمي وتحسين العمليات", title: "أساليب عمل أذكى", text: "تساعد البيانات المفيدة والأدوات الرقمية والتحسينات العملية فرقنا على العمل باتساق وفهم أكبر."},
-      {id: "partners", image: `${IMG}/focus-partners-v2.webp`, label: "الابتكار المفتوح والشراكات", title: "ننمو بالمعرفة المشتركة", text: "يقدّم العملاء والمورّدون والشركاء رؤى جديدة نحوّلها معاً إلى تحسينات مفيدة."},
+      {id: "insight", image: `${IMG}/focus-insight-v2.webp`, label: "رؤى المستهلك والسوق", text: "تكشف لنا تفضيلات المستهلكين وملاحظات العملاء ومتغيرات السوق من أين يجب أن تبدأ الفكرة التالية."},
+      {id: "recipes", image: `${IMG}/focus-recipes-gloves.webp`, label: "ابتكار الوصفات والمنتجات", text: "نستكشف الوصفات والمكوّنات والأشكال، من النكهات المحشوة الجديدة إلى الخيارات الغنية بالبروتين والخالية من السكر المضاف."},
+      {id: "packaging", image: `${IMG}/focus-packaging-v2.webp`, label: "التعبئة وسهولة الاستخدام", text: "نصمم الأشكال والعبوات وفق طريقة حفظ الغذاء وحمله ومشاركته والاستمتاع به، من الحصص الفردية إلى العبوات العائلية."},
+      {id: "quality", image: `${IMG}/focus-quality-v2.webp`, label: "الجودة وسلامة الغذاء", text: "نراعي توقعات الجودة وحماية المنتج منذ الفكرة الأولى، لا في المرحلة الأخيرة."},
+      {id: "digital", image: `${IMG}/focus-digital-v2.webp`, label: "الابتكار الرقمي وتحسين العمليات", text: "تساعد البيانات المفيدة والأدوات الرقمية والتحسينات العملية فرقنا على العمل باتساق وفهم أكبر."},
+      {id: "partners", image: `${IMG}/focus-partners-v2.webp`, label: "الابتكار المفتوح والشراكات", text: "يقدّم العملاء والمورّدون والشركاء رؤى جديدة نحوّلها معاً إلى تحسينات مفيدة."},
     ],
     productsKicker: "ابتكار المنتجات",
     productsHeading: "ابتكار تتذوّقه.",
@@ -130,7 +129,7 @@ export const researchCopy: Record<Locale, ResearchCopy> = {
     innovationLabel: "ما ابتكرناه",
     products: [
       {id: "pancake", name: "بان كيك فونتي", tag: "وجبة خفيفة محشوة جديدة", thumb: productImages.pancake, insight: "تبحث العائلات عن حلوى طرية ومحشوة يسهل حملها ومشاركتها والاستمتاع بها في أي مكان.", innovation: "بان كيك هشّ بحشوة الفاكهة أو الشوكولاتة بالبندق، مغلّف بشكل فردي ويُعرض في علبة من ١٢ قطعة.", facts: ["٣ نكهات", "تغليف فردي", "علبة عرض من ١٢ قطعة"]},
-      {id: "brioche", name: "بريوش حنيني", tag: "جديد", thumb: productImages.brioche, insight: "يريد الناس طراوة البريوش مع خيارات تناسب مائدة يومية أكثر توازناً.", innovation: "بريوش مقطّع بدون سكر مضاف ومصدر للألياف، في عبوة مستوحاة من النقوش التراثية المحلية.", facts: ["بدون سكر مضاف", "مصدر للألياف", "٥٠٠ غ"]},
+      {id: "brioche", name: "بريوش حنيني", tag: "جديد", thumb: productImages.brioche, insight: "يريد الناس طراوة البريوش مع خيارات تناسب مائدة يومية أكثر توازناً.", innovation: "رغيف بريوش مقطّع وطري مصنوع بالتمر، يمنح الخبز اليومي حلاوة التمر الطبيعية بدون سكر مضاف، ومصدر للألياف.", facts: ["بدون سكر مضاف", "مصدر للألياف", "٥٠٠ غ"]},
       {id: "protein", name: "تورتيلا بالبروتين", tag: "عالية البروتين", thumb: productImages.protein, insight: "يريد المستهلكون النشطون غذاءً مألوفاً يدعم أهدافهم بشكل أكبر.", innovation: "تورتيلا تحتوي على ٣٧ غ من البروتين في العبوة، غنية بالألياف وبدون سكر مضاف، جاهزة للّفائف والفاهيتا والشاورما.", facts: ["٣٧ غ بروتين في العبوة", "غنية بالألياف", "بدون سكر مضاف"]},
       {id: "tortillas", name: "مجموعة التورتيلا", tag: "٧ أصناف", thumb: productImages.tortillas, insight: "لكل مطبخ طريقته في اللف، من الكلاسيكي والقمح الكامل إلى الجريء والحار.", innovation: "عائلة متنامية من التورتيلا بقياس ٨ إنش، ست قطع في كل عبوة، تغطي الأذواق اليومية والمتخصصة.", facts: ["٧ أصناف", "٦ قطع في العبوة", "قياس ٨ إنش"]},
     ],

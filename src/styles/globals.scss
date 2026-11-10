@@ -2140,12 +2140,26 @@ html[dir="rtl"] .media-section.content-section--careers .brand-image__veil {
   overflow: hidden
 }
 
+.manufacturing-flow__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem)
+}
+
 .manufacturing-flow__header {
   display: flex;
   flex-direction: column;
   align-items: start;
   gap: clamp(.9rem, 1.5vw, 1.35rem);
-  margin-bottom: clamp(2.5rem, 5vw, 4.5rem)
+  min-width: 0
+}
+
+.manufacturing-flow__top .manufacturing-flow__buttons {
+  flex: 0 0 auto;
+  margin-inline-start: auto
 }
 
 .manufacturing-flow__header .section-kicker {
@@ -2162,29 +2176,57 @@ html[dir="rtl"] .media-section.content-section--careers .brand-image__veil {
 
 .manufacturing-flow__stage {
   position: relative;
-  width: 100%
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none
+}
+
+.manufacturing-flow__stage::-webkit-scrollbar {
+  display: none
+}
+
+.manufacturing-flow__stage:focus-visible {
+  outline: 2px solid var(--mah-gold);
+  outline-offset: 6px
 }
 
 .manufacturing-flow__track {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.5vw, 2rem)
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.75rem)
 }
 
 .manufacturing-flow__card {
   position: relative;
+  flex: 0 0 min(78vw, 980px);
   min-width: 0;
+  height: clamp(24rem, 34vw, 31rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
   overflow: hidden;
   color: var(--mah-charcoal);
   background: var(--mah-cream);
   border: 1px solid rgba(255, 255, 255, .13);
-  box-shadow: 0 28px 70px rgba(0, 0, 0, .25)
+  box-shadow: 0 28px 70px rgba(0, 0, 0, .25);
+  scroll-snap-align: start;
+  opacity: .46;
+  transition: opacity .5s ease
+}
+
+.manufacturing-flow__card.is-active {
+  opacity: 1
+}
+
+/* The last card cannot reach the start edge, so it snaps flush to the end. */
+.manufacturing-flow__card:last-child {
+  scroll-snap-align: end
 }
 
 .manufacturing-flow__visual {
   position: relative;
+  height: 100%;
   min-height: 0;
-  aspect-ratio: 16 / 10;
   margin: 0;
   overflow: hidden
 }
@@ -2193,6 +2235,10 @@ html[dir="rtl"] .media-section.content-section--careers .brand-image__veil {
   object-fit: cover;
   transform: scale(1.025);
   transition: transform 1s cubic-bezier(.22, 1, .36, 1)
+}
+
+.manufacturing-flow__card.is-active .manufacturing-flow__visual img {
+  transform: scale(1)
 }
 
 .manufacturing-flow__visual > span {
@@ -2208,7 +2254,7 @@ html[dir="rtl"] .media-section.content-section--careers .brand-image__veil {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 240px;
+  min-height: 0;
   padding: clamp(1.75rem, 3.5vw, 3.5rem)
 }
 
@@ -2251,106 +2297,56 @@ html[dir="rtl"] .manufacturing-flow__copy::before {
   font-size: clamp(.95rem, 1.1vw, 1.08rem)
 }
 
-.manufacturing-flow__card:nth-child(even) .manufacturing-flow__copy {
-  background: var(--mah-wheat)
-}
-
-.manufacturing-flow__progress {
-  display: none
-}
-
-.manufacturing-flow.is-enhanced {
-  height: 100svh;
-  min-height: 720px;
-  padding-block: clamp(7.25rem, 11vh, 9rem) clamp(2rem, 4vh, 3rem)
-}
-
-.manufacturing-flow.is-enhanced .manufacturing-flow__container {
-  height: 100%;
-  display: flex;
-  flex-direction: column
-}
-
-.manufacturing-flow.is-enhanced .manufacturing-flow__header {
-  flex: 0 0 auto;
-  gap: .7rem;
-  margin-bottom: clamp(1.4rem, 2.7vh, 2.5rem)
-}
-
-.manufacturing-flow.is-enhanced .manufacturing-flow__header h2 {
-  max-width: 24ch;
-  font-size: clamp(2.15rem, 3.15vw, 3.35rem)
-}
-
-.manufacturing-flow.is-enhanced .manufacturing-flow__stage {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow: hidden
-}
-
-.manufacturing-flow.is-enhanced .manufacturing-flow__track {
-  display: flex;
-  width: max-content;
-  height: 100%;
-  gap: clamp(1.5rem, 3vw, 2.75rem);
-  direction: ltr;
-  will-change: transform
-}
-
-html[dir="rtl"] .manufacturing-flow.is-enhanced .manufacturing-flow__track {
-  flex-direction: row-reverse;
-  margin-left: auto
-}
-
-.manufacturing-flow.is-enhanced .manufacturing-flow__card {
-  width: min(78vw, 980px);
-  height: 100%;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
-  opacity: .46;
-  transform: scale(.955);
-  transform-origin: center;
-  transition: opacity .5s ease, transform .65s cubic-bezier(.22, 1, .36, 1)
-}
-
-html[dir="rtl"] .manufacturing-flow.is-enhanced .manufacturing-flow__card {
-  direction: rtl
-}
-
-.manufacturing-flow.is-enhanced .manufacturing-flow__card.is-active {
-  opacity: 1;
-  transform: scale(1)
-}
-
-.manufacturing-flow.is-enhanced .manufacturing-flow__card.is-active .manufacturing-flow__visual img {
-  transform: scale(1)
-}
-
-.manufacturing-flow.is-enhanced .manufacturing-flow__visual {
-  height: 100%;
-  aspect-ratio: auto
-}
-
-.manufacturing-flow.is-enhanced .manufacturing-flow__card:nth-child(even) .manufacturing-flow__visual {
+.manufacturing-flow__card:nth-child(even) .manufacturing-flow__visual {
   order: 2
 }
 
-.manufacturing-flow.is-enhanced .manufacturing-flow__card:nth-child(even) .manufacturing-flow__copy {
-  order: 1
+.manufacturing-flow__card:nth-child(even) .manufacturing-flow__copy {
+  order: 1;
+  background: var(--mah-wheat)
 }
 
-.manufacturing-flow.is-enhanced .manufacturing-flow__copy {
-  min-height: 0
+.manufacturing-flow__controls {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  padding-top: clamp(1.5rem, 3vw, 2.25rem)
 }
 
-.manufacturing-flow.is-enhanced .manufacturing-flow__progress {
-  flex: 0 0 auto;
+.manufacturing-flow__buttons {
+  display: flex;
+  gap: .6rem
+}
+
+.manufacturing-flow__buttons button {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(206, 163, 109, .55);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--mah-sand);
+  transition: background .25s, color .25s, opacity .25s
+}
+
+.manufacturing-flow__buttons button:hover:not(:disabled),
+.manufacturing-flow__buttons button:focus-visible {
+  background: var(--mah-sand);
+  color: var(--mah-green-950)
+}
+
+.manufacturing-flow__buttons button:disabled {
+  opacity: .35;
+  cursor: not-allowed
+}
+
+.manufacturing-flow__progress {
+  flex: 1 1 auto;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 1rem;
   align-items: center;
-  padding-top: clamp(1.25rem, 2.4vh, 2rem);
   color: var(--mah-sand);
   font-size: .68rem;
   font-weight: 800;
@@ -2367,11 +2363,14 @@ html[dir="rtl"] .manufacturing-flow.is-enhanced .manufacturing-flow__card {
   display: block;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, var(--mah-sand), var(--mah-gold), var(--mah-copper))
+  background: linear-gradient(90deg, var(--mah-sand), var(--mah-gold), var(--mah-copper));
+  transform-origin: left center;
+  transition: transform .6s cubic-bezier(.22, 1, .36, 1)
 }
 
 html[dir="rtl"] .manufacturing-flow__progress > div > span {
-  background: linear-gradient(-90deg, var(--mah-sand), var(--mah-gold), var(--mah-copper))
+  background: linear-gradient(-90deg, var(--mah-sand), var(--mah-gold), var(--mah-copper));
+  transform-origin: right center
 }
 
 @media(max-width:991px) {
@@ -2383,21 +2382,21 @@ html[dir="rtl"] .manufacturing-flow__progress > div > span {
     max-width: 16ch
   }
 
-  .manufacturing-flow__track {
-    grid-template-columns: 1fr
+  .manufacturing-flow__card {
+    flex-basis: min(86vw, 34rem);
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr
   }
 
-  .manufacturing-flow__card {
-    display: grid;
-    grid-template-columns: 1fr
+  .manufacturing-flow__card:nth-child(even) .manufacturing-flow__visual,
+  .manufacturing-flow__card:nth-child(even) .manufacturing-flow__copy {
+    order: 0
   }
 
   .manufacturing-flow__visual {
+    height: auto;
     aspect-ratio: 3 / 2
-  }
-
-  .manufacturing-flow__copy {
-    min-height: 0
   }
 }
 
@@ -2406,12 +2405,22 @@ html[dir="rtl"] .manufacturing-flow__progress > div > span {
     font-size: clamp(2.15rem, 10vw, 3rem)
   }
 
+  .manufacturing-flow__card {
+    flex-basis: 100%
+  }
+
   .manufacturing-flow__visual {
     aspect-ratio: 4 / 3
   }
 
   .manufacturing-flow__copy {
     padding: 1.5rem
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .manufacturing-flow__stage {
+    scroll-behavior: auto
   }
 }
 
@@ -4296,6 +4305,10 @@ html[dir="rtl"] .smarter-operations__visual figcaption span {
 
 .inner-hero--contact {
   background: #46352a
+}
+
+.inner-hero--contact .brand-image__img {
+  object-position: center 28%
 }
 
 /* Internal content layouts */
@@ -7929,7 +7942,7 @@ html[dir="rtl"] .manufacturing-home__image {
   margin-top: 2.5rem;
 }
 
-.contact-card-grid a,
+.contact-card-grid > *,
 .enquiry-card-grid article,
 .certificate-card-grid article {
   padding: clamp(1.4rem, 3vw, 2.4rem);
@@ -7943,7 +7956,7 @@ html[dir="rtl"] .manufacturing-home__image {
   transition: transform .25s, box-shadow .25s;
 }
 
-.contact-card-grid a:hover,
+.contact-card-grid > a:hover,
 .enquiry-card-grid article:hover,
 .certificate-card-grid article:hover {
   transform: translateY(-5px);
@@ -9181,26 +9194,201 @@ html[dir="rtl"] .inner-hero--heritage h1 { line-height: 1.4; }
 html[dir="rtl"] .tamimi-sectors .manufacturing-flow__copy h3 { line-height: 1.5; }
 .tamimi-sectors .manufacturing-flow__stage:focus-visible { outline: 2px solid var(--mah-gold); outline-offset: 6px; }
 
-/* Keep every sector reachable by touch, keyboard and reduced-motion users. */
-.tamimi-sectors:not(.is-enhanced) .manufacturing-flow__stage {
-  overflow-x: auto;
-  padding-bottom: 1.25rem;
-  scroll-snap-type: x mandatory;
-  scrollbar-color: var(--mah-gold) rgba(255, 255, 255, .15);
-  scrollbar-width: thin;
-}
-
-.tamimi-sectors:not(.is-enhanced) .manufacturing-flow__track { display: flex; gap: 1.5rem; }
-.tamimi-sectors:not(.is-enhanced) .manufacturing-flow__card {
-  flex: 0 0 min(82vw, 34rem);
-  scroll-snap-align: start;
-}
-
-.tamimi-sectors:not(.is-enhanced) .manufacturing-flow__visual { aspect-ratio: 3 / 2; }
-.tamimi-sectors:not(.is-enhanced) .manufacturing-flow__copy { min-height: 15rem; }
 
 @media (max-width: 991px) {
   .inner-hero--heritage .inner-hero__grid { grid-template-columns: 1fr; gap: 2rem; }
   .inner-hero--heritage .inner-hero__media { width: 100%; max-width: 40rem; margin-inline: auto; }
   .inner-hero--heritage h1 { max-width: 24ch; }
+}
+
+/* Every page's section titles (everything below the hero) share one size,
+   matching the home page's Manufacturing Strength title. */
+#main-content > :not(:first-child) h2 {
+  font-size: clamp(2rem, 3.1vw, 3.25rem)
+}
+
+/* Company counters sit under the glance banners. */
+.glance-section .home-metrics {
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 18px 45px rgba(18, 57, 31, .08)
+}
+
+/* About: centred Development Journey title with evenly aligned stage cards. */
+.process-section--journey .section-heading {
+  max-width: none;
+  text-align: center
+}
+
+.process-section--journey .section-heading h2 {
+  max-width: none;
+  margin-bottom: 0
+}
+
+.process-section--journey .process-rail {
+  grid-template-rows: repeat(4, auto)
+}
+
+.process-section--journey .process-rail article {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  align-content: start;
+  min-height: 0
+}
+
+.process-section--journey .process-rail__number {
+  margin-bottom: 2rem
+}
+
+.process-section--journey .process-rail article h3 {
+  margin-bottom: .9rem;
+  align-self: start
+}
+
+.process-section--journey .process-rail article p {
+  margin: 0;
+  line-height: 1.7
+}
+
+@media (max-width: 991px) {
+  .process-section--journey .process-rail {
+    grid-template-rows: none
+  }
+
+  .process-section--journey .process-rail article {
+    grid-row: auto;
+    grid-template-rows: none
+  }
+}
+
+/* Without the footer lead, the footer opens directly on its link grid. */
+.site-footer {
+  padding-top: clamp(1rem, 2vw, 2rem)
+}
+
+/* Contact details: phone, fax, email and address side by side on wide screens. */
+@media (min-width: 992px) {
+  .contact-card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr))
+  }
+}
+
+.footer-contact__fax {
+  display: flex;
+  gap: .55rem;
+  align-items: center;
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  line-height: 1.55
+}
+
+/* Careers: opportunities and the application form side by side. */
+.career-opportunities-section {
+  background: var(--mah-wheat) !important
+}
+
+.career-apply {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start
+}
+
+.career-apply__intro {
+  position: sticky;
+  top: 130px;
+  padding: clamp(2rem, 3.5vw, 3rem);
+  color: #fff;
+  background:
+    radial-gradient(circle at 100% 0, rgba(184, 125, 61, .28), transparent 22rem),
+    var(--mah-green-950);
+  box-shadow: 0 24px 60px rgba(18, 57, 31, .18)
+}
+
+.career-apply__intro .section-kicker {
+  color: var(--mah-sand)
+}
+
+.career-apply__intro h2 {
+  margin-bottom: 1.2rem;
+  color: #fff
+}
+
+.career-apply__intro > p {
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, .78);
+  line-height: 1.75
+}
+
+.career-apply__steps {
+  display: grid;
+  gap: 1.35rem;
+  margin: 2.2rem 0 0;
+  padding: 2rem 0 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, .16)
+}
+
+.career-apply__steps li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start
+}
+
+.career-apply__steps span {
+  flex: 0 0 auto;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mah-copper);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 800
+}
+
+.career-apply__steps strong {
+  display: block;
+  margin-bottom: .2rem;
+  font-size: 1.02rem
+}
+
+.career-apply__steps p {
+  margin: 0;
+  color: rgba(255, 255, 255, .7);
+  font-size: .9rem;
+  line-height: 1.6
+}
+
+.career-apply__form {
+  padding: clamp(1.5rem, 3.5vw, 3rem);
+  background: #fff;
+  border-top: 4px solid var(--mah-gold);
+  box-shadow: 0 24px 80px rgba(24, 33, 27, .08)
+}
+
+.career-apply__form h3 {
+  margin-bottom: 1.6rem;
+  color: var(--mah-green-950);
+  font-size: clamp(1.45rem, 2vw, 1.9rem)
+}
+
+.career-apply__form .corporate-form {
+  padding: 0;
+  box-shadow: none
+}
+
+@media (max-width: 991px) {
+  .career-apply {
+    grid-template-columns: 1fr
+  }
+
+  .career-apply__intro {
+    position: static
+  }
 }

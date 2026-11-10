@@ -24,7 +24,7 @@ const partnershipImages = [
 
 export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
   const ar = locale === "ar";
-  const [hero, intro, glance, manufacturing, portfolio, fonte, quality, tamimi, partnerships, careers, finalCta] = page.sections;
+  const [hero, intro, glance, manufacturing, portfolio, fonte, quality, tamimi, partnerships, careers] = page.sections;
   const heroHeading = value(byLabel(hero,"Main Heading"),locale);
   const fonteHeading = value(byLabel(fonte,"Main Heading"),locale);
   const fonteTitle = fonteHeading.replace(ar ? /^فونتي\s*[—–-]\s*/ : /^Fonte\s*[—–-]\s*/i, "").trim();
@@ -109,7 +109,7 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       </div>
     </AnimatedSection>
 
-    <AnimatedSection className="glance-section" variant="rise"><div className="container-xxl"><header className="section-heading" data-animate><span className="section-kicker">{value(byLabel(glance,"Section Label"),locale)}</span><h2>{value(byLabel(glance,"Main Heading"),locale)}</h2><p>{value(byLabel(glance,"Introduction"),locale)}</p></header><div data-animate><GlanceBanners items={glanceItems} locale={locale}/></div></div></AnimatedSection>
+    <AnimatedSection className="glance-section" variant="rise"><div className="container-xxl"><header className="section-heading" data-animate><span className="section-kicker">{value(byLabel(glance,"Section Label"),locale)}</span><h2>{value(byLabel(glance,"Main Heading"),locale)}</h2><p>{value(byLabel(glance,"Introduction"),locale)}</p></header><div data-animate><GlanceBanners items={glanceItems} locale={locale}/></div><ManufacturingCounters items={manufacturingCounters} locale={locale}/></div></AnimatedSection>
 
     <AnimatedSection className="fonte-home" variant="slide">
       <div className="fonte-home__background" aria-hidden="true">
@@ -134,7 +134,6 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
         </div>
         <h2>{fonteTitle}</h2>
         {paragraphs(fonte,locale).map((p,i)=><p key={i}>{p}</p>)}
-        <ManufacturingCounters items={manufacturingCounters} locale={locale}/>
         <ArrowLink href="/brands-partnerships/brands" light>{value(byLabel(fonte,/CTA/),locale)}</ArrowLink>
       </div>
     </AnimatedSection>
@@ -267,6 +266,5 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       </div>
     </AnimatedSection>
 
-    <AnimatedSection className="home-final" variant="mask"><div className="container-xxl home-final__inner" data-animate><span className="section-kicker">{value(byLabel(finalCta,"Section Label"),locale)}</span><h2>{value(byLabel(finalCta,"Main Heading"),locale)}</h2>{paragraphs(finalCta,locale).map((p,i)=><p key={i}>{p}</p>)}<div><ArrowLink href="/contact" light>{value(byLabel(finalCta,/Primary CTA|CTA/),locale)}</ArrowLink><ArrowLink href="/brands-partnerships/partnerships" light>{value(byLabel(finalCta,"Secondary CTA"),locale)}</ArrowLink></div></div></AnimatedSection>
   </main>;
 }

@@ -44,7 +44,7 @@ export function ResearchHeroStage({notes, locale}: {notes: ResearchCopy["heroNot
       <Image src={`${IMG}/pancake-single-strawberry.webp`} alt={ar ? "بان كيك فونتي بالفراولة" : "Fonte Pan Cake Strawberry"} fill sizes="(max-width: 991px) 44vw, 22vw" priority/>
     </figure>
     <span className={`${styles.note} ${styles.noteProtein}`} dir={ar ? "rtl" : "ltr"}><i aria-hidden="true"/>{notes.protein}</span>
-    <span className={`${styles.note} ${styles.noteSugar}`} dir={ar ? "rtl" : "ltr"}><i aria-hidden="true"/>{notes.sugar}</span>
+    <span className={`${styles.note} ${styles.noteBrioche}`} dir={ar ? "rtl" : "ltr"}><i aria-hidden="true"/>{notes.brioche}</span>
     <span className={`${styles.note} ${styles.noteFlavours}`} dir={ar ? "rtl" : "ltr"}><i aria-hidden="true"/>{notes.flavours}</span>
   </div>;
 }

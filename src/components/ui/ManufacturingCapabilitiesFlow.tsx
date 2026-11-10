@@ -1,12 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import {useRef} from "react";
-import {gsap} from "gsap";
-import {ScrollTrigger} from "gsap/ScrollTrigger";
-import {useGSAP} from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import {useRef, useState} from "react";
+import {ArrowLeft, ArrowRight} from "lucide-react";
 
 export interface ManufacturingCapabilityItem {
   title: string;
@@ -30,166 +26,96 @@ export function ManufacturingCapabilitiesFlow({
   variant?: "manufacturing" | "sectors";
   intro?: string;
 }) {
-  const scope = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
-  const track = useRef<HTMLDivElement>(null);
-  const progress = useRef<HTMLSpanElement>(null);
+  const settle = useRef<number | undefined>(undefined);
+  const [active, setActive] = useState(0);
+  const format = (value: number) => new Intl.NumberFormat(isRtl ? "ar" : "en", {minimumIntegerDigits: 2}).format(value);
 
-  useGSAP(
-    () => {
-      const section = scope.current;
-      const stageElement = stage.current;
-      const trackElement = track.current;
-      const progressElement = progress.current;
-      const header = section?.querySelector<HTMLElement>(
-        ".manufacturing-flow__header",
-      );
-      const cards = section
-        ? gsap.utils.toArray<HTMLElement>(
-            ".manufacturing-flow__card",
-            section,
-          )
-        : [];
+  const cards = () => Array.from(stage.current?.querySelectorAll<HTMLElement>(".manufacturing-flow__card") ?? []);
+  const goTo = (index: number) => {
+    const next = Math.max(0, Math.min(items.length - 1, index));
+    setActive(next);
+    const card = cards()[next];
+    const element = stage.current;
+    if (!card || !element) return;
+    // Scroll only the slider, never the page.
+    const start = isRtl
+      ? card.offsetLeft + card.offsetWidth - element.clientWidth
+      : card.offsetLeft;
+    element.scrollTo({left: start, behavior: "smooth"});
+  };
 
-      if (
-        !section ||
-        !stageElement ||
-        !trackElement ||
-        !progressElement ||
-        !header ||
-        !cards.length
-      ) {
-        return;
+  // Keep the active card in step with swipes, once scrolling has settled so a
+  // smooth scroll in progress never pulls the slider back to a passing card.
+  const syncActive = () => {
+    const element = stage.current;
+    if (!element) return;
+    const box = element.getBoundingClientRect();
+    const edge = isRtl ? box.right : box.left;
+    let closest = 0;
+    let distance = Infinity;
+    cards().forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      const gap = Math.abs((isRtl ? rect.right : rect.left) - edge);
+      if (gap < distance) {
+        distance = gap;
+        closest = index;
       }
+    });
+    const atEnd = Math.abs(element.scrollLeft) + element.clientWidth >= element.scrollWidth - 4;
+    setActive(atEnd && distance > 4 ? items.length - 1 : closest);
+  };
 
-      const mm = gsap.matchMedia();
-
-      mm.add(
-        "(min-width: 992px) and (prefers-reduced-motion: no-preference)",
-        () => {
-          section.classList.add("is-enhanced");
-          cards[0]?.classList.add("is-active");
-
-          gsap.set(progressElement, {
-            scaleX: 0,
-            transformOrigin: isRtl ? "right center" : "left center",
-          });
-
-          gsap.from(header.children, {
-            y: 34,
-            opacity: 0,
-            duration: .8,
-            stagger: .1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 82%",
-              once: true,
-            },
-          });
-
-          const travelDistance = () =>
-            Math.max(0, trackElement.scrollWidth - stageElement.clientWidth);
-
-          const movement = gsap.fromTo(
-            trackElement,
-            {x: 0},
-            {
-              x: () => (isRtl ? travelDistance() : -travelDistance()),
-              ease: "none",
-              scrollTrigger: {
-                trigger: section,
-                start: "top top",
-                end: () => `+=${travelDistance() + window.innerHeight * .9}`,
-                pin: true,
-                scrub: .75,
-                anticipatePin: 1,
-                invalidateOnRefresh: true,
-                snap: items.length > 1
-                  ? {
-                      snapTo: 1 / (items.length - 1),
-                      duration: {min: .18, max: .42},
-                      delay: .04,
-                      ease: "power1.inOut",
-                      inertia: variant !== "sectors",
-                    }
-                  : undefined,
-                onUpdate: (self) => {
-                  gsap.set(progressElement, {scaleX: self.progress});
-
-                  const activeIndex = Math.min(
-                    cards.length - 1,
-                    Math.round(self.progress * (cards.length - 1)),
-                  );
-
-                  cards.forEach((card, cardIndex) => {
-                    card.classList.toggle("is-active", cardIndex === activeIndex);
-                  });
-                },
-              },
-            },
-          );
-
-          return () => {
-            movement.kill();
-            section.classList.remove("is-enhanced");
-            cards.forEach((card) => card.classList.remove("is-active"));
-            gsap.set([trackElement, progressElement], {clearProps: "all"});
-          };
-        },
-      );
-
-      mm.add(
-        "(max-width: 991px) and (prefers-reduced-motion: no-preference)",
-        () => {
-          // Sector cards use native horizontal scrolling on touch screens.
-          if (variant === "sectors") return;
-          const reveals = cards.map((card) =>
-            gsap.from(card, {
-              y: 60,
-              opacity: 0,
-              scale: .975,
-              duration: .85,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 88%",
-                once: true,
-              },
-            }),
-          );
-
-          return () => reveals.forEach((reveal) => reveal.kill());
-        },
-      );
-
-      return () => mm.revert();
-    },
-    {scope, dependencies: [isRtl, items.length, variant]},
-  );
+  const Previous = isRtl ? ArrowRight : ArrowLeft;
+  const Next = isRtl ? ArrowLeft : ArrowRight;
 
   return (
     <section
-      ref={scope}
       className={`mah-section manufacturing-flow content-section ${variant === "sectors" ? "content-section--heritage tamimi-sectors" : "content-section--industrial"}`}
     >
       <div className="container-xxl manufacturing-flow__container">
-        <header className="manufacturing-flow__header">
-          <span className="section-kicker">{kicker}</span>
-          <h2>{heading}</h2>
-          {intro && <p>{intro}</p>}
-        </header>
+        {/* Slider buttons sit at the top end: right in English, left in Arabic. */}
+        <div className="manufacturing-flow__top">
+          <header className="manufacturing-flow__header">
+            <span className="section-kicker">{kicker}</span>
+            <h2>{heading}</h2>
+            {intro && <p>{intro}</p>}
+          </header>
+          <div className="manufacturing-flow__buttons">
+            <button type="button" onClick={() => goTo(active - 1)} disabled={active === 0} aria-label={isRtl ? "البطاقة السابقة" : "Previous card"}>
+              <Previous size={18} aria-hidden="true" />
+            </button>
+            <button type="button" onClick={() => goTo(active + 1)} disabled={active === items.length - 1} aria-label={isRtl ? "البطاقة التالية" : "Next card"}>
+              <Next size={18} aria-hidden="true" />
+            </button>
+          </div>
+        </div>
 
         <div
           ref={stage}
           className="manufacturing-flow__stage"
           aria-label={heading}
-          tabIndex={variant === "sectors" ? 0 : undefined}
-          role={variant === "sectors" ? "region" : undefined}
+          aria-roledescription={isRtl ? "عرض شرائح" : "carousel"}
+          role="region"
+          tabIndex={0}
+          onScroll={() => {
+            window.clearTimeout(settle.current);
+            settle.current = window.setTimeout(syncActive, 140);
+          }}
+          onKeyDown={event => {
+            if (event.key === "ArrowRight") goTo(active + (isRtl ? -1 : 1));
+            else if (event.key === "ArrowLeft") goTo(active + (isRtl ? 1 : -1));
+            else return;
+            event.preventDefault();
+          }}
         >
-          <div ref={track} className="manufacturing-flow__track">
+          <div className="manufacturing-flow__track">
             {items.map((item, itemIndex) => (
-              <article className={`manufacturing-flow__card${variant === "sectors" ? " tamimi-sector" : ""}`} key={item.title}>
+              <article
+                className={`manufacturing-flow__card${variant === "sectors" ? " tamimi-sector" : ""}${itemIndex === active ? " is-active" : ""}`}
+                key={item.title}
+                aria-label={`${format(itemIndex + 1)} / ${format(items.length)}`}
+              >
                 <figure className="manufacturing-flow__visual">
                   <Image
                     src={item.image}
@@ -202,9 +128,7 @@ export function ManufacturingCapabilitiesFlow({
                 </figure>
 
                 <div className="manufacturing-flow__copy">
-                  <span className="manufacturing-flow__number">
-                    {new Intl.NumberFormat(isRtl ? "ar" : "en", {minimumIntegerDigits: 2}).format(itemIndex + 1)}
-                  </span>
+                  <span className="manufacturing-flow__number">{format(itemIndex + 1)}</span>
                   <h3>{item.title}</h3>
                   {item.description && <p>{item.description}</p>}
                 </div>
@@ -213,12 +137,14 @@ export function ManufacturingCapabilitiesFlow({
           </div>
         </div>
 
-        <div className="manufacturing-flow__progress" aria-hidden="true">
-          <span>{new Intl.NumberFormat(isRtl ? "ar" : "en", {minimumIntegerDigits: 2}).format(1)}</span>
-          <div>
-            <span ref={progress} />
+        <div className="manufacturing-flow__controls">
+          <div className="manufacturing-flow__progress" aria-hidden="true">
+            <span>{format(active + 1)}</span>
+            <div>
+              <span style={{transform: `scaleX(${(active + 1) / items.length})`}} />
+            </div>
+            <span>{format(items.length)}</span>
           </div>
-          <span>{new Intl.NumberFormat(isRtl ? "ar" : "en", {minimumIntegerDigits: 2}).format(items.length)}</span>
         </div>
       </div>
     </section>

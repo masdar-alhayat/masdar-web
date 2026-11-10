@@ -35,8 +35,13 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator(".careers-home h2")).toHaveText(locale === "en" ? "Build a Career That Touches Everyday Life" : "مسيرة مهنية تلامس الحياة اليومية");
     await expect(page.locator(".careers-home__grid > div p")).toHaveCount(1);
     await expect(page.locator(".quality-home h2")).toHaveCSS("text-align", "start");
-    await expect(page.locator(".home-final p")).toHaveCount(1);
-    expect(await page.locator(".home-final h2").evaluate(h2 => parseFloat(getComputedStyle(h2).fontSize))).toBeLessThanOrEqual(56);
+    await expect(page.locator(".home-final")).toHaveCount(0);
+    await expect(page.locator(".glance-section .home-metrics")).toHaveCount(1);
+    await expect(page.locator(".fonte-home .home-metrics")).toHaveCount(0);
+    await expect(page.locator(".partnership-home .section-kicker")).toHaveText(locale === "en" ? "Partnership Opportunities" : "فرص الشراكة");
+    const titleSizes = await page.locator("main section h2").evaluateAll(titles => titles.map(title => getComputedStyle(title).fontSize));
+    expect(new Set(titleSizes).size).toBe(1);
+    await expect(page.locator(".site-footer__lead")).toHaveCount(0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
   });
 }

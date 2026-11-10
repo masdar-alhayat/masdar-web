@@ -524,8 +524,8 @@
         "items": [
           {
             "label": "Section Label",
-            "en": "Working Together",
-            "ar": "نعمل معاً"
+            "en": "Partnership Opportunities",
+            "ar": "فرص الشراكة"
           },
           {
             "label": "Main Heading",
@@ -2833,7 +2833,7 @@
         ]
       },
       {
-        "title": "Fonte HORECA",
+        "title": "HORECA",
         "items": [
           {
             "label": "Render Variant",
@@ -2847,13 +2847,13 @@
           },
           {
             "label": "Main Heading",
-            "en": "Fonte HORECA",
-            "ar": "فونتي هوريكا"
+            "en": "HORECA",
+            "ar": "هوريكا"
           },
           {
             "label": "Paragraph 1",
-            "en": "Food solutions created for hotels, restaurants, cafes and catering businesses. Fonte HORECA brings our manufacturing expertise to professional kitchens, supporting consistent quality and versatile menu choices.",
-            "ar": "حلول غذائية مصممة للفنادق والمطاعم والمقاهي وقطاع الإعاشة. تقدم فونتي هوريكا خبراتنا التصنيعية للمطابخ المهنية، لدعم الجودة المتسقة وتنوع خيارات قوائم الطعام."
+            "en": "Food solutions created for hotels, restaurants, cafes and catering businesses. HORECA brings our manufacturing expertise to professional kitchens, supporting consistent quality and versatile menu choices.",
+            "ar": "حلول غذائية مصممة للفنادق والمطاعم والمقاهي وقطاع الإعاشة. تقدم هوريكا خبراتنا التصنيعية للمطابخ المهنية، لدعم الجودة المتسقة وتنوع خيارات قوائم الطعام."
           },
           {
             "label": "Primary CTA",
@@ -3660,8 +3660,8 @@
           },
           {
             "label": "Main Heading",
-            "en": "Let’s Start a Conversation",
-            "ar": "لنبدأ التواصل"
+            "en": "Get in Touch",
+            "ar": "يسعدنا تواصلك"
           },
           {
             "label": "Supporting Content",
@@ -3705,8 +3705,13 @@
           },
           {
             "label": "Phone",
-            "en": "966 11 265 6000",
-            "ar": "966 11 265 6000"
+            "en": "+966 9200 05841",
+            "ar": "+966 9200 05841"
+          },
+          {
+            "label": "Fax",
+            "en": "+966 11 265 9000",
+            "ar": "+966 11 265 9000"
           },
           {
             "label": "Email",
@@ -3715,8 +3720,8 @@
           },
           {
             "label": "Address",
-            "en": "256 III Industrial City, Riyadh 14336, Saudi Arabia",
-            "ar": "256، المدينة الصناعية الثالثة، الرياض 14336، المملكة العربية السعودية"
+            "en": "Masdar Al Hayat, Industrial Zone No. 2, P.O. Box 355011, Riyadh 11383, Kingdom of Saudi Arabia",
+            "ar": "مصدر الحياة، المنطقة الصناعية رقم 2، ص.ب 355011، الرياض 11383، المملكة العربية السعودية"
           },
           {
             "label": "Phone CTA",
@@ -3785,8 +3790,8 @@
           },
           {
             "label": "Address",
-            "en": "256 III Industrial City, Riyadh 14336, Saudi Arabia",
-            "ar": "256، المدينة الصناعية الثالثة، الرياض 14336، المملكة العربية السعودية"
+            "en": "Masdar Al Hayat, Industrial Zone No. 2, P.O. Box 355011, Riyadh 11383, Kingdom of Saudi Arabia",
+            "ar": "مصدر الحياة، المنطقة الصناعية رقم 2، ص.ب 355011، الرياض 11383، المملكة العربية السعودية"
           },
           {
             "label": "Location Description",
@@ -4087,8 +4092,8 @@
       },
       {
         "label": "Meta Description",
-        "en": "Explore Fonte HORECA, Paneto, Amraj and Demirco, the food brands in Masdar Al Hayat's portfolio.",
-        "ar": "اكتشف فونتي هوريكا وبانيتو وأمراج وديميركو ضمن محفظة العلامات الغذائية لمصدر الحياة."
+        "en": "Explore HORECA, Paneto, Amraj and Demirco, the food brands in Masdar Al Hayat's portfolio.",
+        "ar": "اكتشف هوريكا وبانيتو وأمراج وديميركو ضمن محفظة العلامات الغذائية لمصدر الحياة."
       }
     ],
     "sections": [

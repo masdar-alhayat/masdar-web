@@ -39,6 +39,17 @@ export function ResearchInnovationPage({locale}: {locale: Locale}) {
       </div>
     </HeroMotion>
 
+    <AnimatedSection id="ri-products" className={styles.products} variant="rise">
+      <div className="container-xxl">
+        <header className={styles.productsHeader} data-animate>
+          <span className={styles.kicker}>{copy.productsKicker}</span>
+          <h2>{copy.productsHeading}</h2>
+          <p>{copy.productsIntro}</p>
+        </header>
+        <div data-animate><ResearchProductShowcase copy={copy} locale={locale}/></div>
+      </div>
+    </AnimatedSection>
+
     <AnimatedSection id="ri-focus" className={styles.focus} variant="stagger">
       <div className="container-xxl">
         <header className={styles.sectionHeader} data-animate>
@@ -48,24 +59,13 @@ export function ResearchInnovationPage({locale}: {locale: Locale}) {
         <div className={styles.focusGrid}>
           {copy.areas.map((area, index) => <article key={area.id} className={styles.focusCard} data-animate>
             <div className={styles.focusImage}><Image src={area.image} alt="" fill sizes="(max-width: 767px) 92vw, (max-width: 1199px) 46vw, 31vw"/></div>
-            <div className={styles.focusTop}><span className={styles.focusIndex}>{number(index)}</span><span className={styles.focusLabel}>{area.label}</span></div>
+            <div className={styles.focusTop}><span className={styles.focusIndex}>{number(index)}</span></div>
             <div className={styles.focusBody}>
-              <h3>{area.title}</h3>
+              <h3>{area.label}</h3>
               <p>{area.text}</p>
             </div>
           </article>)}
         </div>
-      </div>
-    </AnimatedSection>
-
-    <AnimatedSection id="ri-products" className={styles.products} variant="rise">
-      <div className="container-xxl">
-        <header className={styles.productsHeader} data-animate>
-          <span className={styles.kicker}>{copy.productsKicker}</span>
-          <h2>{copy.productsHeading}</h2>
-          <p>{copy.productsIntro}</p>
-        </header>
-        <div data-animate><ResearchProductShowcase copy={copy} locale={locale}/></div>
       </div>
     </AnimatedSection>
   </main>;
