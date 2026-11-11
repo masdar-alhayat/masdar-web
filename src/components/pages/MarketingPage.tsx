@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {ArrowDownRight, BadgeCheck, ChartNoAxesCombined, ChartPie, Cog, Factory, Lightbulb, Megaphone, MonitorSmartphone, ScanSearch, ShieldCheck, ShoppingCart, Truck} from "lucide-react";
+import {ArrowDownRight, ChartNoAxesCombined, Cog, Factory, Megaphone, ShieldCheck, Truck} from "lucide-react";
 import {HeroMotion} from "@/components/motion/HeroMotion";
 import {AnimatedSection} from "@/components/motion/AnimatedSection";
 import {ArrowLink} from "@/components/ui/ArrowLink";
@@ -8,13 +8,11 @@ import {capabilityVisuals, getMarketingCopy, heroFeed, MARKETING_IMAGES} from "@
 import type {Locale} from "@/types/content";
 import styles from "./MarketingPage.module.css";
 
-const capabilityIcons = [BadgeCheck, ScanSearch, Lightbulb, Megaphone, MonitorSmartphone, ShoppingCart, ChartPie, ChartNoAxesCombined];
 const functionIcons = [Factory, Cog, ShieldCheck, Truck, ChartNoAxesCombined, Megaphone];
 const functionPaths = ["/capabilities/manufacturing", "/capabilities/operations", "/capabilities/quality-compliance", "/capabilities/logistics-distribution", "/capabilities/sales"];
 
 export function MarketingPage({locale}: {locale: Locale}) {
   const copy = getMarketingCopy(locale);
-  const number = (index: number) => new Intl.NumberFormat(locale, {minimumIntegerDigits: 2}).format(index + 1);
   const partners = copy.functions.slice(0, functionPaths.length);
 
   return <main id="main-content" className={styles.page}>
@@ -48,11 +46,9 @@ export function MarketingPage({locale}: {locale: Locale}) {
           <p>{copy.capabilitiesIntro}</p>
         </header>
         <div className={styles.cards}>
-          {copy.capabilities.map((item, index) => {
-            const Icon = capabilityIcons[index];
+          {copy.capabilities.map(item => {
             const visual = capabilityVisuals[item.id];
             return <article key={item.id} className={styles.card} data-marketing-capability={item.id} data-animate>
-              <div className={styles.cardMeta}><span className={styles.cardIcon}><Icon size={18} strokeWidth={1.8} aria-hidden="true"/></span><span>{number(index)}</span></div>
               <div className={`${styles.cardVisual}${visual?.shape === "reel" ? ` ${styles.cardVisualReel}` : ""}`}>
                 {visual
                   ? <Image src={`${MARKETING_IMAGES}/${visual.image}.webp`} alt={visual.alt[locale]} fill sizes="(max-width: 767px) 90vw, (max-width: 1199px) 45vw, 23vw"/>

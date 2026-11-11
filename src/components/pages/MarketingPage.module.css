@@ -35,8 +35,6 @@
 .card {display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(30, 78, 42, .12); border-radius: 1.4rem; background: var(--mah-cream); transition: transform .4s cubic-bezier(.22, 1, .36, 1), box-shadow .4s;}
 .card:nth-child(4n+2),.card:nth-child(4n+4) {margin-top: 2.5rem;}
 .card:hover {transform: translateY(-6px); box-shadow: 0 24px 50px rgba(18, 57, 31, .12);}
-.cardMeta {display: flex; align-items: center; justify-content: space-between; padding: .85rem 1rem; color: var(--mah-charcoal-700); font-size: .72rem; font-weight: 800; letter-spacing: .1em;}
-.cardIcon {display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--mah-green-950); color: #fff;}
 .cardVisual {position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: linear-gradient(160deg, var(--mah-green-900), var(--mah-green-950));}
 .cardVisual img {object-fit: cover; transition: transform .9s cubic-bezier(.22, 1, .36, 1);}
 .cardVisualReel img {object-position: center 62%;}
@@ -83,7 +81,6 @@
 .networkNode:hover span {background: var(--mah-green-950); color: #fff; transform: scale(1.08);}
 
 :global(html[dir="rtl"]) .heroContent h1 {letter-spacing: 0; line-height: 1.15;}
-:global(html[dir="rtl"]) .cardMeta {letter-spacing: 0;}
 
 @media (max-width: 1199px) {
   .cards {grid-template-columns: repeat(2, minmax(0, 1fr));}
