@@ -7,11 +7,10 @@ export const marketingCopy = {
     kicker: "Our Capabilities",
     heading: "Building Brands. Driving Growth.",
     intro: "At Masdar Al Hayat, marketing connects consumer insight, brand strategy and product innovation to create market opportunities, build demand and support lasting business growth.",
-    heroAlt: "Fonte sesame burger buns presented with a freshly prepared burger",
     heroCaption: "Food people enjoy. Brands people remember.",
+    feedLabel: "Recent Fonte campaigns",
     heroCta: "Explore Our Marketing Capabilities",
     brandCta: "Discover Our Brands",
-    pillars: ["Consumer insight", "Brand relevance", "Market execution"],
     capabilitiesKicker: "Our Marketing Capabilities",
     capabilitiesHeading: "From Insight to Impact",
     capabilitiesIntro: "An integrated approach to understanding the market, building distinctive brands and connecting with consumers across channels.",
@@ -31,6 +30,15 @@ export const marketingCopy = {
     networkLabel: "Marketing works with our other capabilities",
     functions: ["Manufacturing", "Operations", "Quality", "Logistics & Distribution", "Sales", "Marketing"],
     contactCta: "Connect with Our Team",
+    campaignsKicker: "In Market",
+    campaignsHeading: "Campaigns That Meet Consumers in Their Day",
+    campaignsIntro: "From breakfast tables and lunch boxes to school bags and the gym, our campaigns bring Fonte into everyday moments across social and retail channels.",
+    reels: [
+      {image: "reel-tortilla", title: "Tortilla moments", alt: "Fonte tortilla reel showing filled tortilla tacos"},
+      {image: "reel-protein-gym", title: "Protein Tortilla launch", alt: "Fonte Protein Tortilla reel set in a gym with 37 g protein messaging"},
+      {image: "reel-wholewheat", title: "Whole Wheat Bread", alt: "Fonte whole wheat sliced bread reel on a breakfast table"},
+    ],
+    networkCenter: "Marketing",
   },
   ar: {
     title: "التسويق",
@@ -38,11 +46,10 @@ export const marketingCopy = {
     kicker: "قدراتنا",
     heading: "نبني العلامات. وندفع النمو.",
     intro: "في مصدر الحياة، يربط التسويق بين فهم المستهلك واستراتيجية العلامات وابتكار المنتجات، لاستكشاف فرص السوق وتعزيز الطلب ودعم نمو الأعمال على المدى الطويل.",
-    heroAlt: "خبز برغر فونتي بالسمسم إلى جانب وجبة برغر طازجة",
     heroCaption: "غذاء يستمتع به الناس. وعلامات تبقى في الذاكرة.",
+    feedLabel: "أحدث حملات فونتي",
     heroCta: "اكتشف قدراتنا التسويقية",
     brandCta: "اكتشف علاماتنا التجارية",
-    pillars: ["فهم المستهلك", "ملاءمة العلامة", "التنفيذ في السوق"],
     capabilitiesKicker: "قدراتنا التسويقية",
     capabilitiesHeading: "من الفهم إلى الأثر",
     capabilitiesIntro: "نهج متكامل لفهم السوق وبناء علامات مميزة والتواصل مع المستهلكين عبر مختلف القنوات.",
@@ -62,10 +69,35 @@ export const marketingCopy = {
     networkLabel: "يتكامل التسويق مع قدراتنا الأخرى",
     functions: ["التصنيع", "العمليات", "الجودة", "الخدمات اللوجستية والتوزيع", "المبيعات", "التسويق"],
     contactCta: "تواصل مع فريقنا",
+    campaignsKicker: "في السوق",
+    campaignsHeading: "حملات ترافق المستهلك في يومه",
+    campaignsIntro: "من مائدة الإفطار وصندوق الغداء إلى الحقيبة المدرسية والنادي الرياضي، تحضر فونتي في اللحظات اليومية عبر قنوات التواصل الاجتماعي ومنافذ البيع.",
+    reels: [
+      {image: "reel-tortilla", title: "لحظات التورتيلا", alt: "مقطع لتورتيلا فونتي محشوة على شكل تاكو"},
+      {image: "reel-protein-gym", title: "إطلاق تورتيلا البروتين", alt: "مقطع لتورتيلا فونتي بالبروتين في نادٍ رياضي مع رسالة ٣٧ غ بروتين"},
+      {image: "reel-wholewheat", title: "خبز القمح الكامل", alt: "مقطع لخبز توست فونتي بالقمح الكامل على مائدة الإفطار"},
+    ],
+    networkCenter: "التسويق",
   },
 } as const;
 
 export function getMarketingCopy(locale: Locale) { return marketingCopy[locale]; }
+
+// Recent Fonte campaign posts from Instagram (@fonte2me), paired with the capability each one shows.
+export const MARKETING_IMAGES = "/assets/images/marketing";
+export const capabilityVisuals: Record<string, {image: string; alt: {en: string; ar: string}; shape?: "reel"}> = {
+  brand: {image: "wholewheat-toast-smile", alt: {en: "Fonte whole wheat toast campaign with a smiling child", ar: "حملة توست فونتي بالقمح الكامل مع طفلة مبتسمة"}},
+  insight: {image: "cheese-pie-playground", alt: {en: "Fonte cheese pie campaign showing a child at play", ar: "حملة فطيرة فونتي بالجبنة مع طفلة تلعب"}},
+  launch: {image: "protein-tortilla-lunchbox", alt: {en: "Fonte Protein Tortilla launch post with a lunch box", ar: "منشور إطلاق تورتيلا فونتي بالبروتين مع صندوق غداء"}},
+  communications: {image: "dates-pie-school", alt: {en: "Fonte dates pie back-to-school campaign", ar: "حملة فطيرة فونتي بالتمر للعودة إلى المدارس"}},
+  digital: {image: "reel-protein-gym", alt: {en: "Fonte Protein Tortilla social reel", ar: "مقطع تورتيلا فونتي بالبروتين على وسائل التواصل"}, shape: "reel"},
+  trade: {image: "shelf-tannour-breakfast", alt: {en: "Fonte Tannour bread range on a shelf with children reaching for it", ar: "مجموعة خبز التنور من فونتي على الرف وأطفال يمدون أيديهم إليها"}},
+  portfolio: {image: "tannour-wrap", alt: {en: "Fonte Tannour bread range shown as a wrap", ar: "خبز التنور من فونتي في لفافة"}},
+};
+export const heroFeed = [
+  ["wholewheat-sandwich", "wholewheat-toast-jam", "shelf-tannour-breakfast", "wholewheat-toast-smile"],
+  ["dates-pie-school", "cheese-pie-playground", "protein-tortilla-lunchbox", "tannour-wrap"],
+] as const;
 
 export const marketingPageContent: PageContent = {
   title: "Marketing",

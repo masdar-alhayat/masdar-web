@@ -1,6 +1,7 @@
 import Image from "next/image";
 import masdarLogo from "../../../public/brand/masdar-logo-text.png";
 import {
+  ArrowUpRight,
   Mail,
   MapPin,
   Phone,
@@ -12,9 +13,7 @@ import {getPageContent} from "@/content/pages";
 import {byLabel, value} from "@/lib/content";
 import type {Locale} from "@/types/content";
 
-const socialLinks = [
-  {label: "LinkedIn", href: "https://www.linkedin.com/company/fonte-masdaralhayat", Icon: FaLinkedinIn},
-] as const;
+const LINKEDIN_URL = "https://www.linkedin.com/company/fonte-masdaralhayat";
 
 // The footer introduces the company with the home page hero's opening paragraph.
 const homeHero = getPageContent("home").sections[0];
@@ -63,9 +62,14 @@ export function Footer({locale}: {locale: Locale}) {
           <a href="https://www.google.com/maps/search/?api=1&query=Masdar%20Al-Hayat%20Food%20Industries%20Riyadh" target="_blank" rel="noreferrer">
             <MapPin size={17}/>{ar ? "مصدر الحياة، المنطقة الصناعية رقم 2، ص.ب 355011، الرياض 11383، المملكة العربية السعودية" : "Masdar Al Hayat, Industrial Zone No. 2, P.O. Box 355011, Riyadh 11383, Kingdom of Saudi Arabia"}
           </a>
-          <div className="footer-socials" aria-label={ar ? "حسابات التواصل الاجتماعي" : "Social media"}>
-            {socialLinks.map(({label, href, Icon}) => <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} title={label}><Icon size={18}/></a>)}
-          </div>
+          <a className="footer-follow" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+            <span className="footer-follow__icon"><FaLinkedinIn aria-hidden="true"/></span>
+            <span className="footer-follow__text">
+              <small>{ar ? "ابقَ على تواصل" : "Stay connected"}</small>
+              <strong>{ar ? "تابعونا على لينكدإن" : "Follow us on LinkedIn"}</strong>
+            </span>
+            <ArrowUpRight className="footer-follow__arrow directional-icon" size={17} aria-hidden="true"/>
+          </a>
         </div>
       </div>
 

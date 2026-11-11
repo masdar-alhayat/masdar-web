@@ -1,7 +1,7 @@
 import {expect, test} from "@playwright/test";
 
 for (const locale of ["en", "ar"] as const) {
-  test(`${locale} marketing page presents the brief in three sections`, async ({page}) => {
+  test(`${locale} marketing page presents the brief with campaign examples`, async ({page}) => {
     await page.emulateMedia({reducedMotion: "reduce"});
     const response = await page.goto(`/${locale}/capabilities/marketing`);
     expect(response?.status()).toBe(200);
@@ -9,7 +9,10 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator("h1")).toHaveText(locale === "ar" ? "التسويق" : "Marketing");
     await expect(page).toHaveTitle(locale === "ar" ? /التسويق/ : /Marketing/);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp(`/${locale}/capabilities/marketing$`));
-    await expect(page.locator("main > section")).toHaveCount(3);
+    await expect(page.locator("main > section")).toHaveCount(4);
+    await expect(page.locator('main a[href*="instagram.com"]')).toHaveCount(0);
+    await expect(page.locator("main")).not.toContainText(locale === "ar" ? "لكل مناسبة احتفال" : "Every occasion a celebration");
+    await expect(page.locator("main figure figcaption")).toHaveCount(3);
     await expect(page.locator("[data-marketing-capability]")).toHaveCount(8);
     const expected = locale === "ar"
       ? ["إدارة العلامات التجارية", "أبحاث السوق ورؤى المستهلك", "ابتكار المنتجات وإطلاقها", "التسويق والاتصال المتكامل", "التسويق الرقمي والتجارة الإلكترونية", "التسويق التجاري وتنشيط التجزئة", "إدارة الفئات ومحفظة المنتجات", "الأداء التسويقي والتحليلات"]
@@ -18,7 +21,7 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator("main nav a")).toHaveCount(5);
     await expect(page.locator('main a[href$="/contact"]')).toHaveCount(1);
     await expect(page.locator('footer a[href$="/capabilities/marketing"]')).toBeVisible();
-    await page.locator("main img").evaluate(async image => (image as HTMLImageElement).decode());
+    await page.locator("main img").first().evaluate(async image => (image as HTMLImageElement).decode());
     await expect(page.locator("main")).not.toContainText(/Nature.?s Oven|نيتشرز/);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
     await page.locator(".language-switch").click();

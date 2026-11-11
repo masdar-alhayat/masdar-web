@@ -1,71 +1,116 @@
-.page { overflow: clip; }
-.hero { padding-block: clamp(9rem, 12vw, 11rem) clamp(3rem, 5vw, 5rem); background: radial-gradient(ellipse at 0 100%, rgba(184,125,61,.19), transparent 60%), var(--mah-green-950); color: #fff; }
-.heroGrid { display: grid; grid-template-columns: 1.12fr .88fr; gap: clamp(3rem, 6vw, 6rem); align-items: center; }
-.breadcrumb { margin-bottom: 2rem; color: rgba(255,255,255,.55); font-size: .72rem; }
-.heroContent :global(.section-kicker) { color: var(--mah-sand); }
-.heroContent h1 { font-size: clamp(3.5rem, 6.4vw, 6.5rem); line-height: 1.12; margin-bottom: .9rem; }
-.heroContent h2 { max-width: 16ch; font-size: clamp(2rem, 3.4vw, 3.5rem); line-height: 1.2; font-weight: 500; margin-bottom: 1.5rem; }
-.heroContent p { color: rgba(255,255,255,.8); max-width: 54ch; font-size: clamp(1rem, 1.25vw, 1.15rem); margin-bottom: 2rem; }
-.heroVisual { position: relative; margin: 0; padding: 1rem 0 0 1rem; }
-.heroVisual::before { content: ""; position: absolute; inset: 0 1.5rem 3rem 0; border: 1px solid rgba(206,163,109,.6); }
-.heroImage { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--mah-wheat); }
-.heroImage img { object-fit: cover; }
-.heroVisual figcaption { position: relative; display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; font-size: .85rem; background: var(--mah-copper); }
-.heroVisual figcaption svg { flex: 0 0 auto; color: var(--mah-sand); }
-.pillars { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.18); }
-.pillars > span { display: flex; align-items: center; gap: .6rem; font-size: .78rem; color: rgba(255,255,255,.75); }
-.pillars small { color: var(--mah-sand); font-size: .6rem; }
-.capabilities { background: var(--mah-cream); scroll-margin-top: 6rem; }
-.sectionHeader, .growthIntro { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 5vw, 5rem); align-items: end; margin-bottom: 3rem; }
-.sectionHeader h2, .growthIntro h2 { max-width: 19ch; margin: 0; font-size: clamp(2.3rem, 4vw, 3.8rem); line-height: 1.15; }
-.sectionHeader h2 { color: var(--mah-green-950); }
-.sectionHeader > p { max-width: 45ch; margin: 0 0 .3rem; color: var(--mah-charcoal-700); font-size: 1.02rem; }
-.heroContent h1, .heroContent h2, .sectionHeader h2, .growthIntro h2, .card h3 { padding-block: .06em .15em; overflow: visible; }
-.cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.2rem; }
-.card { min-width: 0; display: flex; flex-direction: column; padding: clamp(1.5rem, 2vw, 2rem); border: 1px solid rgba(30,78,42,.12); border-bottom: 3px solid var(--mah-gold); background: #fff; transition: border-color .3s, box-shadow .3s; }
-.card:hover { border-color: var(--mah-copper); box-shadow: 0 18px 40px rgba(18,57,31,.08); }
-.cardMeta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.75rem; color: var(--mah-copper); }
-.cardMeta > span { color: var(--mah-gold); font-size: .67rem; letter-spacing: .1em; }
-.card h3 { color: var(--mah-green-950); font-size: clamp(1.15rem, 1.4vw, 1.4rem); line-height: 1.4; margin-bottom: .75rem; min-height: 3.9em; }
-.card p { margin: 0; color: var(--mah-charcoal-700); font-size: .89rem; line-height: 1.8; }
-.growth { background: var(--mah-green-950); color: #fff; }
-.growthIntro :global(.section-kicker) { color: var(--mah-sand); }
-.growthIntro p { margin-bottom: 1.25rem; color: rgba(255,255,255,.78); font-size: 1rem; }
-.actions { display: flex; flex-wrap: wrap; gap: .5rem 2rem; }
-.actions :global(.arrow-link) { font-size: .9rem; }
-.functions { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,.18); }
-.functions > a, .functions > span { display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; padding: 1rem .5rem; }
-.functionIcon { display: grid; place-items: center; width: 4.5rem; height: 4.5rem; border: 1px solid rgba(206,163,109,.5); border-radius: 50%; background: var(--mah-green-950); color: var(--mah-sand); transition: color .25s, background .25s; }
-.functions strong { max-width: 17ch; font-size: .88rem; line-height: 1.6; font-weight: 500; }
-.functions a:hover .functionIcon { background: var(--mah-cream); color: var(--mah-green-950); }
-.functions .currentFunction .functionIcon { background: var(--mah-copper); border-color: var(--mah-copper); color: #fff; box-shadow: 0 0 0 7px rgba(184,125,61,.12); }
-.functions a:focus-visible { outline: 2px solid var(--mah-sand); outline-offset: 4px; }
-:global(html[dir="rtl"]) .heroContent h1, :global(html[dir="rtl"]) .heroContent h2, :global(html[dir="rtl"]) .sectionHeader h2, :global(html[dir="rtl"]) .growthIntro h2 { line-height: 1.4; }
-:global(html[dir="rtl"]) .heroVisual { padding: 1rem 1rem 0 0; }
-:global(html[dir="rtl"]) .heroVisual::before { inset: 0 0 3rem 1.5rem; }
-@media (max-width: 1199px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .card h3 { min-height: 0; } }
+.page {
+  --mk-accent: var(--mah-copper);
+  overflow-x: clip;
+  background: var(--mah-cream);
+}
+
+/* Hero */
+.hero {position: relative; overflow: hidden; padding: clamp(8.5rem, 11vw, 10rem) 0 clamp(3.5rem, 6vw, 5.5rem); background: radial-gradient(circle at 85% 20%, rgba(184, 125, 61, .14), transparent 34rem), radial-gradient(circle at 5% 100%, rgba(30, 78, 42, .08), transparent 30rem), var(--mah-cream);}
+.heroGrid {display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: center;}
+.breadcrumb {margin-bottom: 1.8rem; color: var(--mah-charcoal-700); font-size: .74rem;}
+.heroContent :global(.section-kicker) {color: var(--mah-copper);}
+.heroContent h1 {margin: 0 0 .4rem; color: var(--mah-green-950); font-size: clamp(3.6rem, 8.6vw, 8.4rem); font-weight: 800; line-height: .95; letter-spacing: -.055em;}
+.heroContent h1 span {display: block; padding-bottom: .05em;}
+.heroContent h2 {margin: 0 0 1.4rem; color: var(--mah-copper); font-size: clamp(1.6rem, 2.7vw, 2.6rem); font-weight: 750; line-height: 1.15;}
+.heroContent > p {max-width: 52ch; margin-bottom: 2rem; color: var(--mah-charcoal-700); font-size: clamp(1rem, 1.2vw, 1.12rem); line-height: 1.8;}
+.heroCta {display: inline-flex; align-items: center; gap: 1rem; min-height: 54px; padding: .85rem 1.5rem; border-radius: 50px; background: var(--mah-green-950); color: #fff; font-size: .87rem; font-weight: 750; transition: background .25s, transform .25s;}
+.heroCta:hover {color: #fff; background: var(--mk-accent); transform: translateY(-2px);}
+
+/* Hero campaign wall: two columns of real Fonte posts moving in opposite directions. */
+.feed {position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; height: clamp(30rem, 44vw, 38rem); padding: 0 1rem; border-radius: 2rem; background: var(--mah-green-950); box-shadow: 0 40px 90px rgba(18, 57, 31, .28); overflow: hidden; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%);}
+.feedColumn {overflow: hidden;}
+.feedTrack {display: flex; flex-direction: column; gap: 1rem; animation: mkFeed 38s linear infinite;}
+.feedColumn + .feedColumn .feedTrack {animation-direction: reverse; animation-duration: 44s;}
+.feed:hover .feedTrack {animation-play-state: paused;}
+.feedPost {position: relative; flex: none; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 1.1rem; box-shadow: 0 14px 30px rgba(0, 0, 0, .3);}
+.feedPost img {object-fit: cover;}
+@keyframes mkFeed {to {transform: translateY(calc(-50% - .5rem));}}
+
+/* Capabilities as campaign-post cards */
+.capabilities {background: #fff;}
+.sectionHeader {display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(2rem, 6vw, 6rem); align-items: end; margin-bottom: clamp(2.5rem, 5vw, 3.75rem);}
+.sectionHeader h2 {max-width: 18ch; margin: 0; color: var(--mah-green-950); line-height: 1.1;}
+.sectionHeader p {max-width: 48ch; margin: 0; color: var(--mah-charcoal-700); font-size: 1.05rem; line-height: 1.8;}
+.cards {display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; align-items: start;}
+.card {display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(30, 78, 42, .12); border-radius: 1.4rem; background: var(--mah-cream); transition: transform .4s cubic-bezier(.22, 1, .36, 1), box-shadow .4s;}
+.card:nth-child(4n+2),.card:nth-child(4n+4) {margin-top: 2.5rem;}
+.card:hover {transform: translateY(-6px); box-shadow: 0 24px 50px rgba(18, 57, 31, .12);}
+.cardMeta {display: flex; align-items: center; justify-content: space-between; padding: .85rem 1rem; color: var(--mah-charcoal-700); font-size: .72rem; font-weight: 800; letter-spacing: .1em;}
+.cardIcon {display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--mah-green-950); color: #fff;}
+.cardVisual {position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: linear-gradient(160deg, var(--mah-green-900), var(--mah-green-950));}
+.cardVisual img {object-fit: cover; transition: transform .9s cubic-bezier(.22, 1, .36, 1);}
+.cardVisualReel img {object-position: center 62%;}
+.card:hover .cardVisual img {transform: scale(1.05);}
+.chart {position: absolute; inset: 12% 10%; width: 80%; height: 76%;}
+.chartBars rect {fill: rgba(255, 255, 255, .16);}
+.chartBars rect:last-child {fill: var(--mah-gold);}
+.chartLine {fill: none; stroke: #fff; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round;}
+.chartDot {fill: var(--mah-gold); stroke: #fff; stroke-width: 3;}
+.cardCopy {padding: 1.2rem 1.15rem 1.4rem;}
+.cardCopy h3 {margin-bottom: .55rem; color: var(--mah-green-950); font-size: 1.12rem; line-height: 1.3; letter-spacing: -.01em;}
+.cardCopy p {margin: 0; color: var(--mah-charcoal-700); font-size: .88rem; line-height: 1.65;}
+
+/* Campaigns in market */
+.campaigns {position: relative; overflow: hidden; color: #fff; background: radial-gradient(circle at 15% 15%, rgba(139, 63, 39, .32), transparent 30rem), radial-gradient(circle at 90% 90%, rgba(184, 125, 61, .25), transparent 28rem), var(--mah-green-950);}
+.campaignsGrid {display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: center;}
+.campaignsHeader :global(.section-kicker) {color: var(--mah-sand);}
+.campaignsHeader h2 {margin-bottom: 1.2rem; color: #fff; line-height: 1.1;}
+.campaignsHeader p {margin-bottom: 0; color: rgba(255, 255, 255, .78); font-size: 1.05rem; line-height: 1.8;}
+.phones {display: flex; justify-content: center; align-items: center; gap: clamp(.8rem, 2vw, 1.75rem);}
+.phone {flex: 0 1 13.5rem; margin: 0; text-align: center;}
+.phone:nth-child(2) {flex-basis: 15.5rem; transform: translateY(-1.5rem);}
+.phoneScreen {position: relative; aspect-ratio: 9 / 19; overflow: hidden; border: 8px solid #0b0f0c; border-radius: 2.2rem; background: #0b0f0c; box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 34px 70px rgba(0, 0, 0, .45);}
+.phoneScreen::before {content: ""; position: absolute; z-index: 2; top: .55rem; left: 50%; width: 32%; height: 1.15rem; border-radius: 1rem; background: #0b0f0c; transform: translateX(-50%);}
+.phoneScreen img {object-fit: cover;}
+.phone figcaption {margin-top: 1rem; color: rgba(255, 255, 255, .85); font-size: .85rem; font-weight: 700;}
+
+/* Marketing connected to the other capabilities */
+.growth {background: var(--mah-cream);}
+.growthGrid {display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: center;}
+.growthIntro h2 {margin-bottom: 1.2rem; color: var(--mah-green-950); line-height: 1.1;}
+.growthIntro p {max-width: 52ch; margin-bottom: 2rem; color: var(--mah-charcoal-700); font-size: 1.05rem; line-height: 1.8;}
+.actions {display: flex; flex-wrap: wrap; gap: 1.25rem 2rem;}
+.network {position: relative; width: min(100%, 34rem); aspect-ratio: 1; margin-inline: auto;}
+.networkLines {position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible;}
+.networkLines line {stroke: rgba(30, 78, 42, .28); stroke-width: .35; stroke-dasharray: 1.2 1.6;}
+.networkLines circle {fill: none; stroke: rgba(184, 125, 61, .45); stroke-width: .3;}
+.networkCenter {position: absolute; top: 50%; left: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; width: 34%; aspect-ratio: 1; border-radius: 50%; background: var(--mk-accent); color: #fff; text-align: center; transform: translate(-50%, -50%); box-shadow: 0 0 0 12px rgba(139, 63, 39, .12), 0 24px 50px rgba(139, 63, 39, .28);}
+.networkCenter strong {font-size: clamp(.95rem, 1.4vw, 1.15rem);}
+.networkNode {position: absolute; top: var(--y); left: var(--x); display: flex; flex-direction: column; align-items: center; gap: .45rem; width: 8.5rem; color: var(--mah-green-950); text-align: center; transform: translate(-50%, -50%); transition: color .25s;}
+.networkNode span {display: grid; place-items: center; width: 3.6rem; height: 3.6rem; border: 1px solid rgba(30, 78, 42, .18); border-radius: 50%; background: #fff; box-shadow: 0 12px 26px rgba(18, 57, 31, .1); transition: background .25s, color .25s, transform .25s;}
+.networkNode strong {font-size: .8rem; line-height: 1.3;}
+.networkNode:hover {color: var(--mk-accent);}
+.networkNode:hover span {background: var(--mah-green-950); color: #fff; transform: scale(1.08);}
+
+:global(html[dir="rtl"]) .heroContent h1 {letter-spacing: 0; line-height: 1.15;}
+:global(html[dir="rtl"]) .cardMeta {letter-spacing: 0;}
+
+@media (max-width: 1199px) {
+  .cards {grid-template-columns: repeat(2, minmax(0, 1fr));}
+  .card:nth-child(4n+2),.card:nth-child(4n+4) {margin-top: 0;}
+  .card:nth-child(even) {margin-top: 2.5rem;}
+}
 @media (max-width: 991px) {
-  .heroGrid { grid-template-columns: 1fr; gap: 3rem; }
-  .heroContent h2 { max-width: 25ch; }
-  .heroVisual { width: 100%; max-width: 34rem; margin-inline: auto; }
-  .sectionHeader, .growthIntro { grid-template-columns: 1fr; gap: 1.5rem; }
-  .functions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .heroGrid,.campaignsGrid,.growthGrid,.sectionHeader {grid-template-columns: 1fr;}
+  .feed {height: 30rem;}
+  .phones {justify-content: center;}
 }
-@media (max-width: 575px) {
-  .hero { padding-top: 8rem; }
-  .breadcrumb { font-size: .65rem; margin-bottom: 1.5rem; }
-  .heroContent h1 { font-size: clamp(3.1rem, 13vw, 4.5rem); }
-  .heroContent h2 { font-size: 2rem; }
-  .heroContent :global(.arrow-link) { font-size: .85rem; }
-  .heroVisual figcaption { padding: 1rem; font-size: .8rem; }
-  .pillars { gap: .65rem 1rem; margin-top: 2rem; }
-  .pillars > span { font-size: .73rem; }
-  .sectionHeader h2, .growthIntro h2 { font-size: 2.2rem; }
-  .cards { grid-template-columns: 1fr; gap: 1rem; }
-  .card { padding: 1.5rem; }
-  .cardMeta { margin-bottom: 1rem; }
-  .card h3 { font-size: 1.3rem; }
-  .card p { font-size: .95rem; }
-  .functions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+@media (max-width: 767px) {
+  .hero {padding-top: 8rem;}
+  .feed {height: 26rem; padding: 0 .75rem; gap: .75rem;}
+  .feedTrack {gap: .75rem;}
+  .cards {grid-template-columns: 1fr;}
+  .card:nth-child(even) {margin-top: 0;}
+  .phones {gap: .6rem;}
+  .phone:nth-child(2) {transform: translateY(-.75rem);}
+  .phoneScreen {border-width: 5px; border-radius: 1.4rem;}
+  .phone figcaption {font-size: .72rem;}
+  .network {width: 100%;}
+  .networkNode {width: 6.4rem;}
+  .networkNode span {width: 2.9rem; height: 2.9rem;}
+  .networkNode strong {font-size: .7rem;}
 }
-@media (prefers-reduced-motion: reduce) { .card, .functionIcon { transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .feedTrack {animation: none;}
+  .card,.cardVisual img,.heroCta,.networkNode span {transition: none;}
+}
