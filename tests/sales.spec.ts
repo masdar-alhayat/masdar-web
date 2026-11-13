@@ -9,8 +9,8 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator("main > section")).toHaveCount(2);
     await expect(page.locator(".sales-customers__grid article")).toHaveCount(3);
     await expect(page.locator(".sales-customers__grid")).toContainText(locale === "ar" ? "المتاجر المحلية ومتاجر المواد الغذائية" : "Local / Grocery Stores");
-    await expect(page.locator(".inner-hero__media img")).toHaveAttribute("src", /masdar-18\.png/);
-    await expect(page.locator(".sales-customers__image img")).toHaveAttribute("src", /masdar-19\.png/);
+    await expect(page.locator(".inner-hero__media img")).toHaveAttribute("src", /masdar-web-51\.png/);
+    await expect(page.locator(".sales-customers__image img")).toHaveAttribute("src", /sales-customers-enhanced-v1\.webp/);
     await expect(page.locator("main")).not.toContainText(/baqala/i);
 
     if (await page.locator(".desktop-nav").isVisible()) {

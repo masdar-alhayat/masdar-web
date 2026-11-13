@@ -95,7 +95,7 @@
           {
             "label": "Main Heading",
             "en": "Strong Capabilities. Sustainable Growth.",
-            "ar": "قدرات قوية. نمو مستدام."
+            "ar": "قدرات قوية و نمو مستدام"
           },
           {
             "label": "Introduction",
@@ -440,7 +440,7 @@
           {
             "label": "Paragraph 2",
             "en": "Our controlled processes, defined standards and responsible practices are supported by recognised frameworks—including HACCP, ISO 22000 and Halal certification—to maintain consistency and meet regulatory, market and customer expectations.",
-            "ar": "وترتكز عملياتنا الخاضعة للرقابة ومعاييرنا الواضحة وممارساتنا المسؤولة على أطر معترف بها، تشمل نظام الهاسب وشهادة الآيزو 22000 وشهادة الحلال، للمحافظة على ثبات الجودة وتلبية المتطلبات التنظيمية وتوقعات السوق والعملاء."
+            "ar": "وترتكز عملياتنا الخاضعة للرقابة ومعاييرنا الواضحة وممارساتنا المسؤولة على أطر معترف بها، تشمل نظام HACCP، وشهادة ISO 22000 وشهادة الحلال، للمحافظة على ثبات الجودة وتلبية المتطلبات التنظيمية وتوقعات السوق والعملاء."
           },
           {
             "label": "Pillar 1 Title",
@@ -545,7 +545,7 @@
           {
             "label": "Partnership 1 Description",
             "en": "Food solutions developed for structured retail environments and changing consumer demand.",
-            "ar": "حلول غذائية مصممة لبيئات التجزئة المنظمة واحتياجات المستهلكين المتغيرة."
+            "ar": "حلول غذائية مبتكرة ومتنوعة تلبي قطاع التجزئة والتجارة الحديثة، تواكب تطلعات المستهلكين واحتياجاتهم المتجددة"
           },
           {
             "label": "Partnership 2 Title",
@@ -862,7 +862,7 @@
           {
             "label": "Journey Stage 3 Description",
             "en": "The portfolio develops across bakery, pastries, sauces, condiments, frozen foods and convenient meal solutions.",
-            "ar": "تطورت المحفظة لتشمل المخبوزات والمعجنات والصلصات والتتبيلات والأغذية المجمدة وحلول الوجبات العملية."
+            "ar": "تطورت المحفظة لتشمل المخبوزات والمعجنات والصلصات والتتبيلات والأغذية المجمدة وحلول الوجبات."
           },
           {
             "label": "Journey Stage 4 Label",
@@ -877,7 +877,7 @@
           {
             "label": "Journey Stage 4 Description",
             "en": "Manufacturing and distribution capabilities are aligned with the requirements of consumers, retailers, foodservice businesses and distribution partners.",
-            "ar": "تمت مواءمة قدرات التصنيع والتوزيع مع احتياجات المستهلكين وقطاعات التجزئة وخدمات الأغذية وشركاء التوزيع."
+            "ar": "تمت مواءمة قدرات التصنيع والتوزيع مع احتياجات المستهلكين و قطاع التجزئة وخدمات الأغذية و شركاء التوزيع."
           },
           {
             "label": "Journey Stage 5 Label",
@@ -2032,7 +2032,7 @@
           {
             "label": "Paragraph 2",
             "en": "Clear location control, product identification and coordinated movement help protect product condition, improve visibility and prepare finished goods for timely market delivery.",
-            "ar": "يساعد ضبط مواقع التخزين وتعريف المنتجات وتنسيق حركتها في حماية حالة المنتج وتحسين مستوى الوضوح وتجهيز المنتجات النهائية للتسليم إلى السوق في الوقت المناسب."
+            "ar": "يساعد ضبط مواقع التخزين وتعريف المنتجات وتنسيق حركتها في حماية حالة المنتج و الحفاظ على جودة المنتج  وتجهيز المنتجات النهائية للتسليم إلى السوق في الوقت المناسب."
           },
           {
             "label": "Improvement 1 Title",
@@ -2391,7 +2391,7 @@
           {
             "label": "Supporting Content",
             "en": "Masdar Al Hayat supports market availability through coordinated logistics, organised storage, distribution planning and reliable delivery to relevant business channels.",
-            "ar": "تدعم مصدر الحياة توفر المنتجات في السوق من خلال خدمات لوجستية منسقة، وتخزين منظم، وتخطيط للتوزيع، وتوريد موثوق إلى القنوات التجارية ذات العلاقة."
+            "ar": "تدعم مصدر الحياة توفر المنتجات في السوق من خلال خدمات لوجستية منسقة، وتخزين منظم، و التخطيط للتوزيع، وتوريد موثوق إلى القنوات التجارية ذات العلاقة."
           },
           {
             "label": "Breadcrumb",
@@ -3528,8 +3528,8 @@
           },
     {
       "label": "Image Alt",
-      "en": "A centered hypermarket rack stocked with Fonte bread, buns, tortillas, cupcakes, tomato paste and breadcrumbs",
-      "ar": "رف في هايبرماركت يعرض خبز فونتي وخبز البرجر والتورتيلا والكب كيك ومعجون الطماطم والبقسماط"
+      "en": "Fonte bread and cupcakes on display in a hypermarket",
+      "ar": "خبز وكب كيك فونتي معروضان في أحد الهايبرماركت"
     },
           {
             "label": "Primary CTA",
@@ -4119,6 +4119,11 @@
             "label": "Breadcrumb",
             "en": "Home / Our Brands / Our Brand Portfolio",
             "ar": "الرئيسية / علاماتنا التجارية / محفظة علاماتنا التجارية"
+          },
+          {
+            "label": "Image Alt",
+            "en": "Amraj tea, Fonte tortillas, Hanini Brioche and Paneto croissants displayed together",
+            "ar": "شاي أمراج وتورتيلا فونتي وبريوش حنيني وكرواسون بانيتو معروضة معاً"
           }
         ]
       },

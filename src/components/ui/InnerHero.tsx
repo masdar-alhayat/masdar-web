@@ -26,7 +26,7 @@ export function InnerHero({section, locale, theme, image, brandLogo, brandLogoAl
         </div>}
       </div>
       <div className="inner-hero__media" data-hero-media>
-        {gallery ? <div className="inner-hero__collage">
+        {gallery ? <div className={`inner-hero__collage inner-hero__collage--${gallery.length}`}>
           {gallery.map((photo, index) => <figure key={photo.src} className="inner-hero__tile">
             <Image src={photo.src} alt={photo.alt} fill sizes={index === 0 ? "(max-width: 991px) 50vw, 26vw" : "(max-width: 991px) 34vw, 18vw"} priority={index < 3}/>
           </figure>)}

@@ -124,7 +124,7 @@ export const researchCopy: Record<Locale, ResearchCopy> = {
     ],
     productsKicker: "ابتكار المنتجات",
     productsHeading: "ابتكار تتذوّقه.",
-    productsIntro: "يظهر أثر أبحاثنا حيث يهمّ أكثر: على الرفوف. تعرّف على بعض أحدث المنتجات التي صاغها ما تعلّمناه.",
+    productsIntro: "نحول أبحاثنا إلى منتجات مبتكرة تجمع بين الجودة والمذاق المميز، وتواكب تطلعات السوق وتوجهاته",
     insightLabel: "ما لاحظناه",
     innovationLabel: "ما ابتكرناه",
     products: [

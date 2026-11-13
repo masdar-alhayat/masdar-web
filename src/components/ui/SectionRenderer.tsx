@@ -1041,12 +1041,12 @@ export function SectionRenderer({
   if (/Flagship Brand/i.test(section.title)) {
     const productCategories = groups.filter((group) => group.prefix === "Product Category");
     const productRangeImages = [
-      "/assets/images/prod-range-01-clean.png",
-      "/assets/images/prod-range-02-clean.png",
-      "/assets/images/prod-range-03-clean.png",
-      "/assets/images/prod-range-04-clean.png",
-      "/assets/images/prod-range-05-clean.png",
-      "/assets/images/prod-range-06-clean.png",
+      "/assets/images/products/prod-range-01-clean.png",
+      "/assets/images/products/prod-range-02-clean.png",
+      "/assets/images/products/prod-range-03-clean.png",
+      "/assets/images/products/prod-range-04-clean.png",
+      "/assets/images/products/prod-range-05-clean.png",
+      "/assets/images/products/prod-range-06-clean.png",
     ];
     const productRangeItems = productCategories.map((category, categoryIndex) => ({
       title: groupText(category, "Title"),
@@ -1560,7 +1560,7 @@ export function SectionRenderer({
         objectPosition: "64% center",
       },
       {
-        image: "/assets/images/manufacturing-production-coordination-v1.png",
+        image: "/assets/images/capabilities/manufacturing-production-coordination-v1.png",
         objectPosition: "center center",
       },
     ] as const;
@@ -1622,7 +1622,7 @@ export function SectionRenderer({
             <div className="product-categories-showcase__body">
               <figure className="product-categories-showcase__visual" data-animate>
                 <BrandImage
-                  src="/assets/images/manufacturing-product-categories-v1.png"
+                  src="/assets/images/capabilities/manufacturing-product-categories-v1.png"
                   alt={heading}
                   className="product-categories-showcase__image"
                 />

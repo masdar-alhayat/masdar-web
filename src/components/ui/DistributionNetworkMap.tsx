@@ -88,7 +88,7 @@ export function DistributionNetworkMap({locale}: {locale: Locale}) {
         </defs>
 
         <g data-map-land>
-          <use href="/assets/images/saudi-distribution-map.svg#saudi-base"/>
+          <use href="/assets/images/capabilities/saudi-distribution-map.svg#saudi-base"/>
         </g>
 
         <g fill="none" strokeLinecap="round">

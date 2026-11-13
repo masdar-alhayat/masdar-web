@@ -26,23 +26,7 @@ export const PAGE_KEYS = {
 export type PageKey = keyof typeof PAGE_KEYS;
 
 export const APPROVED_IMAGES = {
-  masdar1: "/assets/images/masdar-1.png",
-  masdar2: "/assets/images/masdar-2.png",
-  masdar3: "/assets/images/masdar-3.jpeg",
-  masdar4: "/assets/images/masdar-4.jpeg",
-  masdar5: "/assets/images/masdar-5.jpeg",
-  masdar6: "/assets/images/masdar-6.jpeg",
-  masdar7: "/assets/images/masdar-7.jpeg",
-  masdar8: "/assets/images/masdar-8.jpeg",
-  masdar9: "/assets/images/masdar-9.jpeg",
-  masdar10: "/assets/images/masdar-10.jpeg",
-  masdar11: "/assets/images/masdar-11.jpeg",
-  masdar12: "/assets/images/masdar-12.jpeg",
-  masdar13: "/assets/images/masdar-13.jpeg",
-  masdar14: "/assets/images/masdar-14.jpeg",
-  masdar15: "/assets/images/masdar-15.jpeg",
-  masdar16: "/assets/images/masdar-16.jpeg",
-  masdar17: "/assets/images/masdar-17.jpeg",
+  masdar1: "/assets/images/heroes/masdar-1.png",
 } as const;
 
 /**
@@ -52,42 +36,42 @@ export const APPROVED_IMAGES = {
  */
 export const PAGE_IMAGES = {
   home: APPROVED_IMAGES.masdar1,
-  about: "/assets/images/about-facility-hero-v1.webp",
+  about: "/assets/images/about/about-facility-hero-v1.webp",
   groupStory: "/brand/tamimi-group-logo-2026.png",
   visionValues: "/assets/images/masdar-enhanced/masdar_al_hayat_09.png",
   research: "/assets/images/masdar-enhanced/masdar_al_hayat_13.png",
-  manufacturing: "/assets/images/masdar-20.png",
-  operations: "/assets/images/operations/masdar-22-enhanced-v2.webp",
+  manufacturing: "/assets/images/heroes/masdar-20.png",
+  operations: "/assets/images/capabilities/operations/masdar-22-enhanced-v2.webp",
   quality: "/assets/images/masdar-enhanced/masdar_al_hayat_33.png",
-  logistics: "/assets/images/masdar-21.jpg",
-  sales: "/assets/images/sales-hypermarket-hero-v1.webp",
-  marketing: "/assets/images/prod-range-03-clean.png",
+  logistics: "/assets/images/heroes/masdar-21.jpg",
+  sales: "/assets/images/masdar-enhanced/masdar-web-51.png",
+  marketing: "/assets/images/products/prod-range-03-clean.png",
   brands: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
-  brandPortfolio: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
-  partnerships: "/assets/images/partnerships-hero-v2.png",
+  brandPortfolio: "/assets/images/heroes/brand-portfolio-hero.webp",
+  partnerships: "/assets/images/heroes/partnerships-hero-v2.png",
   careers: "/assets/images/masdar-enhanced/masdar_al_hayat-43.png",
-  contact: "/assets/images/contact-hero.webp",
+  contact: "/assets/images/heroes/contact-hero.webp",
 } as const;
 
 export const HOME_IMAGES = {
-  glanceSaudiPresence: "/assets/images/glance-saudi-presence-v1.png",
+  glanceSaudiPresence: "/assets/images/home/glance-saudi-presence-v1.png",
   glanceInstitutionalStrength: "/assets/images/masdar-enhanced/masdar_al_hayat_07.jpg",
-  glanceProductionStrength: "/assets/images/glance-production-strength-fonte.webp",
-  glanceProductPortfolio: "/assets/images/glance-product-portfolio-v1.png",
+  glanceProductionStrength: "/assets/images/home/glance-production-strength-fonte.webp",
+  glanceProductPortfolio: "/assets/images/home/glance-product-portfolio-v1.png",
   glanceMarketDelivery: "/assets/images/masdar-enhanced/masdar_al_hayat-50.png",
-  foodPortfolioBread: "/assets/images/food-portfolio-1.jpg",
-  foodPortfolioCake: "/assets/images/food-portfolio-2-clean.png",
-  foodPortfolioSauces: "/assets/images/food-portfolio-3-clean.png",
-  foodPortfolioReadyMeals: "/assets/images/food-portfolio-4-clean.png",
-  foodPortfolioPackaged: "/assets/images/food-portfolio-5-clean.png",
+  foodPortfolioBread: "/assets/images/home/food-portfolio-1.jpg",
+  foodPortfolioCake: "/assets/images/home/food-portfolio-2-clean.png",
+  foodPortfolioSauces: "/assets/images/home/food-portfolio-3-clean.png",
+  foodPortfolioReadyMeals: "/assets/images/home/food-portfolio-4-clean.png",
+  foodPortfolioPackaged: "/assets/images/home/food-portfolio-5-clean.png",
   hero: APPROVED_IMAGES.masdar1,
   whoWeAre: "/assets/images/masdar-enhanced/masdar_al_hayat_01.png",
   manufacturingStrength: "/assets/images/masdar-enhanced/masdar_al_hayat-49.png",
   manufacturingStrengthSecondary: "/assets/images/masdar-enhanced/masdar_al_hayat_02.png",
-  workingTogetherRetail: "/assets/images/working-together-retail.webp",
-  workingTogetherFoodservice: "/assets/images/working-together-foodservice.webp",
-  workingTogetherDistribution: "/assets/images/working-together-distribution.webp",
-  workingTogetherInstitutional: "/assets/images/working-together-institutional.webp",
+  workingTogetherRetail: "/assets/images/home/working-together-retail.webp",
+  workingTogetherFoodservice: "/assets/images/home/working-together-foodservice.webp",
+  workingTogetherDistribution: "/assets/images/home/working-together-distribution.webp",
+  workingTogetherInstitutional: "/assets/images/home/working-together-institutional.webp",
   qualitySystem: "/assets/images/masdar-enhanced/masdar_al_hayat_03.png",
   careers: "/assets/images/masdar-enhanced/masdar_al_hayat_05.jpeg",
 } as const;
@@ -108,7 +92,7 @@ export const BRAND_LOGOS = {
  *
  * Example:
  * about: {
- *   2: APPROVED_IMAGES.masdar15,
+ *   2: "/assets/images/heroes/masdar-20.png",
  * }
  *
  * Sections not listed here will not receive a fallback image.
@@ -118,7 +102,7 @@ export const SECTION_IMAGE_MAP: Partial<
   Record<keyof typeof PAGE_IMAGES, Record<number, string>>
 > = {
   about: {
-    2: "/assets/images/masdar-20.png",
+    2: "/assets/images/heroes/masdar-20.png",
   },
   visionValues: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat_11.png",
@@ -133,17 +117,17 @@ export const SECTION_IMAGE_MAP: Partial<
     2: "/assets/images/masdar-enhanced/masdar_al_hayat_17.png",
   },
   operations: {
-    2: "/assets/images/operations/masdar-23-enhanced-v1.webp",
-    4: "/assets/images/operations/masdar-24-enhanced-v1.webp",
+    2: "/assets/images/capabilities/operations/masdar-23-enhanced-v1.webp",
+    4: "/assets/images/capabilities/operations/masdar-24-enhanced-v1.webp",
   },
   quality: {
-    2: "/assets/images/quality-commitment-v1.png",
+    2: "/assets/images/capabilities/quality-commitment-v1.png",
   },
   logistics: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat_25.png",
   },
   sales: {
-    2: "/assets/images/sales-customers-enhanced-v1.webp",
+    2: "/assets/images/capabilities/sales-customers-enhanced-v1.webp",
   },
   partnerships: {
     2: "/assets/images/masdar-enhanced/masdar_al_hayat-42.png",
@@ -162,6 +146,20 @@ export const ABOUT_HERO_GALLERY = [
   {src: "/assets/images/about/production-tomato-paste-line.webp", alt: {en: "Fonte tomato paste packs on a coding and conveyor line", ar: "عبوات معجون الطماطم فونتي على خط الترميز والنقل"}},
   {src: "/assets/images/about/production-swiss-roll-line.webp", alt: {en: "Decorated Swiss rolls moving along a packing conveyor", ar: "لفائف السويس رول المزينة على سير التعبئة"}},
 ] as const;
+
+// Vision, Mission & Values hero collage: production, packing, storage and delivery, in tile order.
+export const VISION_HERO_GALLERY = [
+  {src: "/assets/images/masdar-enhanced/masdar_al_hayat-45.png", alt: {en: "Production team checking burger buns along the conveyor line", ar: "فريق الإنتاج يتابع خبز البرغر على خط النقل"}},
+  {src: "/assets/images/masdar-enhanced/masdar_al_hayat_31.png", alt: {en: "Packed Fonte bread being prepared for dispatch", ar: "تجهيز خبز فونتي المعبأ للشحن"}},
+  {src: "/assets/images/heroes/masdar-20.png", alt: {en: "Freshly baked buns moving through the spiral cooling tower", ar: "خبز طازج يمر عبر برج التبريد الحلزوني"}},
+  {src: "/assets/images/capabilities/operations/masdar-23-enhanced-v1.webp", alt: {en: "Organised warehouse racks of raw materials and finished goods", ar: "رفوف مستودع منظمة للمواد الخام والمنتجات النهائية"}},
+  {src: "/assets/images/masdar-enhanced/masdar_al_hayat_02.png", alt: {en: "Masdar Al Hayat refrigerated delivery fleet", ar: "أسطول التوصيل المبرد لمصدر الحياة"}},
+] as const;
+
+export const HERO_GALLERIES: Partial<Record<keyof typeof PAGE_IMAGES, readonly {src: string; alt: {en: string; ar: string}}[]>> = {
+  about: ABOUT_HERO_GALLERY,
+  visionValues: VISION_HERO_GALLERY,
+};
 
 export interface PageDefinition {
   key: PageKey;
