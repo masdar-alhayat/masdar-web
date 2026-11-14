@@ -1132,6 +1132,11 @@ html[dir="rtl"] .manufacturing-metrics__item span {
   text-transform: none
 }
 
+.glance-section .manufacturing-metrics__item {
+  justify-content: flex-start;
+  text-align: center
+}
+
 .portfolio-home {
   padding-top: var(--section-space);
   background: #fff
