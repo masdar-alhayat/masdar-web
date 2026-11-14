@@ -15,7 +15,7 @@ The useful competitor material is spread across corporate pages and public repor
 - Three sections: Marketing hero; eight marketing capabilities; collaboration across the business with links to the relevant capability pages.
 - Retain all eight capability subjects supplied in the screenshot. Shorten descriptions and provide English and Arabic versions.
 - Use the established forest green, cream, copper and gold palette, typography and shared scroll-reveal components.
-- Reuse the project's existing Fonte product campaign photograph, `public/assets/images/prod-range-03-clean.png`.
+- Reuse the project's existing Fonte product campaign photograph, `public/assets/images/products/prod-range-03-clean.webp`.
 - Maintain the site's current brand portfolio. Do not reintroduce Nature's Oven from the screenshot.
 - Competitor findings inform structure and emphasis; their metrics, campaigns and achievements are not attributed to Masdar.
 - Describe digital and e-commerce marketing as channel support; do not imply that the corporate site operates an online store.

@@ -32,7 +32,7 @@ export function createPageMetadata(key: PageKey, locale: Locale): Metadata {
       title,
       description,
       siteName: "Masdar Al Hayat for Food Industries",
-      images: [{url: `${SITE_URL}/brand/masdar-logo-text.png`, width: 1842, height: 854, alt: "Masdar Al Hayat"}]
+      images: [{url: `${SITE_URL}/brand/masdar-logo-text.webp`, width: 864, height: 401, alt: "Masdar Al Hayat"}]
     },
     twitter: {card: "summary_large_image", title, description}
   };

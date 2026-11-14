@@ -49,7 +49,7 @@ export interface ResearchCopy {
 
 const productImages = {
   pancake: `${IMG}/pancake-single-strawberry.webp`,
-  brioche: `${IMG}/hanini-brioche-front-whole-v1.webp`,
+  brioche: `${IMG}/hanini-brioche-front-whole-v1-optimized.webp`,
   protein: `${IMG}/tortilla-protein.webp`,
   tortillas: `${IMG}/tortilla-wraps.webp`,
 };
@@ -74,7 +74,7 @@ export const researchCopy: Record<Locale, ResearchCopy> = {
     areasIntro: "Research and innovation reach across our business, from the first consumer insight to the way products are made, packed and delivered.",
     areas: [
       {id: "insight", image: `${IMG}/focus-insight-v2.webp`, label: "Consumer & Market Insight", text: "Consumer preferences, customer feedback and changing market conditions show us where the next idea should begin."},
-      {id: "recipes", image: `${IMG}/focus-recipes-gloves.webp`, label: "Recipe & Product Innovation", text: "We explore recipes, ingredients and formats, from new filled flavours to higher-protein and no-added-sugar choices."},
+      {id: "recipes", image: `${IMG}/focus-recipes-gloves-optimized.webp`, label: "Recipe & Product Innovation", text: "We explore recipes, ingredients and formats, from new filled flavours to higher-protein and no-added-sugar choices."},
       {id: "packaging", image: `${IMG}/focus-packaging-v2.webp`, label: "Packaging & Convenience", text: "Formats and packs are shaped around how food is stored, carried, shared and enjoyed, from single portions to family packs."},
       {id: "quality", image: `${IMG}/focus-quality-v2.webp`, label: "Quality & Food Safety", text: "Quality expectations and product protection are considered from the first idea, not added at the end."},
       {id: "digital", image: `${IMG}/focus-digital-v2.webp`, label: "Digital & Process Innovation", text: "Useful data, digital tools and practical process improvements help our teams work with more consistency and insight."},
@@ -116,7 +116,7 @@ export const researchCopy: Record<Locale, ResearchCopy> = {
     areasIntro: "يمتد البحث والابتكار عبر أعمالنا، من أول فهم لاحتياجات المستهلك إلى طريقة تصنيع المنتجات وتعبئتها وإيصالها.",
     areas: [
       {id: "insight", image: `${IMG}/focus-insight-v2.webp`, label: "رؤى المستهلك والسوق", text: "تكشف لنا تفضيلات المستهلكين وملاحظات العملاء ومتغيرات السوق من أين يجب أن تبدأ الفكرة التالية."},
-      {id: "recipes", image: `${IMG}/focus-recipes-gloves.webp`, label: "ابتكار الوصفات والمنتجات", text: "نستكشف الوصفات والمكوّنات والأشكال، من النكهات المحشوة الجديدة إلى الخيارات الغنية بالبروتين والخالية من السكر المضاف."},
+      {id: "recipes", image: `${IMG}/focus-recipes-gloves-optimized.webp`, label: "ابتكار الوصفات والمنتجات", text: "نستكشف الوصفات والمكوّنات والأشكال، من النكهات المحشوة الجديدة إلى الخيارات الغنية بالبروتين والخالية من السكر المضاف."},
       {id: "packaging", image: `${IMG}/focus-packaging-v2.webp`, label: "التعبئة وسهولة الاستخدام", text: "نصمم الأشكال والعبوات وفق طريقة حفظ الغذاء وحمله ومشاركته والاستمتاع به، من الحصص الفردية إلى العبوات العائلية."},
       {id: "quality", image: `${IMG}/focus-quality-v2.webp`, label: "الجودة وسلامة الغذاء", text: "نراعي توقعات الجودة وحماية المنتج منذ الفكرة الأولى، لا في المرحلة الأخيرة."},
       {id: "digital", image: `${IMG}/focus-digital-v2.webp`, label: "الابتكار الرقمي وتحسين العمليات", text: "تساعد البيانات المفيدة والأدوات الرقمية والتحسينات العملية فرقنا على العمل باتساق وفهم أكبر."},

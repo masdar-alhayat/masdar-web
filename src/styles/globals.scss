@@ -923,69 +923,23 @@ html[dir="rtl"] .glance-banner__body strong {
   letter-spacing: 0
 }
 
-@media (max-width: 991px) {
-  .glance-banners {
-    flex-direction: column;
-    gap: .6rem;
-    height: auto
-  }
-
-  .glance-banner {
-    flex: none;
-    height: 6.4rem;
-    transition: height .6s cubic-bezier(.22, 1, .36, 1), box-shadow .5s
-  }
-
-  .glance-banner[data-active="true"] {
-    height: 23rem
-  }
-
-  .glance-banner__body {
-    width: 100%
-  }
-
-  .glance-banner__top {
-    position: absolute;
-    inset: 0 0 auto;
-    padding: 1rem 1rem 0
-  }
-
-  .glance-banner__plus {
-    display: block;
-    width: 2rem;
-    height: 2rem;
-    padding: .45rem
-  }
-
-  .glance-banner__content {
-    margin-top: auto;
-    padding: 1rem 3.6rem 1rem 1rem
-  }
-
-  html[dir="rtl"] .glance-banner__content {
-    padding: 1rem 1rem 1rem 3.6rem
-  }
-
-  .glance-banner__index {
-    display: none
-  }
-}
-
 .glance-dots {
   display: none
 }
 
-@media (max-width: 767px) {
+/* Tablet and mobile: the banners become a swipeable slider (two cards in view on tablets, one on phones). */
+@media (max-width: 991px) {
   .glance-banners {
-    flex-direction: row;
     gap: .75rem;
+    height: auto;
     margin-inline: calc(var(--container-pad) * -1);
     padding-inline: var(--container-pad);
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: var(--container-pad);
-    scrollbar-width: none
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch
   }
 
   .glance-banners::-webkit-scrollbar {
@@ -994,9 +948,9 @@ html[dir="rtl"] .glance-banner__body strong {
 
   .glance-banner,
   .glance-banner[data-active="true"] {
-    flex: 0 0 100%;
-    height: 27rem;
-    scroll-snap-align: center;
+    flex: 0 0 calc((100% - .75rem) / 2);
+    height: 30rem;
+    scroll-snap-align: start;
     cursor: default;
     box-shadow: none
   }
@@ -1016,6 +970,7 @@ html[dir="rtl"] .glance-banner__body strong {
   }
 
   .glance-banner .glance-banner__body {
+    width: 100%;
     grid-template-rows: 1fr;
     opacity: 1;
     transform: none
@@ -1025,14 +980,7 @@ html[dir="rtl"] .glance-banner__body strong {
     display: none
   }
 
-  .glance-banner .glance-banner__index {
-    display: block
-  }
-
-  .glance-banner__content {
-    padding: 1.4rem 1.3rem 1.5rem
-  }
-
+  .glance-banner__content,
   html[dir="rtl"] .glance-banner__content {
     padding: 1.4rem 1.3rem 1.5rem
   }
@@ -1057,6 +1005,15 @@ html[dir="rtl"] .glance-banner__body strong {
   .glance-dots button[aria-current="true"] {
     width: 1.8rem;
     background: var(--mah-green-900)
+  }
+}
+
+@media (max-width: 767px) {
+  .glance-banner,
+  .glance-banner[data-active="true"] {
+    flex-basis: 100%;
+    height: 27rem;
+    scroll-snap-align: center
   }
 }
 
@@ -9515,5 +9472,124 @@ html[dir="rtl"] .tamimi-sectors .manufacturing-flow__copy h3 { line-height: 1.5;
     grid-column: 1;
     grid-row: auto;
     margin-top: 1.25rem
+  }
+}
+
+/* ---------------------------------------------------------------
+   Tablet layout (768px - 991px): sections stack into one column, so
+   titles and intro paragraphs use the full content width instead of
+   the narrow desktop column widths.
+   --------------------------------------------------------------- */
+@media (max-width: 991px) {
+  /* Stacked two-column headers: the paragraph starts under the title instead of being pushed to the far side. */
+  .section-heading--wide p,
+  html[dir="rtl"] .section-heading--wide p {
+    margin-inline: 0
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #main-content h1,
+  #main-content h2 {
+    max-width: none
+  }
+
+  #main-content .section-heading p,
+  .manufacturing-home p,
+  .inner-hero p {
+    max-width: 62ch
+  }
+
+  .home-intro__content {
+    padding: 3rem 2.75rem
+  }
+}
+
+/* Hero eyebrows sit on dark photography/colour, so use the light sand tone (as on Sales) for legibility. */
+:where(.inner-hero) .section-kicker {
+  color: var(--mah-sand)
+}
+
+/* Large tablets and small laptops (992px - 1199px). */
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* Four footer columns are too tight here: keep the tablet arrangement with contact details spanning two columns. */
+  .site-footer__grid {
+    grid-template-columns: 1.2fr 1fr 1fr
+  }
+
+  .footer-contact {
+    grid-column: 2 / 4
+  }
+
+  .inner-hero h1 {
+    max-width: none
+  }
+}
+
+/* Large tablets in portrait (e.g. iPad Pro 1024 x 1366): an 86svh hero leaves a tall empty band, so size it to its content. */
+@media (min-width: 992px) and (max-width: 1199px) and (orientation: portrait) {
+  .inner-hero {
+    min-height: auto;
+    padding-bottom: 5rem
+  }
+}
+
+/* Two Glance cards fit on a tablet, so there is one fewer slider position than cards (avoids a 5th dot flashing before hydration). */
+@media (min-width: 768px) and (max-width: 991px) {
+  .glance-dots button:nth-child(n+5) {
+    display: none
+  }
+}
+
+/* Arabic is a joined (cursive) script: letter-spacing breaks the connections between letters in Safari/WebKit
+   (Chrome ignores it for Arabic), so tracking used for English labels is switched off on Arabic pages. */
+html[lang="ar"] body * {
+  letter-spacing: normal !important
+}
+
+/* Form controls look the same in every browser: Safari otherwise draws bevelled grey dropdowns,
+   and iOS adds rounded corners and inner shadows to text fields. */
+.form-field select,
+.form-field textarea,
+.form-field input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  color: inherit
+}
+
+.form-field select {
+  padding-inline-end: 1.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%231e4e2a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .2rem center;
+  background-size: 1rem;
+  cursor: pointer
+}
+
+html[dir="rtl"] .form-field select {
+  background-position: left .2rem center
+}
+
+/* Home "At a Glance" counters: tablets use the same two-per-row layout as phones (client request). */
+@media (min-width: 768px) and (max-width: 991px) {
+  .glance-section .manufacturing-metrics__grid {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .glance-section .manufacturing-metrics__item {
+    min-height: 9.5rem
+  }
+
+  .glance-section .manufacturing-metrics__item:nth-child(odd) {
+    border-inline-start: 0
+  }
+
+  .glance-section .manufacturing-metrics__item:nth-child(n+3) {
+    border-top: 1px solid rgba(30, 78, 42, .16)
+  }
+
+  .glance-section .manufacturing-metrics__item:last-child:nth-child(odd) {
+    grid-column: span 2
   }
 }

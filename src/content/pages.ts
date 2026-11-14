@@ -26,7 +26,7 @@ export const PAGE_KEYS = {
 export type PageKey = keyof typeof PAGE_KEYS;
 
 export const APPROVED_IMAGES = {
-  masdar1: "/assets/images/heroes/masdar-1.png",
+  masdar1: "/assets/images/heroes/masdar-1.webp",
 } as const;
 
 /**
@@ -37,42 +37,42 @@ export const APPROVED_IMAGES = {
 export const PAGE_IMAGES = {
   home: APPROVED_IMAGES.masdar1,
   about: "/assets/images/about/about-facility-hero-v1.webp",
-  groupStory: "/brand/tamimi-group-logo-2026.png",
-  visionValues: "/assets/images/masdar-enhanced/masdar_al_hayat_09.png",
-  research: "/assets/images/masdar-enhanced/masdar_al_hayat_13.png",
-  manufacturing: "/assets/images/heroes/masdar-20.png",
+  groupStory: "/brand/tamimi-group-logo-2026.webp",
+  visionValues: "/assets/images/masdar-enhanced/masdar_al_hayat_09.webp",
+  research: "/assets/images/masdar-enhanced/masdar_al_hayat_13.webp",
+  manufacturing: "/assets/images/heroes/masdar-20.webp",
   operations: "/assets/images/capabilities/operations/masdar-22-enhanced-v2.webp",
-  quality: "/assets/images/masdar-enhanced/masdar_al_hayat_33.png",
-  logistics: "/assets/images/heroes/masdar-21.jpg",
-  sales: "/assets/images/masdar-enhanced/masdar-web-51.png",
-  marketing: "/assets/images/products/prod-range-03-clean.png",
-  brands: "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
+  quality: "/assets/images/masdar-enhanced/masdar_al_hayat_33.webp",
+  logistics: "/assets/images/heroes/masdar-21.webp",
+  sales: "/assets/images/masdar-enhanced/masdar-web-51.webp",
+  marketing: "/assets/images/products/prod-range-03-clean.webp",
+  brands: "/assets/images/masdar-enhanced/masdar_al_hayat_35.webp",
   brandPortfolio: "/assets/images/heroes/brand-portfolio-hero.webp",
-  partnerships: "/assets/images/heroes/partnerships-hero-v2.png",
-  careers: "/assets/images/masdar-enhanced/masdar_al_hayat-43.png",
+  partnerships: "/assets/images/heroes/partnerships-hero-v2.webp",
+  careers: "/assets/images/masdar-enhanced/masdar_al_hayat-43.webp",
   contact: "/assets/images/heroes/contact-hero.webp",
 } as const;
 
 export const HOME_IMAGES = {
-  glanceSaudiPresence: "/assets/images/home/glance-saudi-presence-v1.png",
-  glanceInstitutionalStrength: "/assets/images/masdar-enhanced/masdar_al_hayat_07.jpg",
+  glanceSaudiPresence: "/assets/images/home/glance-saudi-presence-v1.webp",
+  glanceInstitutionalStrength: "/assets/images/masdar-enhanced/masdar_al_hayat_07.webp",
   glanceProductionStrength: "/assets/images/home/glance-production-strength-fonte.webp",
-  glanceProductPortfolio: "/assets/images/home/glance-product-portfolio-v1.png",
-  glanceMarketDelivery: "/assets/images/masdar-enhanced/masdar_al_hayat-50.png",
+  glanceProductPortfolio: "/assets/images/home/glance-product-portfolio-v1.webp",
+  glanceMarketDelivery: "/assets/images/masdar-enhanced/masdar_al_hayat-50.webp",
   foodPortfolioBread: "/assets/images/home/food-portfolio-1.jpg",
-  foodPortfolioCake: "/assets/images/home/food-portfolio-2-clean.png",
-  foodPortfolioSauces: "/assets/images/home/food-portfolio-3-clean.png",
-  foodPortfolioReadyMeals: "/assets/images/home/food-portfolio-4-clean.png",
-  foodPortfolioPackaged: "/assets/images/home/food-portfolio-5-clean.png",
+  foodPortfolioCake: "/assets/images/home/food-portfolio-2-clean.webp",
+  foodPortfolioSauces: "/assets/images/home/food-portfolio-3-clean.webp",
+  foodPortfolioReadyMeals: "/assets/images/home/food-portfolio-4-clean.webp",
+  foodPortfolioPackaged: "/assets/images/home/food-portfolio-5-clean.webp",
   hero: APPROVED_IMAGES.masdar1,
-  whoWeAre: "/assets/images/masdar-enhanced/masdar_al_hayat_01.png",
-  manufacturingStrength: "/assets/images/masdar-enhanced/masdar_al_hayat-49.png",
-  manufacturingStrengthSecondary: "/assets/images/masdar-enhanced/masdar_al_hayat_02.png",
+  whoWeAre: "/assets/images/masdar-enhanced/masdar_al_hayat_01.webp",
+  manufacturingStrength: "/assets/images/masdar-enhanced/masdar_al_hayat-49.webp",
+  manufacturingStrengthSecondary: "/assets/images/masdar-enhanced/masdar_al_hayat_02.webp",
   workingTogetherRetail: "/assets/images/home/working-together-retail.webp",
   workingTogetherFoodservice: "/assets/images/home/working-together-foodservice.webp",
   workingTogetherDistribution: "/assets/images/home/working-together-distribution.webp",
   workingTogetherInstitutional: "/assets/images/home/working-together-institutional.webp",
-  qualitySystem: "/assets/images/masdar-enhanced/masdar_al_hayat_03.png",
+  qualitySystem: "/assets/images/masdar-enhanced/masdar_al_hayat_03.webp",
   careers: "/assets/images/masdar-enhanced/masdar_al_hayat_05.jpeg",
 } as const;
 
@@ -81,7 +81,7 @@ export const HOME_VIDEOS = {
 } as const;
 
 export const BRAND_LOGOS = {
-  tamimiGroup: "/brand/tamimi-group-logo-2026.png",
+  tamimiGroup: "/brand/tamimi-group-logo-2026.webp",
 } as const;
 
 /**
@@ -92,7 +92,7 @@ export const BRAND_LOGOS = {
  *
  * Example:
  * about: {
- *   2: "/assets/images/heroes/masdar-20.png",
+ *   2: "/assets/images/heroes/masdar-20.webp",
  * }
  *
  * Sections not listed here will not receive a fallback image.
@@ -102,38 +102,38 @@ export const SECTION_IMAGE_MAP: Partial<
   Record<keyof typeof PAGE_IMAGES, Record<number, string>>
 > = {
   about: {
-    2: "/assets/images/heroes/masdar-20.png",
+    2: "/assets/images/heroes/masdar-20.webp",
   },
   visionValues: {
-    2: "/assets/images/masdar-enhanced/masdar_al_hayat_11.png",
-    3: "/assets/images/masdar-enhanced/masdar_al_hayat_10.png",
-    4: "/assets/images/masdar-enhanced/masdar_al_hayat_12.png",
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_11.webp",
+    3: "/assets/images/masdar-enhanced/masdar_al_hayat_10.webp",
+    4: "/assets/images/masdar-enhanced/masdar_al_hayat_12.webp",
   },
   research: {
-    2: "/assets/images/masdar-enhanced/masdar_al_hayat_14.png",
-    4: "/assets/images/masdar-enhanced/masdar_al_hayat_15.png",
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_14.webp",
+    4: "/assets/images/masdar-enhanced/masdar_al_hayat_15.webp",
   },
   manufacturing: {
-    2: "/assets/images/masdar-enhanced/masdar_al_hayat_17.png",
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_17.webp",
   },
   operations: {
     2: "/assets/images/capabilities/operations/masdar-23-enhanced-v1.webp",
     4: "/assets/images/capabilities/operations/masdar-24-enhanced-v1.webp",
   },
   quality: {
-    2: "/assets/images/capabilities/quality-commitment-v1.png",
+    2: "/assets/images/capabilities/quality-commitment-v1.webp",
   },
   logistics: {
-    2: "/assets/images/masdar-enhanced/masdar_al_hayat_25.png",
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat_25.webp",
   },
   sales: {
     2: "/assets/images/capabilities/sales-customers-enhanced-v1.webp",
   },
   partnerships: {
-    2: "/assets/images/masdar-enhanced/masdar_al_hayat-42.png",
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat-42.webp",
   },
   careers: {
-    2: "/assets/images/masdar-enhanced/masdar_al_hayat-44.png",
+    2: "/assets/images/masdar-enhanced/masdar_al_hayat-44.webp",
   },
 };
 
@@ -149,11 +149,11 @@ export const ABOUT_HERO_GALLERY = [
 
 // Vision, Mission & Values hero collage: production, packing, storage and delivery, in tile order.
 export const VISION_HERO_GALLERY = [
-  {src: "/assets/images/masdar-enhanced/masdar_al_hayat-45.png", alt: {en: "Production team checking burger buns along the conveyor line", ar: "فريق الإنتاج يتابع خبز البرغر على خط النقل"}},
-  {src: "/assets/images/masdar-enhanced/masdar_al_hayat_31.png", alt: {en: "Packed Fonte bread being prepared for dispatch", ar: "تجهيز خبز فونتي المعبأ للشحن"}},
-  {src: "/assets/images/heroes/masdar-20.png", alt: {en: "Freshly baked buns moving through the spiral cooling tower", ar: "خبز طازج يمر عبر برج التبريد الحلزوني"}},
+  {src: "/assets/images/masdar-enhanced/masdar_al_hayat-45.webp", alt: {en: "Production team checking burger buns along the conveyor line", ar: "فريق الإنتاج يتابع خبز البرغر على خط النقل"}},
+  {src: "/assets/images/masdar-enhanced/masdar_al_hayat_31.webp", alt: {en: "Packed Fonte bread being prepared for dispatch", ar: "تجهيز خبز فونتي المعبأ للشحن"}},
+  {src: "/assets/images/heroes/masdar-20.webp", alt: {en: "Freshly baked buns moving through the spiral cooling tower", ar: "خبز طازج يمر عبر برج التبريد الحلزوني"}},
   {src: "/assets/images/capabilities/operations/masdar-23-enhanced-v1.webp", alt: {en: "Organised warehouse racks of raw materials and finished goods", ar: "رفوف مستودع منظمة للمواد الخام والمنتجات النهائية"}},
-  {src: "/assets/images/masdar-enhanced/masdar_al_hayat_02.png", alt: {en: "Masdar Al Hayat refrigerated delivery fleet", ar: "أسطول التوصيل المبرد لمصدر الحياة"}},
+  {src: "/assets/images/masdar-enhanced/masdar_al_hayat_02.webp", alt: {en: "Masdar Al Hayat refrigerated delivery fleet", ar: "أسطول التوصيل المبرد لمصدر الحياة"}},
 ] as const;
 
 export const HERO_GALLERIES: Partial<Record<keyof typeof PAGE_IMAGES, readonly {src: string; alt: {en: string; ar: string}}[]>> = {

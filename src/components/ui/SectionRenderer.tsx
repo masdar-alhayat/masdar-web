@@ -639,7 +639,7 @@ export function SectionRenderer({
             tabIndex={-1}
             disablePictureInPicture
           >
-            <source src="/assets/videos/masdar-video-3.mov" />
+            <source src="/assets/videos/masdar-video-3.mp4" type="video/mp4" />
           </video>
           <span className="story-video-section__overlay" />
         </div>
@@ -1041,12 +1041,12 @@ export function SectionRenderer({
   if (/Flagship Brand/i.test(section.title)) {
     const productCategories = groups.filter((group) => group.prefix === "Product Category");
     const productRangeImages = [
-      "/assets/images/products/prod-range-01-clean.png",
-      "/assets/images/products/prod-range-02-clean.png",
-      "/assets/images/products/prod-range-03-clean.png",
-      "/assets/images/products/prod-range-04-clean.png",
-      "/assets/images/products/prod-range-05-clean.png",
-      "/assets/images/products/prod-range-06-clean.png",
+      "/assets/images/products/prod-range-01-clean.webp",
+      "/assets/images/products/prod-range-02-clean.webp",
+      "/assets/images/products/prod-range-03-clean.webp",
+      "/assets/images/products/prod-range-04-clean.webp",
+      "/assets/images/products/prod-range-05-clean.webp",
+      "/assets/images/products/prod-range-06-clean.webp",
     ];
     const productRangeItems = productCategories.map((category, categoryIndex) => ({
       title: groupText(category, "Title"),
@@ -1548,19 +1548,19 @@ export function SectionRenderer({
   if (theme === "industrial" && index === 3 && groups.length >= 4) {
     const capabilityImages = [
       {
-        image: "/assets/images/masdar-enhanced/masdar_al_hayat_26.png",
+        image: "/assets/images/masdar-enhanced/masdar_al_hayat_26.webp",
         objectPosition: "62% center",
       },
       {
-        image: "/assets/images/masdar-enhanced/masdar_al_hayat_27.png",
+        image: "/assets/images/masdar-enhanced/masdar_al_hayat_27.webp",
         objectPosition: "64% center",
       },
       {
-        image: "/assets/images/masdar-enhanced/masdar_al_hayat_18.png",
+        image: "/assets/images/masdar-enhanced/masdar_al_hayat_18.webp",
         objectPosition: "64% center",
       },
       {
-        image: "/assets/images/capabilities/manufacturing-production-coordination-v1.png",
+        image: "/assets/images/capabilities/manufacturing-production-coordination-v1.webp",
         objectPosition: "center center",
       },
     ] as const;
@@ -1622,7 +1622,7 @@ export function SectionRenderer({
             <div className="product-categories-showcase__body">
               <figure className="product-categories-showcase__visual" data-animate>
                 <BrandImage
-                  src="/assets/images/capabilities/manufacturing-product-categories-v1.png"
+                  src="/assets/images/capabilities/manufacturing-product-categories-v1.webp"
                   alt={heading}
                   className="product-categories-showcase__image"
                 />

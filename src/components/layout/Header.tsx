@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import masdarLogo from "../../../public/brand/masdar-logo-text.png";
+import masdarLogo from "../../../public/brand/masdar-logo-text.webp";
 import {useEffect, useRef, useState} from "react";
 import {ChevronDown, Menu, X, ArrowUpRight} from "lucide-react";
 import {gsap} from "gsap";

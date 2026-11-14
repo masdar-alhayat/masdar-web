@@ -186,3 +186,6 @@
   .stageOrbit,.specimen img,.note i::after,.proteinBubble,.pancakeBox,.pancakeSingle,.briochePack,.proteinPack,.rangePack {animation: none;}
   .specimen,.focusCard,.focusImage img,.rangePack,.productTabs button {transition: none;}
 }
+
+/* Safari before 18.2 ignores scrollbar-width, so hide the product tab scrollbar there too. */
+.productTabs::-webkit-scrollbar {display: none;}

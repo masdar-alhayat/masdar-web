@@ -16,21 +16,21 @@ import styles from "./ManufacturingGallery.module.css";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const galleryImages = [
-  "/assets/images/masdar-enhanced/masdar_al_hayat_28.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_29.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_30.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_31.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_32.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_34.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_35.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_36.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_37.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_38.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_39.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat_40.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat-45.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat-46.png",
-  "/assets/images/masdar-enhanced/masdar_al_hayat-47.png",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_28.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_29.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_30.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_31.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_32.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_34.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_35.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_36.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_37.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_38.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_39.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat_40.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat-45.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat-46.webp",
+  "/assets/images/masdar-enhanced/masdar_al_hayat-47.webp",
 ];
 
 export function ManufacturingGallery({isRtl}: {isRtl: boolean}) {

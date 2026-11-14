@@ -27,7 +27,7 @@ try {
     const response = await get(asset);
     assert.match(response.headers.get('content-type'), asset.endsWith('.css') ? /text\/css/ : /javascript/);
   }
-  const logo = await get('/brand/masdar-logo-text.png');
-  assert.match(logo.headers.get('content-type'), /image\/png/);
+  const logo = await get('/brand/masdar-logo-text.webp');
+  assert.match(logo.headers.get('content-type'), /image\/webp/);
   console.log(`Direct release launch passed: English and Arabic pages, ${assets.length} CSS/JS assets, and logo returned HTTP 200.`);
 } finally { child.kill(); }

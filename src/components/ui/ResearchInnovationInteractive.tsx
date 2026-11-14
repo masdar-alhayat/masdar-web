@@ -32,7 +32,7 @@ export function ResearchHeroStage({notes, locale}: {notes: ResearchCopy["heroNot
       <Image src={`${IMG}/tortilla-protein.webp`} alt={ar ? "تورتيلا فونتي بالبروتين" : "Fonte Protein Tortilla pack"} fill sizes="(max-width: 991px) 40vw, 22vw" priority/>
     </figure>
     <figure className={`${styles.specimen} ${styles.specimenBrioche}`} style={{"--depth": 26} as Style}>
-      <Image src={`${IMG}/hanini-brioche-front-whole-v1.webp`} alt={ar ? "عبوة بريوش حنيني" : "Hanini Brioche pack"} fill sizes="(max-width: 991px) 24vw, 12vw" priority/>
+      <Image src={`${IMG}/hanini-brioche-front-whole-v1-optimized.webp`} alt={ar ? "عبوة بريوش حنيني" : "Hanini Brioche pack"} fill sizes="(max-width: 991px) 24vw, 12vw" priority/>
     </figure>
     <figure className={`${styles.specimen} ${styles.specimenChocolate}`} style={{"--depth": 34} as Style}>
       <Image src={`${IMG}/pancake-single-chocolate.webp`} alt={ar ? "بان كيك فونتي بالشوكولاتة والبندق" : "Fonte Pan Cake Chocolate Hazelnut"} fill sizes="(max-width: 991px) 24vw, 12vw"/>
@@ -54,7 +54,7 @@ const flavourImages = {
   blueberry: {box: `${IMG}/pancake-box-blueberry.webp`, single: `${IMG}/pancake-single-blueberry.webp`},
   chocolate: {box: `${IMG}/pancake-box-chocolate.webp`, single: `${IMG}/pancake-single-chocolate.webp`},
 };
-const briocheViews = {front: `${IMG}/hanini-brioche-front-whole-v1.webp`, side: `${IMG}/hanini-brioche-side.webp`, back: `${IMG}/hanini-brioche-back.webp`};
+const briocheViews = {front: `${IMG}/hanini-brioche-front-whole-v1-optimized.webp`, side: `${IMG}/hanini-brioche-side.webp`, back: `${IMG}/hanini-brioche-back.webp`};
 
 export function ResearchProductShowcase({copy, locale}: {copy: ResearchCopy; locale: Locale}) {
   const [active, setActive] = useState(0);

@@ -11,15 +11,15 @@ import {MANUFACTURING_VIDEO_SRC} from "@/content/media";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const manufacturingVideos = [
-  "/assets/videos/masdar-video-3.mov",
-  "/assets/videos/masdar-video-4.mov",
-  "/assets/videos/masdar-video-5.mov",
-  "/assets/videos/masdar-video-10.mov",
-  "/assets/videos/masdar-video-11.mov",
-  "/assets/videos/masdar-video-6.mov",
-  "/assets/videos/masdar-video-7.mov",
-  "/assets/videos/masdar-video-8.mov",
-  "/assets/videos/masdar-video-9.mov",
+  "/assets/videos/masdar-video-3.mp4",
+  "/assets/videos/masdar-video-4.mp4",
+  "/assets/videos/masdar-video-5.mp4",
+  "/assets/videos/masdar-video-10.mp4",
+  "/assets/videos/masdar-video-11.mp4",
+  "/assets/videos/masdar-video-6.mp4",
+  "/assets/videos/masdar-video-7.mp4",
+  "/assets/videos/masdar-video-8.mp4",
+  "/assets/videos/masdar-video-9.mp4",
 ];
 
 export function ManufacturingVideoInterlude({label, combined = false}: {label: string; combined?: boolean}) {

@@ -39,7 +39,7 @@ export function FontePage({locale}: {locale: Locale}) {
   const products = numberedGroups(flagship).filter(group => group.prefix === "Product Category").map((group, index) => ({
     title: value(group.parts.Title, locale),
     description: value(group.parts.Description, locale),
-    image: `/assets/images/products/prod-range-0${index + 1}-clean.png`,
+    image: `/assets/images/products/prod-range-0${index + 1}-clean.webp`,
     accent: productAccents[index],
   }));
   const ribbon = [...products.map(product => product.title), ar ? "لكل مناسبة احتفال" : "Every occasion a celebration"];

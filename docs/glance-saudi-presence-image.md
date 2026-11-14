@@ -1,6 +1,6 @@
 # At a Glance: Saudi presence image
 
-Generated with the built-in image generation tool for the first homepage carousel card. Asset: `public/assets/images/glance-saudi-presence-v1.png`. Shared by English and Arabic, with localized alt text. This is a conceptual brand illustration of Saudi roots.
+Generated with the built-in image generation tool for the first homepage carousel card. Asset: `public/assets/images/home/glance-saudi-presence-v1.webp`. Shared by English and Arabic, with localized alt text. This is a conceptual brand illustration of Saudi roots.
 
 ## Generation prompt
 

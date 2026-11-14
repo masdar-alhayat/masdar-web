@@ -1,5 +1,5 @@
 import Image from "next/image";
-import masdarLogo from "../../../public/brand/masdar-logo-text.png";
+import masdarLogo from "../../../public/brand/masdar-logo-text.webp";
 import {
   ArrowUpRight,
   Mail,
