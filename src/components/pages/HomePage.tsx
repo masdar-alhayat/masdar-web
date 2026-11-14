@@ -45,8 +45,9 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       src: HOME_IMAGES.glanceSaudiPresence,
       alt: ar ? "مجسم لخريطة المملكة العربية السعودية باللون الأخضر الداكن وحواف ذهبية على خلفية كريمية" : "Sculpted Saudi Arabia map in forest green with a fine brass edge on warm ivory stone",
     } : index === 1 ? {
-      src: HOME_IMAGES.glanceInstitutionalStrength,
-      alt: ar ? "صورة أرشيفية لمبنى التميمي التاريخي" : "Archive photograph of the historic Tamimi building",
+      src: BRAND_LOGOS.tamimiGroup,
+      alt: ar ? "شعار مجموعة التميمي" : "Tamimi Group logo",
+      logo: true,
     } : index === 2 ? {
       src: HOME_IMAGES.glanceProductionStrength,
       alt: ar ? "خط إنتاج وتعبئة خبز التورتيلا من فونتي في منشأة مصدر الحياة" : "Fonte tortilla wraps moving through a packaging line at the Masdar Al Hayat facility",

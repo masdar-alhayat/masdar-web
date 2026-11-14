@@ -55,7 +55,6 @@ export const PAGE_IMAGES = {
 
 export const HOME_IMAGES = {
   glanceSaudiPresence: "/assets/images/home/glance-saudi-presence-v1.webp",
-  glanceInstitutionalStrength: "/assets/images/masdar-enhanced/masdar_al_hayat_07.webp",
   glanceProductionStrength: "/assets/images/home/glance-production-strength-fonte.webp",
   glanceProductPortfolio: "/assets/images/home/glance-product-portfolio-v1.webp",
   glanceMarketDelivery: "/assets/images/masdar-enhanced/masdar_al_hayat-50.webp",

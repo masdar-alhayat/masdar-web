@@ -9593,3 +9593,50 @@ html[dir="rtl"] .form-field select {
     grid-column: span 2
   }
 }
+
+/* Glance card with a logo (Tamimi Group): the logo sits whole on white in the upper part of the card,
+   and the brand-colour overlay only covers the text area at the bottom. */
+.glance-banner--logo {
+  background: #fcfcfc /* matches the logo artwork background so no box edge shows */
+}
+
+.glance-banner--logo .glance-banner__image {
+  top: 7% !important;
+  height: 52% !important;
+  padding-inline: 8%;
+  object-fit: contain;
+  transform: none
+}
+
+.glance-banner--logo[data-active="true"] .glance-banner__image {
+  transform: scale(1.04)
+}
+
+.glance-banner--logo::before {
+  background: linear-gradient(180deg, transparent 0%, transparent 52%, rgba(18, 33, 27, .72) 74%, rgba(18, 33, 27, .92) 100%)
+}
+
+.glance-banner--logo .glance-banner__tint {
+  background: linear-gradient(180deg, transparent 0%, transparent 52%, color-mix(in srgb, var(--glance-tint) 92%, transparent) 62%, var(--glance-tint) 100%)
+}
+
+.glance-banner--logo .glance-banner__top {
+  color: var(--mah-charcoal)
+}
+
+.glance-banner--logo .glance-banner__plus {
+  border-color: rgba(30, 78, 42, .3)
+}
+
+@media (max-width: 991px) {
+  .glance-banner--logo .glance-banner__image,
+  .glance-banner--logo[data-active="true"] .glance-banner__image {
+    top: 5% !important;
+    height: 38% !important;
+    transform: none
+  }
+
+  .glance-banner--logo .glance-banner__tint {
+    background: linear-gradient(180deg, transparent 0%, transparent 42%, var(--glance-tint) 50%, var(--glance-tint) 100%)
+  }
+}

@@ -9,7 +9,8 @@ export interface GlanceBannerItem {
   value: string;
   title: string;
   description: string;
-  image?: {src: string; alt: string};
+  // `logo` shows the image whole on a white card (e.g. the Tamimi Group logo) instead of as a full-bleed photo.
+  image?: {src: string; alt: string; logo?: boolean};
 }
 
 // One Masdar Al Hayat brand colour per banner overlay, in item order.
@@ -60,14 +61,14 @@ export function GlanceBanners({items, locale}: {items: GlanceBannerItem[]; local
       onBlur={event => {
         if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setActive(null);
       }}>
-      {items.map((item, index) => <article key={item.title} className="glance-banner" tabIndex={0}
+      {items.map((item, index) => <article key={item.title} className={`glance-banner${item.image?.logo ? " glance-banner--logo" : ""}`} tabIndex={0}
         data-active={active === index}
         aria-label={`${number(index)} / ${number(items.length - 1)}`}
         style={{"--glance-tint": tints[index % tints.length]} as React.CSSProperties}
         onMouseEnter={() => setActive(index)}
         onFocus={() => setActive(index)}
         onClick={() => setActive(index)}>
-        {item.image && <Image src={item.image.src} alt={item.image.alt} fill sizes="(max-width: 991px) 100vw, 40vw" className="glance-banner__image"/>}
+        {item.image && <Image src={item.image.src} alt={item.image.alt} fill sizes={item.image.logo ? "(max-width: 991px) 60vw, 24vw" : "(max-width: 991px) 100vw, 40vw"} className="glance-banner__image"/>}
         <span className="glance-banner__tint" aria-hidden="true"/>
         <div className="glance-banner__top">
           <span className="glance-banner__index">{number(index)}</span>
