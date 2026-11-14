@@ -11,7 +11,7 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp(`/${locale}/capabilities/marketing$`));
     await expect(page.locator("main > section")).toHaveCount(4);
     await expect(page.locator('main a[href*="instagram.com"]')).toHaveCount(0);
-    await expect(page.locator("main")).not.toContainText(locale === "ar" ? "لكل مناسبة احتفال" : "Every occasion a celebration");
+    await expect(page.locator("#main-content")).not.toContainText(locale === "ar" ? "لكل مناسبة احتفال" : "Every occasion a celebration");
     await expect(page.locator("main figure figcaption")).toHaveCount(3);
     await expect(page.locator("[data-marketing-capability]")).toHaveCount(8);
     const expected = locale === "ar"
@@ -22,7 +22,7 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator('main a[href$="/contact"]')).toHaveCount(1);
     await expect(page.locator('footer a[href$="/capabilities/marketing"]')).toBeVisible();
     await page.locator("main img").first().evaluate(async image => (image as HTMLImageElement).decode());
-    await expect(page.locator("main")).not.toContainText(/Nature.?s Oven|نيتشرز/);
+    await expect(page.locator("#main-content")).not.toContainText(/Nature.?s Oven|نيتشرز/);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
     await page.locator(".language-switch").click();
     await expect(page).toHaveURL(new RegExp(`/${locale === "ar" ? "en" : "ar"}/capabilities/marketing$`));

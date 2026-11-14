@@ -23,6 +23,8 @@ export const metadata: Metadata = {
 };
 
 export function generateStaticParams() { return routing.locales.map(locale => ({locale})); }
+// Only "en" and "ar" exist: any other first path segment (e.g. /.env, /package.json) is a plain 404 instead of a server error.
+export const dynamicParams = false;
 
 export default async function LocaleLayout({children, params}: Readonly<{children: React.ReactNode; params: Promise<{locale: string}>}>) {
   const {locale} = await params;

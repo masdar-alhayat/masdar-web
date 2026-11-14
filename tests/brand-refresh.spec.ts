@@ -7,7 +7,7 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page).toHaveURL(new RegExp(`/${locale}/brands-partnerships/brands-portfolio$`));
     await expect(page.locator(".brand-profile")).toHaveCount(4);
     await expect(page.locator(".brand-profile#fonte")).toHaveCount(0);
-    await expect(page.locator("main")).not.toContainText(/Nature.s Oven|نيتشر/);
+    await expect(page.locator("#main-content")).not.toContainText(/Nature.s Oven|نيتشر/);
     for (const id of ["fonte-horeca", "paneto", "amraj", "demirco"]) {
       const row = page.locator(`.brand-profile#${id}`);
       await row.scrollIntoViewIfNeeded();
@@ -48,14 +48,14 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator(".horeca-brand")).toHaveCount(0);
     await expect(page.locator('.logo-carousel__group:not([aria-hidden="true"]) .logo-carousel__card')).toHaveCount(14);
     await page.goto(`/${locale}/brands-partnerships/partnerships`);
-    await expect(page.locator("main")).not.toContainText(locale === "en" ? "Our Partnership Approach" : "نهجنا في الشراكات");
+    await expect(page.locator("#main-content")).not.toContainText(locale === "en" ? "Our Partnership Approach" : "نهجنا في الشراكات");
     await expect(page.locator(".partnership-journey-section")).toHaveCount(0);
     await expect(page.locator('.logo-carousel__group:not([aria-hidden="true"]) .logo-carousel__card')).toHaveCount(23);
     for (const image of await page.locator('.logo-carousel__group:not([aria-hidden="true"]) img').all()) {
       await image.evaluate(async image => { const img = image as HTMLImageElement; img.loading = "eager"; await img.decode(); });
     }
     await page.goto(`/${locale}/research-innovation`);
-    await expect(page.locator("main")).not.toContainText(locale === "en" ? "Smarter Operations" : "عمليات أكثر ذكاءً");
+    await expect(page.locator("#main-content")).not.toContainText(locale === "en" ? "Smarter Operations" : "عمليات أكثر ذكاءً");
     await page.goto(`/${locale}/about/vision-mission-values`);
     await expect(page.locator(".vision-statement-feature-section")).toContainText(locale === "en" ? "government sectors, institutions and individuals efficiently and sustainably" : "القطاعات الحكومية والمؤسسات والأفراد بكفاءة واستدامة");
     await expect(page.locator(".mission-statement-section")).toContainText(locale === "en" ? "a modern distribution network and tailored solutions for hospitality" : "وشبكة توزيع حديثة، وحلول مخصصة لقطاع الضيافة");

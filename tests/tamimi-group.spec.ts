@@ -28,7 +28,7 @@ for (const locale of ["en", "ar"] as const) {
         await img.decode();
       });
     }
-    await expect(page.locator("main")).not.toContainText(locale === "en" ? /Our Vision|Our Mission|The Beginning of the Journey|Growing with the Kingdom/ : /رؤيتنا|رسالتنا|بداية المسيرة|ننمو مع المملكة/);
+    await expect(page.locator("#main-content")).not.toContainText(locale === "en" ? /Our Vision|Our Mission|The Beginning of the Journey|Growing with the Kingdom/ : /رؤيتنا|رسالتنا|بداية المسيرة|ننمو مع المملكة/);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   });
 

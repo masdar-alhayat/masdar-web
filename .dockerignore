@@ -11,3 +11,16 @@ npm-debug.log
 .codex-temp
 .pnpm-store
 test-results
+
+# Never bake local secrets into the image
+.env
+.env.*
+
+# Not needed to build or run the site
+.github
+.claude
+docs
+output
+outputs
+tests
+playwright.config.ts

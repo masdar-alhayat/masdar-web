@@ -9,9 +9,9 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator("main > section")).toHaveCount(2);
     await expect(page.locator(".sales-customers__grid article")).toHaveCount(3);
     await expect(page.locator(".sales-customers__grid")).toContainText(locale === "ar" ? "المتاجر المحلية ومتاجر المواد الغذائية" : "Local / Grocery Stores");
-    await expect(page.locator(".inner-hero__media img")).toHaveAttribute("src", /masdar-web-51\.png/);
+    await expect(page.locator(".inner-hero__media img")).toHaveAttribute("src", /masdar-web-51.webp/);
     await expect(page.locator(".sales-customers__image img")).toHaveAttribute("src", /sales-customers-enhanced-v1\.webp/);
-    await expect(page.locator("main")).not.toContainText(/baqala/i);
+    await expect(page.locator("#main-content")).not.toContainText(/baqala/i);
 
     if (await page.locator(".desktop-nav").isVisible()) {
       await page.locator(".desktop-nav .nav-group").filter({has: page.getByRole("button", {name: locale === "ar" ? "قدراتنا" : "Our Capabilities", exact: true})}).hover();

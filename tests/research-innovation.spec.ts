@@ -9,7 +9,7 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page).toHaveTitle(locale === "en" ? /Research & Innovation/ : /البحث والابتكار/);
     await expect(page.locator("main > section")).toHaveCount(3);
     await expect(page.locator("main h1")).toContainText(locale === "en" ? "From insight" : "من الفكرة");
-    await expect(page.locator("main")).not.toContainText(locale === "en" ? /Development/ : /التطوير/);
+    await expect(page.locator("#main-content")).not.toContainText(locale === "en" ? /Development/ : /التطوير/);
     await expect(page.locator("#ri-focus article")).toHaveCount(6);
 
     const tabs = page.locator('#ri-products [role="tab"]');
