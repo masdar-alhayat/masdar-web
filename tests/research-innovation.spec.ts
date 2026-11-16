@@ -13,8 +13,8 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator("#ri-focus article")).toHaveCount(6);
 
     const tabs = page.locator('#ri-products [role="tab"]');
-    await expect(tabs).toHaveCount(4);
-    const names = locale === "en" ? ["Fonte Pan Cake", "Hanini Brioche", "Protein Tortilla", "Tortilla Range"] : ["بان كيك فونتي", "بريوش حنيني", "تورتيلا بالبروتين", "مجموعة التورتيلا"];
+    await expect(tabs).toHaveCount(5);
+    const names = locale === "en" ? ["Tortilla Range", "Protein Tortilla", "Hanini Brioche", "Fonte Pan Cake", "Whole Wheat Sliced Bread"] : ["مجموعة التورتيلا", "تورتيلا بالبروتين", "بريوش حنيني", "بان كيك فونتي", "خبز توست القمح الكامل"];
     for (const [index, name] of names.entries()) {
       await tabs.nth(index).click();
       await expect(tabs.nth(index)).toHaveAttribute("aria-selected", "true");
@@ -24,18 +24,18 @@ for (const locale of ["en", "ar"] as const) {
       await expect(panel.locator("img").first()).toBeVisible();
     }
 
-    await tabs.nth(0).click();
+    await tabs.nth(3).click();
     const panel = page.locator('#ri-products [role="tabpanel"]:not([hidden])');
     await panel.getByRole("button", {name: locale === "en" ? "Blueberry" : "توت أزرق"}).click();
     await expect(panel.locator('img[src*="pancake-box-blueberry"]')).toHaveCount(1);
-    await tabs.nth(1).click();
+    await tabs.nth(2).click();
     await page.locator('#ri-products [role="tabpanel"]:not([hidden])').getByRole("button", {name: locale === "en" ? "Back" : "الخلف"}).click();
     await expect(page.locator('#ri-products img[src*="hanini-brioche-back"]')).toHaveCount(1);
 
-    await tabs.nth(1).focus();
-    await tabs.nth(1).press(locale === "ar" ? "ArrowLeft" : "ArrowRight");
-    await expect(tabs.nth(2)).toBeFocused();
-    await expect(tabs.nth(2)).toHaveAttribute("aria-selected", "true");
+    await tabs.nth(2).focus();
+    await tabs.nth(2).press(locale === "ar" ? "ArrowLeft" : "ArrowRight");
+    await expect(tabs.nth(3)).toBeFocused();
+    await expect(tabs.nth(3)).toHaveAttribute("aria-selected", "true");
     await expect(page.locator('main a[href$="/contact"]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
   });

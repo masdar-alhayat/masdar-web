@@ -37,17 +37,22 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       suffix: value(group.parts.Suffix, locale),
     }))
     .filter((counter) => Number.isFinite(counter.value) && counter.label);
+  const glanceIntro = value(byLabel(glance, "Introduction"), locale);
+  const partnershipCopy = paragraphs(partnerships, locale);
   const glanceItems = numberedGroups(glance).map((group, index) => ({
     value: value(group.parts.Value, locale),
     title: value(group.parts.Title, locale),
     description: value(group.parts.Description, locale),
     image: index === 0 ? {
       src: HOME_IMAGES.glanceSaudiPresence,
-      alt: ar ? "مجسم لخريطة المملكة العربية السعودية باللون الأخضر الداكن وحواف ذهبية على خلفية كريمية" : "Sculpted Saudi Arabia map in forest green with a fine brass edge on warm ivory stone",
+      alt: ar ? "خريطة المملكة العربية السعودية تُظهر شبكة توزيع مصدر الحياة انطلاقاً من الرياض" : "Map of Saudi Arabia showing the Masdar Al Hayat distribution network from Riyadh",
+      contain: true,
+      background: "#f2efe6",
     } : index === 1 ? {
       src: BRAND_LOGOS.tamimiGroup,
       alt: ar ? "شعار مجموعة التميمي" : "Tamimi Group logo",
-      logo: true,
+      contain: true,
+      background: "#fcfcfc",
     } : index === 2 ? {
       src: HOME_IMAGES.glanceProductionStrength,
       alt: ar ? "خط إنتاج وتعبئة خبز التورتيلا من فونتي في منشأة مصدر الحياة" : "Fonte tortilla wraps moving through a packaging line at the Masdar Al Hayat facility",
@@ -110,7 +115,7 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
       </div>
     </AnimatedSection>
 
-    <AnimatedSection className="glance-section" variant="rise"><div className="container-xxl"><header className="section-heading" data-animate><span className="section-kicker">{value(byLabel(glance,"Section Label"),locale)}</span><h2>{value(byLabel(glance,"Main Heading"),locale)}</h2><p>{value(byLabel(glance,"Introduction"),locale)}</p></header><div data-animate><GlanceBanners items={glanceItems} locale={locale}/></div><ManufacturingCounters items={manufacturingCounters} locale={locale}/></div></AnimatedSection>
+    <AnimatedSection className="glance-section" variant="rise"><div className="container-xxl"><header className="section-heading" data-animate><span className="section-kicker">{value(byLabel(glance,"Section Label"),locale)}</span><h2>{value(byLabel(glance,"Main Heading"),locale)}</h2>{glanceIntro && <p>{glanceIntro}</p>}</header><div data-animate><GlanceBanners items={glanceItems} locale={locale}/></div><ManufacturingCounters items={manufacturingCounters} locale={locale}/></div></AnimatedSection>
 
     <AnimatedSection className="fonte-home" variant="slide">
       <div className="fonte-home__background" aria-hidden="true">
@@ -216,12 +221,12 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
 
     <AnimatedSection className="partnership-home" variant="stagger">
       <div className="container-xxl">
-        <header className="section-heading section-heading--wide" data-animate>
+        <header className={`section-heading${partnershipCopy.length ? " section-heading--wide" : " partnership-home__heading"}`} data-animate>
           <div>
             <span className="section-kicker">{value(byLabel(partnerships,"Section Label"),locale)}</span>
             <h2>{value(byLabel(partnerships,"Main Heading"),locale)}</h2>
           </div>
-          <div>{paragraphs(partnerships,locale).map((p,i)=><p key={i}>{p}</p>)}</div>
+          {partnershipCopy.length > 0 && <div>{partnershipCopy.map((p,i)=><p key={i}>{p}</p>)}</div>}
         </header>
         <div className="partnership-home__channels">
           {numberedGroups(partnerships).map((group) => {

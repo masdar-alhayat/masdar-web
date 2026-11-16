@@ -90,7 +90,7 @@
 .productsHeader .kicker::after {content: ""; width: 1.8rem; height: 2px; border-radius: 2px; background: currentColor;}
 .productsHeader h2 {margin-bottom: 1rem; color: var(--ri-green); font-size: clamp(2.6rem,5vw,4.8rem); font-weight: 800; line-height: 1.05;}
 .productsHeader p {margin: 0 auto; max-width: 52ch; color: var(--mah-charcoal-700); font-size: 1.05rem; line-height: 1.8;}
-.productTabs {display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .8rem;}
+.productTabs {display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: .8rem;}
 .productTabs button {display: flex; align-items: center; gap: .9rem; padding: .6rem 1rem .6rem .6rem; border: 1px solid #e3dccb; border-radius: 1.3rem; background: #fff; color: var(--ri-ink); text-align: start; transition: background .25s, border-color .25s, color .25s, transform .25s;}
 .productTabs button:hover {border-color: var(--ri-gold); transform: translateY(-2px);}
 .productTabs button[aria-selected="true"] {background: var(--ri-green); border-color: var(--ri-green); color: #fff; box-shadow: 0 14px 30px #12391f33;}
@@ -104,14 +104,14 @@
 .productPanel[hidden] {display: none;}
 .productStage {position: relative; min-height: clamp(26rem,42vw,38rem); border-radius: 2rem; overflow: hidden; background: var(--ri-green); box-shadow: 0 30px 70px #12391f26;}
 .stageTag {position: absolute; z-index: 20; top: 1.2rem; inset-inline-start: 1.2rem; padding: .45rem .9rem; border-radius: 50px; background: #ffffffd9; backdrop-filter: blur(6px); color: var(--ri-green); font-size: .74rem; font-weight: 800;}
-.stagePancake,.stageBrioche,.stageProtein,.stageRange {position: absolute; inset: 0;}
+.stagePancake,.stageBrioche,.stageProtein,.stageRange,.stageWholewheat {position: absolute; inset: 0;}
 .stagePancake {transition: background .5s;}
 .stagePancake[data-flavour="strawberry"] {background: radial-gradient(circle at 62% 38%, #ffe3ea 0%, #f39ab6 48%, #d64c7b 100%);}
 .stagePancake[data-flavour="blueberry"] {background: radial-gradient(circle at 62% 38%, #ece4ff 0%, #ae92e4 48%, #6a46b2 100%);}
 .stagePancake[data-flavour="chocolate"] {background: radial-gradient(circle at 62% 38%, #fff0cf 0%, #d6a874 48%, #6e3d22 100%);}
 .pancakeBox {position: absolute; right: 5%; top: 9%; width: 54%; height: 82%; filter: drop-shadow(0 30px 30px #00000040); animation: riPop .6s cubic-bezier(.2,.8,.2,1) both;}
 .pancakeSingle {position: absolute; left: 6%; bottom: 7%; width: 40%; aspect-ratio: 1; filter: drop-shadow(0 24px 24px #00000047); animation: riPop .6s .08s cubic-bezier(.2,.8,.2,1) both;}
-.pancakeBox img,.pancakeSingle img,.briochePack img,.proteinPack img,.rangePack img {object-fit: contain;}
+.pancakeBox img,.pancakeSingle img,.briochePack img,.proteinPack img,.rangePack img,.wholewheatPack img {object-fit: contain;}
 .stageBrioche {perspective: 1200px; background: radial-gradient(circle at 50% 35%, #ffffff1f 0%, transparent 55%), repeating-linear-gradient(45deg, #f1d7a214 0 2px, transparent 2px 28px), repeating-linear-gradient(-45deg, #f1d7a214 0 2px, transparent 2px 28px), linear-gradient(160deg, #8d1d2e, #5a0f1c);}
 .briochePack {position: absolute; top: 7%; bottom: 7%; left: 50%; aspect-ratio: .44; transform: translateX(-50%); filter: drop-shadow(0 30px 34px #00000059); animation: riFlip .7s cubic-bezier(.2,.8,.2,1) both;}
 .stageProtein {background: radial-gradient(circle at 50% 40%, #b9a0e6 0%, #7a5ab4 45%, #3f2468 100%);}
@@ -158,7 +158,7 @@
 :global(html[dir="rtl"]) .productTabs button {padding: .6rem .6rem .6rem 1rem;}
 
 @media(max-width:1199px) {
-  .productTabs {grid-template-columns: repeat(2,minmax(0,1fr));}
+  .productTabs {grid-template-columns: repeat(3,minmax(0,1fr));}
   .focusGrid {grid-template-columns: repeat(2,minmax(0,1fr));}
   .focusCard:nth-child(3n+2) {margin-top: 0;}
   .focusCard:nth-child(even) {margin-top: 2.5rem;}
@@ -183,9 +183,22 @@
   .closing {flex-direction: column; align-items: flex-start;}
 }
 @media(prefers-reduced-motion:reduce) {
-  .stageOrbit,.specimen img,.note i::after,.proteinBubble,.pancakeBox,.pancakeSingle,.briochePack,.proteinPack,.rangePack {animation: none;}
+  .stageOrbit,.specimen img,.note i::after,.proteinBubble,.pancakeBox,.pancakeSingle,.briochePack,.proteinPack,.wholewheatPack,.rangePack {animation: none;}
   .specimen,.focusCard,.focusImage img,.rangePack,.productTabs button {transition: none;}
 }
 
 /* Safari before 18.2 ignores scrollbar-width, so hide the product tab scrollbar there too. */
 .productTabs::-webkit-scrollbar {display: none;}
+
+/* Whole Wheat Sliced Bread: hero specimen and product stage. */
+.specimenWholewheat {left: 49%; top: 0; width: 16%; height: 44%; z-index: 1;}
+.specimenWholewheat img {animation-delay: -4s;}
+.noteWholewheat {top: 34%; left: 47%;}
+.stageWholewheat {background: radial-gradient(circle at 50% 38%, #fff6e2 0%, #e9c58a 50%, #8a5a2b 100%);}
+.wholewheatPack {position: absolute; top: 6%; left: 50%; width: 34%; height: 88%; transform: translateX(-50%); filter: drop-shadow(0 30px 34px #00000059); animation: riPop .6s cubic-bezier(.2,.8,.2,1) both;}
+.stageWholewheat .proteinBubble[data-index="1"] {color: #5a3a17;}
+.stageWholewheat .proteinBubble[data-index="2"] {background: #3b2412;}
+
+/* Product Innovation flows straight into Where We Focus without a double section gap. */
+.products:global(.mah-section) {padding-bottom: clamp(2.5rem,4vw,3.5rem);}
+.focus:global(.mah-section) {padding-top: clamp(2.5rem,4vw,3.5rem);}

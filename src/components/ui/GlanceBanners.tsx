@@ -9,8 +9,9 @@ export interface GlanceBannerItem {
   value: string;
   title: string;
   description: string;
-  // `logo` shows the image whole on a white card (e.g. the Tamimi Group logo) instead of as a full-bleed photo.
-  image?: {src: string; alt: string; logo?: boolean};
+  // `contain` shows the image whole in the upper part of the card on a matching `background`
+  // (e.g. the Tamimi Group logo, the distribution map) instead of as a full-bleed photo.
+  image?: {src: string; alt: string; contain?: boolean; background?: string};
 }
 
 // One Masdar Al Hayat brand colour per banner overlay, in item order.
@@ -61,14 +62,14 @@ export function GlanceBanners({items, locale}: {items: GlanceBannerItem[]; local
       onBlur={event => {
         if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setActive(null);
       }}>
-      {items.map((item, index) => <article key={item.title} className={`glance-banner${item.image?.logo ? " glance-banner--logo" : ""}`} tabIndex={0}
+      {items.map((item, index) => <article key={item.title} className={`glance-banner${item.image?.contain ? " glance-banner--contain" : ""}`} tabIndex={0}
         data-active={active === index}
         aria-label={`${number(index)} / ${number(items.length - 1)}`}
-        style={{"--glance-tint": tints[index % tints.length]} as React.CSSProperties}
+        style={{"--glance-tint": tints[index % tints.length], ...(item.image?.background ? {"--glance-bg": item.image.background} : {})} as React.CSSProperties}
         onMouseEnter={() => setActive(index)}
         onFocus={() => setActive(index)}
         onClick={() => setActive(index)}>
-        {item.image && <Image src={item.image.src} alt={item.image.alt} fill sizes={item.image.logo ? "(max-width: 991px) 60vw, 24vw" : "(max-width: 991px) 100vw, 40vw"} className="glance-banner__image"/>}
+        {item.image && <Image src={item.image.src} alt={item.image.alt} fill sizes={item.image.contain ? "(max-width: 991px) 60vw, 24vw" : "(max-width: 991px) 100vw, 40vw"} className="glance-banner__image"/>}
         <span className="glance-banner__tint" aria-hidden="true"/>
         <div className="glance-banner__top">
           <span className="glance-banner__index">{number(index)}</span>

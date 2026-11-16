@@ -30,8 +30,8 @@ for (const locale of ["en", "ar"] as const) {
 
     await expect(page.locator(".portfolio-home")).toHaveCount(0);
     await expect(page.locator(".legacy-home")).toHaveCount(0);
-    await expect(page.locator(".partnership-home header p")).toHaveCount(1);
-    await expect(page.locator(".partnership-home h2")).toHaveText(locale === "en" ? "Partnerships Built for Shared Growth" : "شراكات تقوم على النمو المشترك");
+    await expect(page.locator(".partnership-home header p")).toHaveCount(0);
+    await expect(page.locator(".partnership-home h2")).toHaveText(locale === "en" ? "Trusted Partnerships. Proven Expertise Across Every Channel." : "شراكات موثوقة. خبرة راسخة عبر جميع القنوات.");
     await expect(page.locator(".careers-home h2")).toHaveText(locale === "en" ? "Build a Career That Touches Everyday Life" : "مسيرة مهنية تلامس الحياة اليومية");
     await expect(page.locator(".careers-home__grid > div p")).toHaveCount(1);
     await expect(page.locator(".quality-home h2")).toHaveCSS("text-align", "start");

@@ -526,6 +526,8 @@ export function SectionRenderer({
   }
 
   if (renderVariant === "logistics-counters") {
+    // Only an explicit Main Heading is shown (no fallback to the eyebrow), so the counters can stand under the eyebrow alone.
+    const countersHeading = firstLocalizedItemValue(section, locale, ["Main Heading"]);
     const items = groups.filter(group => group.prefix === "Counter").map(group => ({
       value: Number(value(group.parts.Value, locale)),
       label: value(group.parts.Label, locale),
@@ -534,8 +536,8 @@ export function SectionRenderer({
     return <AnimatedSection className="content-section logistics-strength" variant="stagger">
       <div className="container-xxl">
         <header className="logistics-strength__header" data-animate>
-          {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
-          <h2>{heading}</h2>
+          {kicker && <span className="section-kicker">{kicker}</span>}
+          {countersHeading && <h2>{countersHeading}</h2>}
           {copy.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
         </header>
         <ManufacturingCounters items={items} locale={locale}/>

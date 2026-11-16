@@ -4,7 +4,7 @@ import Image from "next/image";
 import {useId, useRef, useState} from "react";
 import {ArrowUpRight, Check} from "lucide-react";
 import {Link} from "@/i18n/navigation";
-import type {ResearchCopy} from "@/content/research-innovation";
+import type {ProductInnovation, ResearchCopy} from "@/content/research-innovation";
 import type {Locale} from "@/types/content";
 import styles from "@/components/pages/ResearchInnovationPage.module.css";
 
@@ -34,6 +34,9 @@ export function ResearchHeroStage({notes, locale}: {notes: ResearchCopy["heroNot
     <figure className={`${styles.specimen} ${styles.specimenBrioche}`} style={{"--depth": 26} as Style}>
       <Image src={`${IMG}/hanini-brioche-front-whole-v1-optimized.webp`} alt={ar ? "عبوة بريوش حنيني" : "Hanini Brioche pack"} fill sizes="(max-width: 991px) 24vw, 12vw" priority/>
     </figure>
+    <figure className={`${styles.specimen} ${styles.specimenWholewheat}`} style={{"--depth": 22} as Style}>
+      <Image src={`${IMG}/wholewheat-sliced-bread.webp`} alt={ar ? "عبوة خبز توست القمح الكامل من فونتي" : "Fonte Whole Wheat Sliced Bread pack"} fill sizes="(max-width: 991px) 22vw, 11vw" priority/>
+    </figure>
     <figure className={`${styles.specimen} ${styles.specimenChocolate}`} style={{"--depth": 34} as Style}>
       <Image src={`${IMG}/pancake-single-chocolate.webp`} alt={ar ? "بان كيك فونتي بالشوكولاتة والبندق" : "Fonte Pan Cake Chocolate Hazelnut"} fill sizes="(max-width: 991px) 24vw, 12vw"/>
     </figure>
@@ -46,6 +49,7 @@ export function ResearchHeroStage({notes, locale}: {notes: ResearchCopy["heroNot
     <span className={`${styles.note} ${styles.noteProtein}`} dir={ar ? "rtl" : "ltr"}><i aria-hidden="true"/>{notes.protein}</span>
     <span className={`${styles.note} ${styles.noteBrioche}`} dir={ar ? "rtl" : "ltr"}><i aria-hidden="true"/>{notes.brioche}</span>
     <span className={`${styles.note} ${styles.noteFlavours}`} dir={ar ? "rtl" : "ltr"}><i aria-hidden="true"/>{notes.flavours}</span>
+    <span className={`${styles.note} ${styles.noteWholewheat}`} dir={ar ? "rtl" : "ltr"}><i aria-hidden="true"/>{notes.wholewheat}</span>
   </div>;
 }
 
@@ -65,6 +69,7 @@ export function ResearchProductShowcase({copy, locale}: {copy: ResearchCopy; loc
   const id = useId();
   const ar = locale === "ar";
   const flavourName = copy.flavours.find(item => item.id === flavour)!.name;
+  const product = (productId: ProductInnovation["id"]) => copy.products.find(item => item.id === productId)!;
 
   const stages: Record<string, React.ReactNode> = {
     pancake: <div className={styles.stagePancake} data-flavour={flavour}>
@@ -76,7 +81,11 @@ export function ResearchProductShowcase({copy, locale}: {copy: ResearchCopy; loc
     </div>,
     protein: <div className={styles.stageProtein}>
       <div className={styles.proteinPack}><Image src={`${IMG}/tortilla-protein.webp`} alt={ar ? "عبوة تورتيلا فونتي بالبروتين" : "Fonte Protein Tortilla pack"} fill sizes="(max-width: 991px) 70vw, 30vw"/></div>
-      {copy.products[2].facts.map((fact, index) => <span key={fact} className={styles.proteinBubble} data-index={index}>{fact}</span>)}
+      {product("protein").facts.map((fact, index) => <span key={fact} className={styles.proteinBubble} data-index={index}>{fact}</span>)}
+    </div>,
+    wholewheat: <div className={styles.stageWholewheat}>
+      <div className={styles.wholewheatPack}><Image src={`${IMG}/wholewheat-sliced-bread.webp`} alt={ar ? "عبوة خبز توست القمح الكامل من فونتي" : "Fonte Whole Wheat Sliced Bread pack"} fill sizes="(max-width: 991px) 40vw, 14vw"/></div>
+      {product("wholewheat").facts.map((fact, index) => <span key={fact} className={styles.proteinBubble} data-index={index}>{fact}</span>)}
     </div>,
     tortillas: <div className={styles.stageRange} dir="ltr">
       {copy.range.map((item, index) => <button key={item.id} type="button" className={styles.rangePack} data-active={pack === index}
@@ -96,8 +105,8 @@ export function ResearchProductShowcase({copy, locale}: {copy: ResearchCopy; loc
       <span>{copy.viewLabel}</span>
       <div>{copy.views.map(item => <button key={item.id} type="button" aria-pressed={view === item.id} onClick={() => setView(item.id)}>{item.name}</button>)}</div>
     </div>,
-    tortillas: <div className={styles.controls} role="group" aria-label={copy.products[3].name}>
-      <span>{copy.products[3].tag}</span>
+    tortillas: <div className={styles.controls} role="group" aria-label={product("tortillas").name}>
+      <span>{product("tortillas").tag}</span>
       <div>{copy.range.map((item, index) => <button key={item.id} type="button" aria-pressed={pack === index} onClick={() => setPack(index)}>{item.name}</button>)}</div>
     </div>,
   };

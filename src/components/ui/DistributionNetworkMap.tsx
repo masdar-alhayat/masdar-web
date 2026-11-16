@@ -11,6 +11,8 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 // Pin tips and route control points use the supplied reference's 977 x 757
 // coordinate space. Keep this geography unchanged in the Arabic layout.
+// Neighbouring markets are placed from their longitude/latitude using the scale of the
+// Saudi city pins (about 41.5 px per degree of longitude and 44.7 px per degree of latitude).
 const locations = [
   {id: "riyadh", x: 565, y: 393, kind: "hub", en: "Riyadh", ar: "الرياض", dx: 0, dy: 20},
   {id: "al-qassim", x: 451, y: 233, kind: "major", en: "Al Qassim", ar: "القصيم", dx: 18, dy: -2},
@@ -25,6 +27,14 @@ const locations = [
   {id: "najran", x: 486, y: 684, kind: "minor", en: "Najran", ar: "نجران", dx: 0, dy: 19},
   {id: "jizan", x: 391, y: 729, kind: "minor", en: "Jizan", ar: "جازان", dx: 0, dy: 20},
   {id: "bahrain", x: 735, y: 332, kind: "minor", en: "Bahrain", ar: "البحرين", dx: 15, dy: 0},
+  {id: "jordan", x: 130, y: 70, kind: "minor", en: "Jordan", ar: "الأردن", dx: 0, dy: 19},
+  {id: "syria", x: 152, y: -28, kind: "minor", en: "Syria", ar: "سوريا", dx: 0, dy: 19},
+  {id: "iraq", x: 462, y: 50, kind: "minor", en: "Iraq", ar: "العراق", dx: 0, dy: 19},
+  {id: "kuwait", x: 622, y: 158, kind: "minor", en: "Kuwait", ar: "الكويت", dx: 14, dy: 0},
+  {id: "qatar", x: 774, y: 374, kind: "minor", en: "Qatar", ar: "قطر", dx: 14, dy: 0},
+  {id: "uae", x: 884, y: 392, kind: "minor", en: "UAE", ar: "الإمارات", dx: 14, dy: 0},
+  {id: "oman", x: 962, y: 540, kind: "minor", en: "Oman", ar: "عُمان", dx: 0, dy: 19},
+  {id: "yemen", x: 505, y: 772, kind: "minor", en: "Yemen", ar: "اليمن", dx: 0, dy: 19},
 ] as const;
 
 const routes = [
@@ -40,7 +50,18 @@ const routes = [
   {id: "abha-najran", d: "M384 672Q445 696 486 684", local: true},
   {id: "abha-jizan", d: "M384 672Q418 704 391 729", local: true},
   {id: "dammam-bahrain", d: "M697 290Q721 297 735 332", local: true},
+  {id: "sakakah-jordan", d: "M293 144Q205 128 130 70", local: true},
+  {id: "jordan-syria", d: "M130 70Q122 18 152 -28", local: true},
+  {id: "qassim-iraq", d: "M451 233Q486 140 462 50", local: true},
+  {id: "dammam-kuwait", d: "M697 290Q676 210 622 158", local: true},
+  {id: "bahrain-qatar", d: "M735 332Q768 340 774 374", local: true},
+  {id: "dammam-uae", d: "M697 290Q826 322 884 392", local: true},
+  {id: "uae-oman", d: "M884 392Q952 440 962 540", local: true},
+  {id: "najran-yemen", d: "M486 684Q520 724 505 772", local: true},
 ] as const;
+
+// Drawing area: the Saudi base map plus room for the neighbouring markets above, right and below it.
+const VIEW = {x: 30, y: -75, width: 990, height: 880};
 
 export function DistributionNetworkMap({locale}: {locale: Locale}) {
   const ar = locale === "ar";
@@ -71,18 +92,17 @@ export function DistributionNetworkMap({locale}: {locale: Locale}) {
   }, {scope});
 
   const label = locale === "ar"
-    ? "خريطة شبكة التوزيع من الرياض عبر مناطق المملكة العربية السعودية والبحرين"
-    : "Distribution network from Riyadh across Saudi Arabia and Bahrain";
+    ? "خريطة شبكة التوزيع من الرياض عبر مناطق المملكة العربية السعودية ودول الخليج والأسواق المجاورة"
+    : "Distribution network from Riyadh across Saudi Arabia, the Gulf and neighbouring markets";
 
   return <section ref={scope} className={styles.section} aria-label={label} data-distribution-map>
     <div className={`container-xxl ${styles.frame}`}>
       <header className={styles.header}>
         <h2>{ar ? <>شبكة توزيعنا<br/>في جميع أنحاء المملكة العربية السعودية</> : <>Our Distribution Network<br/>Across Saudi Arabia</>}</h2>
-        <p>{ar ? "نصل إلى المستهلكين في جميع أنحاء المملكة عبر شبكة توزيع قوية ومتنامية." : "We reach consumers across the Kingdom through a strong and growing distribution network."}</p>
       </header>
-      <svg className={styles.map} viewBox="30 0 930 780" role="img" aria-label={label}>
+      <svg className={styles.map} viewBox={`${VIEW.x} ${VIEW.y} ${VIEW.width} ${VIEW.height}`} role="img" aria-label={label}>
         <defs>
-          {routes.map(route => <mask key={route.id} id={`${maskPrefix}-${route.id}`} maskUnits="userSpaceOnUse" x="30" y="0" width="930" height="780" style={{maskType: "luminance"}}>
+          {routes.map(route => <mask key={route.id} id={`${maskPrefix}-${route.id}`} maskUnits="userSpaceOnUse" x={VIEW.x} y={VIEW.y} width={VIEW.width} height={VIEW.height} style={{maskType: "luminance"}}>
             <path d={route.d} pathLength="1" fill="none" stroke="white" strokeWidth="14" strokeLinecap="round" strokeDasharray="1" strokeDashoffset="0" data-route-reveal/>
           </mask>)}
         </defs>
