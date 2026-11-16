@@ -9713,3 +9713,55 @@ html[dir="rtl"] .form-field select {
     border-bottom-color: rgba(255, 255, 255, .1)
   }
 }
+
+/* Our Values (Vision, Mission & Values): title centred above the value cards. */
+.section-heading--centred {
+  max-width: none;
+  text-align: center
+}
+
+.section-heading--centred h2 {
+  max-width: none;
+  margin-inline: auto
+}
+
+.section-heading--centred .section-kicker {
+  justify-content: center
+}
+
+/* Logistics "Our Network in Numbers": an icon above each counter. */
+.manufacturing-metrics__icon {
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  margin: 0 auto 1.1rem;
+  border-radius: 50%;
+  background: rgba(30, 78, 42, .08);
+  color: var(--mah-copper);
+  transition: background .35s, color .35s, transform .35s
+}
+
+.manufacturing-metrics__icon svg {
+  width: 1.6rem;
+  height: 1.6rem
+}
+
+.manufacturing-metrics__item:hover .manufacturing-metrics__icon {
+  background: var(--mah-green-900);
+  color: #fff;
+  transform: translateY(-3px)
+}
+
+@media (max-width: 767px) {
+  .manufacturing-metrics__icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    margin-bottom: .8rem
+  }
+
+  .manufacturing-metrics__icon svg {
+    width: 1.35rem;
+    height: 1.35rem
+  }
+}

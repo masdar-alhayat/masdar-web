@@ -528,10 +528,13 @@ export function SectionRenderer({
   if (renderVariant === "logistics-counters") {
     // Only an explicit Main Heading is shown (no fallback to the eyebrow), so the counters can stand under the eyebrow alone.
     const countersHeading = firstLocalizedItemValue(section, locale, ["Main Heading"]);
-    const items = groups.filter(group => group.prefix === "Counter").map(group => ({
+    // Icons follow the counter order: logistics locations, fleet vehicles, warehouses, export markets.
+    const counterIcons = ["locations", "fleet", "warehouses", "markets"] as const;
+    const items = groups.filter(group => group.prefix === "Counter").map((group, counterIndex) => ({
       value: Number(value(group.parts.Value, locale)),
       label: value(group.parts.Label, locale),
       suffix: value(group.parts.Suffix, locale),
+      icon: counterIcons[counterIndex],
     }));
     return <AnimatedSection className="content-section logistics-strength" variant="stagger">
       <div className="container-xxl">
@@ -2514,6 +2517,9 @@ export function SectionRenderer({
     layout === 1 ||
     groups.length >= 4
   ) {
+    // Our Values shows a centred title on its own (its introduction was removed); the cards keep their descriptions.
+    const centredTitle = section.title === "Our Values" && copy.length === 0;
+
     return (
       <AnimatedSection
         className={`content-section matrix-section content-section--${theme}`}
@@ -2521,7 +2527,7 @@ export function SectionRenderer({
       >
         <div className="container-xxl">
           <header
-            className="section-heading section-heading--wide"
+            className={centredTitle ? "section-heading section-heading--centred" : "section-heading section-heading--wide"}
             data-animate
           >
             <div>
@@ -2538,7 +2544,7 @@ export function SectionRenderer({
               <h2>{heading}</h2>
             </div>
 
-            <div>
+            {copy.length > 0 && <div>
               {copy.map(
                 (
                   paragraph,
@@ -2549,7 +2555,7 @@ export function SectionRenderer({
                   </p>
                 ),
               )}
-            </div>
+            </div>}
           </header>
 
           <div className="matrix-grid">

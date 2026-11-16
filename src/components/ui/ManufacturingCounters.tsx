@@ -4,6 +4,7 @@ import {useRef} from "react";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {useGSAP} from "@gsap/react";
+import {Earth, MapPinned, Truck, Warehouse} from "lucide-react";
 import type {Locale} from "@/types/content";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -12,6 +13,16 @@ export interface ManufacturingCounterItem {
   value: number;
   label: string;
   suffix?: string;
+  /** Optional icon shown above the number (used by the Logistics "Our Network in Numbers" counters). */
+  icon?: keyof typeof COUNTER_ICONS;
+}
+
+// Icons are referenced by name so server components can pass them to this client component.
+export const COUNTER_ICONS = {locations: MapPinned, fleet: Truck, warehouses: Warehouse, markets: Earth};
+
+function CounterIcon({name}: {name: keyof typeof COUNTER_ICONS}) {
+  const Icon = COUNTER_ICONS[name];
+  return <span className="manufacturing-metrics__icon" aria-hidden="true"><Icon strokeWidth={1.6}/></span>;
 }
 
 function formatCounter(value: number, locale: Locale) {
@@ -79,6 +90,7 @@ export function ManufacturingCounters({
   >
     <div className="manufacturing-metrics__grid">
       {items.map((item) => <div className="manufacturing-metrics__item" key={item.label}>
+        {item.icon && <CounterIcon name={item.icon}/>}
         <strong dir="ltr" data-manufacturing-count={item.value} data-manufacturing-suffix={item.suffix}>{formatCounter(item.value, locale)}{item.suffix}</strong>
         <span>{item.label}</span>
       </div>)}

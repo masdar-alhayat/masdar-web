@@ -545,7 +545,7 @@
           {
             "label": "Partnership 1 Description",
             "en": "Food solutions developed for structured retail environments and changing consumer demand.",
-            "ar": "حلول غذائية مبتكرة ومتنوعة تلبي قطاع التجزئة والتجارة الحديثة، تواكب تطلعات المستهلكين واحتياجاتهم المتجددة"
+            "ar": "حلول غذائية مبتكرة ومتنوعة تلبي متطلبات قطاع التجزئة والتجارة الحديثة، تواكب تطلعات المستهلكين واحتياجاتهم المتجددة"
           },
           {
             "label": "Partnership 2 Title",
@@ -1355,13 +1355,13 @@
           },
           {
             "label": "Paragraph 1",
-            "en": "Our values define how we approach our responsibilities, make decisions and work with one another. They provide a consistent standard for our behaviour across offices, manufacturing operations and market relationships.",
-            "ar": "تحدد قيمنا كيفية تعاملنا مع مسؤولياتنا، واتخاذ قراراتنا، والعمل مع بعضنا البعض. كما توفر معياراً ثابتاً لسلوكنا في المكاتب والعمليات التصنيعية والعلاقات السوقية."
+            "en": "",
+            "ar": ""
           },
           {
             "label": "Paragraph 2",
-            "en": "These values are not limited to statements. They are intended to influence our daily actions, leadership approach, customer relationships and long-term development.",
-            "ar": "ولا تقتصر هذه القيم على كونها عبارات مكتوبة، بل تهدف إلى التأثير في ممارساتنا اليومية ونهجنا القيادي وعلاقاتنا مع العملاء وتطورنا طويل المدى."
+            "en": "",
+            "ar": ""
           },
           {
             "label": "Value 1 Title",
