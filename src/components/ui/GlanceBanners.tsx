@@ -14,8 +14,8 @@ export interface GlanceBannerItem {
   image?: {src: string; alt: string; contain?: boolean; background?: string};
 }
 
-// One Masdar Al Hayat brand colour per banner overlay, in item order.
-const tints = ["var(--mah-green-900)", "var(--mah-copper)", "var(--mah-gold)", "var(--mah-green-700)", "var(--mah-charcoal-700)"];
+// Every banner uses the same Masdar Al Hayat deep-green overlay.
+const tint = "var(--mah-green-900)";
 
 export function GlanceBanners({items, locale}: {items: GlanceBannerItem[]; locale: Locale}) {
   const [active, setActive] = useState<number | null>(null);
@@ -65,7 +65,7 @@ export function GlanceBanners({items, locale}: {items: GlanceBannerItem[]; local
       {items.map((item, index) => <article key={item.title} className={`glance-banner${item.image?.contain ? " glance-banner--contain" : ""}`} tabIndex={0}
         data-active={active === index}
         aria-label={`${number(index)} / ${number(items.length - 1)}`}
-        style={{"--glance-tint": tints[index % tints.length], ...(item.image?.background ? {"--glance-bg": item.image.background} : {})} as React.CSSProperties}
+        style={{"--glance-tint": tint, ...(item.image?.background ? {"--glance-bg": item.image.background} : {})} as React.CSSProperties}
         onMouseEnter={() => setActive(index)}
         onFocus={() => setActive(index)}
         onClick={() => setActive(index)}>

@@ -9606,8 +9606,8 @@ html[dir="rtl"] .form-field select {
 }
 
 .glance-banner--contain .glance-banner__image {
-  top: 7% !important;
-  height: 52% !important;
+  top: 5% !important;
+  height: 46% !important; /* ends above the overlay so the artwork (e.g. the map's southern pins) is never covered */
   padding-inline: 8%;
   object-fit: contain;
   transform: none
@@ -9636,8 +9636,8 @@ html[dir="rtl"] .form-field select {
 @media (max-width: 991px) {
   .glance-banner--contain .glance-banner__image,
   .glance-banner--contain[data-active="true"] .glance-banner__image {
-    top: 5% !important;
-    height: 38% !important;
+    top: 4% !important;
+    height: 37% !important;
     transform: none
   }
 

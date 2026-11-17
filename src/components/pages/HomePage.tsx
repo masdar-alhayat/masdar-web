@@ -44,10 +44,10 @@ export function HomePage({page, locale}: {page: PageContent; locale: Locale}) {
     title: value(group.parts.Title, locale),
     description: value(group.parts.Description, locale),
     image: index === 0 ? {
-      src: HOME_IMAGES.glanceSaudiPresence,
-      alt: ar ? "خريطة المملكة العربية السعودية تُظهر شبكة توزيع مصدر الحياة انطلاقاً من الرياض" : "Map of Saudi Arabia showing the Masdar Al Hayat distribution network from Riyadh",
+      src: HOME_IMAGES.glanceNetworkStrength,
+      alt: ar ? "خريطة شبكة مصدر الحياة انطلاقاً من مصنع الرياض إلى مراكز القصيم وجدة والدمام وأبها، وصولاً إلى أسواق الخليج والمنطقة" : "Map of the Masdar Al Hayat network from the Riyadh facility to hubs in Al Qassim, Jeddah, Dammam and Abha, reaching cities across the Kingdom and regional export markets",
       contain: true,
-      background: "#f2efe6",
+      background: "#f5f1e8",
     } : index === 1 ? {
       src: BRAND_LOGOS.tamimiGroup,
       alt: ar ? "شعار مجموعة التميمي" : "Tamimi Group logo",
