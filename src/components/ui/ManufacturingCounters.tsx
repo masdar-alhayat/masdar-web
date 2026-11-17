@@ -4,7 +4,7 @@ import {useRef} from "react";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {useGSAP} from "@gsap/react";
-import {Earth, MapPinned, Truck, Warehouse} from "lucide-react";
+import {Earth, Truck, Warehouse, Waypoints} from "lucide-react";
 import type {Locale} from "@/types/content";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -18,7 +18,7 @@ export interface ManufacturingCounterItem {
 }
 
 // Icons are referenced by name so server components can pass them to this client component.
-export const COUNTER_ICONS = {locations: MapPinned, fleet: Truck, warehouses: Warehouse, markets: Earth};
+export const COUNTER_ICONS = {networks: Waypoints, fleet: Truck, warehouses: Warehouse, markets: Earth};
 
 function CounterIcon({name}: {name: keyof typeof COUNTER_ICONS}) {
   const Icon = COUNTER_ICONS[name];

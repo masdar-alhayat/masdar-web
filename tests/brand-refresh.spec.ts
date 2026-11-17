@@ -63,7 +63,7 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator(".logistics-strength")).toHaveCSS("background-color", "rgb(255, 255, 255)");
     const values = page.locator(".logistics-strength [data-manufacturing-count]");
     await expect(values).toHaveCount(4);
-    for (const [index, number] of [16, 500, 4, 10].entries()) await expect(values.nth(index)).toHaveAttribute("data-manufacturing-count", String(number));
+    for (const [index, number] of [16, 600, 6, 10].entries()) await expect(values.nth(index)).toHaveAttribute("data-manufacturing-count", String(number));
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   });
 }

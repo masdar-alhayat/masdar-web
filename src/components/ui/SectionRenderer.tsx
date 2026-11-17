@@ -528,8 +528,8 @@ export function SectionRenderer({
   if (renderVariant === "logistics-counters") {
     // Only an explicit Main Heading is shown (no fallback to the eyebrow), so the counters can stand under the eyebrow alone.
     const countersHeading = firstLocalizedItemValue(section, locale, ["Main Heading"]);
-    // Icons follow the counter order: logistics locations, fleet vehicles, warehouses, export markets.
-    const counterIcons = ["locations", "fleet", "warehouses", "markets"] as const;
+    // Icons follow the counter order: logistics networks, fleet, warehouses, export markets.
+    const counterIcons = ["networks", "fleet", "warehouses", "markets"] as const;
     const items = groups.filter(group => group.prefix === "Counter").map((group, counterIndex) => ({
       value: Number(value(group.parts.Value, locale)),
       label: value(group.parts.Label, locale),

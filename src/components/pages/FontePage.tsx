@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {ArrowDown, ArrowUpRight, CloudSun, HeartHandshake, Moon, Play, ShieldCheck, Sparkles, Sun, Sunrise, Sunset, Timer, UtensilsCrossed} from "lucide-react";
+import {ArrowDown, ArrowUpRight, CloudSun, Crown, HeartHandshake, Moon, Play, ShieldCheck, Sparkles, Sun, Sunrise, Sunset, Timer, Trophy, UtensilsCrossed} from "lucide-react";
 import {HeroMotion} from "@/components/motion/HeroMotion";
 import {AnimatedSection} from "@/components/motion/AnimatedSection";
 import {FonteProductExplorer} from "@/components/ui/FonteProductExplorer";
@@ -64,6 +64,10 @@ export function FontePage({locale}: {locale: Locale}) {
           <div className={styles.heroCopy}>
             <h1 data-hero-title><span>{ar ? "لكل مناسبة" : "Every Occasion."}</span><span><em>{ar ? "احتفال." : "A Celebration."}</em></span></h1>
             <p data-hero-copy>{ar ? "خيارات غذائية ترافق لحظاتكم اليومية." : "Food made for your everyday moments."}</p>
+            <ul className={styles.heroHighlights} data-hero-copy aria-label={ar ? "مكانة فونتي في السوق" : "Fonte market position"}>
+              <li><span className={styles.highlightIcon} aria-hidden="true"><Trophy size={22}/></span><span><strong>{ar ? "العلامة رقم ١" : "No.1 Brand"}</strong>{ar ? "في التورتيلا" : "in Tortillas"}</span></li>
+              <li><span className={styles.highlightIcon} aria-hidden="true"><Crown size={22}/></span><span><strong>{ar ? "الرائدة في السوق" : "Market Leader"}</strong>{ar ? "في فئة المخبوزات والخبز المقطّع" : "in the Bakery and Sliced Bread category"}</span></li>
+            </ul>
             <div className={styles.heroActions} data-hero-actions>
               <a className={styles.primaryButton} href="#fonte-products">{ar ? "اكتشف منتجاتنا" : "Discover our products"}<ArrowDown size={18} aria-hidden="true"/></a>
               <a className={styles.ghostButton} href="#fonte-film"><span className={styles.playDot}><Play size={14} fill="currentColor" aria-hidden="true"/></span>{ar ? "شاهد خلف الكواليس" : "Watch behind the scenes"}</a>

@@ -40,6 +40,13 @@
 .hero h1 em {position: relative; display: inline-block; color: #ffdc94; font-style: normal;}
 .hero h1 em::after {content: ""; position: absolute; inset: auto 0 -.12em; height: .16em; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 20' preserveAspectRatio='none'%3E%3Cpath d='M3 14 C70 3 150 3 297 10' fill='none' stroke='%23f6b533' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;}
 .heroCopy > p {color: #ffede3; font-size: clamp(1.05rem,1.4vw,1.25rem); max-width: 43ch; margin-bottom: 2rem;}
+/* Market-position highlights (No.1 in tortillas, bakery & sliced bread leader) right under the hero intro. */
+.heroHighlights {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; max-width: 36rem; margin: -.6rem 0 2.1rem; padding: 0; list-style: none;}
+.heroHighlights li {display: flex; align-items: center; gap: .85rem; padding: .85rem 1rem; border: 1px solid #ffdc9466; border-radius: 1.1rem; background: linear-gradient(135deg, #ffffff26, #ffffff0d); box-shadow: 0 14px 30px #5b060d33; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);}
+.highlightIcon {display: grid; flex: 0 0 auto; place-items: center; width: 2.8rem; height: 2.8rem; border-radius: 50%; background: var(--fonte-gold); color: var(--fonte-deep); box-shadow: 0 0 0 4px #ffdc9440;}
+.heroHighlights li > span:last-child {display: flex; flex-direction: column; gap: .15rem; color: #ffede3; font-size: .82rem; font-weight: 600; line-height: 1.35;}
+.heroHighlights strong {color: #fff; font-size: 1.12rem; font-weight: 800; line-height: 1.15; letter-spacing: -.01em;}
+@media (max-width: 575px) {.heroHighlights {grid-template-columns: 1fr; max-width: none;}}
 .heroActions {display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem;}
 .heroChips {display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 2.4rem 0 0; list-style: none;}
 .heroChips li {display: inline-flex; align-items: center; gap: .5rem; padding: .4rem .85rem; border: 1px solid #ffffff38; border-radius: 50px; background: #ffffff12; color: #fff3e6; font-size: .74rem; font-weight: 650; backdrop-filter: blur(4px);}

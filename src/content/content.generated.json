@@ -203,9 +203,14 @@
             "ar": "18"
           },
           {
+            "label": "Counter 1 Suffix",
+            "en": "+",
+            "ar": "+"
+          },
+          {
             "label": "Counter 1 Label",
-            "en": "Years of Establishment",
-            "ar": "عاماً منذ التأسيس"
+            "en": "Years of Experience",
+            "ar": "عاماً من الخبرة"
           },
           {
             "label": "Counter 2 Value",
@@ -214,8 +219,8 @@
           },
           {
             "label": "Counter 2 Label",
-            "en": "Tons Annual Production Capacity",
-            "ar": "طن من الطاقة الإنتاجية السنوية"
+            "en": "Tons Production Capacity",
+            "ar": "طن من الطاقة الإنتاجية"
           },
           {
             "label": "Counter 3 Value",
@@ -244,13 +249,13 @@
           },
           {
             "label": "Counter 4 Label",
-            "en": "Products",
-            "ar": "منتج"
+            "en": "Products Portfolio",
+            "ar": "منتج في محفظتنا"
           },
           {
             "label": "Counter 5 Value",
-            "en": 1000,
-            "ar": 1000
+            "en": 10000,
+            "ar": 10000
           },
           {
             "label": "Counter 5 Suffix",
@@ -259,7 +264,7 @@
           },
           {
             "label": "Counter 5 Label",
-            "en": "Diverse Clients",
+            "en": "Diverse Customers",
             "ar": "عميل متنوع"
           },
           {
@@ -2630,13 +2635,13 @@
           },
           {
             "label": "Counter 1 Label",
-            "en": "Logistics locations across the Kingdom",
-            "ar": "موقعاً لوجستياً حول المملكة"
+            "en": "Own Logistics Networks",
+            "ar": "شبكة لوجستية خاصة"
           },
           {
             "label": "Counter 2 Value",
-            "en": 500,
-            "ar": 500
+            "en": 600,
+            "ar": 600
           },
           {
             "label": "Counter 2 Suffix",
@@ -2645,18 +2650,18 @@
           },
           {
             "label": "Counter 2 Label",
-            "en": "Vehicles in the distribution fleet",
-            "ar": "مركبة ضمن أسطول التوزيع"
+            "en": "Fleet",
+            "ar": "مركبة في الأسطول"
           },
           {
             "label": "Counter 3 Value",
-            "en": 4,
-            "ar": 4
+            "en": 6,
+            "ar": 6
           },
           {
             "label": "Counter 3 Label",
-            "en": "Main warehouses and distribution centres",
-            "ar": "مستودعات ومراكز توزيع رئيسية"
+            "en": "Main Warehouses",
+            "ar": "مستودعات رئيسية"
           },
           {
             "label": "Counter 4 Value",
