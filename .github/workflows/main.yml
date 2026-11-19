@@ -11,6 +11,10 @@ on:
           - staging
           - production
 
+concurrency:
+  group: masdar-pm2-${{ inputs.environment }}
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,6 +30,7 @@ jobs:
 
       # Deploy to VPS
       - name: Deploy
+        shell: bash
         run: |
           BASE_PATH="${{ secrets.VPS_BASE_PATH }}"
 
@@ -41,58 +46,176 @@ jobs:
             BRANCH="main"
           fi
 
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
-            set -euo pipefail
+          ssh "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            bash -s -- "$APP_PATH" "$APP_NAME" "$PORT" "$BRANCH" << 'REMOTE_SCRIPT'
+          set -Eeuo pipefail
 
-            BASE_PATH="$APP_PATH"
-            APP_NAME="$APP_NAME"
-            PORT="$PORT"
-            BRANCH="$BRANCH"
+          BASE_PATH="$1"
+          APP_NAME="$2"
+          PORT="$3"
+          BRANCH="$4"
 
-            if [ ! -d "\$BASE_PATH" ]; then
-              echo "Base path does not exist: \$BASE_PATH"
-              exit 1
+          if [ ! -d "$BASE_PATH" ]; then
+            echo "Base path does not exist: $BASE_PATH"
+            exit 1
+          fi
+
+          BASE_PATH=$(cd "$BASE_PATH" && pwd -P)
+          TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+          RELEASE_DIR="$BASE_PATH/releases/$TIMESTAMP"
+          LOG_DIR="$BASE_PATH/logs"
+          LOG_FILE="$LOG_DIR/deploy_$TIMESTAMP.log"
+          CURRENT_PATH="$BASE_PATH/current"
+          LEGACY_BACKUP="$BASE_PATH/current-backup-$TIMESTAMP"
+          PREVIOUS_RELEASE=""
+          if [ -e "$CURRENT_PATH" ]; then
+            PREVIOUS_RELEASE=$(readlink -f "$CURRENT_PATH")
+          fi
+          LEGACY_MOVED=0
+          SWITCHED=0
+          PROCESS_REPLACED=0
+          NODE_BIN=$(command -v node)
+
+          mkdir -p "$BASE_PATH/releases" "$LOG_DIR"
+          exec > >(tee -a "$LOG_FILE") 2>&1
+
+          start_release() {
+            local release="$1"
+            test -s "$release/.next/BUILD_ID" || return 1
+            test -d "$release/.next/static" || return 1
+            test -f "$release/node_modules/next/dist/bin/next" || return 1
+            echo "Starting Next.js from physical release: $release"
+            NODE_ENV=production pm2 start "$release/node_modules/next/dist/bin/next" \
+              --name "$APP_NAME" --cwd "$release" --interpreter "$NODE_BIN" \
+              --output "$LOG_DIR/app_$TIMESTAMP.out.log" \
+              --error "$LOG_DIR/app_$TIMESTAMP.err.log" --time \
+              -- start "$release" --hostname 0.0.0.0 --port "$PORT"
+          }
+
+          rollback() {
+            status=$?
+            trap - ERR
+            set +e
+            echo "Deployment failed. Check log: $LOG_FILE"
+
+            if [ "$PROCESS_REPLACED" = "1" ]; then
+              pm2 delete "${APP_NAME}-new" || true
+              pm2 delete "$APP_NAME" || true
             fi
 
-            TIMESTAMP=\$(date +"%Y-%m-%d_%H-%M-%S")
-            RELEASE_DIR="\$BASE_PATH/releases/\$TIMESTAMP"
-            LOG_DIR="\$BASE_PATH/logs"
-            LOG_FILE="\$LOG_DIR/deploy_\$TIMESTAMP.log"
+            if [ "$LEGACY_MOVED" = "1" ]; then
+              # Remove only the link we installed, then restore the saved directory.
+              if [ -L "$CURRENT_PATH" ]; then unlink "$CURRENT_PATH"; fi
+              mv -T -- "$LEGACY_BACKUP" "$CURRENT_PATH"
+              echo "Restored legacy directory: $CURRENT_PATH"
+            elif [ "$SWITCHED" = "1" ]; then
+              if [ -n "$PREVIOUS_RELEASE" ]; then
+                ln -sfnT -- "$PREVIOUS_RELEASE" "$CURRENT_PATH"
+              elif [ -L "$CURRENT_PATH" ]; then
+                unlink "$CURRENT_PATH"
+              fi
+            fi
 
-            mkdir -p "\$BASE_PATH/releases"
-            mkdir -p "\$LOG_DIR"
+            if [ "$PROCESS_REPLACED" = "1" ]; then
+              if [ -n "$PREVIOUS_RELEASE" ] && start_release "$PREVIOUS_RELEASE"; then
+                echo "Restarted previous release; availability still requires verification."
+              else
+                echo "No runnable previous build was available. Preserved release files for recovery."
+              fi
+              pm2 save --force
+            fi
 
-            {
-              echo "===== DEPLOY START: \$TIMESTAMP ====="
+            exit "$status"
+          }
+          trap rollback ERR
 
-              GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
-              git clone --branch "\$BRANCH" git@github.com:masdar-alhayat/masdar-web.git "\$RELEASE_DIR"
+          echo "Starting deployment at $TIMESTAMP"
 
-              cd "\$RELEASE_DIR"
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_masdar_actions -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
+            git clone --branch "$BRANCH" --single-branch \
+            git@github.com:masdar-alhayat/masdar-web.git "$RELEASE_DIR"
 
-              npm ci
-              npm run build
+          cd "$RELEASE_DIR"
+          DEPLOYED_COMMIT=$(git rev-parse --short HEAD)
+          echo "Building commit $DEPLOYED_COMMIT from branch $BRANCH"
+          printf '%s\n' "$DEPLOYED_COMMIT" > public/deployment-version.txt
 
-              pm2 start npm --name "\${APP_NAME}-new" -- start -- -p "\$PORT"
+          npm ci
+          npm run build
 
-              ln -sfn "\$RELEASE_DIR" "\$BASE_PATH/current"
+          # Validate the build before touching the existing service or current path.
+          test -s "$RELEASE_DIR/.next/BUILD_ID"
+          test -d "$RELEASE_DIR/.next/static"
+          test -f "$RELEASE_DIR/node_modules/next/dist/bin/next"
+          if [ -e "$CURRENT_PATH" ] && [ ! -L "$CURRENT_PATH" ]; then
+            test -d "$CURRENT_PATH"
+            test ! -e "$LEGACY_BACKUP"
+            mv -T -- "$CURRENT_PATH" "$LEGACY_BACKUP"
+            LEGACY_MOVED=1
+            echo "Preserved existing current directory at $LEGACY_BACKUP"
+          fi
+          # -T forbids silently creating a nested link inside an existing directory.
+          ln -sfnT -- "$RELEASE_DIR" "$CURRENT_PATH"
+          SWITCHED=1
+          test "$(readlink -f "$CURRENT_PATH")" = "$RELEASE_DIR"
 
-              pm2 delete "\$APP_NAME" || true
-              pm2 rename "\${APP_NAME}-new" "\$APP_NAME"
+          PROCESS_REPLACED=1
+          pm2 delete "${APP_NAME}-new" || true
+          pm2 delete "$APP_NAME" || true
+          start_release "$RELEASE_DIR"
 
-              pm2 save
+          check_release() {
+            "$NODE_BIN" --input-type=module - "$PORT" "$DEPLOYED_COMMIT" << 'NODE_CHECK'
+          const port = process.argv[2];
+          const expectedCommit = process.argv[3];
+          const baseUrl = `http://127.0.0.1:${port}`;
 
-              echo "===== DEPLOY SUCCESS ====="
+          async function get(path) {
+            const response = await fetch(`${baseUrl}${path}`, {redirect: "follow", signal: AbortSignal.timeout(5000)});
+            if (!response.ok) throw new Error(`${path} returned HTTP ${response.status}`);
+            return response;
+          }
 
-            } >> "\$LOG_FILE" 2>&1 || {
-
-              echo "===== DEPLOY FAILED ====="
-              echo "Check log: \$LOG_FILE"
-
-              pm2 delete "\${APP_NAME}-new" || true
-              exit 1
+          try {
+            const version = (await (await get("/deployment-version.txt")).text()).trim();
+            if (version !== expectedCommit) {
+              throw new Error(`expected commit ${expectedCommit}, received ${version}`);
             }
 
-            cd "\$BASE_PATH/releases"
-            ls -dt */ | tail -n +4 | xargs rm -rf || true
-          EOF
+            const html = await (await get("/")).text();
+            const cssPath = html.match(/\/_next\/static\/[^" ]+\.css/)?.[0];
+            if (!cssPath) throw new Error("homepage did not reference a compiled stylesheet");
+
+            await get(cssPath);
+            await get("/brand/masdar-logo.png");
+          } catch (error) {
+            console.error(error.message);
+            if (error.cause) console.error(error.cause);
+            process.exit(1);
+          }
+          NODE_CHECK
+          }
+
+          READY=0
+          for attempt in $(seq 1 15); do
+            if check_release; then
+              READY=1
+              break
+            fi
+
+            sleep 2
+          done
+
+          if [ "$READY" != "1" ]; then
+            echo "New release did not serve its CSS and public assets."
+            pm2 logs "$APP_NAME" --lines 100 --nostream || true
+            false
+          fi
+
+          pm2 save
+          trap - ERR
+
+          echo "Deployment successful: $DEPLOYED_COMMIT"
+
+          # Keep releases and the legacy backup available for recovery.
+          REMOTE_SCRIPT

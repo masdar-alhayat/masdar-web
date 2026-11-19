@@ -1,0 +1,1657 @@
+You are a world-class Creative Director, UI/UX Designer, Frontend Architect, React Developer, Next.js Developer, GSAP Motion Designer, Accessibility Specialist, SEO Engineer and Performance Engineer.
+
+Your assignment is to design and develop the complete bilingual corporate website for:
+
+MASDAR AL HAYAT FOR FOOD INDUSTRIES LTD.
+شركة مصدر الحياة للصناعات الغذائية المحدودة
+
+This must be a production-quality corporate website built with React, Next.js, TypeScript, Bootstrap, custom CSS/SCSS and GSAP.
+
+This is not a generic business template, a basic Bootstrap website, a one-page landing page or a superficial visual prototype. It must be a complete, highly polished, internationally competitive corporate website representing a Saudi food-manufacturing company with heritage, industrial capability, food-safety discipline, trusted brands and long-term business ambition.
+
+The final result must feel like a digital corporate masterpiece.
+
+==================================================
+1. PRIMARY PROJECT FILES
+==================================================
+
+Use the following attached files as the project’s primary source of truth:
+
+1. MASDAR-WEB-CONTENT.xlsx
+2. Official Masdar Al Hayat logo image
+
+The Excel workbook contains:
+
+- Final website menu structure
+- English content
+- Arabic content
+- Page headings
+- Section headings
+- Paragraphs
+- Statistics and content placeholders
+- CTAs
+- Form fields
+- SEO titles
+- Meta descriptions
+- Suggested URLs
+- Content-display instructions
+- Client-confirmation notes
+- Internal strategic notes
+
+Read and understand every worksheet before designing or coding.
+
+Do not skip content merely because a page contains many sections. Instead, intelligently group related content into premium visual experiences such as timelines, tabs, layered layouts, process diagrams, interactive panels, sticky storytelling sections, image-led compositions, data blocks, accordions and responsive content frameworks.
+
+Do not rewrite, summarize or replace approved content unnecessarily. Preserve the meaning and wording of the English and Arabic content from the workbook.
+
+==================================================
+2. CONTENT GOVERNANCE RULES
+==================================================
+
+The Excel workbook is the content source of truth.
+
+Follow these rules strictly:
+
+- Use all approved public-facing English and Arabic content.
+- Maintain semantic parity between English and Arabic.
+- Do not invent statistics, certifications, production capacity, leadership names, addresses, phone numbers, email addresses, export markets or sustainability achievements.
+- Do not publish rows listed under “Information Requiring Client Confirmation.”
+- Keep unconfirmed data in a private typed configuration file with a clearly marked status.
+- Hide unconfirmed public components by default.
+- Do not publicly render the section titled:
+  “Internal Competitive Benchmark — Not for Public Display.”
+- Use “Market & Industry Landscape” as the public-facing page title rather than an aggressive competitor-comparison title.
+- Use short content versions only where the workbook identifies them as summary or preview content.
+- Use complete content on the corresponding dedicated pages.
+- Never use Lorem Ipsum.
+- Never insert fabricated corporate claims.
+- Never turn the website into a product e-commerce catalogue.
+
+Convert the workbook content into structured, typed locale files during development.
+
+Do not read the Excel workbook in the browser at runtime.
+
+Recommended content structure:
+
+src/content/
+├── en/
+│   ├── home.ts
+│   ├── about.ts
+│   ├── group-story.ts
+│   ├── vision-mission-values.ts
+│   ├── leadership-governance.ts
+│   ├── manufacturing-operations.ts
+│   ├── quality-compliance.ts
+│   ├── sustainability.ts
+│   ├── brands.ts
+│   ├── partnerships.ts
+│   ├── market-presence.ts
+│   ├── market-landscape.ts
+│   ├── careers.ts
+│   └── contact.ts
+│
+└── ar/
+    ├── home.ts
+    ├── about.ts
+    ├── group-story.ts
+    ├── vision-mission-values.ts
+    ├── leadership-governance.ts
+    ├── manufacturing-operations.ts
+    ├── quality-compliance.ts
+    ├── sustainability.ts
+    ├── brands.ts
+    ├── partnerships.ts
+    ├── market-presence.ts
+    ├── market-landscape.ts
+    ├── careers.ts
+    └── contact.ts
+
+Define TypeScript interfaces for headings, paragraphs, cards, timelines, statistics, CTAs, forms, SEO metadata and media assets.
+
+==================================================
+3. CREATIVE VISION
+==================================================
+
+Create a visual identity around the concept:
+
+“Saudi Food-Manufacturing Heritage, Built for the Future.”
+
+The website should express:
+
+- Saudi industrial development
+- Food-manufacturing expertise
+- Bread and baking
+- Freshness and nourishment
+- Health and food safety
+- Trust and consistency
+- Modern manufacturing
+- Family food occasions
+- Business partnerships
+- Urban growth
+- Saudi heritage
+- Tamimi Group legacy
+- Responsible production
+- Market evolution
+- Long-term value creation
+
+The website must feel:
+
+- Premium
+- Corporate
+- Warm
+- Trustworthy
+- Established
+- Modern
+- Industrial
+- Human
+- Culturally relevant
+- Internationally competitive
+
+Balance food warmth with industrial precision.
+
+Do not make the site look like:
+
+- A restaurant website
+- A bakery shop
+- A supermarket
+- A food-delivery application
+- A generic manufacturing template
+- A generic green sustainability template
+- A startup or SaaS landing page
+
+The experience should combine editorial storytelling, sophisticated corporate layouts, modern motion and subtle food-industry visual language.
+
+==================================================
+4. BRAND COLOUR SYSTEM
+==================================================
+
+Derive the design system from the attached official logo.
+
+Use the following approximate palette as the starting point and visually refine it against the logo:
+
+Primary colours:
+
+--mah-green-900: #1E4E2A;
+--mah-green-700: #2E6B37;
+--mah-green-500: #599252;
+--mah-sage-400: #87AC8C;
+
+Warm secondary colours:
+
+--mah-copper-700: #8B3F27;
+--mah-gold-600: #B87D3D;
+--mah-sand-500: #CEA36D;
+
+Neutral colours:
+
+--mah-cream-100: #F7F3EA;
+--mah-wheat-200: #EAE0D0;
+--mah-stone-300: #CBCAB2;
+--mah-charcoal-900: #18211B;
+--mah-charcoal-700: #344039;
+--mah-white: #FFFFFF;
+
+Colour usage:
+
+- Deep green should establish trust, manufacturing strength and corporate identity.
+- Medium green should support interaction, highlights and natural themes.
+- Gold and copper should express heritage, wheat, baking and legacy.
+- Cream and wheat tones should create warmth and editorial sophistication.
+- Dark charcoal should replace pure black for most text and dark sections.
+- White space must remain generous.
+- Do not use every brand colour in every section.
+- Do not use neon colours.
+- Do not introduce unrelated blue or purple gradients.
+- Avoid excessive gradients.
+- Do not recolour or distort the official logo.
+
+Use subtle visual textures inspired by:
+
+- Grain
+- Flour
+- Wheat
+- Bread crust
+- Paper
+- Natural fibres
+- Manufacturing grids
+- Packaging lines
+- Curved elements derived from the logo geometry
+
+Textures must remain subtle and must not reduce readability.
+
+==================================================
+5. TYPOGRAPHY
+==================================================
+
+Use Google Fonts through next/font/google.
+
+Primary English font:
+
+Manrope
+
+Recommended English weights:
+
+- 400 for body text
+- 500 for labels and navigation
+- 600 for subheadings and buttons
+- 700 for major headings
+- 800 only for selective numerical statements
+
+Primary Arabic font:
+
+Alexandria
+
+Recommended Arabic weights:
+
+- 400 for body text
+- 500 for navigation and labels
+- 600 for subheadings
+- 700 for major headings
+
+Typography must be tuned independently for English and Arabic.
+
+Recommended responsive scale:
+
+Hero heading:
+clamp(3rem, 6vw, 6.25rem)
+
+Major section heading:
+clamp(2.25rem, 4.2vw, 4.5rem)
+
+Inner-page hero heading:
+clamp(2.75rem, 5vw, 5rem)
+
+Card heading:
+clamp(1.25rem, 1.8vw, 1.75rem)
+
+English body:
+17px–19px desktop
+16px–17px mobile
+line-height: 1.7–1.8
+
+Arabic body:
+18px–20px desktop
+16px–18px mobile
+line-height: 1.85–2
+
+Navigation:
+14px–16px depending on viewport
+
+Section label:
+12px–14px
+uppercase or letter-spaced only in English
+do not apply Latin uppercase treatments to Arabic
+
+Typography rules:
+
+- Maintain readable line lengths between approximately 55 and 72 characters.
+- Do not allow long paragraphs to span the full viewport.
+- Use clear spacing between paragraphs.
+- Avoid oversized headings that break awkwardly.
+- Apply balanced text wrapping where supported.
+- Arabic headings must not be compressed or given excessive letter spacing.
+- Carefully check Arabic punctuation and alignment.
+- Avoid using very light font weights over images.
+
+==================================================
+6. TECHNOLOGY STACK
+==================================================
+
+Use the latest stable and mutually compatible versions available at project setup.
+
+Technical baseline:
+
+- Next.js 16.2 or newer stable release
+- React 19.2 or newer compatible stable release
+- TypeScript in strict mode
+- Next.js App Router
+- Bootstrap 5.3.8 or newer compatible Bootstrap 5 release
+- Bootstrap Sass source rather than a remote CDN
+- Custom SCSS/CSS Modules
+- GSAP 3
+- @gsap/react
+- GSAP ScrollTrigger
+- next-intl for bilingual routing and translations
+- React Hook Form
+- Zod
+- Lucide React for utility icons
+- Custom SVG illustrations for signature corporate visuals
+
+Do not use:
+
+- Create React App
+- jQuery
+- React-Bootstrap unless genuinely necessary
+- A heavy UI component framework
+- Material UI
+- Ant Design
+- Generic page-builder components
+- Inline styling throughout the application
+- Unnecessary animation libraries competing with GSAP
+
+Use Bootstrap primarily for:
+
+- Responsive grid
+- Container system
+- Layout utilities
+- Display utilities
+- Offcanvas foundation where appropriate
+- Form foundations
+
+Create the actual visual identity through custom SCSS, CSS Modules, CSS variables and bespoke React components.
+
+Do not allow the website to look like default Bootstrap.
+
+==================================================
+7. NEXT.JS ARCHITECTURE
+==================================================
+
+Use Server Components by default.
+
+Use Client Components only where required for:
+
+- GSAP animations
+- ScrollTrigger
+- Navigation interactions
+- Language switching
+- Accordions
+- Tabs
+- Carousels
+- Forms
+- Upload controls
+- Interactive maps
+- Mobile menu
+
+Recommended structure:
+
+src/
+├── app/
+│   ├── [locale]/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── about/
+│   │   │   ├── masdar-al-hayat/page.tsx
+│   │   │   ├── group-story-tamimi-group/page.tsx
+│   │   │   └── vision-mission-values/page.tsx
+│   │   ├── leadership-governance/page.tsx
+│   │   ├── operations-quality/
+│   │   │   ├── manufacturing-operations/page.tsx
+│   │   │   └── quality-food-safety-compliance/page.tsx
+│   │   ├── sustainability-responsibility/page.tsx
+│   │   ├── brands-partnerships/
+│   │   │   ├── brands-portfolio/page.tsx
+│   │   │   └── business-partnerships/page.tsx
+│   │   ├── market-presence/
+│   │   │   ├── exhibitions/page.tsx
+│   │   │   └── market-landscape/page.tsx
+│   │   ├── careers/page.tsx
+│   │   ├── contact/page.tsx
+│   │   ├── not-found.tsx
+│   │   ├── error.tsx
+│   │   └── loading.tsx
+│   │
+│   ├── sitemap.ts
+│   ├── robots.ts
+│   └── manifest.ts
+│
+├── components/
+│   ├── layout/
+│   │   ├── Header/
+│   │   ├── DesktopMegaMenu/
+│   │   ├── MobileNavigation/
+│   │   ├── Footer/
+│   │   ├── LanguageSwitcher/
+│   │   └── PageTransition/
+│   │
+│   ├── ui/
+│   │   ├── Button/
+│   │   ├── SectionHeading/
+│   │   ├── MediaFrame/
+│   │   ├── Breadcrumbs/
+│   │   ├── LogoWall/
+│   │   ├── Statistic/
+│   │   ├── Accordion/
+│   │   ├── Tabs/
+│   │   ├── Quote/
+│   │   └── FormField/
+│   │
+│   ├── sections/
+│   │   ├── home/
+│   │   ├── about/
+│   │   ├── group-story/
+│   │   ├── vision-values/
+│   │   ├── governance/
+│   │   ├── manufacturing/
+│   │   ├── quality/
+│   │   ├── sustainability/
+│   │   ├── brands/
+│   │   ├── partnerships/
+│   │   ├── market/
+│   │   ├── careers/
+│   │   └── contact/
+│   │
+│   ├── forms/
+│   │   ├── PartnershipForm/
+│   │   ├── CareersForm/
+│   │   └── ContactForm/
+│   │
+│   └── motion/
+│       ├── Reveal/
+│       ├── StaggerGroup/
+│       ├── ParallaxMedia/
+│       ├── AnimatedCounter/
+│       ├── TextReveal/
+│       ├── HorizontalStory/
+│       └── useReducedMotion.ts
+│
+├── content/
+├── i18n/
+├── lib/
+├── hooks/
+├── styles/
+├── types/
+└── validation/
+
+Use reusable design primitives without making every page use the same layout.
+
+Reusability must exist at the architectural level, not through repetitive visual compositions.
+
+==================================================
+8. INTERNATIONALISATION
+==================================================
+
+The website must support:
+
+- English as the default language without a URL prefix
+- Arabic using the /ar URL prefix
+- LTR English layouts
+- RTL Arabic layouts
+- Localised navigation
+- Localised breadcrumbs
+- Localised form labels
+- Localised validation messages
+- Localised metadata
+- Localised Open Graph content
+- Localised button labels
+- Localised error and success messages
+
+Use next-intl with an “as-needed” locale-prefix strategy.
+
+Examples:
+
+English:
+/about/masdar-al-hayat
+
+Arabic:
+/ar/about/masdar-al-hayat
+
+Set the correct:
+
+- html lang attribute
+- html dir attribute
+- canonical URL
+- alternate language URL
+- hreflang metadata
+
+Do not merely apply direction: rtl to the whole site and consider the Arabic version complete.
+
+Properly mirror:
+
+- Navigation alignment
+- Breadcrumb direction
+- Arrow icons
+- Carousels
+- Timelines
+- Grid progression
+- Content alignment
+- Decorative elements
+- GSAP entrance directions
+- Form controls
+- Offcanvas navigation
+
+Do not mirror:
+
+- Brand logos
+- Photographs
+- Numerals where inappropriate
+- Iconography whose meaning must remain consistent
+
+==================================================
+9. NAVIGATION SYSTEM
+==================================================
+
+The website has nine primary navigation categories and several subpages.
+
+Desktop navigation:
+
+1. Home
+
+2. About Us
+   - About Masdar Al Hayat
+   - Group Story – Tamimi Group
+   - Vision, Mission & Values
+
+3. Research & Innovation
+
+4. Operations & Quality
+   - Manufacturing & Operations
+   - Quality, Food Safety & Compliance
+
+5. Sustainability
+
+6. Brands & Partnerships
+   - Brands Portfolio
+   - Business Partnerships
+
+7. Market Presence
+   - Market Presence & Exhibitions
+   - Market & Industry Landscape
+
+8. Careers
+
+9. Contact
+
+Create a premium desktop navigation solution suitable for this menu size.
+
+Recommended behaviour:
+
+- Sticky header
+- Transparent or softly blended over the homepage hero
+- Transitions to a solid cream or white surface after scrolling
+- Logo on the left in English
+- Mirrored logo placement in Arabic where appropriate
+- Carefully spaced primary navigation
+- Structured mega menus for categories with subpages
+- Language switcher
+- Prominent but refined “Contact” or “Partner With Us” CTA
+- Active-route indicators
+- Keyboard-accessible dropdowns
+- Escape-key close behaviour
+- Click-outside close behaviour
+- No cramped navigation labels
+
+The mega menu should feel editorial and premium, not like a Bootstrap dropdown.
+
+It may include:
+
+- Subpage titles
+- One-line summaries
+- Contextual image
+- Featured CTA
+- Section numbering or subtle category labels
+
+Mobile navigation:
+
+- Full-height or large offcanvas experience
+- Nested accordion groups
+- Large touch targets
+- Clear language switcher
+- Visible contact CTA
+- Scroll locking
+- Focus trapping
+- Keyboard accessibility
+- RTL support
+- No tiny dropdowns
+- No horizontal overflow
+
+==================================================
+10. GLOBAL DESIGN PRINCIPLES
+==================================================
+
+Every page must feel part of one brand, but every major section must have its own composition.
+
+Do not repeat the same:
+
+- Hero structure
+- Three-card grid
+- Four-icon row
+- Split image-and-text block
+- Centred heading and cards
+- Rounded white cards on every section
+- Alternating left-right image pattern
+- Gradient background
+- Animation sequence
+
+Avoid “card fatigue.”
+
+Use a deliberate mix of:
+
+- Full-bleed imagery
+- Editorial columns
+- Asymmetric grids
+- Sticky narratives
+- Timeline experiences
+- Interactive process rails
+- Large typography
+- Data-led sections
+- Horizontal story sequences
+- Layered image compositions
+- Image masks
+- Architectural linework
+- Scroll-linked diagrams
+- Quote-led sections
+- Logo walls
+- Accordion-based detail
+- Tabs
+- Split-screen storytelling
+- Overlapping but controlled visual planes
+- Dark industrial sections
+- Warm editorial sections
+- Clean white corporate sections
+
+Do not create random visual variety.
+
+Every layout must be derived from the meaning of its content.
+
+==================================================
+11. PAGE-SPECIFIC CREATIVE DIRECTION
+==================================================
+
+A. HOME PAGE
+
+Create a powerful corporate homepage that introduces the complete Masdar Al Hayat story.
+
+The homepage must include every public section in the workbook, including:
+
+- Hero
+- Corporate introduction
+- Company at a glance
+- Manufacturing and operations
+- Corporate food portfolio
+- Fonte flagship brand
+- Quality and food safety
+- Tamimi Group
+- Business partnerships
+- Sustainability
+- Market presence
+- Careers
+- Final corporate CTA
+
+Hero concept:
+
+- Cinematic, food-led and industrial
+- Use bread, grain, manufacturing or premium food imagery
+- Introduce the headline:
+  “Manufacturing Food. Building Trust. Creating Lasting Value.”
+- Use refined image cropping or a controlled media collage
+- Add a subtle animated logo-inspired curve
+- Include purposeful GSAP text and media reveals
+- Avoid a generic image-with-text-overlay hero
+- Avoid an autoplay video unless it is lightweight, muted, short, relevant and has a static fallback
+
+The homepage must establish the visual benchmark for the entire project.
+
+B. ABOUT MASDAR AL HAYAT
+
+Create an editorial corporate profile.
+
+Possible treatments:
+
+- A large opening statement
+- A structured company profile
+- Image-led story panels
+- A company journey or development sequence
+- Layered visual references to food manufacturing and Saudi growth
+- Content sections that move between warm heritage tones and clean corporate surfaces
+
+Do not make it a plain “About Us” page.
+
+C. GROUP STORY – TAMIMI GROUP
+
+Build a legacy-focused storytelling page.
+
+Creative direction:
+
+- Historical editorial layout
+- Archival-image treatment where appropriate
+- Warm cream, copper and green palette
+- Timeline or scroll-led chronology
+- References to Saudi development and urbanisation
+- Strong typography
+- Subtle animated date markers
+- Connection between Tamimi Group heritage and Masdar Al Hayat’s future
+
+Do not fabricate historical dates or milestones.
+
+D. VISION, MISSION & VALUES
+
+Build a manifesto-style experience.
+
+Possible treatments:
+
+- Vision and mission presented as large statement panels
+- Values displayed through an interactive framework
+- Logo-derived circular or interconnected composition
+- Scroll-linked value progression
+- Large typography balanced by concise explanatory text
+- Clear separation between purpose, ambition and behaviours
+
+Do not use a basic six-card value grid unless it is transformed into a more distinctive visual experience.
+
+E. LEADERSHIP & GOVERNANCE
+
+Use a restrained, authoritative and executive visual style.
+
+Include:
+
+- Leadership philosophy
+- Governance principles
+- Leadership profiles only when approved content exists
+- Governance framework
+- Decision-making structure
+- Accountability principles
+- Ethics and responsibility
+- Organisational development
+- Related workbook content
+
+Possible treatments:
+
+- Editorial leadership profiles
+- Governance architecture diagram
+- Expandable governance principles
+- Numbered framework
+- Dark green executive section
+- Structured line-based visual system
+
+Do not invent leadership members or biographies.
+
+F. MANUFACTURING & OPERATIONS
+
+Create one of the most visually impressive pages on the website.
+
+Direction:
+
+- Industrial precision
+- Dark charcoal and deep green sections
+- High-quality production imagery
+- Manufacturing-process visualisation
+- Production journey
+- Capability frameworks
+- Operational-control content
+- Packaging, storage and distribution
+- Technology and continuous improvement
+
+Possible GSAP treatments:
+
+- Scroll-driven manufacturing line
+- Process nodes activating sequentially
+- Image-mask reveals
+- Horizontal capability progression on desktop
+- Responsive vertical progression on mobile
+- Animated operational data only when confirmed
+
+Do not use fake production figures.
+
+G. QUALITY, FOOD SAFETY & COMPLIANCE
+
+Create a clean, controlled and highly trustworthy page.
+
+Direction:
+
+- Laboratory precision
+- Quality-control imagery
+- White, cream and deep-green surfaces
+- Structured process diagrams
+- Food-safety framework
+- Quality checkpoints
+- Supplier and production controls
+- Certification display area
+- Compliance principles
+- Traceability and continuous improvement
+
+Possible treatments:
+
+- Quality journey
+- Layered control system
+- Expandable standards
+- Certification wall
+- Sticky food-safety framework
+
+Only display real, valid and approved certifications.
+
+H. SUSTAINABILITY & RESPONSIBILITY
+
+Create a sophisticated responsibility page without using generic greenwashing visuals.
+
+Direction:
+
+- Natural materials
+- Responsible resource use
+- People and community
+- Waste and efficiency
+- Long-term growth
+- Employee development
+- Responsible operations
+
+Possible treatments:
+
+- Resource-flow visualisation
+- Four-pillar framework
+- Natural-image compositions
+- Scroll-linked responsibility journey
+- Measurable metrics area that remains hidden until verified
+
+Do not invent carbon, water, recycling or energy statistics.
+
+I. BRANDS PORTFOLIO
+
+Keep this page focused and premium.
+
+It must include:
+
+- Portfolio introduction
+- Fonte as the flagship brand
+- Fonte categories
+- Other brand logos
+- Shared portfolio standards
+- Partnership CTA
+
+Fonte should receive a large, editorial flagship-brand treatment.
+
+Use:
+
+- Full-bleed food imagery
+- Product-category composition
+- Branded content panel
+- Controlled logo presentation
+- High-quality photography
+- Elegant CTA to the Fonte website when confirmed
+
+Display other approved brand logos in a clean logo wall.
+
+Do not turn this page into a detailed product catalogue.
+
+J. BUSINESS PARTNERSHIPS
+
+Create a confident B2B page designed to generate qualified enquiries.
+
+Include:
+
+- Partnership proposition
+- Partner types
+- Distribution
+- Retail
+- Foodservice
+- Institutional opportunities
+- Partnership process
+- Reasons to work with Masdar Al Hayat
+- Full partnership enquiry form from the workbook
+
+Possible treatments:
+
+- Partnership-channel selector
+- Step-by-step relationship journey
+- Business-sector panels
+- Sticky enquiry CTA
+- Premium form experience
+
+K. MARKET PRESENCE & EXHIBITIONS
+
+Create a market-visibility and corporate-activity page.
+
+Possible treatments:
+
+- Interactive Saudi Arabia map
+- Region or market markers
+- Exhibition timeline
+- Event-gallery system
+- Market-channel display
+- Geographic storytelling
+- Full-width exhibition imagery
+
+Only show verified locations, markets and exhibitions.
+
+L. MARKET & INDUSTRY LANDSCAPE
+
+Publicly title this page:
+
+“Market & Industry Landscape”
+
+Create a thought-leadership and market-awareness experience.
+
+Include:
+
+- Saudi food-manufacturing landscape
+- Market trends
+- Consumer and business expectations
+- Masdar Al Hayat’s market position
+- Competitive foundations
+- Market priorities
+- Closing CTA
+
+Possible treatments:
+
+- Editorial insight dashboard
+- Trend cards that animate as the user scrolls
+- Market-priority rail
+- Data-style layouts without fake numbers
+- Industry-observation panels
+
+Do not render competitor names, unverified comparisons or the internal benchmark table.
+
+M. CAREERS
+
+Create a people-centred but corporate careers page.
+
+Include:
+
+- Careers proposition
+- Working at Masdar Al Hayat
+- Culture and values
+- Development opportunities
+- Career areas
+- Vacancies area
+- Complete career application form
+
+Possible treatments:
+
+- Employee or workplace imagery
+- Role-category explorer
+- Vacancy accordion
+- Culture statement
+- Application workflow
+
+Do not display fake vacancies.
+
+Show a professional general-application state when no vacancies are approved.
+
+N. CONTACT & CORPORATE OFFICES
+
+Create a premium and useful contact experience.
+
+Include:
+
+- Corporate contact information
+- Office details
+- Contact categories
+- Interactive or embedded map
+- Full contact form from the workbook
+- Business hours when approved
+- Direction links
+- Contact CTA
+
+Use an elegant office-locator layout rather than a generic contact page.
+
+Do not publish unconfirmed contact information.
+
+==================================================
+12. IMAGE AND MEDIA DIRECTION
+==================================================
+
+Use high-quality, legally usable and culturally appropriate imagery from platforms such as:
+
+- Unsplash
+- Pexels
+
+Use images related to:
+
+- Saudi Arabia
+- Riyadh and urban development
+- Modern food factories
+- Bread and bakery production
+- Grain and wheat
+- Artisan bread
+- Sauces and food preparation
+- Frozen or ready-meal production
+- Quality-control laboratories
+- Warehousing
+- Distribution
+- Foodservice
+- Business partnerships
+- Employees
+- Sustainability
+- Saudi industrial progress
+- Family food moments
+
+Avoid:
+
+- Obvious Western supermarket imagery that feels unrelated to Saudi Arabia
+- Alcohol
+- Pork products
+- Inappropriate clothing
+- Culturally unsuitable dining scenes
+- Low-resolution images
+- Overused handshake photography
+- Generic smiling-office-team stock images
+- Images with visible third-party trademarks
+- AI-looking hands, food or machinery
+- Excessive bread photography on every page
+
+Store approved images locally inside the project rather than relying on unstable external hotlinks.
+
+Use next/image for:
+
+- Responsive image sizes
+- WebP or AVIF delivery
+- Lazy loading
+- Blur placeholders where appropriate
+- Correct aspect ratios
+- Art direction
+- Priority loading only for critical above-the-fold images
+
+Every image must have meaningful English and Arabic alternative text.
+
+Use decorative images with empty alt text where appropriate.
+
+==================================================
+13. ICONOGRAPHY AND ILLUSTRATION
+==================================================
+
+Use Lucide React for small functional icons.
+
+Examples:
+
+- Navigation arrows
+- Form icons
+- Location
+- Phone
+- Email
+- Download
+- Upload
+- External links
+- Accordion controls
+
+For major corporate concepts, create custom SVG illustrations or line diagrams based on:
+
+- Wheat
+- Grain
+- Manufacturing flow
+- Quality checkpoints
+- Distribution routes
+- Governance structure
+- Sustainability cycles
+- Logo-inspired curves
+
+Do not use:
+
+- Emoji
+- Cartoon illustrations
+- Generic multicoloured icon packs
+- Icons inside identical rounded squares throughout the website
+- Icon fonts
+
+All SVGs must be accessible, optimised and responsive.
+
+==================================================
+14. GSAP MOTION SYSTEM
+==================================================
+
+Every major section and interactive component must have a purposeful animation treatment based on its layout and meaning.
+
+Do not animate merely for decoration.
+
+Use:
+
+- GSAP
+- @gsap/react
+- ScrollTrigger
+- gsap.matchMedia()
+- useGSAP()
+- Scoped refs
+- Automatic cleanup
+- prefers-reduced-motion handling
+
+Possible motion patterns:
+
+- Masked image reveals
+- Text-line reveals
+- Controlled word reveals
+- Staggered content entrances
+- Counter animations
+- Timeline progression
+- Process-line drawing
+- Logo-wall reveals
+- Pinned storytelling
+- Parallax within safe limits
+- Horizontal sequences on large screens
+- Vertical alternatives on mobile
+- Map-marker activation
+- Section colour transitions
+- Layered media movement
+- Hover microinteractions
+- CTA arrow transitions
+- Accordion height transitions
+- Mega-menu transitions
+- Page-introduction sequences
+
+Animation principles:
+
+- Keep motion sophisticated and smooth.
+- Use transform and opacity wherever possible.
+- Avoid animating layout-heavy properties unnecessarily.
+- Avoid excessive bounce effects.
+- Avoid spinning icons.
+- Avoid constant looping animations.
+- Avoid scroll hijacking.
+- Avoid aggressive zoom effects.
+- Avoid animations longer than necessary.
+- Avoid the same fade-up effect on every section.
+- Do not hide essential content when JavaScript fails.
+- Do not make users wait for intro animations.
+- Disable or simplify motion for reduced-motion users.
+- Use separate desktop and mobile animation strategies.
+- Verify animation cleanup during route changes.
+- Prevent duplicate ScrollTrigger instances.
+- Refresh ScrollTrigger after responsive media has loaded where necessary.
+
+Each section should have its own motion language while remaining part of one coherent system.
+
+==================================================
+15. SPACING AND LAYOUT SYSTEM
+==================================================
+
+Use a consistent responsive spacing scale.
+
+Recommended section spacing:
+
+Desktop:
+112px–168px
+
+Tablet:
+80px–120px
+
+Mobile:
+56px–88px
+
+Use large spacing only when the section composition justifies it.
+
+Recommended content container:
+
+- Bootstrap container as the foundation
+- Custom maximum width between approximately 1320px and 1440px
+- Narrow reading containers for long-form text
+- Full-width breakout areas for media and storytelling
+
+Grid rules:
+
+- Use the Bootstrap 12-column grid intelligently.
+- Do not force every section into equal columns.
+- Use asymmetric column combinations such as 4/8, 5/7 and 7/5.
+- Preserve visual rhythm in RTL.
+- Maintain consistent gutters.
+- Prevent content from touching viewport edges.
+- Maintain safe mobile padding between 20px and 28px.
+- Ensure every layout works from 320px upwards.
+
+Border-radius rules:
+
+- Use restrained radius values.
+- Do not apply large rounded corners to every block.
+- Use sharper or lightly rounded shapes for industrial sections.
+- Use softer shapes selectively for food and people sections.
+
+==================================================
+16. FORMS
+==================================================
+
+Build three complete forms:
+
+1. Business partnership enquiry
+2. Career application
+3. General contact enquiry
+
+Use all fields, labels, options, consent text and messages provided in the workbook.
+
+Use:
+
+- React Hook Form
+- Zod validation
+- TypeScript form schemas
+- Accessible labels
+- Inline validation
+- English and Arabic messages
+- Loading states
+- Success states
+- Error states
+- Disabled submission states
+- Keyboard navigation
+- File-upload validation
+- Honeypot protection
+- Server-side validation
+- Rate-limiting integration point
+- Environment-based email or API configuration
+
+Validate:
+
+- Required fields
+- Email formats
+- Phone formats
+- Allowed attachment extensions
+- Maximum file size
+- Consent checkboxes
+- Message lengths
+
+Do not expose secrets in client-side code.
+
+Create server actions or API route handlers with clean interfaces for future connection to:
+
+- Corporate email
+- CRM
+- HR email
+- Recruitment system
+- Lead-management system
+
+Until credentials are provided, use a safe development adapter and clearly document the integration point.
+
+==================================================
+17. SEO
+==================================================
+
+Use the workbook’s English and Arabic SEO metadata.
+
+Implement:
+
+- generateMetadata
+- Localised title templates
+- Meta descriptions
+- Canonical URLs
+- Alternate language URLs
+- hreflang
+- Open Graph metadata
+- Twitter metadata
+- robots.ts
+- sitemap.ts
+- Web manifest
+- Favicons
+- Social-sharing images
+- Breadcrumb structured data
+- Organisation structured data
+- Website structured data
+- Corporation structured data where appropriate
+- JobPosting structured data only for real active vacancies
+
+Create semantic heading structures.
+
+Each page must have one clear H1.
+
+Do not use headings only for styling.
+
+Use descriptive internal links between related pages.
+
+==================================================
+18. ACCESSIBILITY
+==================================================
+
+Target WCAG 2.2 AA compliance.
+
+Implement:
+
+- Skip-to-content link
+- Semantic HTML
+- Visible focus styles
+- Keyboard-operable navigation
+- Keyboard-operable mega menus
+- Accessible mobile offcanvas
+- Focus trapping
+- Escape-key handling
+- Correct ARIA attributes
+- Form error associations
+- Sufficient colour contrast
+- Touch targets of at least approximately 44px
+- Reduced-motion support
+- Accessible carousels
+- Pause controls where moving content exists
+- Correct language attributes
+- Meaningful alt text
+- Logical heading hierarchy
+- No colour-only status communication
+
+Do not sacrifice accessibility for animation.
+
+==================================================
+19. PERFORMANCE
+==================================================
+
+Treat performance as a core design requirement.
+
+Use:
+
+- Server Components by default
+- Client Components only when required
+- next/image
+- next/font
+- Route-level code splitting
+- Dynamic imports for heavy interactive modules
+- Tree-shaken icon imports
+- Optimised SVGs
+- Local media assets
+- Responsive image sizes
+- Proper caching
+- Minimal third-party scripts
+- CSS containment where appropriate
+- Lazy-loaded below-the-fold media
+- Deferred non-critical animation setup
+
+Avoid:
+
+- Loading all GSAP code globally when not required
+- Loading all Bootstrap JavaScript globally
+- Huge uncompressed hero videos
+- Unnecessary sliders
+- Large client-side content objects
+- Layout shifts
+- Excessive DOM depth
+- Re-render-heavy components
+
+Target strong production Lighthouse results for:
+
+- Performance
+- Accessibility
+- Best Practices
+- SEO
+
+Do not game performance scores by removing essential content.
+
+==================================================
+20. RESPONSIVENESS
+==================================================
+
+Test and optimise the complete website for:
+
+- 320px mobile
+- 360px mobile
+- 390px mobile
+- 430px mobile
+- 768px tablet
+- 820px tablet
+- 1024px tablet or small laptop
+- 1280px desktop
+- 1440px desktop
+- 1920px large desktop
+- Wider displays where relevant
+
+Responsive requirements:
+
+- No horizontal overflow
+- No cut-off text
+- No overlapping Arabic headings
+- No broken GSAP pinning
+- No oversized images
+- No unusable mega menu
+- No tiny buttons
+- No hover-only essential functionality
+- No long lines of text
+- No broken sticky sections
+- No layout jumps during image loading
+- No animation that traps mobile scrolling
+
+Desktop horizontal stories must convert into clear vertical stories on mobile.
+
+==================================================
+21. BROWSER COMPATIBILITY
+==================================================
+
+Test on current production versions and recent versions of:
+
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+- Safari
+- iOS Safari
+- Chrome for Android
+- Samsung Internet where practical
+
+Use progressive enhancement.
+
+Provide reasonable fallbacks for unsupported visual features.
+
+Do not rely exclusively on experimental CSS without fallbacks.
+
+==================================================
+22. TESTING AND QUALITY CONTROL
+==================================================
+
+Before considering the project complete, verify:
+
+- TypeScript compilation
+- ESLint
+- Production build
+- Every English route
+- Every Arabic route
+- Navigation links
+- Mega menu
+- Mobile navigation
+- Language switching
+- Forms
+- File uploads
+- Validation messages
+- Metadata
+- Sitemap
+- Robots file
+- Structured data
+- Responsive layouts
+- RTL layouts
+- GSAP cleanup
+- Reduced motion
+- Browser console
+- Broken links
+- Missing images
+- Alt text
+- Keyboard navigation
+- Focus states
+- 404 page
+- Error state
+- Loading state
+
+Create route smoke tests with Playwright or an equivalent maintained testing tool.
+
+The production build must complete without:
+
+- TypeScript errors
+- Hydration errors
+- React warnings
+- Console errors
+- Missing-key warnings
+- Unhandled promise rejections
+- Invalid DOM nesting
+- Broken asset paths
+
+Do not claim the site is bug-free without completing these checks.
+
+==================================================
+23. DELIVERABLES
+==================================================
+
+Deliver:
+
+- Complete Next.js source code
+- Complete responsive English website
+- Complete responsive Arabic website
+- All pages from the Excel workbook
+- Reusable component architecture
+- GSAP animation system
+- Bootstrap Sass configuration
+- Global design tokens
+- Typed content files
+- Form validation schemas
+- API or server-action integration interfaces
+- SEO implementation
+- Structured data
+- Sitemap
+- Robots file
+- Manifest
+- Accessible 404 page
+- Loading states
+- Error states
+- README
+- Installation instructions
+- Environment-variable example
+- Build instructions
+- Deployment instructions
+- Content-update instructions
+- Asset credits where required
+
+The README must explain:
+
+- Required Node.js version
+- Installation
+- Development commands
+- Production build
+- Environment variables
+- Form integration
+- Content structure
+- Translation structure
+- Image replacement
+- Adding leadership members
+- Adding certificates
+- Adding exhibitions
+- Adding vacancies
+- Deployment
+
+==================================================
+24. NON-NEGOTIABLE DESIGN RESTRICTIONS
+==================================================
+
+Do not:
+
+- Use a generic template
+- Reuse layouts from previous projects
+- Copy another website
+- Copy a Dribbble or Pinterest design directly
+- Use the same layout for every section
+- Use endless identical card grids
+- Use default Bootstrap appearance
+- Overuse rounded cards
+- Overuse pill-shaped buttons
+- Overuse glassmorphism
+- Use neon gradients
+- Use excessive drop shadows
+- Use huge empty spaces without purpose
+- Use meaningless animated blobs
+- Add fake numbers
+- Add fake certifications
+- Add fake leadership profiles
+- Add fake testimonials
+- Add fake office locations
+- Add fake vacancies
+- Add fake market claims
+- Expose internal workbook notes
+- Sacrifice readability for visual effects
+- sacrifice accessibility for animation
+- create animation that causes poor scrolling
+- place Arabic content into an untested mirrored English layout
+
+Use Pinterest, Dribbble and award-winning corporate websites only for broad inspiration, visual benchmarking and quality comparison.
+
+The final design must remain original to Masdar Al Hayat.
+
+==================================================
+25. EXECUTION PROCESS
+==================================================
+
+Do not rush directly into coding disconnected sections.
+
+Follow this process:
+
+Phase 1 — Analysis
+
+- Read every Excel worksheet.
+- Identify all pages and sections.
+- Separate public content from internal notes.
+- Identify missing client-confirmation information.
+- Create a content map.
+- Create a component map.
+- Create an asset requirement list.
+- Create an SEO route map.
+- Create a bilingual route map.
+
+Phase 2 — Design Foundation
+
+- Define the colour system.
+- Define typography.
+- Define spacing.
+- Define grid rules.
+- Define buttons.
+- Define image treatments.
+- Define iconography.
+- Define animation principles.
+- Define RTL behaviour.
+
+Phase 3 — Technical Foundation
+
+- Create the Next.js application.
+- Configure TypeScript.
+- Configure Bootstrap Sass.
+- Configure next-intl.
+- Configure fonts.
+- Configure global styles.
+- Create content types.
+- Create the layout system.
+- Build the navigation.
+- Build the footer.
+- Create motion utilities.
+
+Phase 4 — Homepage
+
+- Build the homepage section by section.
+- Complete desktop layout.
+- Complete tablet layout.
+- Complete mobile layout.
+- Complete Arabic RTL layout.
+- Add GSAP after structural layout is stable.
+- Test performance and accessibility.
+
+Phase 5 — Internal Pages
+
+Build each internal page with its own creative direction while reusing architectural primitives.
+
+Phase 6 — Forms and Integrations
+
+- Partnership form
+- Careers form
+- Contact form
+- Validation
+- Uploads
+- Server-side handlers
+- Integration placeholders
+
+Phase 7 — SEO and Optimisation
+
+- Metadata
+- Structured data
+- Sitemap
+- Robots
+- Image optimisation
+- Bundle optimisation
+- Accessibility review
+
+Phase 8 — Final QA
+
+- Production build
+- Cross-browser testing
+- Device testing
+- RTL testing
+- Form testing
+- Route testing
+- Animation testing
+- Content verification against the Excel workbook
+
+==================================================
+26. FINAL EXPECTATION
+==================================================
+
+Build this website as though it will be reviewed by:
+
+- Masdar Al Hayat leadership
+- Tamimi Group stakeholders
+- Saudi corporate partners
+- Food-industry professionals
+- Retail and distribution partners
+- International business visitors
+- Quality and compliance professionals
+- Future employees
+
+The site must communicate:
+
+- Masdar Al Hayat is established.
+- Masdar Al Hayat is capable.
+- Masdar Al Hayat is trustworthy.
+- Masdar Al Hayat understands food.
+- Masdar Al Hayat values quality.
+- Masdar Al Hayat is rooted in Saudi Arabia.
+- Masdar Al Hayat is supported by legacy.
+- Masdar Al Hayat is prepared for future growth.
+
+Do not settle for a visually acceptable result.
+
+Create a distinctive, refined, technically robust and memorable corporate digital experience that gives Masdar Al Hayat the presence of a serious international food-manufacturing organisation while remaining authentically Saudi.

@@ -33,6 +33,31 @@ import {
 
 const allowed = new Set(["partnership", "careers", "contact"]);
 const attempts = new Map<string, {count: number; reset: number}>();
+const RATE_LIMIT = 8; // submissions per client per minute
+const MAX_TRACKED_CLIENTS = 5_000;
+// One attachment (max 5 MB) plus the text fields; anything larger is rejected before the body is read.
+const MAX_REQUEST_BYTES = 6 * 1024 * 1024;
+
+/**
+ * Client address for rate limiting. nginx sets X-Real-IP and *appends* the real address to
+ * X-Forwarded-For, so the first X-Forwarded-For entry can be forged by the sender; use the last one.
+ */
+function clientAddress(request: NextRequest): string {
+  const realIp = request.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
+  const forwarded = request.headers.get("x-forwarded-for")?.split(",").map(part => part.trim()).filter(Boolean);
+  return forwarded?.at(-1) || "local";
+}
+
+function pruneAttempts(now: number) {
+  if (attempts.size < MAX_TRACKED_CLIENTS) return;
+  for (const [key, slot] of attempts) if (slot.reset <= now) attempts.delete(key);
+  // Still full (e.g. a flood of distinct addresses): drop the oldest entries.
+  for (const key of attempts.keys()) {
+    if (attempts.size < MAX_TRACKED_CLIENTS) break;
+    attempts.delete(key);
+  }
+}
 const careerSchema = z.object({
   fullName: z.string().trim().min(1).max(120).refine(isValidFullName),
   email: z.string().trim().min(1).max(254).email(),
@@ -261,10 +286,16 @@ export async function POST(
     return NextResponse.json({ok: false, message: "Unknown form"}, {status: 404});
   }
 
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0] || "local";
+  const declaredSize = Number(request.headers.get("content-length") || 0);
+  if (declaredSize > MAX_REQUEST_BYTES) {
+    return NextResponse.json({ok: false, message: "Submission is too large"}, {status: 413});
+  }
+
+  const ip = clientAddress(request);
   const now = Date.now();
+  pruneAttempts(now);
   const slot = attempts.get(ip);
-  if (slot && slot.reset > now && slot.count >= 8) {
+  if (slot && slot.reset > now && slot.count >= RATE_LIMIT) {
     return NextResponse.json({ok: false, message: "Too many requests"}, {status: 429});
   }
   attempts.set(
@@ -274,7 +305,12 @@ export async function POST(
       : {count: slot.count + 1, reset: slot.reset},
   );
 
-  const data = await request.formData();
+  let data: FormData;
+  try {
+    data = await request.formData();
+  } catch {
+    return NextResponse.json({ok: false, message: "Invalid submission"}, {status: 400});
+  }
   if (String(data.get("website") || "")) return NextResponse.json({ok: true});
 
   if (type === "careers") {

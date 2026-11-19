@@ -16,24 +16,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Select Deployment Source
+        id: vars
+        shell: bash
+        run: |
+          if [ "${{ github.event.inputs.environment }}" = "staging" ]; then
+            echo "branch=staging" >> "$GITHUB_OUTPUT"
+          else
+            echo "branch=main" >> "$GITHUB_OUTPUT"
+          fi
+          echo "tag=${{ github.event.inputs.environment }}" >> "$GITHUB_OUTPUT"
+
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.vars.outputs.branch }}
 
-      - name: Set Image Tag
-        id: vars
+      - name: Verify Deployment Source
+        shell: bash
         run: |
-          echo "TAG=${{ github.event.inputs.environment }}" >> $GITHUB_OUTPUT
+          echo "Building commit $(git rev-parse --short HEAD) from ${{ steps.vars.outputs.branch }} for ${{ github.event.inputs.environment }}"
 
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker Image
         run: |
-          docker build -t parastoneglobal/masdar-web:${{ steps.vars.outputs.TAG }} .
+          docker build -t parastoneglobal/masdar-web:${{ steps.vars.outputs.tag }} .
 
       - name: Push Docker Image
         run: |
-          docker push parastoneglobal/masdar-web:${{ steps.vars.outputs.TAG }}
+          docker push parastoneglobal/masdar-web:${{ steps.vars.outputs.tag }}
 
   deploy:
     needs: build
@@ -49,10 +62,11 @@ jobs:
           script: |
             cd /var/www/masdar-web-docker
 
-            docker compose pull
-
             if [ "${{ github.event.inputs.environment }}" = "staging" ]; then
-              docker compose up -d staging
+              SERVICE=staging
             else
-              docker compose up -d production
+              SERVICE=production
             fi
+
+            docker compose pull "$SERVICE"
+            docker compose up -d --force-recreate "$SERVICE"

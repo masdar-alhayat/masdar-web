@@ -11,23 +11,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/globals.scss";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://staging.masdarksa.cloud"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.masdaralhayat.com"),
   title: {default: "Masdar Al Hayat for Food Industries", template: "%s"},
-  description: "A Saudi food manufacturing and distribution company operating as part of Tamimi Group.",
-  icons: {icon: "/brand/masdar-logo.png"},
+  description: "A food and beverages manufacturer and distributor operating as part of Tamimi Group.",
   robots: {
     index: false,
     follow: false,
     nocache: true
-  }
+  },
+  icons: {icon: "/brand/masdar-logo.png"}
 };
 
 export function generateStaticParams() { return routing.locales.map(locale => ({locale})); }
+// Only "en" and "ar" exist: any other first path segment (e.g. /.env, /package.json) is a plain 404 instead of a server error.
+export const dynamicParams = false;
 
 export default async function LocaleLayout({children, params}: Readonly<{children: React.ReactNode; params: Promise<{locale: string}>}>) {
   const {locale} = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const typedLocale = locale as Locale;
-  return <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}><head><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/><link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/></head><body><a className="skip-link" href="#main-content">{locale === "ar" ? "تخطَّ إلى المحتوى" : "Skip to content"}</a><NextIntlClientProvider><Header locale={typedLocale}/>{children}<Footer locale={typedLocale}/></NextIntlClientProvider></body></html>;
+  return <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} data-scroll-behavior="smooth"><head><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/><link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/></head><body><a className="skip-link" href="#main-content">{locale === "ar" ? "تخطَّ إلى المحتوى" : "Skip to content"}</a><NextIntlClientProvider><Header locale={typedLocale}/>{children}<Footer locale={typedLocale}/></NextIntlClientProvider></body></html>;
 }

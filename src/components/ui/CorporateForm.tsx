@@ -49,6 +49,9 @@ import {
 } from "@/lib/contactFormValidation";
 import styles from "./CorporateForm.module.css";
 
+// The site's Content Security Policy blocks eval; tell zod not to probe for it (the probe is reported as a CSP violation).
+z.config({jitless: true});
+
 type FormKind = "partnership" | "careers" | "contact";
 type FieldType = "text" | "email" | "tel" | "url" | "textarea" | "file" | "select";
 type FormValues = Record<string, unknown>;
@@ -779,7 +782,7 @@ export function CorporateForm({
 
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? (isArabic ? "جارٍ الإرسال..." : "Submitting...") : submitLabel}
-        <ArrowUpRight size={18} aria-hidden="true" />
+        <ArrowUpRight className="directional-icon" size={18} aria-hidden="true" />
       </button>
 
       {status === "success" && (

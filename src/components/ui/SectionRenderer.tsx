@@ -1,8 +1,26 @@
+import Image from "next/image";
 import { AnimatedSection } from "@/components/motion/AnimatedSection";
 import { ArrowLink } from "./ArrowLink";
 import { BrandImage } from "./BrandImage";
 import { CorporateForm } from "./CorporateForm";
 import { ContactLocationMap } from "./ContactLocationMap";
+import { FocusConnector } from "./FocusConnector";
+import {
+  ManufacturingCapabilitiesFlow,
+  type ManufacturingCapabilityItem,
+} from "./ManufacturingCapabilitiesFlow";
+import {ManufacturingVideoInterlude} from "./ManufacturingVideoInterlude";
+import {ManufacturingGallery} from "./ManufacturingGallery";
+import {ProductRangeCarousel} from "./ProductRangeCarousel";
+import {LogoCarousel} from "./LogoCarousel";
+import {ManufacturingCounters} from "./ManufacturingCounters";
+import {BRAND_PORTFOLIO} from "@/content/brands";
+import clientLogos from "@/content/client-logos.json";
+import {
+  HeritageTimeline,
+  HeritageTimelineGrid,
+  type HeritageTimelineMilestone,
+} from "./HeritageTimeline";
 import contactLocationStyles from "./ContactLocationMap.module.css";
 import {
   IndustryEngagementCarousel,
@@ -26,6 +44,7 @@ import {
   isStructuralLabel,
   numberedGroups,
   paragraphs,
+  resolveCtaHref,
   sectionDisplayTitle,
   value,
 } from "@/lib/content";
@@ -38,18 +57,47 @@ import type {
 } from "@/types/content";
 
 import {
+  Boxes,
+  Building2,
+  CircleCheckBig,
   Check,
+  ChefHat,
   ChevronRight,
+  ClipboardCheck,
   Factory,
+  FileCheck2,
+  Gauge,
   Handshake,
+  Hotel,
   Lightbulb,
+  Mail,
+  MapPin,
+  PackageCheck,
+  PackageOpen,
+  Phone,
+  Printer,
   Radar,
+  RefreshCw,
+  Rocket,
+  ScanLine,
+  ScanSearch,
   ShieldCheck,
+  SlidersHorizontal,
+  Snowflake,
+  Soup,
+  Sparkles,
+  Store,
+  ShoppingCart,
   Sprout,
+  UsersRound,
+  Wheat,
+  Warehouse,
+  Truck,
 } from "lucide-react";
 
 interface SectionRendererProps {
   section: ContentSection;
+  supplementalSection?: ContentSection;
   index: number;
   locale: Locale;
   theme: PageTheme;
@@ -58,6 +106,16 @@ interface SectionRendererProps {
 
 function meaningful(item: ContentItem, locale: Locale): boolean {
   return Boolean(value(item, locale));
+}
+
+function visibleItemLabel(label: ContentItem["label"], locale: Locale): string {
+  const rawLabel = String(label ?? "");
+
+  if (locale === "ar" && rawLabel === "Key Focus Areas") {
+    return "مجالات التركيز الرئيسية";
+  }
+
+  return rawLabel;
 }
 
 interface IndexedLocalizedValue {
@@ -123,6 +181,39 @@ function indexedLocalizedValues(
         item !== null && Number.isFinite(item.index),
     )
     .sort((a, b) => a.index - b.index);
+}
+
+function getTimelineMilestones(
+  section: ContentSection,
+  locale: Locale,
+): HeritageTimelineMilestone[] {
+  const years = indexedLocalizedValues(
+    section,
+    locale,
+    /^Timeline Year (\d+)$/,
+  );
+  const titles = new Map(
+    indexedLocalizedValues(
+      section,
+      locale,
+      /^Timeline Title (\d+)$/,
+    ).map((item) => [item.index, item.text]),
+  );
+  const descriptions = new Map(
+    indexedLocalizedValues(
+      section,
+      locale,
+      /^Timeline Description (\d+)$/,
+    ).map((item) => [item.index, item.text]),
+  );
+
+  return years
+    .map(({index: milestoneIndex, text: year}) => ({
+      year,
+      title: titles.get(milestoneIndex) ?? "",
+      description: descriptions.get(milestoneIndex) ?? "",
+    }))
+    .filter((milestone) => milestone.title && milestone.description);
 }
 
 function indexedLocalizedPairs(
@@ -313,6 +404,7 @@ function indexedCompetitiveFoundations(
 
 export function SectionRenderer({
   section,
+  supplementalSection,
   index,
   locale,
   theme,
@@ -359,7 +451,11 @@ export function SectionRenderer({
     locale,
   );
 
-  const copy = paragraphs(section, locale);
+  const sectionCopy = paragraphs(section, locale).filter(paragraph => theme !== "manifesto" || paragraph !== statementLabel);
+  const copy =
+    theme === "operations" && section.title === "Operations Overview"
+      ? sectionCopy.slice(0, 2)
+      : sectionCopy;
   const groups = numberedGroups(section);
 
   const title = section.title.toLowerCase();
@@ -395,6 +491,102 @@ export function SectionRenderer({
     );
   };
 
+  if (renderVariant === "tamimi-sectors") {
+    const sectors = groups.filter(group => group.prefix === "Sector");
+    const sectorImages = ["industrial", "food-retail", "real-estate", "investments", "transport-logistics", "services"];
+    return <ManufacturingCapabilitiesFlow
+      kicker={visibleKicker}
+      heading={heading}
+      intro={copy.join(" ")}
+      items={sectors.map((sector, i) => ({
+        title: groupText(sector, "Title"),
+        description: "",
+        image: `/assets/images/tamimi-sectors/${sectorImages[i]}.webp`,
+        objectPosition: "center center",
+      }))}
+      isRtl={isAr}
+      variant="sectors"
+    />;
+  }
+
+  if (renderVariant === "partner-logos" || renderVariant === "client-logos") {
+    const logos = renderVariant === "partner-logos" ? clientLogos.partners : clientLogos.clients;
+    return <AnimatedSection className={`content-section logo-showcase logo-showcase--${renderVariant}`} variant="rise">
+      <div className="container-xxl">
+        <header className="logo-showcase__header" data-animate>
+          <div>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+          </div>
+          <div>{copy.map((paragraph, i) => <p key={i}>{paragraph}</p>)}</div>
+        </header>
+        <LogoCarousel items={logos} locale={locale} label={heading}/>
+      </div>
+    </AnimatedSection>;
+  }
+
+  if (renderVariant === "logistics-counters") {
+    // Only an explicit Main Heading is shown (no fallback to the eyebrow), so the counters can stand under the eyebrow alone.
+    const countersHeading = firstLocalizedItemValue(section, locale, ["Main Heading"]);
+    // Icons follow the counter order: logistics networks, fleet, warehouses, export markets.
+    const counterIcons = ["networks", "fleet", "warehouses", "markets"] as const;
+    const items = groups.filter(group => group.prefix === "Counter").map((group, counterIndex) => ({
+      value: Number(value(group.parts.Value, locale)),
+      label: value(group.parts.Label, locale),
+      suffix: value(group.parts.Suffix, locale),
+      icon: counterIcons[counterIndex],
+    }));
+    return <AnimatedSection className="content-section logistics-strength" variant="stagger">
+      <div className="container-xxl">
+        <header className="logistics-strength__header" data-animate>
+          {kicker && <span className="section-kicker">{kicker}</span>}
+          {countersHeading && <h2>{countersHeading}</h2>}
+          {copy.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
+        </header>
+        <ManufacturingCounters items={items} locale={locale}/>
+      </div>
+    </AnimatedSection>;
+  }
+
+  if (renderVariant === "brand-profiles") {
+    return <AnimatedSection className="content-section brand-profiles" variant="stagger">
+      <div className="container-xxl">
+        <header className="brand-profiles__header" data-animate>
+          {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+          <h2>{heading}</h2>
+        </header>
+        <div className="brand-profiles__list">
+          {BRAND_PORTFOLIO.filter(brand => brand.id !== "fonte").map((brand, brandIndex) => <article className={`brand-profile brand-profile--${brand.id}`} id={brand.id} key={brand.id}>
+            <div className="brand-profile__logo" data-animate>
+              <Image src={brand.logo} alt={isAr ? `شعار ${brand.name.ar}` : `${brand.name.en} logo`} fill sizes="(max-width: 767px) 80vw, 35vw" unoptimized/>
+            </div>
+            <div className="brand-profile__copy" data-animate>
+              <span className="brand-profile__index" aria-hidden="true">{new Intl.NumberFormat(locale, {minimumIntegerDigits: 2}).format(brandIndex + 1)}</span>
+              <h2>{brand.name[locale]}</h2>
+              <p>{brand.description[locale]}</p>
+            </div>
+          </article>)}
+        </div>
+      </div>
+    </AnimatedSection>;
+  }
+
+  if (renderVariant === "horeca-brand") {
+    return <AnimatedSection className="content-section horeca-brand" variant="rise">
+      <div className="container-xxl horeca-brand__layout">
+        <div className="horeca-brand__logo" data-animate>
+          <Image src="/brand/fonte-horeca-mark.webp" alt={isAr ? "شعار هوريكا" : "HORECA logo"} fill sizes="(max-width: 767px) 80vw, 35vw" unoptimized/>
+        </div>
+        <div data-animate>
+          {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+          <h2>{heading}</h2>
+          {copy.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
+          <ArrowLink href="/brands-partnerships/brands-portfolio#fonte-horeca">{localizedItemValue(section, "Primary CTA", locale)}</ArrowLink>
+        </div>
+      </div>
+    </AnimatedSection>;
+  }
+
   /*
    * ========================================================
    * Forms
@@ -404,6 +596,7 @@ export function SectionRenderer({
   if (isForm) {
     return (
       <AnimatedSection
+        id={`${formKind === "careers" ? "career-application" : formKind === "partnership" ? "partnership-enquiry" : "contact-form"}`}
         className={`content-section content-section--form content-section--${theme}`}
         variant="rise"
       >
@@ -430,6 +623,153 @@ export function SectionRenderer({
             locale={locale}
             kind={formKind}
           />
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (renderVariant === "story-video-background") {
+    return (
+      <AnimatedSection
+        className={`content-section story-video-section content-section--${theme}`}
+        variant="slide"
+      >
+        <div className="story-video-section__background" aria-hidden="true">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            tabIndex={-1}
+            disablePictureInPicture
+          >
+            <source src="/assets/videos/masdar-video-3.mp4" type="video/mp4" />
+          </video>
+          <span className="story-video-section__overlay" />
+        </div>
+
+        <div className="container-xxl story-video-section__content" data-animate>
+          {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+          <h2>{heading}</h2>
+          {copy.map((paragraph, paragraphIndex) => (
+            <p key={paragraphIndex}>{paragraph}</p>
+          ))}
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (renderVariant === "sales-customers") {
+    const customers = groups.filter((group) => group.prefix === "Customer");
+    const customerIcons = [Store, ShoppingCart, Boxes, Hotel, Building2] as const;
+
+    return (
+      <AnimatedSection className="content-section partnership-channels-section content-section--sales sales-customers" variant="stagger">
+        <div className="container-xxl">
+          <header className="partnership-channels__header sales-customers__header">
+            <div data-animate>
+              {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+              <h2>{heading}</h2>
+              {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
+            </div>
+            <BrandImage src={image} alt={localizedItemValue(section, "Image Alt", locale)} className="sales-customers__image"/>
+          </header>
+          <div className="partnership-channels__grid sales-customers__grid">
+            {customers.map((customer, customerIndex) => {
+              const CustomerIcon = customerIcons[customerIndex % customerIcons.length];
+              return (
+                <article key={customer.key} data-animate>
+                  <div className="partnership-channels__meta">
+                    <span aria-hidden="true">{new Intl.NumberFormat(locale, {minimumIntegerDigits: 2}).format(customerIndex + 1)}</span>
+                    <CustomerIcon aria-hidden="true"/>
+                  </div>
+                  <h3>{groupText(customer, "Title")}</h3>
+                  <p>{value(customer.parts.Description, locale)}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (/Partnership Channels/i.test(section.title)) {
+    const partnershipChannels = groups.filter((group) => group.prefix === "Channel").slice(0, 4);
+    const channelIcons = [ShoppingCart, Boxes, Hotel, Building2] as const;
+
+    return (
+      <AnimatedSection
+        className={`content-section partnership-channels-section content-section--${theme}`}
+        variant="stagger"
+      >
+        <div className="container-xxl">
+          <header className="partnership-channels__header" data-animate>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+          </header>
+
+          <div className={`partnership-channels__grid${partnershipChannels.length === 3 ? " partnership-channels__grid--three" : ""}`} data-animate>
+            {partnershipChannels.map((channel, channelIndex) => {
+              const ChannelIcon = channelIcons[(channel.number - 1) % channelIcons.length];
+
+              return (
+                <article key={channel.key} data-channel={channel.number}>
+                  <div className="partnership-channels__meta">
+                    <span>{String(channelIndex + 1).padStart(2, "0")}</span>
+                    <ChannelIcon aria-hidden="true" />
+                  </div>
+                  <h3>{groupText(channel, "Title")}</h3>
+                  <p>{value(channel.parts.Description, locale)}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (/How Partnership Works/i.test(section.title)) {
+    const partnershipSteps = groups.filter((group) => group.prefix === "Step").slice(0, 4);
+    const partnershipIcons = [Handshake, UsersRound, ClipboardCheck, Rocket] as const;
+    const partnershipCta = localizedItemValue(section, "Primary CTA", locale);
+
+    return (
+      <AnimatedSection
+        className={`content-section partnership-journey-section content-section--${theme}`}
+        variant="stagger"
+      >
+        <div className="container-xxl partnership-journey">
+          <header className="partnership-journey__header" data-animate>
+            <div>
+              {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+              <h2>{heading}</h2>
+            </div>
+            {partnershipCta && (
+              <ArrowLink href="#partnership-enquiry" light>{partnershipCta}</ArrowLink>
+            )}
+          </header>
+
+          <ol className="partnership-journey__rail" aria-label={heading}>
+            {partnershipSteps.map((step, stepIndex) => {
+              const StepIcon = partnershipIcons[stepIndex % partnershipIcons.length];
+
+              return (
+                <li key={step.key} className="partnership-journey__step" data-animate>
+                  <div className="partnership-journey__marker" aria-hidden="true">
+                    <span>{String(stepIndex + 1).padStart(2, "0")}</span>
+                    <StepIcon />
+                  </div>
+                  <div className="partnership-journey__card">
+                    <h3>{groupText(step, "Title")}</h3>
+                    <p>{value(step.parts.Description, locale)}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
         </div>
       </AnimatedSection>
     );
@@ -482,6 +822,50 @@ export function SectionRenderer({
     return true;
   });
 
+  if (theme === "careers" && title === "current opportunities") {
+    const formHeading = supplementalSection ? localizedItemValue(supplementalSection, "Display Heading", locale) : "";
+    const steps = isAr
+      ? [
+          {title: "شارك بياناتك", text: "أكمل النموذج وأرفق سيرتك الذاتية."},
+          {title: "نراجع ملفك", text: "يراجع فريقنا الطلبات وفق الفرص الحالية والمستقبلية."},
+          {title: "نتواصل معك", text: "يتواصل الفريق المختص مع المرشحين المناسبين."},
+        ]
+      : [
+          {title: "Share your details", text: "Complete the form and attach your CV."},
+          {title: "We review your profile", text: "Our team reviews applications against current and future opportunities."},
+          {title: "We get in touch", text: "The relevant team contacts candidates whose experience fits."},
+        ];
+
+    // Opportunities and the application form live together, so the section keeps the form's anchor.
+    return (
+      <AnimatedSection
+        id="career-application"
+        className={`content-section career-opportunities-section content-section--${theme}`}
+        variant="rise"
+      >
+        <div className="container-xxl career-apply">
+          <aside className="career-apply__intro" data-animate>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+            {copy.map((paragraph, paragraphIndex) => (
+              <p key={paragraphIndex}>{paragraph}</p>
+            ))}
+            <ol className="career-apply__steps">
+              {steps.map((step, stepIndex) => <li key={step.title}>
+                <span>{new Intl.NumberFormat(isAr ? "ar" : "en", {minimumIntegerDigits: 2}).format(stepIndex + 1)}</span>
+                <div><strong>{step.title}</strong><p>{step.text}</p></div>
+              </li>)}
+            </ol>
+          </aside>
+          {supplementalSection && <div className="career-apply__form" data-animate>
+            {formHeading && <h3>{formHeading}</h3>}
+            <CorporateForm section={supplementalSection} locale={locale} kind="careers"/>
+          </div>}
+        </div>
+      </AnimatedSection>
+    );
+  }
+
   /*
    * ========================================================
    * Contact Page — Embedded Corporate Location Map
@@ -513,30 +897,9 @@ export function SectionRenderer({
       locale,
     );
 
-    const directionsHref =
-      localizedItemValue(section, "Map Directions URL", locale) || mapSrc;
-
-    const directionsLabel = localizedItemValue(
-      section,
-      "Map CTA",
-      locale,
-    );
-
     const mapRegionLabel = localizedItemValue(
       section,
       "Map Region Label",
-      locale,
-    );
-
-    const badgeLabel = localizedItemValue(
-      section,
-      "Map Badge Label",
-      locale,
-    );
-
-    const badgeValue = localizedItemValue(
-      section,
-      "Map Badge Value",
       locale,
     );
 
@@ -589,18 +952,251 @@ export function SectionRenderer({
                 regionLabel={mapRegionLabel}
                 title={heading}
                 locationName={locationName}
-                address={address}
-                description={locationDescription}
                 mapSrc={mapSrc}
-                directionsHref={directionsHref}
-                directionsLabel={directionsLabel}
-                badgeLabel={badgeLabel}
-                badgeValue={badgeValue}
               />
             </div>
           )}
         </div>
       </AnimatedSection>
+    );
+  }
+
+  if (/Contact Information/i.test(section.title)) {
+    const phone = localizedItemValue(section, "Phone", locale);
+    const fax = localizedItemValue(section, "Fax", locale);
+    const email = localizedItemValue(section, "Email", locale);
+    const address = localizedItemValue(section, "Address", locale);
+    const contactCards = [
+      {label: isAr ? "الهاتف" : "Phone", value: phone, href: "tel:+966920005841", Icon: Phone, ltr: true},
+      {label: isAr ? "الفاكس" : "Fax", value: fax, href: "", Icon: Printer, ltr: true},
+      {label: isAr ? "البريد الإلكتروني" : "Email", value: email, href: `mailto:${email}`, Icon: Mail, ltr: false},
+      {label: isAr ? "العنوان" : "Address", value: address, href: "https://www.google.com/maps/search/?api=1&query=Masdar%20Al-Hayat%20Food%20Industries%20Riyadh", Icon: MapPin, ltr: false},
+    ].filter((card) => card.value);
+
+    return (
+      <AnimatedSection className={`content-section contact-card-section content-section--${theme}`} variant="stagger">
+        <div className="container-xxl">
+          <header className="section-heading" data-animate>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+            {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
+          </header>
+          <div className="contact-card-grid">
+            {contactCards.map(({label, value: cardValue, href, Icon, ltr}) => {
+              const content = <>
+                <Icon aria-hidden="true"/>
+                <span>{label}</span>
+                <strong dir={ltr ? "ltr" : undefined}>{cardValue}</strong>
+              </>;
+              // A fax number has nothing to link to, so it renders as a plain card.
+              return href ? <a key={label} href={href} data-animate>{content}</a> : <div key={label} data-animate>{content}</div>;
+            })}
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (/Enquiry Categories/i.test(section.title)) {
+    const enquiryIcons = [Lightbulb, Handshake, Radar, Factory, ShieldCheck, Sprout];
+
+    return (
+      <AnimatedSection className={`content-section enquiry-card-section content-section--${theme}`} variant="stagger">
+        <div className="container-xxl">
+          <header className="section-heading" data-animate>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+          </header>
+          <div className="enquiry-card-grid">
+            {groups.map((group, groupIndex) => {
+              const Icon = enquiryIcons[groupIndex % enquiryIcons.length];
+              return <article key={group.key} data-animate>
+                <span><Icon aria-hidden="true"/></span>
+                <h3>{groupText(group, "Title")}</h3>
+                <p>{value(group.parts.Description, locale)}</p>
+              </article>;
+            })}
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (/Certifications & Standards/i.test(section.title)) {
+    return (
+      <AnimatedSection className={`content-section certificate-card-section content-section--${theme}`} variant="stagger">
+        <div className="container-xxl">
+          <header className="section-heading" data-animate>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+            {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
+          </header>
+          <div className="certificate-card-grid">
+            {groups.map((group) => <article key={group.key} data-animate>
+              <ShieldCheck aria-hidden="true"/>
+              <h3>{groupText(group, "Title")}</h3>
+              <p>{value(group.parts.Description, locale)}</p>
+            </article>)}
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (/Flagship Brand/i.test(section.title)) {
+    const productCategories = groups.filter((group) => group.prefix === "Product Category");
+    const productRangeImages = [
+      "/assets/images/products/prod-range-01-clean.webp",
+      "/assets/images/products/prod-range-02-clean.webp",
+      "/assets/images/products/prod-range-03-clean.webp",
+      "/assets/images/products/prod-range-04-clean.webp",
+      "/assets/images/products/prod-range-05-clean.webp",
+      "/assets/images/products/prod-range-06-clean.webp",
+    ];
+    const productRangeItems = productCategories.map((category, categoryIndex) => ({
+      title: groupText(category, "Title"),
+      description: value(category.parts.Description, locale),
+      image: productRangeImages[categoryIndex]
+        ? {
+            src: productRangeImages[categoryIndex],
+            alt: isAr
+              ? `صورة مجموعة ${groupText(category, "Title")}`
+              : `${groupText(category, "Title")} product range`,
+          }
+        : undefined,
+    }));
+    const secondary = localizedItemValue(section, "Secondary CTA", locale);
+
+    return (
+      <>
+        <AnimatedSection className={`content-section flagship-brand-section content-section--${theme}`} variant="mask">
+          <div className="container-xxl flagship-brand__layout">
+            <div className="flagship-brand__intro">
+              <div className="flagship-brand__mark" data-animate>
+                <span className="flagship-brand__halo" aria-hidden="true" />
+                <Image
+                  src="/brand/fonte-transparent-logo.png"
+                  alt={isAr ? "شعار فونتي" : "Fonte logo"}
+                  width={197}
+                  height={80}
+                  unoptimized
+                  className="flagship-brand__logo"
+                />
+                <small>{isAr ? "العلامة الرئيسية لمصدر الحياة" : "The flagship brand of Masdar Al Hayat"}</small>
+              </div>
+              <div className="flagship-brand__copy" data-animate>
+                {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+                <h2>{heading}</h2>
+                {copy.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
+              </div>
+            </div>
+
+            <div className="flagship-brand__range" data-animate>
+              <ProductRangeCarousel items={productRangeItems} locale={locale}/>
+            </div>
+
+            <div className="flagship-brand__actions" data-animate>
+              {secondary && <ArrowLink href={resolveCtaHref(secondary)}>{secondary}</ArrowLink>}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {theme === "portfolio" && (
+          <ManufacturingVideoInterlude
+            combined
+            label={
+              isAr
+                ? "مشاهد متتابعة من عمليات تصنيع منتجات فونتي"
+                : "Fonte manufacturing operations video sequence"
+            }
+          />
+        )}
+      </>
+    );
+  }
+
+  if (/Beginning of the Journey/i.test(section.title)) {
+    const beginningImageAlt = isAr
+      ? "صورة أرشيفية لبدايات مجموعة التميمي"
+      : "An archival photograph from the early history of Tamimi Group";
+    const timelineMilestones = supplementalSection
+      ? getTimelineMilestones(supplementalSection, locale)
+      : [];
+
+    return (
+      <AnimatedSection className={`content-section heritage-beginning-section content-section--${theme}`} variant="mask">
+        <div className="container-xxl heritage-beginning__layout">
+          <div className="heritage-beginning__feature">
+            <figure className="heritage-beginning__visual" data-animate>
+              <BrandImage
+                src={image}
+                alt={beginningImageAlt}
+                className="heritage-beginning__image"
+              />
+              <figcaption>
+                <span>{isAr ? "بداية المسيرة" : "The journey begins"}</span>
+                <strong>1942</strong>
+              </figcaption>
+            </figure>
+            <header className="heritage-beginning__intro" data-animate>
+              {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+              <h2>{heading}</h2>
+              {copy[0] && <p>{copy[0]}</p>}
+            </header>
+          </div>
+
+          {timelineMilestones.length > 0 && (
+            <HeritageTimelineGrid milestones={timelineMilestones} />
+          )}
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (/Our Strategic Direction/i.test(section.title)) {
+    const strategicImageAlt = isAr
+      ? "فريق مصدر الحياة يناقش التوجه الاستراتيجي داخل منشأة الإنتاج"
+      : "Masdar Al Hayat team discussing strategic direction inside the production facility";
+
+    return (
+      <AnimatedSection
+        className={`content-section strategic-direction-section content-section--${theme}`}
+        variant="mask"
+      >
+        <div className="container-xxl strategic-direction__grid">
+          <div className="strategic-direction__content" data-animate>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+            <div className="strategic-direction__copy">
+              {copy.map((paragraph, paragraphIndex) => (
+                <p key={paragraphIndex}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+
+          <figure className="strategic-direction__visual" data-animate>
+            <BrandImage
+              src={image}
+              alt={strategicImageAlt}
+              className="strategic-direction__image"
+            />
+            <span className="strategic-direction__corner" aria-hidden="true" />
+          </figure>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (/Group Development Timeline/i.test(section.title)) {
+    const milestones = getTimelineMilestones(section, locale);
+
+    return (
+      <HeritageTimeline
+        kicker={visibleKicker}
+        heading={heading}
+        introduction={copy[0] ?? ""}
+        milestones={milestones}
+      />
     );
   }
 
@@ -931,7 +1527,7 @@ export function SectionRenderer({
           <div className="closing-section__actions">
             {primary && (
               <ArrowLink
-                href="/contact"
+                href={resolveCtaHref(primary)}
                 light
               >
                 {primary}
@@ -940,7 +1536,7 @@ export function SectionRenderer({
 
             {secondary && (
               <ArrowLink
-                href="/brands-partnerships/business-partnerships"
+                href={resolveCtaHref(secondary)}
                 light
               >
                 {secondary}
@@ -953,6 +1549,492 @@ export function SectionRenderer({
   }
 
   const layout = index % 6;
+
+  if (theme === "industrial" && index === 3 && groups.length >= 4) {
+    const capabilityImages = [
+      {
+        image: "/assets/images/masdar-enhanced/masdar_al_hayat_26.webp",
+        objectPosition: "62% center",
+      },
+      {
+        image: "/assets/images/masdar-enhanced/masdar_al_hayat_27.webp",
+        objectPosition: "64% center",
+      },
+      {
+        image: "/assets/images/masdar-enhanced/masdar_al_hayat_18.webp",
+        objectPosition: "64% center",
+      },
+      {
+        image: "/assets/images/capabilities/manufacturing-production-coordination-v1.webp",
+        objectPosition: "center center",
+      },
+    ] as const;
+
+    const capabilityItems: ManufacturingCapabilityItem[] = groups
+      .slice(0, 4)
+      .map((group, groupIndex) => ({
+        title:
+          groupText(group, "Title") ||
+          groupText(group, "Value"),
+        description: value(group.parts.Description, locale),
+        ...capabilityImages[groupIndex],
+      }));
+
+    return (
+      <ManufacturingCapabilitiesFlow
+        kicker={visibleKicker}
+        heading={heading}
+        items={capabilityItems}
+        isRtl={isAr}
+      />
+    );
+  }
+
+  if (theme === "industrial" && index === 4 && groups.length >= 4) {
+    const categoryIcons = [Wheat, ChefHat, Soup, Snowflake] as const;
+    const categories = groups.slice(0, 4).map((group, categoryIndex) => ({
+      title: groupText(group, "Title") || groupText(group, "Value"),
+      Icon: categoryIcons[categoryIndex],
+    }));
+
+    return (
+      <>
+        <ManufacturingVideoInterlude
+          combined
+          label={
+            isAr
+              ? "مشهد من عمليات التصنيع في مصدر الحياة"
+              : "Masdar Al Hayat manufacturing operations"
+          }
+        />
+
+        <AnimatedSection
+          className="content-section product-categories-showcase content-section--industrial"
+          variant="stagger"
+        >
+          <div className="container-xxl">
+            <header className="product-categories-showcase__header" data-animate>
+              <div>
+                {visibleKicker && (
+                  <span className="section-kicker">{visibleKicker}</span>
+                )}
+                <h2>{heading}</h2>
+              </div>
+
+              {copy.length > 0 && <p>{copy[0]}</p>}
+            </header>
+
+            <div className="product-categories-showcase__body">
+              <figure className="product-categories-showcase__visual" data-animate>
+                <BrandImage
+                  src="/assets/images/capabilities/manufacturing-product-categories-v1.webp"
+                  alt={heading}
+                  className="product-categories-showcase__image"
+                />
+                <span aria-hidden="true" />
+                <figcaption aria-hidden="true">
+                  <strong>04</strong>
+                  <span>{visibleKicker}</span>
+                </figcaption>
+              </figure>
+
+              <div className="product-categories-showcase__list">
+                {categories.map(({title: categoryTitle, Icon}, categoryIndex) => (
+                  <article key={categoryTitle} data-animate>
+                    <div className="product-categories-showcase__icon">
+                      <Icon aria-hidden="true" />
+                    </div>
+                    <span>{String(categoryIndex + 1).padStart(2, "0")}</span>
+                    <h3>{categoryTitle}</h3>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <ManufacturingGallery isRtl={isAr} />
+      </>
+    );
+  }
+
+  if (theme === "operations" && index === 3 && groups.length >= 5) {
+    const planningIcons = [
+      Handshake,
+      Boxes,
+      ShieldCheck,
+      Gauge,
+      RefreshCw,
+    ] as const;
+
+    const planningSteps = groups.slice(0, 5).map((group, stepIndex) => ({
+      title: groupText(group, "Title") || groupText(group, "Value"),
+      Icon: planningIcons[stepIndex],
+    }));
+
+    return (
+      <AnimatedSection
+        className="content-section planning-coordination-showcase content-section--operations"
+        variant="stagger"
+      >
+        <div className="container-xxl">
+          <header className="planning-coordination-showcase__header">
+            <div data-animate>
+              {visibleKicker && (
+                <span className="section-kicker">{visibleKicker}</span>
+              )}
+              <h2>{heading}</h2>
+            </div>
+
+            <div className="planning-coordination-showcase__copy" data-animate>
+              {copy.map((paragraph, paragraphIndex) => (
+                <p key={paragraphIndex}>{paragraph}</p>
+              ))}
+            </div>
+          </header>
+
+          <div className="planning-coordination-showcase__flow">
+            <span className="planning-coordination-showcase__rail" aria-hidden="true" />
+
+            {planningSteps.map(({title: stepTitle, Icon}, stepIndex) => (
+              <article key={stepTitle} data-animate>
+                <div className="planning-coordination-showcase__marker">
+                  <span>{String(stepIndex + 1).padStart(2, "0")}</span>
+                </div>
+
+                <div className="planning-coordination-showcase__tile">
+                  <Icon aria-hidden="true" />
+                  <h3>{stepTitle}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (theme === "operations" && index === 4 && groups.length >= 5) {
+    const smartIcons = [ClipboardCheck, Warehouse, ScanLine, PackageOpen, Truck] as const;
+    const improvements = groups.slice(0, 5).map((group, improvementIndex) => ({
+      title: groupText(group, "Title") || groupText(group, "Value"),
+      Icon: smartIcons[improvementIndex],
+    }));
+
+    return (
+      <AnimatedSection
+        className="content-section smart-operations-showcase content-section--operations"
+        variant="stagger"
+      >
+        <div className="container-xxl">
+          <header className="smart-operations-showcase__header">
+            <div data-animate>
+              {visibleKicker && (
+                <span className="section-kicker">{visibleKicker}</span>
+              )}
+              <h2>{heading}</h2>
+            </div>
+
+            <div className="smart-operations-showcase__copy" data-animate>
+              {copy.map((paragraph, paragraphIndex) => (
+                <p key={paragraphIndex}>{paragraph}</p>
+              ))}
+            </div>
+          </header>
+
+          <div className="smart-operations-showcase__body">
+            <BrandImage
+              src={image}
+              alt={isAr
+                ? "منصات منتجات غذائية أثناء المناولة في مستودع مصدر الحياة"
+                : "Palletised food products being handled in the Masdar Al Hayat warehouse"}
+              className="smart-operations-showcase__image"
+            />
+
+            <div className="smart-operations-showcase__grid">
+              {improvements.map(({title: improvementTitle, Icon}, improvementIndex) => (
+                <article key={improvementTitle} data-animate>
+                  <span>{String(improvementIndex + 1).padStart(2, "0")}</span>
+                  <Icon aria-hidden="true" />
+                  <h3>{improvementTitle}</h3>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (theme === "operations" && section.title === "Operational Reliability") {
+    return (
+      <AnimatedSection
+        className="content-section inventory-management content-section--operations"
+        variant="rise"
+      >
+        <div className="container-xxl inventory-management__grid">
+          <header data-animate>
+            {visibleKicker && <span className="section-kicker">{visibleKicker}</span>}
+            <h2>{heading}</h2>
+          </header>
+          <div className="inventory-management__copy" data-animate>
+            {copy.map((paragraph, paragraphIndex) => (
+              <p key={paragraphIndex}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (theme === "quality" && index === 3 && groups.length >= 5) {
+    const safetyIcons = [
+      PackageCheck,
+      SlidersHorizontal,
+      Sparkles,
+      Warehouse,
+      FileCheck2,
+    ] as const;
+
+    const safetyFocuses = groups.slice(0, 5).map((group, focusIndex) => ({
+      title: groupText(group, "Title") || groupText(group, "Value"),
+      Icon: safetyIcons[focusIndex],
+    }));
+
+    return (
+      <AnimatedSection
+        className="content-section food-safety-showcase content-section--quality"
+        variant="stagger"
+      >
+        <div className="container-xxl">
+          <header className="food-safety-showcase__header">
+            <div data-animate>
+              {visibleKicker && (
+                <span className="section-kicker">{visibleKicker}</span>
+              )}
+              <h2>{heading}</h2>
+            </div>
+
+            <div className="food-safety-showcase__copy" data-animate>
+              {copy.map((paragraph, paragraphIndex) => (
+                <p key={paragraphIndex}>{paragraph}</p>
+              ))}
+            </div>
+          </header>
+
+          <div className="food-safety-showcase__system">
+            <div className="food-safety-showcase__assurance" data-animate aria-hidden="true">
+              <span className="food-safety-showcase__ring food-safety-showcase__ring--outer" />
+              <span className="food-safety-showcase__ring food-safety-showcase__ring--inner" />
+
+              <div className="food-safety-showcase__shield">
+                <div>
+                  <ShieldCheck />
+                  <span>01 — 05</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="food-safety-showcase__checkpoints">
+              {safetyFocuses.map(({title: focusTitle, Icon}, focusIndex) => (
+                <article key={focusTitle} data-animate>
+                  <span>{String(focusIndex + 1).padStart(2, "0")}</span>
+                  <div className="food-safety-showcase__checkpoint-icon">
+                    <Icon aria-hidden="true" />
+                  </div>
+                  <h3>{focusTitle}</h3>
+                  <Check aria-hidden="true" />
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (theme === "logistics" && index === 3 && groups.length >= 5) {
+    const warehousingIcons = [
+      PackageOpen,
+      Warehouse,
+      ScanSearch,
+      ClipboardCheck,
+      CircleCheckBig,
+    ] as const;
+
+    const warehousingFocuses = groups.slice(0, 5).map((group, focusIndex) => ({
+      title: groupText(group, "Title") || groupText(group, "Value"),
+      Icon: warehousingIcons[focusIndex],
+    }));
+
+    return (
+      <AnimatedSection
+        className="content-section warehousing-showcase content-section--logistics"
+        variant="stagger"
+      >
+        <div className="container-xxl">
+          <header className="warehousing-showcase__header">
+            <div data-animate>
+              {visibleKicker && (
+                <span className="section-kicker">{visibleKicker}</span>
+              )}
+              <h2>{heading}</h2>
+            </div>
+
+            <div className="warehousing-showcase__copy" data-animate>
+              {copy.map((paragraph, paragraphIndex) => (
+                <p key={paragraphIndex}>{paragraph}</p>
+              ))}
+            </div>
+          </header>
+
+          <div className="warehousing-showcase__system">
+            <div className="warehousing-showcase__hub" data-animate aria-hidden="true">
+              <span className="warehousing-showcase__frame warehousing-showcase__frame--outer" />
+              <span className="warehousing-showcase__frame warehousing-showcase__frame--inner" />
+              <div>
+                <Warehouse />
+                <span>01 — 05</span>
+              </div>
+            </div>
+
+            <div className="warehousing-showcase__rack">
+              {warehousingFocuses.map(({title: focusTitle, Icon}, focusIndex) => (
+                <article key={focusTitle} data-animate>
+                  <span>{String(focusIndex + 1).padStart(2, "0")}</span>
+                  <div>
+                    <Icon aria-hidden="true" />
+                  </div>
+                  <h3>{focusTitle}</h3>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (theme === "logistics" && index === 4 && groups.length >= 4) {
+    const channelIcons = [ShoppingCart, Truck, Hotel, Building2] as const;
+    const channels = groups.slice(0, 4).map((group, channelIndex) => ({
+      title: groupText(group, "Title") || groupText(group, "Value"),
+      description: value(group.parts.Description, locale),
+      Icon: channelIcons[channelIndex],
+    }));
+
+    return (
+      <AnimatedSection
+        className="content-section market-channels-showcase content-section--logistics"
+        variant="stagger"
+      >
+        <div className="container-xxl">
+          <header className="market-channels-showcase__header">
+            <div data-animate>
+              {visibleKicker && (
+                <span className="section-kicker">{visibleKicker}</span>
+              )}
+              <h2>{heading}</h2>
+            </div>
+
+            {copy.length > 0 && <p data-animate>{copy[0]}</p>}
+          </header>
+
+          <figure className="market-channels-showcase__media" data-animate>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              title={heading}
+            >
+              <source
+                src="/assets/videos/masdar_logistics-video-1.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <span aria-hidden="true" />
+            <figcaption aria-hidden="true">
+              <Truck />
+              <span>{visibleKicker}</span>
+            </figcaption>
+          </figure>
+
+          <div className="market-channels-showcase__grid">
+            {channels.map(({title: channelTitle, description, Icon}, channelIndex) => (
+              <article key={channelTitle} data-animate>
+                <div className="market-channels-showcase__meta">
+                  <Icon aria-hidden="true" />
+                  <span>{String(channelIndex + 1).padStart(2, "0")}</span>
+                </div>
+                <h3>{channelTitle}</h3>
+                <p>{description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+    );
+  }
+
+  if (theme === "innovation" && index === 4 && image) {
+    const focusItem = remaining.find(
+      (item) => String(item.label ?? "") === "Key Focus Areas",
+    );
+    const focusAreas = value(focusItem, locale)
+      .split(/[,،]/)
+      .map((area) => area.trim())
+      .filter(Boolean);
+
+    return (
+      <AnimatedSection
+        className="content-section smarter-operations-section content-section--innovation"
+        variant="slide"
+      >
+        <div className="container-xxl">
+          <div className="smarter-operations__grid">
+            <div className="smarter-operations__content" data-animate>
+              {visibleKicker && (
+                <span className="section-kicker">{visibleKicker}</span>
+              )}
+
+              <h2>{heading}</h2>
+
+              <div className="smarter-operations__copy">
+                {copy.map((paragraph, paragraphIndex) => (
+                  <p key={paragraphIndex}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+
+            <figure className="smarter-operations__visual" data-animate>
+              <BrandImage
+                src={image}
+                alt={heading}
+                className="smarter-operations__image"
+              />
+
+              <figcaption>
+                <Radar aria-hidden="true" />
+                <span>{visibleKicker}</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          {focusAreas.length > 0 && (
+            <FocusConnector
+              label={visibleItemLabel(
+                focusItem?.label ?? "Key Focus Areas",
+                locale,
+              )}
+              areas={focusAreas}
+            />
+          )}
+        </div>
+      </AnimatedSection>
+    );
+  }
 
   /*
    * ========================================================
@@ -970,9 +2052,12 @@ export function SectionRenderer({
       processSearchText,
     )
   ) {
+    // The Development Journey shows its label as a centred title in place of the heading.
+    const journey = section.title === "Development Journey";
+
     return (
       <AnimatedSection
-        className={`content-section process-section content-section--${theme}`}
+        className={`content-section process-section${journey ? " process-section--journey" : ""} content-section--${theme}`}
         variant="line"
       >
         <div className="container-xxl">
@@ -984,13 +2069,13 @@ export function SectionRenderer({
               {String(index).padStart(2, "0")}
             </span>
 
-            {visibleKicker && (
+            {!journey && visibleKicker && (
               <span className="section-kicker">
                 {visibleKicker}
               </span>
             )}
 
-            <h2>{heading}</h2>
+            <h2>{journey ? visibleKicker || heading : heading}</h2>
 
             {copy[0] && <p>{copy[0]}</p>}
           </header>
@@ -1031,14 +2116,7 @@ export function SectionRenderer({
     );
   }
 
-  /*
-   * ========================================================
-   * Vision Pillars — custom constellation layout
-   * ========================================================
-   *
-   * This condition must stay above the generic Vision and
-   * Mission statement renderer.
-   */
+  /* Vision statement feature with its approved supporting image. */
 
   const isVisionPillarSection =
     groups.length >= 6 &&
@@ -1052,166 +2130,52 @@ export function SectionRenderer({
     );
 
   if (isVisionPillarSection) {
-    const visionIcons = [
-      ShieldCheck,
-      Factory,
-      Radar,
-      Lightbulb,
-      Handshake,
-      Sprout,
-    ] as const;
-
     return (
       <AnimatedSection
-        className={`content-section vision-constellation-section content-section--${theme}`}
-        variant="stagger"
+        className={`content-section vision-statement-feature-section content-section--${theme}`}
+        variant="mask"
       >
         <div className="container-xxl">
           <header
             className="vision-constellation__header"
             data-animate
           >
-            <span className="section-index">
-              {String(index).padStart(2, "0")}
-            </span>
+            <div className="vision-constellation__header-copy">
+              {visibleKicker && (
+                <span className="section-kicker">
+                  {visibleKicker}
+                </span>
+              )}
 
-            {visibleKicker && (
-              <span className="section-kicker">
-                {visibleKicker}
-              </span>
-            )}
+              <h2>{heading}</h2>
 
-            <h2>{heading}</h2>
-
-            {copy.length > 0 && (
-              <div className="vision-constellation__introduction">
-                {copy.map(
-                  (
-                    paragraph,
-                    paragraphIndex,
-                  ) => (
-                    <p key={paragraphIndex}>
-                      {paragraph}
-                    </p>
-                  ),
-                )}
-              </div>
-            )}
-          </header>
-
-          <div className="vision-constellation__stage">
-            <div
-              className="vision-constellation__core"
-              data-animate
-              aria-hidden="true"
-            >
-              <span>
-                {isAr
-                  ? "رؤيتنا"
-                  : "Our Vision"}
-              </span>
-
-              <strong>
-                {String(
-                  groups.slice(0, 6).length,
-                ).padStart(2, "0")}
-              </strong>
-
-              <small>
-                {isAr
-                  ? "مرتكزات"
-                  : "Pillars"}
-              </small>
-
-              <i className="vision-constellation__core-dot" />
+              {copy.length > 0 && (
+                <div className="vision-constellation__introduction">
+                  {copy.map(
+                    (
+                      paragraph,
+                      paragraphIndex,
+                    ) => (
+                      <p key={paragraphIndex}>
+                        {paragraph}
+                      </p>
+                    ),
+                  )}
+                </div>
+              )}
             </div>
 
-            {groups
-              .slice(0, 6)
-              .map(
-                (
-                  group,
-                  groupIndex,
-                ) => {
-                  const VisionIcon =
-                    visionIcons[
-                    groupIndex %
-                    visionIcons.length
-                    ];
-
-                  /*
-                   * The first three nodes appear on one side
-                   * and the remaining three on the opposite side.
-                   * Arabic reverses the visual direction.
-                   */
-
-                  const side =
-                    groupIndex < 3
-                      ? isAr
-                        ? "right"
-                        : "left"
-                      : isAr
-                        ? "left"
-                        : "right";
-
-                  const row =
-                    (groupIndex % 3) + 1;
-
-                  const pillarTitle =
-                    groupText(
-                      group,
-                      "Title",
-                    );
-
-                  const pillarDescription =
-                    value(
-                      group.parts
-                        .Description,
-                      locale,
-                    );
-
-                  return (
-                    <article
-                      key={group.key}
-                      className={[
-                        "vision-constellation__node",
-                        `vision-constellation__node--${side}`,
-                        `vision-constellation__node--row-${row}`,
-                      ].join(" ")}
-                      data-animate
-                    >
-                      <div className="vision-constellation__node-icon">
-                        <VisionIcon
-                          size={24}
-                          strokeWidth={1.6}
-                          aria-hidden="true"
-                        />
-                      </div>
-
-                      <div className="vision-constellation__node-copy">
-                        <span className="vision-constellation__node-number">
-                          {String(
-                            groupIndex + 1,
-                          ).padStart(2, "0")}
-                        </span>
-
-                        <h3>
-                          {pillarTitle}
-                        </h3>
-
-                        {pillarDescription && (
-                          <p>
-                            {
-                              pillarDescription
-                            }
-                          </p>
-                        )}
-                      </div>
-                    </article>
-                  );
-                },
-              )}
-          </div>
+            <figure className="vision-constellation__visual">
+              <BrandImage
+                src={image}
+                alt={isAr
+                  ? "طفل يختار منتجات فونتي في متجر"
+                  : "A child choosing Fonte products in a retail store"}
+                className="vision-constellation__image"
+              />
+              <span className="vision-constellation__visual-mark" aria-hidden="true" />
+            </figure>
+          </header>
         </div>
       </AnimatedSection>
     );
@@ -1444,7 +2408,7 @@ export function SectionRenderer({
                   >
                     {directionFramework.map((item) => (
                       <div key={item.index}>
-                        <small>{item.label}</small>
+                        <small>{visibleItemLabel(item.label, locale)}</small>
                         <strong>{item.value}</strong>
                       </div>
                     ))}
@@ -1470,13 +2434,15 @@ export function SectionRenderer({
       section.title,
     )
   ) {
+    const isMissionStatementSection = /Mission Statement/i.test(section.title);
+
     return (
       <AnimatedSection
-        className={`content-section statement-section content-section--${theme}`}
+        className={`content-section statement-section content-section--${theme} ${isMissionStatementSection ? "mission-statement-section" : ""}`}
         variant="mask"
       >
         <div className="container-xxl statement-section__grid">
-          <div data-animate>
+          <div className="statement-section__heading" data-animate>
             <span className="section-index">
               {String(index).padStart(2, "0")}
             </span>
@@ -1488,6 +2454,19 @@ export function SectionRenderer({
             )}
 
             <h2>{heading}</h2>
+
+            {isMissionStatementSection && image && (
+              <figure className="mission-statement__visual">
+                <BrandImage
+                  src={image}
+                  alt={isAr
+                    ? "فريق مصدر الحياة يراجع خطط التشغيل داخل المنشأة"
+                    : "Masdar Al Hayat team reviewing operational plans inside the facility"}
+                  className="mission-statement__image"
+                />
+                <span className="mission-statement__accent" aria-hidden="true" />
+              </figure>
+            )}
           </div>
 
           <div
@@ -1538,6 +2517,9 @@ export function SectionRenderer({
     layout === 1 ||
     groups.length >= 4
   ) {
+    // Our Values shows a centred title on its own (its introduction was removed); the cards keep their descriptions.
+    const centredTitle = section.title === "Our Values" && copy.length === 0;
+
     return (
       <AnimatedSection
         className={`content-section matrix-section content-section--${theme}`}
@@ -1545,7 +2527,7 @@ export function SectionRenderer({
       >
         <div className="container-xxl">
           <header
-            className="section-heading section-heading--wide"
+            className={centredTitle ? "section-heading section-heading--centred" : "section-heading section-heading--wide"}
             data-animate
           >
             <div>
@@ -1562,7 +2544,7 @@ export function SectionRenderer({
               <h2>{heading}</h2>
             </div>
 
-            <div>
+            {copy.length > 0 && <div>
               {copy.map(
                 (
                   paragraph,
@@ -1573,7 +2555,7 @@ export function SectionRenderer({
                   </p>
                 ),
               )}
-            </div>
+            </div>}
           </header>
 
           <div className="matrix-grid">
@@ -1634,11 +2616,7 @@ export function SectionRenderer({
                     )}
                   </h3>
 
-                  <small>
-                    {String(
-                      item.label,
-                    )}
-                  </small>
+                  <small>{visibleItemLabel(item.label, locale)}</small>
                 </article>
               ),
             )}
@@ -1661,10 +2639,7 @@ export function SectionRenderer({
         variant="slide"
       >
         <div className="container-xxl media-section__grid">
-          <BrandImage
-            src={image}
-            alt={heading}
-          />
+          {image ? <BrandImage src={image} alt={heading}/> : <div className="section-visual-placeholder" data-animate aria-hidden="true"><Lightbulb/><span/><span/></div>}
 
           <div
             className="media-section__content"
@@ -1699,6 +2674,7 @@ export function SectionRenderer({
                 .map((group) => (
                   <div key={group.key}>
                     <ChevronRight
+                      className="directional-icon"
                       aria-hidden="true"
                     />
 
@@ -1722,6 +2698,7 @@ export function SectionRenderer({
                 ) => (
                   <div key={itemIndex}>
                     <ChevronRight
+                      className="directional-icon"
                       aria-hidden="true"
                     />
 
@@ -1817,11 +2794,7 @@ export function SectionRenderer({
                       )}
                     </h3>
 
-                    <small>
-                      {String(
-                        item.label,
-                      )}
-                    </small>
+                    <small>{visibleItemLabel(item.label, locale)}</small>
                   </div>
                 ),
               )}
@@ -1840,7 +2813,7 @@ export function SectionRenderer({
 
   /*
  * ========================================================
- * Leadership & Governance — Governance Philosophy
+ * Legacy governance philosophy visual
  * ========================================================
  */
 
@@ -2073,9 +3046,7 @@ export function SectionRenderer({
                       ).padStart(2, "0")}
                     </span>
 
-                    {String(
-                      item.label,
-                    )}
+                    {visibleItemLabel(item.label, locale)}
                   </summary>
 
                   <p>
@@ -2140,7 +3111,7 @@ export function SectionRenderer({
         )}
 
         {cta && (
-          <ArrowLink href="/contact">
+          <ArrowLink href={resolveCtaHref(cta)}>
             {cta}
           </ArrowLink>
         )}

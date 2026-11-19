@@ -1,24 +1,84 @@
 import Image from "next/image";
-import {ArrowUpRight, ExternalLink, Mail, MapPin} from "lucide-react";
+import masdarLogo from "../../../public/brand/masdar-logo-text.webp";
+import {
+  ArrowUpRight,
+  Mail,
+  MapPin,
+  Phone,
+  Printer,
+} from "lucide-react";
+import {FaLinkedinIn} from "react-icons/fa6";
 import {Link} from "@/i18n/navigation";
+import {getPageContent} from "@/content/pages";
+import {byLabel, value} from "@/lib/content";
 import type {Locale} from "@/types/content";
+
+const LINKEDIN_URL = "https://www.linkedin.com/company/fonte-masdaralhayat";
+
+// The footer introduces the company with the home page hero's opening paragraph.
+const homeHero = getPageContent("home").sections[0];
 
 export function Footer({locale}: {locale: Locale}) {
   const ar = locale === "ar";
+  const copyrightYear = ar
+    ? new Intl.NumberFormat("ar-SA", {useGrouping: false}).format(new Date().getFullYear())
+    : new Date().getFullYear();
+
   return <footer className="site-footer">
     <div className="site-footer__grain" aria-hidden="true"/>
     <div className="container-xxl">
-      <div className="site-footer__lead">
-        <div><span>{ar ? "نصنع الغذاء. نبني الثقة." : "Manufacturing food. Building trust."}</span><h2>{ar ? "لنصنع قيمة تدوم." : "Let’s create lasting value."}</h2></div>
-        <Link href="/brands-partnerships/business-partnerships" className="footer-circle">{ar ? "كن شريكاً لنا" : "Partner with us"}<ArrowUpRight/></Link>
-      </div>
       <div className="site-footer__grid">
-        <div className="footer-brand"><Image src="/brand/masdar-logo.png" alt="Masdar Al Hayat" width={230} height={107}/><p>{ar ? "شركة سعودية للصناعات الغذائية، وإحدى شركات مجموعة التميمي." : "A Saudi food manufacturing company operating as part of Tamimi Group."}</p></div>
-        <div><h3>{ar ? "الشركة" : "Company"}</h3><Link href="/about/masdar-al-hayat">{ar ? "عن مصدر الحياة" : "About us"}</Link><Link href="/leadership-governance">{ar ? "القيادة والحوكمة" : "Leadership & governance"}</Link><Link href="/careers">{ar ? "الوظائف" : "Careers"}</Link></div>
-        <div><h3>{ar ? "الخبرات" : "Capabilities"}</h3><Link href="/operations-quality/manufacturing-operations">{ar ? "التصنيع والعمليات" : "Manufacturing"}</Link><Link href="/operations-quality/quality-food-safety-compliance">{ar ? "الجودة وسلامة الغذاء" : "Quality & food safety"}</Link><Link href="/sustainability-responsibility">{ar ? "الاستدامة" : "Sustainability"}</Link></div>
-        <div className="footer-contact"><h3>{ar ? "تواصل" : "Connect"}</h3><Link href="/contact"><Mail size={17}/>{ar ? "أرسل استفسارك" : "Send an enquiry"}</Link><Link href="/contact"><MapPin size={17}/>{ar ? "المكاتب والموقع" : "Corporate offices"}</Link><a href="#" aria-label="LinkedIn"><ExternalLink size={17}/>LinkedIn</a></div>
+        <div className="footer-brand">
+          <Image src={masdarLogo} alt="Masdar Al Hayat" unoptimized/>
+          <p>{value(byLabel(homeHero, "Supporting Paragraph 1"), locale)}</p>
+        </div>
+
+        <div>
+          <h3>{ar ? "روابط سريعة" : "Quick Links"}</h3>
+          <Link href="/">{ar ? "الرئيسية" : "Home"}</Link>
+          <Link href="/about/masdar-al-hayat">{ar ? "عن مصدر الحياة" : "About us"}</Link>
+          <Link href="/brands-partnerships/brands">{ar ? "العلامات التجارية" : "Brands"}</Link>
+          <Link href="/brands-partnerships/brands-portfolio">{ar ? "محفظة علاماتنا التجارية" : "Our Brand Portfolio"}</Link>
+          <Link href="/brands-partnerships/partnerships">{ar ? "الشراكات" : "Partnerships"}</Link>
+          <Link href="/careers">{ar ? "الوظائف" : "Careers"}</Link>
+          <Link href="/contact">{ar ? "تواصل معنا" : "Contact"}</Link>
+        </div>
+
+        <div>
+          <h3>{ar ? "قدراتنا" : "Capabilities"}</h3>
+          <Link href="/capabilities/manufacturing">{ar ? "التصنيع" : "Manufacturing"}</Link>
+          <Link href="/capabilities/operations">{ar ? "العمليات" : "Operations"}</Link>
+          <Link href="/capabilities/quality-compliance">{ar ? "الجودة والامتثال" : "Quality & Compliance"}</Link>
+          <Link href="/capabilities/logistics-distribution">{ar ? "الخدمات اللوجستية والتوزيع" : "Logistics & Distribution"}</Link>
+          <Link href="/capabilities/sales">{ar ? "المبيعات" : "Sales"}</Link>
+          <Link href="/capabilities/marketing">{ar ? "التسويق" : "Marketing"}</Link>
+        </div>
+
+        <div className="footer-contact">
+          <h3>{ar ? "تواصل" : "Connect"}</h3>
+          <a href="mailto:info@masdar.sa"><Mail size={17}/>info@masdar.sa</a>
+          <a href="tel:+966920005841"><Phone size={17}/><span dir="ltr">+966 9200 05841</span></a>
+          <p className="footer-contact__fax"><Printer size={17}/><span>{ar ? "فاكس" : "Fax"}</span><span dir="ltr">+966 11 265 9000</span></p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Masdar%20Al-Hayat%20Food%20Industries%20Riyadh" target="_blank" rel="noreferrer">
+            <MapPin size={17}/>{ar ? "مصدر الحياة، المنطقة الصناعية رقم 2، ص.ب 355011، الرياض 11383، المملكة العربية السعودية" : "Masdar Al Hayat, Industrial Zone No. 2, P.O. Box 355011, Riyadh 11383, Kingdom of Saudi Arabia"}
+          </a>
+          <a className="footer-follow" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+            <span className="footer-follow__icon"><FaLinkedinIn aria-hidden="true"/></span>
+            <span className="footer-follow__text">
+              <small>{ar ? "ابقَ على تواصل" : "Stay connected"}</small>
+              <strong>{ar ? "تابعونا على لينكدإن" : "Follow us on LinkedIn"}</strong>
+            </span>
+            <ArrowUpRight className="footer-follow__arrow directional-icon" size={17} aria-hidden="true"/>
+          </a>
+        </div>
       </div>
-      <div className="site-footer__bottom"><span>© {new Date().getFullYear()} Masdar Al Hayat for Food Industries Ltd.</span><span>{ar ? "جميع الحقوق محفوظة" : "All rights reserved"}</span></div>
+
+      <div className="site-footer__bottom">
+        <span>
+          © {copyrightYear} {ar ? "شركة مصدر الحياة للصناعات الغذائية المحدودة." : "Masdar Al Hayat for Food Industries Ltd."}
+        </span>
+        <span>{ar ? "جميع الحقوق محفوظة" : "All rights reserved"}</span>
+      </div>
     </div>
   </footer>;
 }
