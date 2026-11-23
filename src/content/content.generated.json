@@ -757,6 +757,66 @@
         ]
       },
       {
+        "title": "CEO Message",
+        "items": [
+          {
+            "label": "Section Label",
+            "en": "CEO Message",
+            "ar": "رسالة الرئيس التنفيذي"
+          },
+          {
+            "label": "Main Heading",
+            "en": "Dear Valued Customers and Partners",
+            "ar": "عملاؤنا وشركاؤنا الكرام"
+          },
+          {
+            "label": "Lead",
+            "en": "At Masdar Al Hayat for Food Industries, we don’t just make food and baked goods —",
+            "ar": "في شركة مصدر الحياة للصناعات الغذائية، نحن لا نصنع الأغذية والمخبوزات فحسب —"
+          },
+          {
+            "label": "Lead Highlight",
+            "en": "we create experiences.",
+            "ar": "بل نصنع تجارب."
+          },
+          {
+            "label": "Paragraph 1",
+            "en": "Inspired by Saudi Arabia’s Vision 2030, we strive to redefine taste, quality, and innovation, taking our local industry to global heights.",
+            "ar": "مستلهمين من رؤية السعودية 2030، نسعى لإعادة تعريف الطعم والجودة والابتكار، ورفع صناعتنا المحلية إلى آفاق عالمية."
+          },
+          {
+            "label": "Paragraph 2",
+            "en": "Every product reflects our promise: the finest ingredients, world-class standards, and moments of joy that bring people together. Your trust drives us to keep innovating and to remain your first choice in local and regional markets.",
+            "ar": "كل منتج نقدمه هو وعد بالجودة: أجود المكونات، وأعلى المعايير العالمية، ولحظات سعادة تجمع الناس معًا. ثقتكم هي ما يدفعنا للابتكار المستمر ولنبقى خياركم الأول في الأسواق المحلية والإقليمية."
+          },
+          {
+            "label": "Name",
+            "en": "Eng. Mohammed Binmahfoodh",
+            "ar": "م. محمد بن محفوظ"
+          },
+          {
+            "label": "Role",
+            "en": "CEO",
+            "ar": "الرئيس التنفيذي"
+          },
+          {
+            "label": "Company",
+            "en": "Masdar Al Hayat for Food Industries (Fonte)",
+            "ar": "شركة مصدر الحياة للصناعات الغذائية (فونتي)"
+          },
+          {
+            "label": "Bio Label",
+            "en": "About the CEO",
+            "ar": "نبذة عن الرئيس التنفيذي"
+          },
+          {
+            "label": "Bio",
+            "en": "A business leader who’s confident to challenge the status quo and guide any organization from failure to success and prosperity. My expertise in the FMCG industry as a growth builder was centered on boosting top-line sales while maintaining operational costs to increase margins and bottom-line profits.",
+            "ar": "قائد أعمال يتحدى الوضع الراهن بثقة، وقادر على الانتقال بأي مؤسسة من التعثر إلى النجاح والازدهار. تركزت خبرتي في قطاع السلع الاستهلاكية سريعة التداول، بصفتي صانعًا للنمو، على تعزيز المبيعات مع الحفاظ على التكاليف التشغيلية لزيادة الهوامش وصافي الأرباح."
+          }
+        ]
+      },
+      {
         "title": "Corporate Overview",
         "items": [
           {

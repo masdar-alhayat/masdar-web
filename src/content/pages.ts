@@ -136,6 +136,9 @@ export const SECTION_IMAGE_MAP: Partial<
   },
 };
 
+// CEO portrait with a transparent background, shown in the About page's CEO message.
+export const CEO_PORTRAIT = "/assets/images/about/ceo-mohammed-binmahfoodh.webp";
+
 // Production photographs shown as an overlapping collage in the About hero, in tile order.
 export const ABOUT_HERO_GALLERY = [
   {src: "/assets/images/about/production-tortilla-pressing.webp", alt: {en: "Tortilla dough discs pressed and placed on a production belt", ar: "أقراص عجين التورتيلا تُكبس وتوضع على سير الإنتاج"}},

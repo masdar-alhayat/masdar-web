@@ -1,3 +1,4 @@
+import {CeoMessage} from "@/components/ui/CeoMessage";
 import {InnerHero} from "@/components/ui/InnerHero";
 import {SectionRenderer} from "@/components/ui/SectionRenderer";
 import {DistributionNetworkMap} from "@/components/ui/DistributionNetworkMap";
@@ -35,6 +36,9 @@ const BRANDS_HIDDEN_SECTIONS = new Set([
 // The career application form is shown inside Current Opportunities instead of on its own.
 const CAREERS_FORM_SECTION = "Career Application Form";
 
+// Shown directly below the About hero, ahead of the regular sections.
+const CEO_MESSAGE_SECTION = "CEO Message";
+
 const CAREERS_HIDDEN_SECTIONS = new Set([
   "Working at Masdar Al Hayat",
   CAREERS_FORM_SECTION,
@@ -67,7 +71,8 @@ export function InternalPage({
   const heroImage = PAGE_IMAGES[imageKey];
   const leadingSections = imageKey === "partnerships" ? sections.filter(section => section.title === "Partnership Channels") : [];
   const featuredSections = [...leadingSections, ...sections.filter(section => section.items.some(item => item.label === "Render Variant" && /^(partner-logos|logistics-counters)$/.test(String(item.en))))];
-  const orderedSections = sections.filter(section => !featuredSections.includes(section));
+  const ceoMessage = imageKey === "about" ? sections.find(section => section.title === CEO_MESSAGE_SECTION) : undefined;
+  const orderedSections = sections.filter(section => !featuredSections.includes(section) && section !== ceoMessage);
   const careersForm = imageKey === "careers" ? sections.find(section => section.title === CAREERS_FORM_SECTION) : undefined;
 
   return (
@@ -85,6 +90,8 @@ export function InternalPage({
         additionalSupporting={imageKey === "groupStory" ? value(byLabel(hero, "Supporting Paragraph 2"), locale) : undefined}
         gallery={HERO_GALLERIES[imageKey]?.map(photo => ({src: photo.src, alt: photo.alt[locale]}))}
       />
+
+      {ceoMessage && <CeoMessage section={ceoMessage} locale={locale}/>}
 
       {featuredSections.map(section => <SectionRenderer key={section.title} section={section} index={0} locale={locale} theme={theme} image=""/>)}
 
