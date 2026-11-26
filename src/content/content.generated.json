@@ -761,28 +761,23 @@
         "items": [
           {
             "label": "Section Label",
-            "en": "CEO Message",
-            "ar": "رسالة الرئيس التنفيذي"
+            "en": "Leadership",
+            "ar": "القيادة"
           },
           {
             "label": "Main Heading",
-            "en": "Dear Valued Customers and Partners",
-            "ar": "عملاؤنا وشركاؤنا الكرام"
+            "en": "A Message from Our CEO",
+            "ar": "كلمة الرئيس التنفيذي"
           },
           {
-            "label": "Lead",
-            "en": "At Masdar Al Hayat for Food Industries, we don’t just make food and baked goods —",
-            "ar": "في شركة مصدر الحياة للصناعات الغذائية، نحن لا نصنع الأغذية والمخبوزات فحسب —"
-          },
-          {
-            "label": "Lead Highlight",
-            "en": "we create experiences.",
-            "ar": "بل نصنع تجارب."
+            "label": "Salutation",
+            "en": "Dear Valued Customers and Partners,",
+            "ar": "عملاؤنا وشركاؤنا الكرام،"
           },
           {
             "label": "Paragraph 1",
-            "en": "Inspired by Saudi Arabia’s Vision 2030, we strive to redefine taste, quality, and innovation, taking our local industry to global heights.",
-            "ar": "مستلهمين من رؤية السعودية 2030، نسعى لإعادة تعريف الطعم والجودة والابتكار، ورفع صناعتنا المحلية إلى آفاق عالمية."
+            "en": "At Masdar Al Hayat for Food Industries, we don’t just make food and baked goods — we create experiences. Inspired by Saudi Arabia’s Vision 2030, we strive to redefine taste, quality, and innovation, taking our local industry to global heights.",
+            "ar": "في شركة مصدر الحياة للصناعات الغذائية، نحن لا نصنع الأغذية والمخبوزات فحسب — بل نصنع تجارب. مستلهمين من رؤية السعودية 2030، نسعى لإعادة تعريف الطعم والجودة والابتكار، ورفع صناعتنا المحلية إلى آفاق عالمية."
           },
           {
             "label": "Paragraph 2",
