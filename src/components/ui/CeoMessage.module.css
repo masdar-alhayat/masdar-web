@@ -2,82 +2,62 @@
   background: var(--mah-cream)
 }
 
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0
+}
+
+/* Two columns that share the same top and bottom edges: portrait + biography, and the letter. */
 .grid {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  align-items: start;
-  gap: clamp(2.5rem, 7vw, 7.5rem)
+  align-items: stretch;
+  gap: clamp(1.25rem, 2.4vw, 2rem)
 }
 
-/* Portrait: the cut-out sits on a calm wheat panel, without overlays or decoration. */
-.portrait {
+.profile {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  aspect-ratio: 4 / 5;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2.4vw, 2rem)
+}
+
+/* Portrait: the studio photograph as supplied. It grows to fill any height the letter adds,
+   so both columns always end level; the crop keeps the face in view. */
+.portrait {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: clamp(19rem, 27vw, 27rem);
   margin: 0;
   overflow: hidden;
   border-radius: var(--radius);
-  background: linear-gradient(180deg, #efe7d8 0%, var(--mah-wheat) 100%)
+  background: #8a8888 /* matches the photograph's studio backdrop while it loads */
 }
 
 .portrait img {
-  display: block;
-  width: 86%;
-  height: auto
+  object-fit: cover;
+  object-position: 50% 0%
 }
 
-.copy {
-  max-width: 44rem
-}
-
-.copy h2 {
-  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
-  color: var(--mah-green-950)
-}
-
-/* The message reads as a letter: salutation, body and a signature, all at body-text size. */
-.letter p {
-  max-width: none;
-  margin-bottom: 1.15rem
-}
-
-.letter .salutation {
-  color: var(--mah-charcoal);
-  font-weight: 600
-}
-
-.letter .signature {
-  display: flex;
-  flex-direction: column;
-  margin: 2rem 0 0;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(30, 78, 42, .16);
-  line-height: 1.5
-}
-
-.signature strong {
-  color: var(--mah-green-900);
-  font-size: 1.05rem;
-  font-weight: 700
-}
-
-.signature span {
-  margin-top: .2rem;
-  color: var(--mah-charcoal-700);
-  font-size: .9rem
-}
-
+/* Biography: the one deep-green surface in the section, in the same green as the hero above. */
 .bio {
-  margin-top: clamp(2rem, 3.5vw, 2.75rem);
-  padding: clamp(1.25rem, 2vw, 1.6rem) clamp(1.3rem, 2.2vw, 1.75rem);
+  padding: clamp(1.4rem, 2.2vw, 1.85rem) clamp(1.4rem, 2.4vw, 2rem);
   border-radius: var(--radius);
-  background: rgba(234, 224, 208, .45)
+  background: var(--mah-green-950)
 }
 
 .bio h3 {
-  margin-bottom: .5rem;
-  color: var(--mah-green-700);
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin-bottom: .7rem;
+  color: var(--mah-sand);
   font-size: .76rem;
   font-weight: 700;
   letter-spacing: .14em;
@@ -85,11 +65,104 @@
   text-transform: uppercase
 }
 
+.bio h3::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor
+}
+
 .bio p {
   max-width: none;
   margin: 0;
+  color: rgba(247, 243, 234, .86);
   font-size: .95rem;
   line-height: 1.75
+}
+
+/* Letter: a white sheet with a faint wheat quotation mark; the signature rests on the bottom edge. */
+.letter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  overflow: hidden;
+  padding: clamp(2rem, 4.2vw, 4rem) clamp(1.6rem, 4.2vw, 4rem);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(24, 33, 27, .06)
+}
+
+.letter::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  inset-inline-start: clamp(1.6rem, 4.2vw, 4rem);
+  width: 3.5rem;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--mah-gold)
+}
+
+.mark {
+  position: absolute;
+  top: clamp(1.4rem, 2.6vw, 2.4rem);
+  inset-inline-end: clamp(1.4rem, 2.8vw, 2.6rem);
+  width: clamp(3.25rem, 4.5vw, 4.5rem);
+  height: auto;
+  fill: var(--mah-wheat);
+  stroke: none;
+  opacity: .7
+}
+
+.body {
+  position: relative
+}
+
+.body p {
+  max-width: 62ch;
+  margin-bottom: 1.25rem;
+  font-size: clamp(1.02rem, 1.25vw, 1.15rem);
+  line-height: 1.85
+}
+
+.body p:last-child {
+  margin-bottom: 0
+}
+
+.body .salutation {
+  margin-bottom: 1.5rem;
+  padding-inline-end: clamp(3.5rem, 5.5vw, 5rem); /* clear of the quotation mark */
+  color: var(--mah-green-900);
+  font-weight: 650
+}
+
+.letter .signature {
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  margin: 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(30, 78, 42, .14);
+  line-height: 1.5
+}
+
+.signature strong {
+  color: var(--mah-green-900);
+  font-size: 1.1rem;
+  font-weight: 700
+}
+
+.signature span {
+  margin-top: .25rem;
+  color: var(--mah-gold);
+  font-size: .9rem;
+  font-weight: 600
+}
+
+:global(html[dir="rtl"]) .mark {
+  transform: scaleX(-1)
 }
 
 :global(html[dir="rtl"]) .bio h3 {
@@ -103,11 +176,31 @@
     grid-template-columns: minmax(0, 1fr)
   }
 
-  .portrait {
-    width: min(100%, 22rem)
+  /* Stacked: portrait beside its biography on tablets, then the letter at full width. */
+  .profile {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch
   }
 
-  .copy {
-    max-width: none
+  .portrait {
+    min-height: 24rem
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+  }
+}
+
+@media (max-width: 575px) {
+  .profile {
+    display: flex
+  }
+
+  .portrait {
+    min-height: 0;
+    aspect-ratio: 1 / 1.05
   }
 }

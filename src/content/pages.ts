@@ -136,7 +136,7 @@ export const SECTION_IMAGE_MAP: Partial<
   },
 };
 
-// CEO portrait with a transparent background, shown in the About page's CEO message.
+// CEO studio portrait, shown in the About page's CEO message.
 export const CEO_PORTRAIT = "/assets/images/about/ceo-mohammed-binmahfoodh.webp";
 
 // Production photographs shown as an overlapping collage in the About hero, in tile order.
