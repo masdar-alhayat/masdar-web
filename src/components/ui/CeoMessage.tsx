@@ -36,7 +36,6 @@ export function CeoMessage({section, locale}: {section: ContentSection; locale: 
             />
           </figure>
           <div className={styles.bio}>
-            <h3>{text("Bio Label")}</h3>
             <p>{text("Bio")}</p>
           </div>
         </div>
